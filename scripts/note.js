@@ -9,12 +9,6 @@ function Fret(x, y) {
     ellipse(this.x, this.y, 17, 17);
   }
 
-  this.move = function() {
-    this.x = this.x + random(-1, 1);
-    this.y = this.y + random(-1, 1);
-
-  }
-
   this.clicked = function() {
     var d = dist(mouseX, mouseY, this.x, this.y);
     if (d < 10) {
