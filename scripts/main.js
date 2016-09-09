@@ -1,1 +1,1 @@
-document.write("Good");
+document.write("main.js here");

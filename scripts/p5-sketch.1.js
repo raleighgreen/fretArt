@@ -1,6 +1,5 @@
 function setup() {
   createCanvas(640, 480);
-  background(0);
   strokeWeight(1);
   stroke(255);
   for (var y = 0; y < 120; y = y + 20){
