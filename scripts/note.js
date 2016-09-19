@@ -1,8 +1,9 @@
-function Fret(x, y) {
+function Fret(x, y, number) {
   this.x = x;
   this.y = y;
   this.active = false;
   this.col = color(93,81,214);
+  this.fretArrayNumber = number + 1;
 
   this.display = function() {
     stroke(255);
@@ -12,16 +13,18 @@ function Fret(x, y) {
       this.col = color(93,81,214);
     }
     fill(this.col);
-    ellipse(this.x, this.y, 17, 17);
+    ellipse(this.x, this.y, 7, 7);
   };
 
   this.clicked = function() {
     var d = dist(mouseX, mouseY, this.x, this.y);
-    var audio = document.getElementById("_1_E1.mp3");
-    if (d < 10) {
+
+    if (d < 5) {
       this.active = !this.active;
+
+      var audio = document.getElementById("E1.mp3");
       audio.play();
-      console.log(this)
+      console.log(this.fretArrayNumber);
     }
   };
 }
