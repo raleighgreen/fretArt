@@ -17,8 +17,11 @@ function Fret(x, y) {
 
   this.clicked = function() {
     var d = dist(mouseX, mouseY, this.x, this.y);
+    var audio = document.getElementById("_1_E1.mp3");
     if (d < 10) {
       this.active = !this.active;
+      audio.play();
+      console.log(this)
     }
   };
 }

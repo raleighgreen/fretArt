@@ -5,9 +5,11 @@ Code for video https://vimeo.com/channels/learningp5js/141919520
 
 var frets = [];
 
+
 function setup() {
-  debugger;
+
   createCanvas(600, 400);
+
   for (var guitar = 0; guitar < 3; guitar++) {
     var guitarCounter = guitar * 125;
     for (var guitStr = 0; guitStr < 6; guitStr++){
@@ -18,6 +20,10 @@ function setup() {
       }
     }
   }
+}
+
+function play(){
+
 }
 
 function mousePressed() {
