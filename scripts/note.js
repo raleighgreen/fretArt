@@ -6,7 +6,6 @@ function Fret(x, y, number) {
   this.fretArrayNumber = number + 1;
 
   this.display = function() {
-    stroke(255);
     if (this.active) {
       this.col = color(68,238,203);
     } else {
@@ -22,7 +21,7 @@ function Fret(x, y, number) {
     if (d < 5) {
       this.active = !this.active;
 
-      var audio = document.getElementById("E1.mp3");
+      var audio = document.getElementById("E1");
       audio.play();
       console.log(this.fretArrayNumber);
     }
