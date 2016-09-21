@@ -24,6 +24,11 @@ function Fret(x, y, number) {
       var audio = document.getElementById("E1");
       audio.play();
       console.log(this.fretArrayNumber);
+      // frets[1].active = true;
+      // console.log(frets[1]);
     }
   };
+
+  // frets[0].active = true;
+
 }

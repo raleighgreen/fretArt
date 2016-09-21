@@ -42,3 +42,14 @@ function draw() {
     frets[i].display();
   }
 }
+
+var buttons = {
+  majScaleButton: function() {
+    frets[200].active = true;
+  },
+  clearButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+    }
+  }
+}
