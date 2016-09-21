@@ -45,7 +45,14 @@ function draw() {
 
 var buttons = {
   majScaleButton: function() {
-    frets[200].active = true;
+    var g2 = 150;
+    var g3 = 300;
+
+    frets[0].active = true; frets[1].active = true; frets[3].active = true; frets[5].active = true; frets[7].active = true; frets[8].active = true; frets[10].active = true; frets[12].active = true; frets[13].active = true; frets[15].active = true; frets[17].active = true; frets[19].active = true; frets[20].active = true;frets[22].active = true;frets[24].active = true;
+    frets[0 + g2].active = true; frets[1 + g2].active = true; frets[3 + g2].active = true; frets[5 + g2].active = true; frets[7 + g2].active = true; frets[8 + g2].active = true; frets[10 + g2].active = true; frets[12 + g2].active = true; frets[13 + g2].active = true; frets[15 + g2].active = true; frets[17 + g2].active = true; frets[19 + g2].active = true; frets[20 + g2].active = true;frets[22 + g2].active = true;frets[24 + g2].active = true;
+    frets[0 + g3].active = true; frets[1 + g3].active = true; frets[3 + g3].active = true; frets[5 + g3].active = true; frets[7 + g3].active = true; frets[8 + g3].active = true; frets[10 + g3].active = true; frets[12 + g3].active = true; frets[13 + g3].active = true; frets[15 + g3].active = true; frets[17 + g3].active = true; frets[19 + g3].active = true; frets[20 + g3].active = true; frets[22 + g3].active = true; frets[24 + g3].active = true;
+
+
   },
   clearButton: function() {
     for (i = 0; i < frets.length; i++) {
