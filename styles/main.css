@@ -1,3 +1,8 @@
 h1 {
     color: #3a3287;
+    font-family: sans-serif;
+}
+
+button {
+  margin-bottom: 15px;
 }

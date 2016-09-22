@@ -7,9 +7,9 @@ function Fret(x, y, number) {
 
   this.display = function() {
     if (this.active) {
-      this.col = color(68,238,203);
+      this.col = color(93,81,214)
     } else {
-      this.col = color(93,81,214);
+      this.col = color(30,28,52);
     }
     fill(this.col);
     ellipse(this.x, this.y, 7, 7);
@@ -24,8 +24,6 @@ function Fret(x, y, number) {
       var audio = document.getElementById("E1");
       audio.play();
       console.log(this.fretArrayNumber);
-      // frets[1].active = true;
-      // console.log(frets[1]);
     }
   };
 
