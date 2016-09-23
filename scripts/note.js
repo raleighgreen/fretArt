@@ -1,15 +1,25 @@
+
+
+
 function Fret(x, y, number) {
+  var noteOnColor = color(93,81,214);
+  var noteOffColor = color(30,28,52);
+  var notePlayColor = color(207,221,50);
+
   this.x = x;
   this.y = y;
   this.active = false;
-  this.col = color(93,81,214);
+  this.playColor = false;
+  this.col = noteOnColor;
   this.fretArrayNumber = number + 1;
 
   this.display = function() {
     if (this.active) {
-      this.col = color(93,81,214)
+      this.col = noteOnColor;
+    } else if (this.playColor) {
+      this.col = notePlayColor;
     } else {
-      this.col = color(30,28,52);
+      this.col = noteOffColor;
     }
     fill(this.col);
     ellipse(this.x, this.y, 7, 7);
@@ -17,16 +27,13 @@ function Fret(x, y, number) {
 
   this.clicked = function() {
     var d = dist(mouseX, mouseY, this.x, this.y);
-
-    if (d < 5) {
-      this.active = !this.active;
+    if (d < 5 ) {
+      this.active = false;
+      this.playColor = true;
 
       var audio = document.getElementById("E1");
       audio.play();
       console.log(this.fretArrayNumber);
     }
   };
-
-  // frets[0].active = true;
-
 }

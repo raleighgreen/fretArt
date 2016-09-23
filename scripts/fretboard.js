@@ -36,6 +36,7 @@ function play(){
 
 function mousePressed() {
   for (var i = 0; i < frets.length; i++) {
+    debugger;
     frets[i].clicked();
   }
 }
@@ -62,9 +63,10 @@ var buttonHandlers = {
   clearButton: function() {
     for (i = 0; i < frets.length; i++) {
       frets[i].active = false;
+      frets[i].playColor = false;
     }
   },
-  
+
   ionianButton: function() {
     for (i = 0; i < frets.length; i++) {
       frets[i].active = false;
