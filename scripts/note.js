@@ -28,9 +28,19 @@ function Fret(x, y, number) {
   this.clicked = function() {
     var d = dist(mouseX, mouseY, this.x, this.y);
     if (d < 5 ) {
-      this.active = false;
-      this.playColor = true;
-
+      var fretNum = this.fretArrayNumber - 1;
+      if (this.active === true){
+        this.active = false;
+        this.playColor = true;
+        setTimeout(function() {
+          frets[fretNum].active = true;
+        }, 2700);
+      } else {
+        this.playColor = true;
+        setTimeout(function() {
+          frets[fretNum].playColor = false;
+        }, 2700);
+      }
       var audio = document.getElementById("E1");
       audio.play();
       console.log(this.fretArrayNumber);

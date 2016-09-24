@@ -36,7 +36,6 @@ function play(){
 
 function mousePressed() {
   for (var i = 0; i < frets.length; i++) {
-    debugger;
     frets[i].clicked();
   }
 }
