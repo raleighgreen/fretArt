@@ -43,7 +43,6 @@ function Fret(x, y, number) {
       }
       var audio = document.getElementById("E1");
       audio.play();
-      console.log(this.fretArrayNumber);
     }
   };
 }
