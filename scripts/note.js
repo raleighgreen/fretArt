@@ -12,6 +12,8 @@ function Fret(x, y, number) {
   this.playColor = false;
   this.col = noteOnColor;
   this.fretArrayNumber = number + 1;
+  this.audioNote = document.getElementById("_1");
+  // this.audio = document.getElementById("_1");
 
   this.display = function() {
     if (this.active) {
@@ -27,8 +29,10 @@ function Fret(x, y, number) {
 
   this.clicked = function() {
     var d = dist(mouseX, mouseY, this.x, this.y);
+    var note = this.fretArrayNumber;
     if (d < 5 ) {
       var fretNum = this.fretArrayNumber - 1;
+      var audio = frets[fretNum].audioNote;
       if (this.active === true){
         this.active = false;
         this.playColor = true;
@@ -41,8 +45,19 @@ function Fret(x, y, number) {
           frets[fretNum].playColor = false;
         }, 2700);
       }
-      var audio = document.getElementById("E1");
+      this.audioNote.src = "audio/" + frets[fretNum].fretArrayNumber + ".mp3";
       audio.play();
+      // switch (frets[fretNum].fretArrayNumber) {
+      //   case 131:
+      //   case 101:
+      //     frets[fretNum].audioNote = 6;
+      //     console.log(frets[fretNum].audioNote);
+      //     return
+      //     break;
+      //   }
+      // }
+
+      // console.log(frets.fretArrayNumber);
     }
   };
 }
