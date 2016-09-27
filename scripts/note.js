@@ -13,7 +13,6 @@ function Fret(x, y, number) {
   this.col = noteOnColor;
   this.fretArrayNumber = number + 1;
   this.audioNote = document.getElementById("_1");
-  // this.audio = document.getElementById("_1");
 
   this.display = function() {
     if (this.active) {
@@ -33,6 +32,7 @@ function Fret(x, y, number) {
     if (d < 5 ) {
       var fretNum = this.fretArrayNumber - 1;
       var audio = frets[fretNum].audioNote;
+
       if (this.active === true){
         this.active = false;
         this.playColor = true;
@@ -45,19 +45,51 @@ function Fret(x, y, number) {
           frets[fretNum].playColor = false;
         }, 2700);
       }
-      this.audioNote.src = "audio/" + frets[fretNum].fretArrayNumber + ".mp3";
+      // High E string note mapping
+      for (i = 1; i <= 25; i++) {
+        if (note === i || note === i + 150 || note === i + 300) {
+          this.fretArrayNumber = i + 24;
+          console.log(this.fretArrayNumber);
+        }
+      }
+      // B string note mapping
+      for (i = 26; i <= 50; i++) {
+        if (note === i || note === i + 150 || note === i + 300) {
+          this.fretArrayNumber = i - 6;
+          console.log(this.fretArrayNumber);
+        }
+      }
+      // G string note mapping
+      for (i = 51; i <= 75; i++) {
+        if (note === i || note === i + 150 || note === i + 300) {
+          this.fretArrayNumber = i - 35;
+          console.log(this.fretArrayNumber);
+        }
+      }
+      // D string note mapping
+      for (i = 76; i <= 100; i++) {
+        if (note === i || note === i + 150 || note === i + 300) {
+          this.fretArrayNumber = i - 65;
+          console.log(this.fretArrayNumber);
+        }
+      }
+      // A string note mapping
+      for (i = 101; i <= 125; i++) {
+        if (note === i || note === i + 150 || note === i + 300) {
+          this.fretArrayNumber = i - 95;
+          console.log(this.fretArrayNumber);
+        }
+      }
+      // Low E string note mapping
+      for (i = 126; i <= 150; i++) {
+        if (note === i || note === i + 150 || note === i + 300) {
+          this.fretArrayNumber = i - 125;
+          console.log(this.fretArrayNumber);
+        }
+      }
+      this.audioNote.src = "audio/" + this.fretArrayNumber + ".mp3";
       audio.play();
-      // switch (frets[fretNum].fretArrayNumber) {
-      //   case 131:
-      //   case 101:
-      //     frets[fretNum].audioNote = 6;
-      //     console.log(frets[fretNum].audioNote);
-      //     return
-      //     break;
-      //   }
-      // }
-
-      // console.log(frets.fretArrayNumber);
+      this.fretArrayNumber = number + 1;
     }
   };
 }
