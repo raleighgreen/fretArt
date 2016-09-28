@@ -26,7 +26,6 @@ function generateFretboards() {
     var x = guitarGroupLeftMargin;
     var y = guitarGroupTopMargin + (guitarSpacing * guitar);
     fretboards.push(new Fretboard(x, y));
-    console.log(fretboards);
   }
 }
 
@@ -81,6 +80,34 @@ var str5 = 100;
 var str6 = 125;
 
 // ionian scale is w w h w w w h
+
+var notes = ["E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1",
+"C2", "Db2", "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2",
+"C3", "Db3", "D3", "Eb3", "E3", "F3", "Gb3", "G3", "Ab3", "A3", "Bb3", "B3",
+"C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4",
+"C5", "Db5", "D5", "Eb5", "E5"];
+
+var ionian = [0, 1, 2, 2, 2, 1,/**/
+2, 2, 1, 2, 2, 2, 1,/**/
+2, 2, 1, 2, 2, 2, 1,/**/
+2, 2, 1, 2, 2, 2, 1,/**/
+2, 2];
+// var pentatonic = [0, 3, 2, 2, 3];
+// var dorian = [0, 2, 1, 2, 2, 2, 1, 2];
+
+// can extend this function to change starting note
+function getScale(scale) {
+  debugger;
+  var currentNoteIndex = 0;
+  for (var i = 0; i < scale.length; i++) {
+    currentNoteIndex = currentNoteIndex + scale[i];
+    var currentNote = notes[currentNoteIndex];
+    console.log(currentNote);
+  }
+}
+getScale(ionian);
+// getScale(dorian);
+// getScale(pentatonic);
 
 var buttonHandlers = {
   clearButton: function() {
