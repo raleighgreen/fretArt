@@ -1,6 +1,3 @@
-
-
-
 function Fret(x, y, number) {
   var noteOnColor = color(93,81,214);
   var noteOffColor = color(30,28,52);

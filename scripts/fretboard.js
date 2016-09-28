@@ -5,16 +5,38 @@ Code for video https://vimeo.com/channels/learningp5js/141919520
 
 var frets = [];
 
+var guitarSpacing = 120;
+var guitarGroupLeftMargin = 110;
+var guitarGroupTopMargin = 70;
+var fretWidth = 20;
+var fretboards = [];
+
+function Fretboard(x, y) {
+  this.x = x;
+  this.y = y;
+  this.frets = [];
+
+  // this.generateFrets = function() {
+  //
+  // }
+}
+
+function generateFretboards() {
+  for (var guitar = 0; guitar < 3; guitar++) {
+    var x = guitarGroupLeftMargin;
+    var y = guitarGroupTopMargin + (guitarSpacing * guitar);
+    fretboards.push(new Fretboard(x, y));
+    console.log(fretboards);
+  }
+}
 
 function setup() {
 
   createCanvas(700, 500);
-  for (var guitar = 0; guitar < 3; guitar++) {
+  generateFretboards();
+  // generate the frets
 
-    var guitarSpacing = 120;
-    var guitarGroupLeftMargin = 110;
-    var guitarGroupTopMargin = 70;
-    var fretWidth = 20;
+  for (var guitar = 0; guitar < 3; guitar++) {
 
     var guitarCounter = guitar * guitarSpacing;
     // sets to 6 strings
@@ -57,6 +79,8 @@ var str3 = 50;
 var str4 = 75;
 var str5 = 100;
 var str6 = 125;
+
+// ionian scale is w w h w w w h
 
 var buttonHandlers = {
   clearButton: function() {
