@@ -109,7 +109,6 @@ var dorian = [
 // can extend this function to change starting note
 function getScale(scale) {
   var currentNoteIndex = 0;
-  var frets = frets;
   for (var i = 0; i < scale.length; i++) {
 
     currentNoteIndex = currentNoteIndex + scale[i];
