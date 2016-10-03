@@ -39,7 +39,7 @@ function setup() {
       }
     }
   }
-  getScale(s);
+  // getScale(s);
 }
 
 function play(){
@@ -87,6 +87,7 @@ var lydian = s.concat(c,d,e,gb,g,a,b);
 var mixolydian = s.concat(c,d,e,f,g,a,bb);
 var aeolien = s.concat(c,d,eb,f,g,ab,bb);
 var locrian = s.concat(c,db,eb,f,gb,ab,bb);
+var minPent = s.concat(c,eb,f,g,bb);
 
 // can extend this function to change starting note
 function getScale(scale) {
@@ -155,5 +156,13 @@ var buttonHandlers = {
       frets[i].playColor = false;
     }
     getScale(locrian);
+  },
+  minPentButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+      frets[i].playColor = false;
+    }
+    getScale(minPent);
   }
+
 }
