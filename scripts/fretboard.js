@@ -1,8 +1,3 @@
-/*
-6.7 p5.js clicking on objects
-Code for video https://vimeo.com/channels/learningp5js/141919520
-*/
-
 var frets = [];
 
 var guitarSpacing = 120;
@@ -10,15 +5,12 @@ var guitarGroupLeftMargin = 110;
 var guitarGroupTopMargin = 70;
 var fretWidth = 20;
 var fretboards = [];
+var scaleHolder;
 
 function Fretboard(x, y) {
   this.x = x;
   this.y = y;
   this.frets = [];
-
-  // this.generateFrets = function() {
-  //
-  // }
 }
 
 function generateFretboards() {
@@ -34,9 +26,7 @@ function setup() {
   createCanvas(700, 500);
   generateFretboards();
   // generate the frets
-
   for (var guitar = 0; guitar < 3; guitar++) {
-
     var guitarCounter = guitar * guitarSpacing;
     // sets to 6 strings
     for (var guitStr = 0; guitStr < 6; guitStr++){
@@ -49,6 +39,7 @@ function setup() {
       }
     }
   }
+  getScale(s);
 }
 
 function play(){
@@ -68,65 +59,46 @@ function draw() {
   }
 }
 
-var g1 = 0;
-var g2 = 150;
-var g3 = 300;
-
-var str1 = 0;
-var str2 = 25;
-var str3 = 50;
-var str4 = 75;
-var str5 = 100;
-var str6 = 125;
-
-// ionian scale is w w h w w w h
-
 var notes = ["E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1",
 "C2", "Db2", "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2",
 "C3", "Db3", "D3", "Eb3", "E3", "F3", "Gb3", "G3", "Ab3", "A3", "Bb3", "B3",
 "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4",
 "C5", "Db5", "D5", "Eb5", "E5"];
 
-var ionian = [
-0, 1, 2, 2, 2, 1,/**/
-2, 2, 1, 2, 2, 2, 1,/**/
-2, 2, 1, 2, 2, 2, 1,/**/
-2, 2, 1, 2, 2, 2, 1,/**/
-2, 2];
-var pentatonic = [
-1, 2, 3, 2,/**/
-3, 2, 2, 3, 2,/**/
-3, 2, 2, 3, 2,/**/
-3, 2, 2, 3, 2,/**/
-3];
-var dorian = [
-1, 2, 2, 1, 2,/**/
-2, 1, 2, 2, 2, 1, 2,/**/
-2, 1, 2, 2, 2, 1, 2,/**/
-2, 1, 2, 2, 2, 1, 2,/**/
-2, 1];
+
+var s = [];
+var c = [8,20,26,38,55,67,85,97,103,115,133,145];
+var db = [9,21,27,39,56,68,86,98,104,116,134,146];
+var d = [10,22,28,40,57,69,75,87,99,105,117,135,147];
+var eb = [11,23,29,41,58,70,76,88,106,118,136,148];
+var e = [0,12,24,30,42,59,71,77,89,107,119,125,137,149];
+var f = [1,13,31,43,60,72,78,90,108,120,126,138];
+var gb = [2,14,32,44,61,73,79,91,109,121,127,139];
+var g = [3,15,33,45,50,62,74,80,92,110,122,128,140];
+var ab = [4,16,34,46,51,63,81,93,111,123,129,141];
+var a = [5,17,35,47,52,64,82,94,100,112,124,130,142];
+var bb = [6,18,36,48,53,65,83,95,101,113,131,143];
+var b = [7,19,25,37,49,54,66,84,96,102,114,132,144];
+
+var ionian = s.concat(c,d,e,f,g,a,b);
+var dorian = s.concat(c,d,eb,f,g,a,bb);
+var phrygian = s.concat(c,db,eb,f,g,ab,bb);
+var lydian = s.concat(c,d,e,gb,g,a,b);
+var mixolydian = s.concat(c,d,e,f,g,a,bb);
+var aeolien = s.concat(c,d,eb,f,g,ab,bb);
+var locrian = s.concat(c,db,eb,f,gb,ab,bb);
 
 // can extend this function to change starting note
 function getScale(scale) {
   var currentNoteIndex = 0;
   for (var i = 0; i < scale.length; i++) {
-
     currentNoteIndex = currentNoteIndex + scale[i];
     var currentNote = notes[currentNoteIndex];
-    // One point which has me stuck - I'm confused as to why I can susessfully console.log currentNote
-    // and currentNoteIndex, however when I console.log frets[i] or frets[currentNoteIndex] I get an
-    // error in the console - Uncaught TypeError: Cannot read property '0' of undefined.
-
-    // Seems strange that I am able to access frets[i].active in the buttonHandlers object, but not here.
-    // How would I access the frets[i] from this getScale function?
-    console.log(currentNote);
-    console.log(currentNoteIndex + 1);
-    // console.log(frets[currentNoteIndex]);
+    frets[scale[i]].active = true;
+    frets[scale[i] + 150].active = true;
+    frets[scale[i] + 300].active = true;
   }
 }
-getScale(ionian);
-// getScale(dorian);
-// getScale(pentatonic);
 
 var buttonHandlers = {
   clearButton: function() {
@@ -135,216 +107,53 @@ var buttonHandlers = {
       frets[i].playColor = false;
     }
   },
-
-
-  //
-  // ionianButton: function() {
-  //   for (i = 0; i < frets.length; i++) {
-  //     frets[i].active = false;
-  //   }
-  //   // string 1
-  //   frets[0 + g1 + str1].active = true; frets[1 + g1 + str1].active = true; frets[3 + g1 + str1].active = true; frets[5 + g1 + str1].active = true; frets[7 + g1 + str1].active = true; frets[8 + g1 + str1].active = true; frets[10 + g1 + str1].active = true; frets[12 + g1 + str1].active = true; frets[13 + g1 + str1].active = true; frets[15 + g1 + str1].active = true; frets[17 + g1 + str1].active = true; frets[19 + g1 + str1].active = true; frets[20 + g1 + str1].active = true; frets[22 + g1 + str1].active = true; frets[24 + g1 + str1].active = true;
-  //   frets[0 + g2 + str1].active = true; frets[1 + g2 + str1].active = true; frets[3 + g2 + str1].active = true; frets[5 + g2 + str1].active = true; frets[7 + g2 + str1].active = true; frets[8 + g2 + str1].active = true; frets[10 + g2 + str1].active = true; frets[12 + g2 + str1].active = true; frets[13 + g2 + str1].active = true; frets[15 + g2 + str1].active = true; frets[17 + g2 + str1].active = true; frets[19 + g2 + str1].active = true; frets[20 + g2 + str1].active = true; frets[22 + g2 + str1].active = true; frets[24 + g2 + str1].active = true;
-  //   frets[0 + g3 + str1].active = true; frets[1 + g3 + str1].active = true; frets[3 + g3 + str1].active = true; frets[5 + g3 + str1].active = true; frets[7 + g3 + str1].active = true; frets[8 + g3 + str1].active = true; frets[10 + g3 + str1].active = true; frets[12 + g3 + str1].active = true; frets[13 + g3 + str1].active = true; frets[15 + g3 + str1].active = true; frets[17 + g3 + str1].active = true; frets[19 + g3 + str1].active = true; frets[20 + g3 + str1].active = true; frets[22 + g3 + str1].active = true; frets[24 + g3 + str1].active = true;
-  //   // string 2
-  //   frets[0 + g1 + str2].active = true; frets[1 + g1 + str2].active = true; frets[3 + g1 + str2].active = true; frets[5 + g1 + str2].active = true; frets[6 + g1 + str2].active = true; frets[8 + g1 + str2].active = true; frets[10 + g1 + str2].active = true; frets[12 + g1 + str2].active = true; frets[13 + g1 + str2].active = true; frets[15 + g1 + str2].active = true; frets[17 + g1 + str2].active = true; frets[18 + g1 + str2].active = true; frets[20 + g1 + str2].active = true; frets[22 + g1 + str2].active = true; frets[24 + g1 + str2].active = true;
-  //   frets[0 + g2 + str2].active = true; frets[1 + g2 + str2].active = true; frets[3 + g2 + str2].active = true; frets[5 + g2 + str2].active = true; frets[6 + g2 + str2].active = true; frets[8 + g2 + str2].active = true; frets[10 + g2 + str2].active = true; frets[12 + g2 + str2].active = true; frets[13 + g2 + str2].active = true; frets[15 + g2 + str2].active = true; frets[17 + g2 + str2].active = true; frets[18 + g2 + str2].active = true; frets[20 + g2 + str2].active = true; frets[22 + g2 + str2].active = true; frets[24 + g2 + str2].active = true;
-  //   frets[0 + g3 + str2].active = true; frets[1 + g3 + str2].active = true; frets[3 + g3 + str2].active = true; frets[5 + g3 + str2].active = true; frets[6 + g3 + str2].active = true; frets[8 + g3 + str2].active = true; frets[10 + g3 + str2].active = true; frets[12 + g3 + str2].active = true; frets[13 + g3 + str2].active = true; frets[15 + g3 + str2].active = true; frets[17 + g3 + str2].active = true; frets[18 + g3 + str2].active = true; frets[20 + g3 + str2].active = true; frets[22 + g3 + str2].active = true; frets[24 + g3 + str2].active = true;
-  //   // string 3
-  //   frets[0 + g1 + str3].active = true; frets[2 + g1 + str3].active = true; frets[4 + g1 + str3].active = true; frets[5 + g1 + str3].active = true; frets[7 + g1 + str3].active = true; frets[9 + g1 + str3].active = true; frets[10 + g1 + str3].active = true; frets[12 + g1 + str3].active = true; frets[14 + g1 + str3].active = true; frets[16 + g1 + str3].active = true; frets[17 + g1 + str3].active = true; frets[19 + g1 + str3].active = true; frets[21 + g1 + str3].active = true; frets[22 + g1 + str3].active = true; frets[24 + g1 + str3].active = true;
-  //   frets[0 + g2 + str3].active = true; frets[2 + g2 + str3].active = true; frets[4 + g2 + str3].active = true; frets[5 + g2 + str3].active = true; frets[7 + g2 + str3].active = true; frets[9 + g2 + str3].active = true; frets[10 + g2 + str3].active = true; frets[12 + g2 + str3].active = true; frets[14 + g2 + str3].active = true; frets[16 + g2 + str3].active = true; frets[17 + g2 + str3].active = true; frets[19 + g2 + str3].active = true; frets[21 + g2 + str3].active = true; frets[22 + g2 + str3].active = true; frets[24 + g2 + str3].active = true;
-  //   frets[0 + g3 + str3].active = true; frets[2 + g3 + str3].active = true; frets[4 + g3 + str3].active = true; frets[5 + g3 + str3].active = true; frets[7 + g3 + str3].active = true; frets[9 + g3 + str3].active = true; frets[10 + g3 + str3].active = true; frets[12 + g3 + str3].active = true; frets[14 + g3 + str3].active = true; frets[16 + g3 + str3].active = true; frets[17 + g3 + str3].active = true; frets[19 + g3 + str3].active = true; frets[21 + g3 + str3].active = true; frets[22 + g3 + str3].active = true; frets[24 + g3 + str3].active = true;
-  //   // string 4
-  //   frets[0 + g1 + str4].active = true; frets[2 + g1 + str4].active = true; frets[3 + g1 + str4].active = true; frets[5 + g1 + str4].active = true; frets[7 + g1 + str4].active = true; frets[9 + g1 + str4].active = true; frets[10 + g1 + str4].active = true; frets[12 + g1 + str4].active = true; frets[14 + g1 + str4].active = true; frets[15 + g1 + str4].active = true; frets[17 + g1 + str4].active = true; frets[19 + g1 + str4].active = true; frets[21 + g1 + str4].active = true; frets[22 + g1 + str4].active = true; frets[24 + g1 + str4].active = true;
-  //   frets[0 + g2 + str4].active = true; frets[2 + g2 + str4].active = true; frets[3 + g2 + str4].active = true; frets[5 + g2 + str4].active = true; frets[7 + g2 + str4].active = true; frets[9 + g2 + str4].active = true; frets[10 + g2 + str4].active = true; frets[12 + g2 + str4].active = true; frets[14 + g2 + str4].active = true; frets[15 + g2 + str4].active = true; frets[17 + g2 + str4].active = true; frets[19 + g2 + str4].active = true; frets[21 + g2 + str4].active = true; frets[22 + g2 + str4].active = true; frets[24 + g2 + str4].active = true;
-  //   frets[0 + g3 + str4].active = true; frets[2 + g3 + str4].active = true; frets[3 + g3 + str4].active = true; frets[5 + g3 + str4].active = true; frets[7 + g3 + str4].active = true; frets[9 + g3 + str4].active = true; frets[10 + g3 + str4].active = true; frets[12 + g3 + str4].active = true; frets[14 + g3 + str4].active = true; frets[15 + g3 + str4].active = true; frets[17 + g3 + str4].active = true; frets[19 + g3 + str4].active = true; frets[21 + g3 + str4].active = true; frets[22 + g3 + str4].active = true; frets[24 + g3 + str4].active = true;
-  //   // string 5
-  //   frets[0 + g1 + str5].active = true; frets[2 + g1 + str5].active = true; frets[3 + g1 + str5].active = true; frets[5 + g1 + str5].active = true; frets[7 + g1 + str5].active = true; frets[8 + g1 + str5].active = true; frets[10 + g1 + str5].active = true; frets[12 + g1 + str5].active = true; frets[14 + g1 + str5].active = true; frets[15 + g1 + str5].active = true; frets[17 + g1 + str5].active = true; frets[19 + g1 + str5].active = true; frets[20 + g1 + str5].active = true; frets[22 + g1 + str5].active = true; frets[24 + g1 + str5].active = true;
-  //   frets[0 + g2 + str5].active = true; frets[2 + g2 + str5].active = true; frets[3 + g2 + str5].active = true; frets[5 + g2 + str5].active = true; frets[7 + g2 + str5].active = true; frets[8 + g2 + str5].active = true; frets[10 + g2 + str5].active = true; frets[12 + g2 + str5].active = true; frets[14 + g2 + str5].active = true; frets[15 + g2 + str5].active = true; frets[17 + g2 + str5].active = true; frets[19 + g2 + str5].active = true; frets[20 + g2 + str5].active = true; frets[22 + g2 + str5].active = true; frets[24 + g2 + str5].active = true;
-  //   frets[0 + g3 + str5].active = true; frets[2 + g3 + str5].active = true; frets[3 + g3 + str5].active = true; frets[5 + g3 + str5].active = true; frets[7 + g3 + str5].active = true; frets[8 + g3 + str5].active = true; frets[10 + g3 + str5].active = true; frets[12 + g3 + str5].active = true; frets[14 + g3 + str5].active = true; frets[15 + g3 + str5].active = true; frets[17 + g3 + str5].active = true; frets[19 + g3 + str5].active = true; frets[20 + g3 + str5].active = true; frets[22 + g3 + str5].active = true; frets[24 + g3 + str5].active = true;
-  //   // string 6
-  //   frets[0 + g1 + str6].active = true; frets[1 + g1 + str6].active = true; frets[3 + g1 + str6].active = true; frets[5 + g1 + str6].active = true; frets[7 + g1 + str6].active = true; frets[8 + g1 + str6].active = true; frets[10 + g1 + str6].active = true; frets[12 + g1 + str6].active = true; frets[13 + g1 + str6].active = true; frets[15 + g1 + str6].active = true; frets[17 + g1 + str6].active = true; frets[19 + g1 + str6].active = true; frets[20 + g1 + str6].active = true; frets[22 + g1 + str6].active = true; frets[24 + g1 + str6].active = true;
-  //   frets[0 + g2 + str6].active = true; frets[1 + g2 + str6].active = true; frets[3 + g2 + str6].active = true; frets[5 + g2 + str6].active = true; frets[7 + g2 + str6].active = true; frets[8 + g2 + str6].active = true; frets[10 + g2 + str6].active = true; frets[12 + g2 + str6].active = true; frets[13 + g2 + str6].active = true; frets[15 + g2 + str6].active = true; frets[17 + g2 + str6].active = true; frets[19 + g2 + str6].active = true; frets[20 + g2 + str6].active = true; frets[22 + g2 + str6].active = true; frets[24 + g2 + str6].active = true;
-  //   frets[0 + g3 + str6].active = true; frets[1 + g3 + str6].active = true; frets[3 + g3 + str6].active = true; frets[5 + g3 + str6].active = true; frets[7 + g3 + str6].active = true; frets[8 + g3 + str6].active = true; frets[10 + g3 + str6].active = true; frets[12 + g3 + str6].active = true; frets[13 + g3 + str6].active = true; frets[15 + g3 + str6].active = true; frets[17 + g3 + str6].active = true; frets[19 + g3 + str6].active = true; frets[20 + g3 + str6].active = true; frets[22 + g3 + str6].active = true; frets[24 + g3 + str6].active = true;
-  // },
-  //
-  // dorianButton: function() {
-  //   for (i = 0; i < frets.length; i++) {
-  //     frets[i].active = false;
-  //   }
-  //   // string 1
-  //   frets[0 + g1 + str1].active = false; frets[1 + g1 + str1].active = true; frets[3 + g1 + str1].active = true; frets[5 + g1 + str1].active = true; frets[6 + g1 + str1].active = true; frets[8 + g1 + str1].active = true; frets[10 + g1 + str1].active = true; frets[11 + g1 + str1].active = true; frets[13 + g1 + str1].active = true; frets[15 + g1 + str1].active = true; frets[17 + g1 + str1].active = true; frets[18 + g1 + str1].active = true; frets[20 + g1 + str1].active = true; frets[22 + g1 + str1].active = true; frets[23 + g1 + str1].active = true;
-  //   frets[0 + g2 + str1].active = false; frets[1 + g2 + str1].active = true; frets[3 + g2 + str1].active = true; frets[5 + g2 + str1].active = true; frets[6 + g2 + str1].active = true; frets[8 + g2 + str1].active = true; frets[10 + g2 + str1].active = true; frets[11 + g2 + str1].active = true; frets[13 + g2 + str1].active = true; frets[15 + g2 + str1].active = true; frets[17 + g2 + str1].active = true; frets[18 + g2 + str1].active = true; frets[20 + g2 + str1].active = true; frets[22 + g2 + str1].active = true; frets[23 + g2 + str1].active = true;
-  //   frets[0 + g3 + str1].active = false; frets[1 + g3 + str1].active = true; frets[3 + g3 + str1].active = true; frets[5 + g3 + str1].active = true; frets[6 + g3 + str1].active = true; frets[8 + g3 + str1].active = true; frets[10 + g3 + str1].active = true; frets[11 + g3 + str1].active = true; frets[13 + g3 + str1].active = true; frets[15 + g3 + str1].active = true; frets[17 + g3 + str1].active = true; frets[18 + g3 + str1].active = true; frets[20 + g3 + str1].active = true; frets[22 + g3 + str1].active = true; frets[23 + g3 + str1].active = true;
-  //   // string 2
-  //   frets[0 + g1 + str2].active = false; frets[1 + g1 + str2].active = true; frets[3 + g1 + str2].active = true; frets[4 + g1 + str2].active = true; frets[6 + g1 + str2].active = true; frets[8 + g1 + str2].active = true; frets[10 + g1 + str2].active = true; frets[11 + g1 + str2].active = true; frets[13 + g1 + str2].active = true; frets[15 + g1 + str2].active = true; frets[16 + g1 + str2].active = true; frets[18 + g1 + str2].active = true; frets[20 + g1 + str2].active = true; frets[22 + g1 + str2].active = true; frets[23 + g1 + str2].active = true;
-  //   frets[0 + g2 + str2].active = false; frets[1 + g2 + str2].active = true; frets[3 + g2 + str2].active = true; frets[4 + g2 + str2].active = true; frets[6 + g2 + str2].active = true; frets[8 + g2 + str2].active = true; frets[10 + g2 + str2].active = true; frets[11 + g2 + str2].active = true; frets[13 + g2 + str2].active = true; frets[15 + g2 + str2].active = true; frets[16 + g2 + str2].active = true; frets[18 + g2 + str2].active = true; frets[20 + g2 + str2].active = true; frets[22 + g2 + str2].active = true; frets[23 + g2 + str2].active = true;
-  //   frets[0 + g3 + str2].active = false; frets[1 + g3 + str2].active = true; frets[3 + g3 + str2].active = true; frets[4 + g3 + str2].active = true; frets[6 + g3 + str2].active = true; frets[8 + g3 + str2].active = true; frets[10 + g3 + str2].active = true; frets[11 + g3 + str2].active = true; frets[13 + g3 + str2].active = true; frets[15 + g3 + str2].active = true; frets[16 + g3 + str2].active = true; frets[18 + g3 + str2].active = true; frets[20 + g3 + str2].active = true; frets[22 + g3 + str2].active = true; frets[23 + g3 + str2].active = true;
-  //   // string 3
-  //   frets[0 + g1 + str3].active = true; frets[2 + g1 + str3].active = true; frets[3 + g1 + str3].active = true; frets[5 + g1 + str3].active = true; frets[7 + g1 + str3].active = true; frets[8 + g1 + str3].active = true; frets[10 + g1 + str3].active = true; frets[12 + g1 + str3].active = true; frets[14 + g1 + str3].active = true; frets[15 + g1 + str3].active = true; frets[17 + g1 + str3].active = true; frets[19 + g1 + str3].active = true; frets[20 + g1 + str3].active = true; frets[22 + g1 + str3].active = true; frets[24 + g1 + str3].active = true;
-  //   frets[0 + g2 + str3].active = true; frets[2 + g2 + str3].active = true; frets[3 + g2 + str3].active = true; frets[5 + g2 + str3].active = true; frets[7 + g2 + str3].active = true; frets[8 + g2 + str3].active = true; frets[10 + g2 + str3].active = true; frets[12 + g2 + str3].active = true; frets[14 + g2 + str3].active = true; frets[15 + g2 + str3].active = true; frets[17 + g2 + str3].active = true; frets[19 + g2 + str3].active = true; frets[20 + g2 + str3].active = true; frets[22 + g2 + str3].active = true; frets[24 + g2 + str3].active = true;
-  //   frets[0 + g3 + str3].active = true; frets[2 + g3 + str3].active = true; frets[3 + g3 + str3].active = true; frets[5 + g3 + str3].active = true; frets[7 + g3 + str3].active = true; frets[8 + g3 + str3].active = true; frets[10 + g3 + str3].active = true; frets[12 + g3 + str3].active = true; frets[14 + g3 + str3].active = true; frets[15 + g3 + str3].active = true; frets[17 + g3 + str3].active = true; frets[19 + g3 + str3].active = true; frets[20 + g3 + str3].active = true; frets[22 + g3 + str3].active = true; frets[24 + g3 + str3].active = true;
-  //   // string 4
-  //   frets[0 + g1 + str4].active = true; frets[1 + g1 + str4].active = true; frets[3 + g1 + str4].active = true; frets[5 + g1 + str4].active = true; frets[7 + g1 + str4].active = true; frets[8 + g1 + str4].active = true; frets[10 + g1 + str4].active = true; frets[12 + g1 + str4].active = true; frets[13 + g1 + str4].active = true; frets[15 + g1 + str4].active = true; frets[17 + g1 + str4].active = true; frets[19 + g1 + str4].active = true; frets[20 + g1 + str4].active = true; frets[22 + g1 + str4].active = true; frets[24 + g1 + str4].active = true;
-  //   frets[0 + g2 + str4].active = true; frets[1 + g2 + str4].active = true; frets[3 + g2 + str4].active = true; frets[5 + g2 + str4].active = true; frets[7 + g2 + str4].active = true; frets[8 + g2 + str4].active = true; frets[10 + g2 + str4].active = true; frets[12 + g2 + str4].active = true; frets[13 + g2 + str4].active = true; frets[15 + g2 + str4].active = true; frets[17 + g2 + str4].active = true; frets[19 + g2 + str4].active = true; frets[20 + g2 + str4].active = true; frets[22 + g2 + str4].active = true; frets[24 + g2 + str4].active = true;
-  //   frets[0 + g3 + str4].active = true; frets[1 + g3 + str4].active = true; frets[3 + g3 + str4].active = true; frets[5 + g3 + str4].active = true; frets[7 + g3 + str4].active = true; frets[8 + g3 + str4].active = true; frets[10 + g3 + str4].active = true; frets[12 + g3 + str4].active = true; frets[13 + g3 + str4].active = true; frets[15 + g3 + str4].active = true; frets[17 + g3 + str4].active = true; frets[19 + g3 + str4].active = true; frets[20 + g3 + str4].active = true; frets[22 + g3 + str4].active = true; frets[24 + g3 + str4].active = true;
-  //   // string 5
-  //   frets[0 + g1 + str5].active = true; frets[1 + g1 + str5].active = true; frets[3 + g1 + str5].active = true; frets[5 + g1 + str5].active = true; frets[6 + g1 + str5].active = true; frets[8 + g1 + str5].active = true; frets[10 + g1 + str5].active = true; frets[12 + g1 + str5].active = true; frets[13 + g1 + str5].active = true; frets[15 + g1 + str5].active = true; frets[17 + g1 + str5].active = true; frets[18 + g1 + str5].active = true; frets[20 + g1 + str5].active = true; frets[22 + g1 + str5].active = true; frets[24 + g1 + str5].active = true;
-  //   frets[0 + g2 + str5].active = true; frets[1 + g2 + str5].active = true; frets[3 + g2 + str5].active = true; frets[5 + g2 + str5].active = true; frets[6 + g2 + str5].active = true; frets[8 + g2 + str5].active = true; frets[10 + g2 + str5].active = true; frets[12 + g2 + str5].active = true; frets[13 + g2 + str5].active = true; frets[15 + g2 + str5].active = true; frets[17 + g2 + str5].active = true; frets[18 + g2 + str5].active = true; frets[20 + g2 + str5].active = true; frets[22 + g2 + str5].active = true; frets[24 + g2 + str5].active = true;
-  //   frets[0 + g3 + str5].active = true; frets[1 + g3 + str5].active = true; frets[3 + g3 + str5].active = true; frets[5 + g3 + str5].active = true; frets[6 + g3 + str5].active = true; frets[8 + g3 + str5].active = true; frets[10 + g3 + str5].active = true; frets[12 + g3 + str5].active = true; frets[13 + g3 + str5].active = true; frets[15 + g3 + str5].active = true; frets[17 + g3 + str5].active = true; frets[18 + g3 + str5].active = true; frets[20 + g3 + str5].active = true; frets[22 + g3 + str5].active = true; frets[24 + g3 + str5].active = true;
-  //   // string 6
-  //   frets[0 + g1 + str6].active = false; frets[1 + g1 + str6].active = true; frets[3 + g1 + str6].active = true; frets[5 + g1 + str6].active = true; frets[6 + g1 + str6].active = true; frets[8 + g1 + str6].active = true; frets[10 + g1 + str6].active = true; frets[11 + g1 + str6].active = true; frets[13 + g1 + str6].active = true; frets[15 + g1 + str6].active = true; frets[17 + g1 + str6].active = true; frets[18 + g1 + str6].active = true; frets[20 + g1 + str6].active = true; frets[22 + g1 + str6].active = true; frets[23 + g1 + str6].active = true;
-  //   frets[0 + g2 + str6].active = false; frets[1 + g2 + str6].active = true; frets[3 + g2 + str6].active = true; frets[5 + g2 + str6].active = true; frets[6 + g2 + str6].active = true; frets[8 + g2 + str6].active = true; frets[10 + g2 + str6].active = true; frets[11 + g2 + str6].active = true; frets[13 + g2 + str6].active = true; frets[15 + g2 + str6].active = true; frets[17 + g2 + str6].active = true; frets[18 + g2 + str6].active = true; frets[20 + g2 + str6].active = true; frets[22 + g2 + str6].active = true; frets[23 + g2 + str6].active = true;
-  //   frets[0 + g3 + str6].active = false; frets[1 + g3 + str6].active = true; frets[3 + g3 + str6].active = true; frets[5 + g3 + str6].active = true; frets[6 + g3 + str6].active = true; frets[8 + g3 + str6].active = true; frets[10 + g3 + str6].active = true; frets[11 + g3 + str6].active = true; frets[13 + g3 + str6].active = true; frets[15 + g3 + str6].active = true; frets[17 + g3 + str6].active = true; frets[18 + g3 + str6].active = true; frets[20 + g3 + str6].active = true; frets[22 + g3 + str6].active = true; frets[23 + g3 + str6].active = true;
-  // },
-
-  // phrygianButton: function() {
-  //   for (i = 0; i < frets.length; i++) {
-  //     frets[i].active = false;
-  //   }
-  //   // string 1
-  //   frets[0 + g1 + str1].active = false; frets[1 + g1 + str1].active = true; frets[3 + g1 + str1].active = true; frets[4 + g1 + str1].active = true; frets[6 + g1 + str1].active = true; frets[8 + g1 + str1].active = true; frets[9 + g1 + str1].active = true; frets[11 + g1 + str1].active = true; frets[13 + g1 + str1].active = true; frets[15 + g1 + str1].active = true; frets[16 + g1 + str1].active = true; frets[18 + g1 + str1].active = true; frets[20 + g1 + str1].active = true; frets[21 + g1 + str1].active = true; frets[23 + g1 + str1].active = true;
-  //   frets[0 + g2 + str1].active = false; frets[1 + g2 + str1].active = true; frets[3 + g2 + str1].active = true; frets[4 + g2 + str1].active = true; frets[6 + g2 + str1].active = true; frets[8 + g2 + str1].active = true; frets[9 + g2 + str1].active = true; frets[11 + g2 + str1].active = true; frets[13 + g2 + str1].active = true; frets[15 + g2 + str1].active = true; frets[16 + g2 + str1].active = true; frets[18 + g2 + str1].active = true; frets[20 + g2 + str1].active = true; frets[21 + g2 + str1].active = true; frets[23 + g2 + str1].active = true;
-  //   frets[0 + g3 + str1].active = false; frets[1 + g3 + str1].active = true; frets[3 + g3 + str1].active = true; frets[4 + g3 + str1].active = true; frets[6 + g3 + str1].active = true; frets[8 + g3 + str1].active = true; frets[9 + g3 + str1].active = true; frets[11 + g3 + str1].active = true; frets[13 + g3 + str1].active = true; frets[15 + g3 + str1].active = true; frets[16 + g3 + str1].active = true; frets[18 + g3 + str1].active = true; frets[20 + g3 + str1].active = true; frets[21 + g3 + str1].active = true; frets[23 + g3 + str1].active = true;
-  //   // string 2
-  //   frets[0 + g1 + str2].active = false; frets[1 + g1 + str2].active = true; frets[2 + g1 + str2].active = true; frets[4 + g1 + str2].active = true; frets[6 + g1 + str2].active = true; frets[8 + g1 + str2].active = true; frets[9 + g1 + str2].active = true; frets[11 + g1 + str2].active = true; frets[13 + g1 + str2].active = true; frets[14 + g1 + str2].active = true; frets[16 + g1 + str2].active = true; frets[18 + g1 + str2].active = true; frets[20 + g1 + str2].active = true; frets[21 + g1 + str2].active = true; frets[23 + g1 + str2].active = true;
-  //   frets[0 + g2 + str2].active = false; frets[1 + g2 + str2].active = true; frets[2 + g2 + str2].active = true; frets[4 + g2 + str2].active = true; frets[6 + g2 + str2].active = true; frets[8 + g2 + str2].active = true; frets[9 + g2 + str2].active = true; frets[11 + g2 + str2].active = true; frets[13 + g2 + str2].active = true; frets[14 + g2 + str2].active = true; frets[16 + g2 + str2].active = true; frets[18 + g2 + str2].active = true; frets[20 + g2 + str2].active = true; frets[21 + g2 + str2].active = true; frets[23 + g2 + str2].active = true;
-  //   frets[0 + g3 + str2].active = false; frets[1 + g3 + str2].active = true; frets[2 + g3 + str2].active = true; frets[4 + g3 + str2].active = true; frets[6 + g3 + str2].active = true; frets[8 + g3 + str2].active = true; frets[9 + g3 + str2].active = true; frets[11 + g3 + str2].active = true; frets[13 + g3 + str2].active = true; frets[14 + g3 + str2].active = true; frets[16 + g3 + str2].active = true; frets[18 + g3 + str2].active = true; frets[20 + g3 + str2].active = true; frets[21 + g3 + str2].active = true; frets[23 + g3 + str2].active = true;
-  //   // string 3
-  //   frets[0 + g1 + str3].active = true; frets[1 + g1 + str3].active = true; frets[3 + g1 + str3].active = true; frets[5 + g1 + str3].active = true; frets[6 + g1 + str3].active = true; frets[8 + g1 + str3].active = true; frets[10 + g1 + str3].active = true; frets[12 + g1 + str3].active = true; frets[13 + g1 + str3].active = true; frets[15 + g1 + str3].active = true; frets[17 + g1 + str3].active = true; frets[18 + g1 + str3].active = true; frets[20 + g1 + str3].active = true; frets[22 + g1 + str3].active = true; frets[24 + g1 + str3].active = true;
-  //   frets[0 + g2 + str3].active = true; frets[1 + g2 + str3].active = true; frets[3 + g2 + str3].active = true; frets[5 + g2 + str3].active = true; frets[6 + g2 + str3].active = true; frets[8 + g2 + str3].active = true; frets[10 + g2 + str3].active = true; frets[12 + g2 + str3].active = true; frets[13 + g2 + str3].active = true; frets[15 + g2 + str3].active = true; frets[17 + g2 + str3].active = true; frets[18 + g2 + str3].active = true; frets[20 + g2 + str3].active = true; frets[22 + g2 + str3].active = true; frets[24 + g2 + str3].active = true;
-  //   frets[0 + g3 + str3].active = true; frets[1 + g3 + str3].active = true; frets[3 + g3 + str3].active = true; frets[5 + g3 + str3].active = true; frets[6 + g3 + str3].active = true; frets[8 + g3 + str3].active = true; frets[10 + g3 + str3].active = true; frets[12 + g3 + str3].active = true; frets[13 + g3 + str3].active = true; frets[15 + g3 + str3].active = true; frets[17 + g3 + str3].active = true; frets[18 + g3 + str3].active = true; frets[20 + g3 + str3].active = true; frets[22 + g3 + str3].active = true; frets[24 + g3 + str3].active = true;
-  //   // string 4
-  //   frets[0 + g1 + str4].active = false; frets[1 + g1 + str4].active = true; frets[3 + g1 + str4].active = true; frets[5 + g1 + str4].active = true; frets[6 + g1 + str4].active = true; frets[8 + g1 + str4].active = true; frets[10 + g1 + str4].active = true; frets[11 + g1 + str4].active = true; frets[13 + g1 + str4].active = true; frets[15 + g1 + str4].active = true; frets[17 + g1 + str4].active = true; frets[18 + g1 + str4].active = true; frets[20 + g1 + str4].active = true; frets[22 + g1 + str4].active = true; frets[23 + g1 + str4].active = true;
-  //   frets[0 + g2 + str4].active = false; frets[1 + g2 + str4].active = true; frets[3 + g2 + str4].active = true; frets[5 + g2 + str4].active = true; frets[6 + g2 + str4].active = true; frets[8 + g2 + str4].active = true; frets[10 + g2 + str4].active = true; frets[11 + g2 + str4].active = true; frets[13 + g2 + str4].active = true; frets[15 + g2 + str4].active = true; frets[17 + g2 + str4].active = true; frets[18 + g2 + str4].active = true; frets[20 + g2 + str4].active = true; frets[22 + g2 + str4].active = true; frets[23 + g2 + str4].active = true;
-  //   frets[0 + g3 + str4].active = false; frets[1 + g3 + str4].active = true; frets[3 + g3 + str4].active = true; frets[5 + g3 + str4].active = true; frets[6 + g3 + str4].active = true; frets[8 + g3 + str4].active = true; frets[10 + g3 + str4].active = true; frets[11 + g3 + str4].active = true; frets[13 + g3 + str4].active = true; frets[15 + g3 + str4].active = true; frets[17 + g3 + str4].active = true; frets[18 + g3 + str4].active = true; frets[20 + g3 + str4].active = true; frets[22 + g3 + str4].active = true; frets[23 + g3 + str4].active = true;
-  //   // string 5
-  //   frets[0 + g1 + str5].active = false; frets[1 + g1 + str5].active = true; frets[3 + g1 + str5].active = true; frets[4 + g1 + str5].active = true; frets[6 + g1 + str5].active = true; frets[8 + g1 + str5].active = true; frets[10 + g1 + str5].active = true; frets[11 + g1 + str5].active = true; frets[13 + g1 + str5].active = true; frets[15 + g1 + str5].active = true; frets[16 + g1 + str5].active = true; frets[18 + g1 + str5].active = true; frets[20 + g1 + str5].active = true; frets[22 + g1 + str5].active = true; frets[23 + g1 + str5].active = true;
-  //   frets[0 + g2 + str5].active = false; frets[1 + g2 + str5].active = true; frets[3 + g2 + str5].active = true; frets[4 + g2 + str5].active = true; frets[6 + g2 + str5].active = true; frets[8 + g2 + str5].active = true; frets[10 + g2 + str5].active = true; frets[11 + g2 + str5].active = true; frets[13 + g2 + str5].active = true; frets[15 + g2 + str5].active = true; frets[16 + g2 + str5].active = true; frets[18 + g2 + str5].active = true; frets[20 + g2 + str5].active = true; frets[22 + g2 + str5].active = true; frets[23 + g2 + str5].active = true;
-  //   frets[0 + g3 + str5].active = false; frets[1 + g3 + str5].active = true; frets[3 + g3 + str5].active = true; frets[4 + g3 + str5].active = true; frets[6 + g3 + str5].active = true; frets[8 + g3 + str5].active = true; frets[10 + g3 + str5].active = true; frets[11 + g3 + str5].active = true; frets[13 + g3 + str5].active = true; frets[15 + g3 + str5].active = true; frets[16 + g3 + str5].active = true; frets[18 + g3 + str5].active = true; frets[20 + g3 + str5].active = true; frets[22 + g3 + str5].active = true; frets[23 + g3 + str5].active = true;
-  //   // string 6
-  //   frets[0 + g1 + str6].active = false; frets[1 + g1 + str6].active = true; frets[3 + g1 + str6].active = true; frets[4 + g1 + str6].active = true; frets[6 + g1 + str6].active = true; frets[8 + g1 + str6].active = true; frets[9 + g1 + str6].active = true; frets[11 + g1 + str6].active = true; frets[13 + g1 + str6].active = true; frets[15 + g1 + str6].active = true; frets[16 + g1 + str6].active = true; frets[18 + g1 + str6].active = true; frets[20 + g1 + str6].active = true; frets[21 + g1 + str6].active = true; frets[23 + g1 + str6].active = true;
-  //   frets[0 + g2 + str6].active = false; frets[1 + g2 + str6].active = true; frets[3 + g2 + str6].active = true; frets[4 + g2 + str6].active = true; frets[6 + g2 + str6].active = true; frets[8 + g2 + str6].active = true; frets[9 + g2 + str6].active = true; frets[11 + g2 + str6].active = true; frets[13 + g2 + str6].active = true; frets[15 + g2 + str6].active = true; frets[16 + g2 + str6].active = true; frets[18 + g2 + str6].active = true; frets[20 + g2 + str6].active = true; frets[21 + g2 + str6].active = true; frets[23 + g2 + str6].active = true;
-  //   frets[0 + g3 + str6].active = false; frets[1 + g3 + str6].active = true; frets[3 + g3 + str6].active = true; frets[4 + g3 + str6].active = true; frets[6 + g3 + str6].active = true; frets[8 + g3 + str6].active = true; frets[9 + g3 + str6].active = true; frets[11 + g3 + str6].active = true; frets[13 + g3 + str6].active = true; frets[15 + g3 + str6].active = true; frets[16 + g3 + str6].active = true; frets[18 + g3 + str6].active = true; frets[20 + g3 + str6].active = true; frets[21 + g3 + str6].active = true; frets[23 + g3 + str6].active = true;
-  // },
-
-  // lydianButton: function() {
-  //   for (i = 0; i < frets.length; i++) {
-  //     frets[i].active = false;
-  //   }
-  //   // string 1
-  //   frets[0 + g1 + str1].active = true; frets[2 + g1 + str1].active = true; frets[3 + g1 + str1].active = true; frets[5 + g1 + str1].active = true; frets[7 + g1 + str1].active = true; frets[8 + g1 + str1].active = true; frets[10 + g1 + str1].active = true; frets[12 + g1 + str1].active = true; frets[14 + g1 + str1].active = true; frets[15 + g1 + str1].active = true; frets[17 + g1 + str1].active = true; frets[19 + g1 + str1].active = true; frets[20 + g1 + str1].active = true; frets[22 + g1 + str1].active = true; frets[24 + g1 + str1].active = true;
-  //   frets[0 + g2 + str1].active = true; frets[2 + g2 + str1].active = true; frets[3 + g2 + str1].active = true; frets[5 + g2 + str1].active = true; frets[7 + g2 + str1].active = true; frets[8 + g2 + str1].active = true; frets[10 + g2 + str1].active = true; frets[12 + g2 + str1].active = true; frets[14 + g2 + str1].active = true; frets[15 + g2 + str1].active = true; frets[17 + g2 + str1].active = true; frets[19 + g2 + str1].active = true; frets[20 + g2 + str1].active = true; frets[22 + g2 + str1].active = true; frets[24 + g2 + str1].active = true;
-  //   frets[0 + g3 + str1].active = true; frets[2 + g3 + str1].active = true; frets[3 + g3 + str1].active = true; frets[5 + g3 + str1].active = true; frets[7 + g3 + str1].active = true; frets[8 + g3 + str1].active = true; frets[10 + g3 + str1].active = true; frets[12 + g3 + str1].active = true; frets[14 + g3 + str1].active = true; frets[15 + g3 + str1].active = true; frets[17 + g3 + str1].active = true; frets[19 + g3 + str1].active = true; frets[20 + g3 + str1].active = true; frets[22 + g3 + str1].active = true; frets[24 + g3 + str1].active = true;
-  //   // string 2
-  //   frets[0 + g1 + str2].active = true; frets[1 + g1 + str2].active = true; frets[3 + g1 + str2].active = true; frets[5 + g1 + str2].active = true; frets[7 + g1 + str2].active = true; frets[8 + g1 + str2].active = true; frets[10 + g1 + str2].active = true; frets[12 + g1 + str2].active = true; frets[13 + g1 + str2].active = true; frets[15 + g1 + str2].active = true; frets[17 + g1 + str2].active = true; frets[19 + g1 + str2].active = true; frets[20 + g1 + str2].active = true; frets[22 + g1 + str2].active = true; frets[24 + g1 + str2].active = true;
-  //   frets[0 + g2 + str2].active = true; frets[1 + g2 + str2].active = true; frets[3 + g2 + str2].active = true; frets[5 + g2 + str2].active = true; frets[7 + g2 + str2].active = true; frets[8 + g2 + str2].active = true; frets[10 + g2 + str2].active = true; frets[12 + g2 + str2].active = true; frets[13 + g2 + str2].active = true; frets[15 + g2 + str2].active = true; frets[17 + g2 + str2].active = true; frets[19 + g2 + str2].active = true; frets[20 + g2 + str2].active = true; frets[22 + g2 + str2].active = true; frets[24 + g2 + str2].active = true;
-  //   frets[0 + g3 + str2].active = true; frets[1 + g3 + str2].active = true; frets[3 + g3 + str2].active = true; frets[5 + g3 + str2].active = true; frets[7 + g3 + str2].active = true; frets[8 + g3 + str2].active = true; frets[10 + g3 + str2].active = true; frets[12 + g3 + str2].active = true; frets[13 + g3 + str2].active = true; frets[15 + g3 + str2].active = true; frets[17 + g3 + str2].active = true; frets[19 + g3 + str2].active = true; frets[20 + g3 + str2].active = true; frets[22 + g3 + str2].active = true; frets[24 + g3 + str2].active = true;
-  //   // string 3
-  //   frets[0 + g1 + str3].active = true; frets[2 + g1 + str3].active = true; frets[4 + g1 + str3].active = true; frets[5 + g1 + str3].active = true; frets[7 + g1 + str3].active = true; frets[9 + g1 + str3].active = true; frets[11 + g1 + str3].active = true; frets[12 + g1 + str3].active = true; frets[14 + g1 + str3].active = true; frets[16 + g1 + str3].active = true; frets[17 + g1 + str3].active = true; frets[19 + g1 + str3].active = true; frets[21 + g1 + str3].active = true; frets[23 + g1 + str3].active = true; frets[24 + g1 + str3].active = true;
-  //   frets[0 + g2 + str3].active = true; frets[2 + g2 + str3].active = true; frets[4 + g2 + str3].active = true; frets[5 + g2 + str3].active = true; frets[7 + g2 + str3].active = true; frets[9 + g2 + str3].active = true; frets[11 + g2 + str3].active = true; frets[12 + g2 + str3].active = true; frets[14 + g2 + str3].active = true; frets[16 + g2 + str3].active = true; frets[17 + g2 + str3].active = true; frets[19 + g2 + str3].active = true; frets[21 + g2 + str3].active = true; frets[23 + g2 + str3].active = true; frets[24 + g2 + str3].active = true;
-  //   frets[0 + g3 + str3].active = true; frets[2 + g3 + str3].active = true; frets[4 + g3 + str3].active = true; frets[5 + g3 + str3].active = true; frets[7 + g3 + str3].active = true; frets[9 + g3 + str3].active = true; frets[11 + g3 + str3].active = true; frets[12 + g3 + str3].active = true; frets[14 + g3 + str3].active = true; frets[16 + g3 + str3].active = true; frets[17 + g3 + str3].active = true; frets[19 + g3 + str3].active = true; frets[21 + g3 + str3].active = true; frets[23 + g3 + str3].active = true; frets[24 + g3 + str3].active = true;
-  //   // string 4
-  //   frets[0 + g1 + str4].active = true; frets[2 + g1 + str4].active = true; frets[4 + g1 + str4].active = true; frets[5 + g1 + str4].active = true; frets[7 + g1 + str4].active = true; frets[9 + g1 + str4].active = true; frets[10 + g1 + str4].active = true; frets[12 + g1 + str4].active = true; frets[14 + g1 + str4].active = true; frets[16 + g1 + str4].active = true; frets[17 + g1 + str4].active = true; frets[19 + g1 + str4].active = true; frets[21 + g1 + str4].active = true; frets[22 + g1 + str4].active = true; frets[24 + g1 + str4].active = true;
-  //   frets[0 + g2 + str4].active = true; frets[2 + g2 + str4].active = true; frets[4 + g2 + str4].active = true; frets[5 + g2 + str4].active = true; frets[7 + g2 + str4].active = true; frets[9 + g2 + str4].active = true; frets[10 + g2 + str4].active = true; frets[12 + g2 + str4].active = true; frets[14 + g2 + str4].active = true; frets[16 + g2 + str4].active = true; frets[17 + g2 + str4].active = true; frets[19 + g2 + str4].active = true; frets[21 + g2 + str4].active = true; frets[22 + g2 + str4].active = true; frets[24 + g2 + str4].active = true;
-  //   frets[0 + g3 + str4].active = true; frets[2 + g3 + str4].active = true; frets[4 + g3 + str4].active = true; frets[5 + g3 + str4].active = true; frets[7 + g3 + str4].active = true; frets[9 + g3 + str4].active = true; frets[10 + g3 + str4].active = true; frets[12 + g3 + str4].active = true; frets[14 + g3 + str4].active = true; frets[16 + g3 + str4].active = true; frets[17 + g3 + str4].active = true; frets[19 + g3 + str4].active = true; frets[21 + g3 + str4].active = true; frets[22 + g3 + str4].active = true; frets[24 + g3 + str4].active = true;
-  //   // string 5
-  //   frets[0 + g1 + str5].active = true; frets[2 + g1 + str5].active = true; frets[3 + g1 + str5].active = true; frets[5 + g1 + str5].active = true; frets[7 + g1 + str5].active = true; frets[9 + g1 + str5].active = true; frets[10 + g1 + str5].active = true; frets[12 + g1 + str5].active = true; frets[14 + g1 + str5].active = true; frets[15 + g1 + str5].active = true; frets[17 + g1 + str5].active = true; frets[19 + g1 + str5].active = true; frets[21 + g1 + str5].active = true; frets[22 + g1 + str5].active = true; frets[24 + g1 + str5].active = true;
-  //   frets[0 + g2 + str5].active = true; frets[2 + g2 + str5].active = true; frets[3 + g2 + str5].active = true; frets[5 + g2 + str5].active = true; frets[7 + g2 + str5].active = true; frets[9 + g2 + str5].active = true; frets[10 + g2 + str5].active = true; frets[12 + g2 + str5].active = true; frets[14 + g2 + str5].active = true; frets[15 + g2 + str5].active = true; frets[17 + g2 + str5].active = true; frets[19 + g2 + str5].active = true; frets[21 + g2 + str5].active = true; frets[22 + g2 + str5].active = true; frets[24 + g2 + str5].active = true;
-  //   frets[0 + g3 + str5].active = true; frets[2 + g3 + str5].active = true; frets[3 + g3 + str5].active = true; frets[5 + g3 + str5].active = true; frets[7 + g3 + str5].active = true; frets[9 + g3 + str5].active = true; frets[10 + g3 + str5].active = true; frets[12 + g3 + str5].active = true; frets[14 + g3 + str5].active = true; frets[15 + g3 + str5].active = true; frets[17 + g3 + str5].active = true; frets[19 + g3 + str5].active = true; frets[21 + g3 + str5].active = true; frets[22 + g3 + str5].active = true; frets[24 + g3 + str5].active = true;
-  //   // string 6
-  //   frets[0 + g1 + str6].active = true; frets[2 + g1 + str6].active = true; frets[3 + g1 + str6].active = true; frets[5 + g1 + str6].active = true; frets[7 + g1 + str6].active = true; frets[8 + g1 + str6].active = true; frets[10 + g1 + str6].active = true; frets[12 + g1 + str6].active = true; frets[14 + g1 + str6].active = true; frets[15 + g1 + str6].active = true; frets[17 + g1 + str6].active = true; frets[19 + g1 + str6].active = true; frets[20 + g1 + str6].active = true; frets[22 + g1 + str6].active = true; frets[24 + g1 + str6].active = true;
-  //   frets[0 + g2 + str6].active = true; frets[2 + g2 + str6].active = true; frets[3 + g2 + str6].active = true; frets[5 + g2 + str6].active = true; frets[7 + g2 + str6].active = true; frets[8 + g2 + str6].active = true; frets[10 + g2 + str6].active = true; frets[12 + g2 + str6].active = true; frets[14 + g2 + str6].active = true; frets[15 + g2 + str6].active = true; frets[17 + g2 + str6].active = true; frets[19 + g2 + str6].active = true; frets[20 + g2 + str6].active = true; frets[22 + g2 + str6].active = true; frets[24 + g2 + str6].active = true;
-  //   frets[0 + g3 + str6].active = true; frets[2 + g3 + str6].active = true; frets[3 + g3 + str6].active = true; frets[5 + g3 + str6].active = true; frets[7 + g3 + str6].active = true; frets[8 + g3 + str6].active = true; frets[10 + g3 + str6].active = true; frets[12 + g3 + str6].active = true; frets[14 + g3 + str6].active = true; frets[15 + g3 + str6].active = true; frets[17 + g3 + str6].active = true; frets[19 + g3 + str6].active = true; frets[20 + g3 + str6].active = true; frets[22 + g3 + str6].active = true; frets[24 + g3 + str6].active = true;
-  // },
-  //
-  // mixoButton: function() {
-  //   for (i = 0; i < frets.length; i++) {
-  //     frets[i].active = false;
-  //   }
-  //   // string 1
-  //   frets[0 + g1 + str1].active = true; frets[1 + g1 + str1].active = true; frets[3 + g1 + str1].active = true; frets[5 + g1 + str1].active = true; frets[6 + g1 + str1].active = true; frets[8 + g1 + str1].active = true; frets[10 + g1 + str1].active = true; frets[12 + g1 + str1].active = true; frets[13 + g1 + str1].active = true; frets[15 + g1 + str1].active = true; frets[17 + g1 + str1].active = true; frets[18 + g1 + str1].active = true; frets[20 + g1 + str1].active = true; frets[22 + g1 + str1].active = true; frets[24 + g1 + str1].active = true;
-  //   frets[0 + g2 + str1].active = true; frets[1 + g2 + str1].active = true; frets[3 + g2 + str1].active = true; frets[5 + g2 + str1].active = true; frets[6 + g2 + str1].active = true; frets[8 + g2 + str1].active = true; frets[10 + g2 + str1].active = true; frets[12 + g2 + str1].active = true; frets[13 + g2 + str1].active = true; frets[15 + g2 + str1].active = true; frets[17 + g2 + str1].active = true; frets[18 + g2 + str1].active = true; frets[20 + g2 + str1].active = true; frets[22 + g2 + str1].active = true; frets[24 + g2 + str1].active = true;
-  //   frets[0 + g3 + str1].active = true; frets[1 + g3 + str1].active = true; frets[3 + g3 + str1].active = true; frets[5 + g3 + str1].active = true; frets[6 + g3 + str1].active = true; frets[8 + g3 + str1].active = true; frets[10 + g3 + str1].active = true; frets[12 + g3 + str1].active = true; frets[13 + g3 + str1].active = true; frets[15 + g3 + str1].active = true; frets[17 + g3 + str1].active = true; frets[18 + g3 + str1].active = true; frets[20 + g3 + str1].active = true; frets[22 + g3 + str1].active = true; frets[24 + g3 + str1].active = true;
-  //   // string 2
-  //   frets[0 + g1 + str2].active = true; frets[1 + g1 + str2].active = true; frets[3 + g1 + str2].active = true; frets[5 + g1 + str2].active = true; frets[6 + g1 + str2].active = true; frets[8 + g1 + str2].active = true; frets[10 + g1 + str2].active = true; frets[11 + g1 + str2].active = true; frets[13 + g1 + str2].active = true; frets[15 + g1 + str2].active = true; frets[17 + g1 + str2].active = true; frets[18 + g1 + str2].active = true; frets[20 + g1 + str2].active = true; frets[22 + g1 + str2].active = true; frets[23 + g1 + str2].active = true;
-  //   frets[0 + g2 + str2].active = true; frets[1 + g2 + str2].active = true; frets[3 + g2 + str2].active = true; frets[5 + g2 + str2].active = true; frets[6 + g2 + str2].active = true; frets[8 + g2 + str2].active = true; frets[10 + g2 + str2].active = true; frets[11 + g2 + str2].active = true; frets[13 + g2 + str2].active = true; frets[15 + g2 + str2].active = true; frets[17 + g2 + str2].active = true; frets[18 + g2 + str2].active = true; frets[20 + g2 + str2].active = true; frets[22 + g2 + str2].active = true; frets[23 + g2 + str2].active = true;
-  //   frets[0 + g3 + str2].active = true; frets[1 + g3 + str2].active = true; frets[3 + g3 + str2].active = true; frets[5 + g3 + str2].active = true; frets[6 + g3 + str2].active = true; frets[8 + g3 + str2].active = true; frets[10 + g3 + str2].active = true; frets[11 + g3 + str2].active = true; frets[13 + g3 + str2].active = true; frets[15 + g3 + str2].active = true; frets[17 + g3 + str2].active = true; frets[18 + g3 + str2].active = true; frets[20 + g3 + str2].active = true; frets[22 + g3 + str2].active = true; frets[23 + g3 + str2].active = true;
-  //   // string 3
-  //   frets[0 + g1 + str3].active = true; frets[2 + g1 + str3].active = true; frets[3 + g1 + str3].active = true; frets[5 + g1 + str3].active = true; frets[7 + g1 + str3].active = true; frets[9 + g1 + str3].active = true; frets[10 + g1 + str3].active = true; frets[12 + g1 + str3].active = true; frets[14 + g1 + str3].active = true; frets[15 + g1 + str3].active = true; frets[17 + g1 + str3].active = true; frets[19 + g1 + str3].active = true; frets[21 + g1 + str3].active = true; frets[22 + g1 + str3].active = true; frets[24 + g1 + str3].active = true;
-  //   frets[0 + g2 + str3].active = true; frets[2 + g2 + str3].active = true; frets[3 + g2 + str3].active = true; frets[5 + g2 + str3].active = true; frets[7 + g2 + str3].active = true; frets[9 + g2 + str3].active = true; frets[10 + g2 + str3].active = true; frets[12 + g2 + str3].active = true; frets[14 + g2 + str3].active = true; frets[15 + g2 + str3].active = true; frets[17 + g2 + str3].active = true; frets[19 + g2 + str3].active = true; frets[21 + g2 + str3].active = true; frets[22 + g2 + str3].active = true; frets[24 + g2 + str3].active = true;
-  //   frets[0 + g3 + str3].active = true; frets[2 + g3 + str3].active = true; frets[3 + g3 + str3].active = true; frets[5 + g3 + str3].active = true; frets[7 + g3 + str3].active = true; frets[9 + g3 + str3].active = true; frets[10 + g3 + str3].active = true; frets[12 + g3 + str3].active = true; frets[14 + g3 + str3].active = true; frets[15 + g3 + str3].active = true; frets[17 + g3 + str3].active = true; frets[19 + g3 + str3].active = true; frets[21 + g3 + str3].active = true; frets[22 + g3 + str3].active = true; frets[24 + g3 + str3].active = true;
-  //   // string 4
-  //   frets[0 + g1 + str4].active = true; frets[2 + g1 + str4].active = true; frets[3 + g1 + str4].active = true; frets[5 + g1 + str4].active = true; frets[7 + g1 + str4].active = true; frets[8 + g1 + str4].active = true; frets[10 + g1 + str4].active = true; frets[12 + g1 + str4].active = true; frets[14 + g1 + str4].active = true; frets[15 + g1 + str4].active = true; frets[17 + g1 + str4].active = true; frets[19 + g1 + str4].active = true; frets[20 + g1 + str4].active = true; frets[22 + g1 + str4].active = true; frets[24 + g1 + str4].active = true;
-  //   frets[0 + g2 + str4].active = true; frets[2 + g2 + str4].active = true; frets[3 + g2 + str4].active = true; frets[5 + g2 + str4].active = true; frets[7 + g2 + str4].active = true; frets[8 + g2 + str4].active = true; frets[10 + g2 + str4].active = true; frets[12 + g2 + str4].active = true; frets[14 + g2 + str4].active = true; frets[15 + g2 + str4].active = true; frets[17 + g2 + str4].active = true; frets[19 + g2 + str4].active = true; frets[20 + g2 + str4].active = true; frets[22 + g2 + str4].active = true; frets[24 + g2 + str4].active = true;
-  //   frets[0 + g3 + str4].active = true; frets[2 + g3 + str4].active = true; frets[3 + g3 + str4].active = true; frets[5 + g3 + str4].active = true; frets[7 + g3 + str4].active = true; frets[8 + g3 + str4].active = true; frets[10 + g3 + str4].active = true; frets[12 + g3 + str4].active = true; frets[14 + g3 + str4].active = true; frets[15 + g3 + str4].active = true; frets[17 + g3 + str4].active = true; frets[19 + g3 + str4].active = true; frets[20 + g3 + str4].active = true; frets[22 + g3 + str4].active = true; frets[24 + g3 + str4].active = true;
-  //   // string 5
-  //   frets[0 + g1 + str5].active = true; frets[1 + g1 + str5].active = true; frets[3 + g1 + str5].active = true; frets[5 + g1 + str5].active = true; frets[7 + g1 + str5].active = true; frets[8 + g1 + str5].active = true; frets[10 + g1 + str5].active = true; frets[12 + g1 + str5].active = true; frets[13 + g1 + str5].active = true; frets[15 + g1 + str5].active = true; frets[17 + g1 + str5].active = true; frets[19 + g1 + str5].active = true; frets[20 + g1 + str5].active = true; frets[22 + g1 + str5].active = true; frets[24 + g1 + str5].active = true;
-  //   frets[0 + g2 + str5].active = true; frets[1 + g2 + str5].active = true; frets[3 + g2 + str5].active = true; frets[5 + g2 + str5].active = true; frets[7 + g2 + str5].active = true; frets[8 + g2 + str5].active = true; frets[10 + g2 + str5].active = true; frets[12 + g2 + str5].active = true; frets[13 + g2 + str5].active = true; frets[15 + g2 + str5].active = true; frets[17 + g2 + str5].active = true; frets[19 + g2 + str5].active = true; frets[20 + g2 + str5].active = true; frets[22 + g2 + str5].active = true; frets[24 + g2 + str5].active = true;
-  //   frets[0 + g3 + str5].active = true; frets[1 + g3 + str5].active = true; frets[3 + g3 + str5].active = true; frets[5 + g3 + str5].active = true; frets[7 + g3 + str5].active = true; frets[8 + g3 + str5].active = true; frets[10 + g3 + str5].active = true; frets[12 + g3 + str5].active = true; frets[13 + g3 + str5].active = true; frets[15 + g3 + str5].active = true; frets[17 + g3 + str5].active = true; frets[19 + g3 + str5].active = true; frets[20 + g3 + str5].active = true; frets[22 + g3 + str5].active = true; frets[24 + g3 + str5].active = true;
-  //   // string 6
-  //   frets[0 + g1 + str6].active = true; frets[1 + g1 + str6].active = true; frets[3 + g1 + str6].active = true; frets[5 + g1 + str6].active = true; frets[6 + g1 + str6].active = true; frets[8 + g1 + str6].active = true; frets[10 + g1 + str6].active = true; frets[12 + g1 + str6].active = true; frets[13 + g1 + str6].active = true; frets[15 + g1 + str6].active = true; frets[17 + g1 + str6].active = true; frets[18 + g1 + str6].active = true; frets[20 + g1 + str6].active = true; frets[22 + g1 + str6].active = true; frets[24 + g1 + str6].active = true;
-  //   frets[0 + g2 + str6].active = true; frets[1 + g2 + str6].active = true; frets[3 + g2 + str6].active = true; frets[5 + g2 + str6].active = true; frets[6 + g2 + str6].active = true; frets[8 + g2 + str6].active = true; frets[10 + g2 + str6].active = true; frets[12 + g2 + str6].active = true; frets[13 + g2 + str6].active = true; frets[15 + g2 + str6].active = true; frets[17 + g2 + str6].active = true; frets[18 + g2 + str6].active = true; frets[20 + g2 + str6].active = true; frets[22 + g2 + str6].active = true; frets[24 + g2 + str6].active = true;
-  //   frets[0 + g3 + str6].active = true; frets[1 + g3 + str6].active = true; frets[3 + g3 + str6].active = true; frets[5 + g3 + str6].active = true; frets[6 + g3 + str6].active = true; frets[8 + g3 + str6].active = true; frets[10 + g3 + str6].active = true; frets[12 + g3 + str6].active = true; frets[13 + g3 + str6].active = true; frets[15 + g3 + str6].active = true; frets[17 + g3 + str6].active = true; frets[18 + g3 + str6].active = true; frets[20 + g3 + str6].active = true; frets[22 + g3 + str6].active = true; frets[24 + g3 + str6].active = true;
-  // },
-
-  // aeolienButton: function() {
-  //   for (i = 0; i < frets.length; i++) {
-  //     frets[i].active = false;
-  //   }
-  //   // string 1
-  //   frets[0 + g1 + str1].active = false; frets[1 + g1 + str1].active = true; frets[3 + g1 + str1].active = true; frets[4 + g1 + str1].active = true; frets[6 + g1 + str1].active = true; frets[8 + g1 + str1].active = true; frets[10 + g1 + str1].active = true; frets[11 + g1 + str1].active = true; frets[13 + g1 + str1].active = true; frets[15 + g1 + str1].active = true; frets[16 + g1 + str1].active = true; frets[18 + g1 + str1].active = true; frets[20 + g1 + str1].active = true; frets[22 + g1 + str1].active = true; frets[23 + g1 + str1].active = true;
-  //   frets[0 + g2 + str1].active = false; frets[1 + g2 + str1].active = true; frets[3 + g2 + str1].active = true; frets[4 + g2 + str1].active = true; frets[6 + g2 + str1].active = true; frets[8 + g2 + str1].active = true; frets[10 + g2 + str1].active = true; frets[11 + g2 + str1].active = true; frets[13 + g2 + str1].active = true; frets[15 + g2 + str1].active = true; frets[16 + g2 + str1].active = true; frets[18 + g2 + str1].active = true; frets[20 + g2 + str1].active = true; frets[22 + g2 + str1].active = true; frets[23 + g2 + str1].active = true;
-  //   frets[0 + g3 + str1].active = false; frets[1 + g3 + str1].active = true; frets[3 + g3 + str1].active = true; frets[4 + g3 + str1].active = true; frets[6 + g3 + str1].active = true; frets[8 + g3 + str1].active = true; frets[10 + g3 + str1].active = true; frets[11 + g3 + str1].active = true; frets[13 + g3 + str1].active = true; frets[15 + g3 + str1].active = true; frets[16 + g3 + str1].active = true; frets[18 + g3 + str1].active = true; frets[20 + g3 + str1].active = true; frets[22 + g3 + str1].active = true; frets[23 + g3 + str1].active = true;
-  //   // string 2
-  //   frets[0 + g1 + str2].active = false; frets[1 + g1 + str2].active = true; frets[3 + g1 + str2].active = true; frets[4 + g1 + str2].active = true; frets[6 + g1 + str2].active = true; frets[8 + g1 + str2].active = true; frets[9 + g1 + str2].active = true; frets[11 + g1 + str2].active = true; frets[13 + g1 + str2].active = true; frets[15 + g1 + str2].active = true; frets[16 + g1 + str2].active = true; frets[18 + g1 + str2].active = true; frets[20 + g1 + str2].active = true; frets[21 + g1 + str2].active = true; frets[23 + g1 + str2].active = true;
-  //   frets[0 + g2 + str2].active = false; frets[1 + g2 + str2].active = true; frets[3 + g2 + str2].active = true; frets[4 + g2 + str2].active = true; frets[6 + g2 + str2].active = true; frets[8 + g2 + str2].active = true; frets[9 + g2 + str2].active = true; frets[11 + g2 + str2].active = true; frets[13 + g2 + str2].active = true; frets[15 + g2 + str2].active = true; frets[16 + g2 + str2].active = true; frets[18 + g2 + str2].active = true; frets[20 + g2 + str2].active = true; frets[21 + g2 + str2].active = true; frets[23 + g2 + str2].active = true;
-  //   frets[0 + g3 + str2].active = false; frets[1 + g3 + str2].active = true; frets[3 + g3 + str2].active = true; frets[4 + g3 + str2].active = true; frets[6 + g3 + str2].active = true; frets[8 + g3 + str2].active = true; frets[9 + g3 + str2].active = true; frets[11 + g3 + str2].active = true; frets[13 + g3 + str2].active = true; frets[15 + g3 + str2].active = true; frets[16 + g3 + str2].active = true; frets[18 + g3 + str2].active = true; frets[20 + g3 + str2].active = true; frets[21 + g3 + str2].active = true; frets[23 + g3 + str2].active = true;
-  //   // string 3
-  //   frets[0 + g1 + str3].active = true; frets[1 + g1 + str3].active = true; frets[3 + g1 + str3].active = true; frets[5 + g1 + str3].active = true; frets[7 + g1 + str3].active = true; frets[8 + g1 + str3].active = true; frets[10 + g1 + str3].active = true; frets[12 + g1 + str3].active = true; frets[13 + g1 + str3].active = true; frets[15 + g1 + str3].active = true; frets[17 + g1 + str3].active = true; frets[19 + g1 + str3].active = true; frets[20 + g1 + str3].active = true; frets[22 + g1 + str3].active = true; frets[24 + g1 + str3].active = true;
-  //   frets[0 + g2 + str3].active = true; frets[1 + g2 + str3].active = true; frets[3 + g2 + str3].active = true; frets[5 + g2 + str3].active = true; frets[7 + g2 + str3].active = true; frets[8 + g2 + str3].active = true; frets[10 + g2 + str3].active = true; frets[12 + g2 + str3].active = true; frets[13 + g2 + str3].active = true; frets[15 + g2 + str3].active = true; frets[17 + g2 + str3].active = true; frets[19 + g2 + str3].active = true; frets[20 + g2 + str3].active = true; frets[22 + g2 + str3].active = true; frets[24 + g2 + str3].active = true;
-  //   frets[0 + g3 + str3].active = true; frets[1 + g3 + str3].active = true; frets[3 + g3 + str3].active = true; frets[5 + g3 + str3].active = true; frets[7 + g3 + str3].active = true; frets[8 + g3 + str3].active = true; frets[10 + g3 + str3].active = true; frets[12 + g3 + str3].active = true; frets[13 + g3 + str3].active = true; frets[15 + g3 + str3].active = true; frets[17 + g3 + str3].active = true; frets[19 + g3 + str3].active = true; frets[20 + g3 + str3].active = true; frets[22 + g3 + str3].active = true; frets[24 + g3 + str3].active = true;
-  //   // string 4
-  //   frets[0 + g1 + str4].active = true; frets[1 + g1 + str4].active = true; frets[3 + g1 + str4].active = true; frets[5 + g1 + str4].active = true; frets[6 + g1 + str4].active = true; frets[8 + g1 + str4].active = true; frets[10 + g1 + str4].active = true; frets[12 + g1 + str4].active = true; frets[13 + g1 + str4].active = true; frets[15 + g1 + str4].active = true; frets[17 + g1 + str4].active = true; frets[18 + g1 + str4].active = true; frets[20 + g1 + str4].active = true; frets[22 + g1 + str4].active = true; frets[24 + g1 + str4].active = true;
-  //   frets[0 + g2 + str4].active = true; frets[1 + g2 + str4].active = true; frets[3 + g2 + str4].active = true; frets[5 + g2 + str4].active = true; frets[6 + g2 + str4].active = true; frets[8 + g2 + str4].active = true; frets[10 + g2 + str4].active = true; frets[12 + g2 + str4].active = true; frets[13 + g2 + str4].active = true; frets[15 + g2 + str4].active = true; frets[17 + g2 + str4].active = true; frets[18 + g2 + str4].active = true; frets[20 + g2 + str4].active = true; frets[22 + g2 + str4].active = true; frets[24 + g2 + str4].active = true;
-  //   frets[0 + g3 + str4].active = true; frets[1 + g3 + str4].active = true; frets[3 + g3 + str4].active = true; frets[5 + g3 + str4].active = true; frets[6 + g3 + str4].active = true; frets[8 + g3 + str4].active = true; frets[10 + g3 + str4].active = true; frets[12 + g3 + str4].active = true; frets[13 + g3 + str4].active = true; frets[15 + g3 + str4].active = true; frets[17 + g3 + str4].active = true; frets[18 + g3 + str4].active = true; frets[20 + g3 + str4].active = true; frets[22 + g3 + str4].active = true; frets[24 + g3 + str4].active = true;
-  //   // string 5
-  //   frets[0 + g1 + str5].active = false; frets[1 + g1 + str5].active = true; frets[3 + g1 + str5].active = true; frets[5 + g1 + str5].active = true; frets[6 + g1 + str5].active = true; frets[8 + g1 + str5].active = true; frets[10 + g1 + str5].active = true; frets[11 + g1 + str5].active = true; frets[13 + g1 + str5].active = true; frets[15 + g1 + str5].active = true; frets[17 + g1 + str5].active = true; frets[18 + g1 + str5].active = true; frets[20 + g1 + str5].active = true; frets[22 + g1 + str5].active = true; frets[23 + g1 + str5].active = true;
-  //   frets[0 + g2 + str5].active = false; frets[1 + g2 + str5].active = true; frets[3 + g2 + str5].active = true; frets[5 + g2 + str5].active = true; frets[6 + g2 + str5].active = true; frets[8 + g2 + str5].active = true; frets[10 + g2 + str5].active = true; frets[11 + g2 + str5].active = true; frets[13 + g2 + str5].active = true; frets[15 + g2 + str5].active = true; frets[17 + g2 + str5].active = true; frets[18 + g2 + str5].active = true; frets[20 + g2 + str5].active = true; frets[22 + g2 + str5].active = true; frets[23 + g2 + str5].active = true;
-  //   frets[0 + g3 + str5].active = false; frets[1 + g3 + str5].active = true; frets[3 + g3 + str5].active = true; frets[5 + g3 + str5].active = true; frets[6 + g3 + str5].active = true; frets[8 + g3 + str5].active = true; frets[10 + g3 + str5].active = true; frets[11 + g3 + str5].active = true; frets[13 + g3 + str5].active = true; frets[15 + g3 + str5].active = true; frets[17 + g3 + str5].active = true; frets[18 + g3 + str5].active = true; frets[20 + g3 + str5].active = true; frets[22 + g3 + str5].active = true; frets[23 + g3 + str5].active = true;
-  //   // string 6
-  //   frets[0 + g1 + str6].active = false; frets[1 + g1 + str6].active = true; frets[3 + g1 + str6].active = true; frets[4 + g1 + str6].active = true; frets[6 + g1 + str6].active = true; frets[8 + g1 + str6].active = true; frets[10 + g1 + str6].active = true; frets[11 + g1 + str6].active = true; frets[13 + g1 + str6].active = true; frets[15 + g1 + str6].active = true; frets[16 + g1 + str6].active = true; frets[18 + g1 + str6].active = true; frets[20 + g1 + str6].active = true; frets[22 + g1 + str6].active = true; frets[23 + g1 + str6].active = true;
-  //   frets[0 + g2 + str6].active = false; frets[1 + g2 + str6].active = true; frets[3 + g2 + str6].active = true; frets[4 + g2 + str6].active = true; frets[6 + g2 + str6].active = true; frets[8 + g2 + str6].active = true; frets[10 + g2 + str6].active = true; frets[11 + g2 + str6].active = true; frets[13 + g2 + str6].active = true; frets[15 + g2 + str6].active = true; frets[16 + g2 + str6].active = true; frets[18 + g2 + str6].active = true; frets[20 + g2 + str6].active = true; frets[22 + g2 + str6].active = true; frets[23 + g2 + str6].active = true;
-  //   frets[0 + g3 + str6].active = false; frets[1 + g3 + str6].active = true; frets[3 + g3 + str6].active = true; frets[4 + g3 + str6].active = true; frets[6 + g3 + str6].active = true; frets[8 + g3 + str6].active = true; frets[10 + g3 + str6].active = true; frets[11 + g3 + str6].active = true; frets[13 + g3 + str6].active = true; frets[15 + g3 + str6].active = true; frets[16 + g3 + str6].active = true; frets[18 + g3 + str6].active = true; frets[20 + g3 + str6].active = true; frets[22 + g3 + str6].active = true; frets[23 + g3 + str6].active = true;
-  // },
-  //
-  // locrianButton: function() {
-  //   for (i = 0; i < frets.length; i++) {
-  //     frets[i].active = false;
-  //   }
-  //   // string 1
-  //   frets[0 + g1 + str1].active = false; frets[1 + g1 + str1].active = true; frets[2 + g1 + str1].active = true; frets[4 + g1 + str1].active = true; frets[6 + g1 + str1].active = true; frets[8 + g1 + str1].active = true; frets[9 + g1 + str1].active = true; frets[11 + g1 + str1].active = true; frets[13 + g1 + str1].active = true; frets[14 + g1 + str1].active = true; frets[16 + g1 + str1].active = true; frets[18 + g1 + str1].active = true; frets[20 + g1 + str1].active = true; frets[21 + g1 + str1].active = true; frets[23 + g1 + str1].active = true;
-  //   frets[0 + g2 + str1].active = false; frets[1 + g2 + str1].active = true; frets[2 + g2 + str1].active = true; frets[4 + g2 + str1].active = true; frets[6 + g2 + str1].active = true; frets[8 + g2 + str1].active = true; frets[9 + g2 + str1].active = true; frets[11 + g2 + str1].active = true; frets[13 + g2 + str1].active = true; frets[14 + g2 + str1].active = true; frets[16 + g2 + str1].active = true; frets[18 + g2 + str1].active = true; frets[20 + g2 + str1].active = true; frets[21 + g2 + str1].active = true; frets[23 + g2 + str1].active = true;
-  //   frets[0 + g3 + str1].active = false; frets[1 + g3 + str1].active = true; frets[2 + g3 + str1].active = true; frets[4 + g3 + str1].active = true; frets[6 + g3 + str1].active = true; frets[8 + g3 + str1].active = true; frets[9 + g3 + str1].active = true; frets[11 + g3 + str1].active = true; frets[13 + g3 + str1].active = true; frets[14 + g3 + str1].active = true; frets[16 + g3 + str1].active = true; frets[18 + g3 + str1].active = true; frets[20 + g3 + str1].active = true; frets[21 + g3 + str1].active = true; frets[23 + g3 + str1].active = true;
-  //   // string 2
-  //   frets[0 + g1 + str2].active = false; frets[1 + g1 + str2].active = true; frets[2 + g1 + str2].active = true; frets[4 + g1 + str2].active = true; frets[6 + g1 + str2].active = true; frets[7 + g1 + str2].active = true; frets[9 + g1 + str2].active = true; frets[11 + g1 + str2].active = true; frets[13 + g1 + str2].active = true; frets[14 + g1 + str2].active = true; frets[16 + g1 + str2].active = true; frets[18 + g1 + str2].active = true; frets[19 + g1 + str2].active = true; frets[21 + g1 + str2].active = true; frets[23 + g1 + str2].active = true;
-  //   frets[0 + g2 + str2].active = false; frets[1 + g2 + str2].active = true; frets[2 + g2 + str2].active = true; frets[4 + g2 + str2].active = true; frets[6 + g2 + str2].active = true; frets[7 + g2 + str2].active = true; frets[9 + g2 + str2].active = true; frets[11 + g2 + str2].active = true; frets[13 + g2 + str2].active = true; frets[14 + g2 + str2].active = true; frets[16 + g2 + str2].active = true; frets[18 + g2 + str2].active = true; frets[19 + g2 + str2].active = true; frets[21 + g2 + str2].active = true; frets[23 + g2 + str2].active = true;
-  //   frets[0 + g3 + str2].active = false; frets[1 + g3 + str2].active = true; frets[2 + g3 + str2].active = true; frets[4 + g3 + str2].active = true; frets[6 + g3 + str2].active = true; frets[7 + g3 + str2].active = true; frets[9 + g3 + str2].active = true; frets[11 + g3 + str2].active = true; frets[13 + g3 + str2].active = true; frets[14 + g3 + str2].active = true; frets[16 + g3 + str2].active = true; frets[18 + g3 + str2].active = true; frets[19 + g3 + str2].active = true; frets[21 + g3 + str2].active = true; frets[23 + g3 + str2].active = true;
-  //   // string 3
-  //   frets[0 + g1 + str3].active = false; frets[1 + g1 + str3].active = true; frets[3 + g1 + str3].active = true; frets[5 + g1 + str3].active = true; frets[6 + g1 + str3].active = true; frets[8 + g1 + str3].active = true; frets[10 + g1 + str3].active = true; frets[11 + g1 + str3].active = true; frets[13 + g1 + str3].active = true; frets[15 + g1 + str3].active = true; frets[17 + g1 + str3].active = true; frets[18 + g1 + str3].active = true; frets[20 + g1 + str3].active = true; frets[22 + g1 + str3].active = true; frets[23 + g1 + str3].active = true;
-  //   frets[0 + g2 + str3].active = false; frets[1 + g2 + str3].active = true; frets[3 + g2 + str3].active = true; frets[5 + g2 + str3].active = true; frets[6 + g2 + str3].active = true; frets[8 + g2 + str3].active = true; frets[10 + g2 + str3].active = true; frets[11 + g2 + str3].active = true; frets[13 + g2 + str3].active = true; frets[15 + g2 + str3].active = true; frets[17 + g2 + str3].active = true; frets[18 + g2 + str3].active = true; frets[20 + g2 + str3].active = true; frets[22 + g2 + str3].active = true; frets[23 + g2 + str3].active = true;
-  //   frets[0 + g3 + str3].active = false; frets[1 + g3 + str3].active = true; frets[3 + g3 + str3].active = true; frets[5 + g3 + str3].active = true; frets[6 + g3 + str3].active = true; frets[8 + g3 + str3].active = true; frets[10 + g3 + str3].active = true; frets[11 + g3 + str3].active = true; frets[13 + g3 + str3].active = true; frets[15 + g3 + str3].active = true; frets[17 + g3 + str3].active = true; frets[18 + g3 + str3].active = true; frets[20 + g3 + str3].active = true; frets[22 + g3 + str3].active = true; frets[23 + g3 + str3].active = true;
-  //   // string 4
-  //   frets[0 + g1 + str4].active = false; frets[1 + g1 + str4].active = true; frets[3 + g1 + str4].active = true; frets[4 + g1 + str4].active = true; frets[6 + g1 + str4].active = true; frets[8 + g1 + str4].active = true; frets[10 + g1 + str4].active = true; frets[11 + g1 + str4].active = true; frets[13 + g1 + str4].active = true; frets[15 + g1 + str4].active = true; frets[16 + g1 + str4].active = true; frets[18 + g1 + str4].active = true; frets[20 + g1 + str4].active = true; frets[22 + g1 + str4].active = true; frets[23 + g1 + str4].active = true;
-  //   frets[0 + g2 + str4].active = false; frets[1 + g2 + str4].active = true; frets[3 + g2 + str4].active = true; frets[4 + g2 + str4].active = true; frets[6 + g2 + str4].active = true; frets[8 + g2 + str4].active = true; frets[10 + g2 + str4].active = true; frets[11 + g2 + str4].active = true; frets[13 + g2 + str4].active = true; frets[15 + g2 + str4].active = true; frets[16 + g2 + str4].active = true; frets[18 + g2 + str4].active = true; frets[20 + g2 + str4].active = true; frets[22 + g2 + str4].active = true; frets[23 + g2 + str4].active = true;
-  //   frets[0 + g3 + str4].active = false; frets[1 + g3 + str4].active = true; frets[3 + g3 + str4].active = true; frets[4 + g3 + str4].active = true; frets[6 + g3 + str4].active = true; frets[8 + g3 + str4].active = true; frets[10 + g3 + str4].active = true; frets[11 + g3 + str4].active = true; frets[13 + g3 + str4].active = true; frets[15 + g3 + str4].active = true; frets[16 + g3 + str4].active = true; frets[18 + g3 + str4].active = true; frets[20 + g3 + str4].active = true; frets[22 + g3 + str4].active = true; frets[23 + g3 + str4].active = true;
-  //   // string 5
-  //   frets[0 + g1 + str5].active = false; frets[1 + g1 + str5].active = true; frets[3 + g1 + str5].active = true; frets[4 + g1 + str5].active = true; frets[6 + g1 + str5].active = true; frets[8 + g1 + str5].active = true; frets[9 + g1 + str5].active = true; frets[11 + g1 + str5].active = true; frets[13 + g1 + str5].active = true; frets[15 + g1 + str5].active = true; frets[16 + g1 + str5].active = true; frets[18 + g1 + str5].active = true; frets[20 + g1 + str5].active = true; frets[21 + g1 + str5].active = true; frets[23 + g1 + str5].active = true;
-  //   frets[0 + g2 + str5].active = false; frets[1 + g2 + str5].active = true; frets[3 + g2 + str5].active = true; frets[4 + g2 + str5].active = true; frets[6 + g2 + str5].active = true; frets[8 + g2 + str5].active = true; frets[9 + g2 + str5].active = true; frets[11 + g2 + str5].active = true; frets[13 + g2 + str5].active = true; frets[15 + g2 + str5].active = true; frets[16 + g2 + str5].active = true; frets[18 + g2 + str5].active = true; frets[20 + g2 + str5].active = true; frets[21 + g2 + str5].active = true; frets[23 + g2 + str5].active = true;
-  //   frets[0 + g3 + str5].active = false; frets[1 + g3 + str5].active = true; frets[3 + g3 + str5].active = true; frets[4 + g3 + str5].active = true; frets[6 + g3 + str5].active = true; frets[8 + g3 + str5].active = true; frets[9 + g3 + str5].active = true; frets[11 + g3 + str5].active = true; frets[13 + g3 + str5].active = true; frets[15 + g3 + str5].active = true; frets[16 + g3 + str5].active = true; frets[18 + g3 + str5].active = true; frets[20 + g3 + str5].active = true; frets[21 + g3 + str5].active = true; frets[23 + g3 + str5].active = true;
-  //   // string 6
-  //   frets[0 + g1 + str6].active = false; frets[1 + g1 + str6].active = true; frets[2 + g1 + str6].active = true; frets[4 + g1 + str6].active = true; frets[6 + g1 + str6].active = true; frets[8 + g1 + str6].active = true; frets[9 + g1 + str6].active = true; frets[11 + g1 + str6].active = true; frets[13 + g1 + str6].active = true; frets[14 + g1 + str6].active = true; frets[16 + g1 + str6].active = true; frets[18 + g1 + str6].active = true; frets[20 + g1 + str6].active = true; frets[21 + g1 + str6].active = true; frets[23 + g1 + str6].active = true;
-  //   frets[0 + g2 + str6].active = false; frets[1 + g2 + str6].active = true; frets[2 + g2 + str6].active = true; frets[4 + g2 + str6].active = true; frets[6 + g2 + str6].active = true; frets[8 + g2 + str6].active = true; frets[9 + g2 + str6].active = true; frets[11 + g2 + str6].active = true; frets[13 + g2 + str6].active = true; frets[14 + g2 + str6].active = true; frets[16 + g2 + str6].active = true; frets[18 + g2 + str6].active = true; frets[20 + g2 + str6].active = true; frets[21 + g2 + str6].active = true; frets[23 + g2 + str6].active = true;
-  //   frets[0 + g3 + str6].active = false; frets[1 + g3 + str6].active = true; frets[2 + g3 + str6].active = true; frets[4 + g3 + str6].active = true; frets[6 + g3 + str6].active = true; frets[8 + g3 + str6].active = true; frets[9 + g3 + str6].active = true; frets[11 + g3 + str6].active = true; frets[13 + g3 + str6].active = true; frets[14 + g3 + str6].active = true; frets[16 + g3 + str6].active = true; frets[18 + g3 + str6].active = true; frets[20 + g3 + str6].active = true; frets[21 + g3 + str6].active = true; frets[23 + g3 + str6].active = true;
-  // }
+  ionianButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+      frets[i].playColor = false;
+    }
+    getScale(ionian);
+  },
+  dorianButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+      frets[i].playColor = false;
+    }
+    getScale(dorian);
+  },
+  phrygianButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+      frets[i].playColor = false;
+    }
+    getScale(phrygian);
+  },
+  lydianButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+      frets[i].playColor = false;
+    }
+    getScale(lydian);
+  },
+  mixoButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+      frets[i].playColor = false;
+    }
+    getScale(mixolydian);
+  },
+  aeolienButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+      frets[i].playColor = false;
+    }
+    getScale(aeolien);
+  },
+  locrianButton: function() {
+    for (i = 0; i < frets.length; i++) {
+      frets[i].active = false;
+      frets[i].playColor = false;
+    }
+    getScale(locrian);
+  }
 }
