@@ -1,11 +1,9 @@
 var frets = [];
-
+var fretboards = [];
 var guitarSpacing = 120;
 var guitarGroupLeftMargin = 110;
 var guitarGroupTopMargin = 70;
 var fretWidth = 20;
-var fretboards = [];
-var scaleHolder;
 
 function Fretboard(x, y) {
   this.x = x;
@@ -164,5 +162,4 @@ var buttonHandlers = {
     }
     getScale(minPent);
   }
-
 }

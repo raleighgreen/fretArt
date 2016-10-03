@@ -82,6 +82,7 @@ function Fret(x, y, number) {
         if (note === i || note === i + 150 || note === i + 300) {
           this.fretArrayNumber = i - 125;
           console.log(this.fretArrayNumber);
+          console.log(frets[i]);
         }
       }
       this.audioNote.src = "audio/" + this.fretArrayNumber + ".mp3";
