@@ -57,50 +57,39 @@ function draw() {
   }
 }
 /*---------new code---------------*/
+//the code below creates a scale map for one 24fret string in any key.
 
-
-var notes = [];
-var notesArray = [];
-// var fullString = [];
+var allNotes = [];
+var lowEstring = [];
 
 function Note(id) {
   this.id = id;
 }
-function NoteId(id) {
-  this.id = id;
-}
-// function FullStringId(id) {
-//   this.id = id;
-// }
-
+// push Note objects into the allNotes array.
+// the allNotes array contains 24 frets + 12.
 for (var i = 0; i <= 36; i++) {
-  notes.push(new Note(i));
+  allNotes.push(new Note(i));
 }
+// make the lowEstring array have 24 frets (Note)s
 for (var i = 0; i < 24; i++) {
-  notesArray.push(new NoteId(i));
+  lowEstring.push(new Note(i));
 }
-// for (var z = 0; z < 12; z++) {
-//   fullString.push(new FullStringId(z));
-// }
-
 function getScale(key, scale) {
   // start at the beginning of the mode
   var modeIndex = 0;
   // set the first note to the starting key
   var keyboardIndex = key;
-  while (keyboardIndex < notes.length) {
-    var currentNote = notes[keyboardIndex];
-
+  while (keyboardIndex < allNotes.length) {
+    var currentNote = allNotes[keyboardIndex];
     modeIndex++;
+
     if (modeIndex >= scale.length) {
       modeIndex = 0;
     }
     keyboardIndex += scale[modeIndex];
     if (currentNote.id > 11 && currentNote.id < 37) {
-      notesArray.id = currentNote.id - 12;
-
-      console.log(notesArray.id);
-
+      lowEstring.id = currentNote.id - 12;
+      console.log(lowEstring.id);
     }
   }
 }
