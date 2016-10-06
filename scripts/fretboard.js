@@ -37,7 +37,6 @@ function setup() {
       }
     }
   }
-  // getScale(s);
 }
 
 function play(){
@@ -57,7 +56,7 @@ function draw() {
   }
 }
 /*---------new code---------------*/
-//the code below creates a scale map for one 24fret string in any key.
+//the code below creates a scale map for all six strings in any key.
 
 var allNotes = [];
 
@@ -72,11 +71,24 @@ function Note(id) {
   this.id = id;
 }
 // push Note objects into the allNotes array.
-// the allNotes array contains 24 frets + 12.
+// Once pushed, the allNotes array contains 61 Note objects.
+// They represent the entire 4 octave range of
+// a 24 fret guitar (49 notes) plus 12 (for the discarded
+// lower octave).
 for (var i = 0; i <= 61; i++) {
   allNotes.push(new Note(i));
 }
-// make the lowEstring array have 24 frets (Note)s
+// I feel like the for() statements below should be put in a
+//function and refactored to look something like:
+// function buildStringArrays(stringName) {
+//   for (var i = 0; i < 24; i++) {
+//     stringName.push(new Note(i));
+//   }
+// }
+// but I'm not sure how and where to
+// call the buildAtringArrays() function, or if it's
+// the right way refactor these in the first place.
+
 for (var i = 0; i < 24; i++) {
   highEstring.push(new Note(i));
 }
@@ -109,6 +121,20 @@ function getScale(key, scale) {
       modeIndex = 0;
     }
     keyboardIndex += scale[modeIndex];
+    // the if statements below map the currentNote.id from
+    // the allNotes[] array into six new arrays, each
+    // built from the appropriate range for the given string.
+
+    // I feel like these should be refactored into a function
+    // that might look like this:
+    // function mapToStrings(stringName, lowRange, highRange) {
+    //   if (currentNote.id > lowRange && currentNote.id < highRange) {
+    //     stringName.id = currentNote.id - 12;
+    //   }
+    // }
+    // where I'm stuck is siimilar to above - how and where
+    // should I call the mapToStrings() function, and is this
+    // the best way to refactor these in the first place?
     if (currentNote.id > 35 && currentNote.id < 61) {
       highEstring.id = currentNote.id - 12;
       // console.log(highEstring.id);
@@ -137,12 +163,15 @@ function getScale(key, scale) {
 }
 
 var ionian = [2, 2, 1, 2, 2, 2, 1];
+// 10 sets the scale to the key of C
 getScale(10, ionian);
 
-// changing the key
-// calculating within a specific range of notes – piano or a guitar
-// calculating where those notes appear on the fretboard
-
+// COMPLETE: changing the key
+// COMPLETE: calculating within a specific range of notes – piano or a guitar
+// COMPLETE: calculating where those notes appear on the fretboard
+// TO DO: connect the getScale() function,
+// TO DO: add more scales
+// TO DO: make the buttons work
 
 /*------end new code--------------*/
 var buttonHandlers = {
