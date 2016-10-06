@@ -60,6 +60,12 @@ function draw() {
 //the code below creates a scale map for one 24fret string in any key.
 
 var allNotes = [];
+
+var highEstring = [];
+var theBstring = [];
+var theGstring = [];
+var theDstring = [];
+var theAstring = [];
 var lowEstring = [];
 
 function Note(id) {
@@ -67,13 +73,29 @@ function Note(id) {
 }
 // push Note objects into the allNotes array.
 // the allNotes array contains 24 frets + 12.
-for (var i = 0; i <= 36; i++) {
+for (var i = 0; i <= 61; i++) {
   allNotes.push(new Note(i));
 }
 // make the lowEstring array have 24 frets (Note)s
 for (var i = 0; i < 24; i++) {
+  highEstring.push(new Note(i));
+}
+for (var i = 0; i < 24; i++) {
+  theBstring.push(new Note(i));
+}
+for (var i = 0; i < 24; i++) {
+  theGstring.push(new Note(i));
+}
+for (var i = 0; i < 24; i++) {
+  theDstring.push(new Note(i));
+}
+for (var i = 0; i < 24; i++) {
+  theAstring.push(new Note(i));
+}
+for (var i = 0; i < 24; i++) {
   lowEstring.push(new Note(i));
 }
+
 function getScale(key, scale) {
   // start at the beginning of the mode
   var modeIndex = 0;
@@ -87,6 +109,26 @@ function getScale(key, scale) {
       modeIndex = 0;
     }
     keyboardIndex += scale[modeIndex];
+    if (currentNote.id > 35 && currentNote.id < 61) {
+      highEstring.id = currentNote.id - 12;
+      // console.log(highEstring.id);
+    }
+    if (currentNote.id > 30 && currentNote.id < 56) {
+      theBstring.id = currentNote.id - 12;
+      // console.log(theBstring.id);
+    }
+    if (currentNote.id > 26 && currentNote.id < 52) {
+      theGstring.id = currentNote.id - 12;
+      // console.log(theGstring.id);
+    }
+    if (currentNote.id > 21 && currentNote.id < 47) {
+      theDstring.id = currentNote.id - 12;
+      // console.log(theDstring.id);
+    }
+    if (currentNote.id > 16 && currentNote.id < 42) {
+      theAstring.id = currentNote.id - 12;
+      // console.log(theAstring.id);
+    }
     if (currentNote.id > 11 && currentNote.id < 37) {
       lowEstring.id = currentNote.id - 12;
       console.log(lowEstring.id);
@@ -95,7 +137,7 @@ function getScale(key, scale) {
 }
 
 var ionian = [2, 2, 1, 2, 2, 2, 1];
-getScale(6, ionian);
+getScale(10, ionian);
 
 // changing the key
 // calculating within a specific range of notes – piano or a guitar
