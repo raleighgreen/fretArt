@@ -83,25 +83,41 @@ function draw() {
 }
 
 function getScale(key, scale) {
+  var foundScale = [];
   // start at the beginning of the mode
   var modeIndex = 0;
   // set the first note to the starting key
-  var scaleStartingNote = key;
-  while (scaleStartingNote < notes.length - 1 + 12) {
-    var currentNote = notes[scaleStartingNote];
-    modeIndex++;
+  var noteInKey = key;
+  while (noteInKey < notes.length) {
+    var currentNote = notes[noteInKey];
     if (modeIndex >= scale.length) {
       modeIndex = 0;
     }
-    scaleStartingNote += scale[modeIndex];
-    console.log(scaleStartingNote - 12);
+    foundScale.push(noteInKey);
+    noteInKey += scale[modeIndex];
+    modeIndex++;
   }
+  // remove the first array element from foundScale[]
+  // in order to avoid a doubled first index
+  foundScale.splice(0,1);
+  // reverse the scale[] array
+  scale.reverse();
+  noteInKey = key;
+  modeIndex = 0;
+  while (noteInKey >= 0) {
+    currentNote = notes[noteInKey];
+    // push noteInKey to the beginning of the foundScale[] array
+    foundScale.unshift(noteInKey);
+    noteInKey -= scale[modeIndex];
+    modeIndex++;
+  }
+  console.log(foundScale);
 }
-// 10 sets the scale to the key of C
-var ionian = [2, 2, 1, 2, 2, 2, 1];
 
-getScale(10, ionian);
-console.log(fretboard);
+var ionian = [2, 2, 1, 2, 2, 2, 1];
+// key of C = 8
+getScale(8, ionian);
+// console.log(fretboard);
 
 // var buttonHandlers = {
 //   clearButton: function() {
