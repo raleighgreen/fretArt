@@ -49,16 +49,16 @@ for (var i = 0; i < strings.length; i++) {
 // make a variable fretboard and initalize as an
 // empty string. Print the frets.note.id's into this
 // fretboard by looping through the frets on each string
-var fretboard = "";
-
-for (var i = 0; i < strings.length; i++) {
-  for (var f = 0; f < frets.length; f++) {
-    if (frets[f].string == strings[i]) {
-      fretboard += frets[f].note.id + " ";
-    }
-  }
-  fretboard += "\n";
-}
+// var fretboard = "";
+//
+// for (var i = 0; i < strings.length; i++) {
+//   for (var f = 0; f < frets.length; f++) {
+//     if (frets[f].string == strings[i]) {
+//       fretboard += frets[f].note.id + " ";
+//     }
+//   }
+//   fretboard += "\n";
+// }
 /*-------------------------------*/
 
 function setup() {
@@ -80,6 +80,35 @@ function draw() {
     // turn frets[i].display(); back on to display
     // frets[i].display();
   // }
+}
+
+// is it ok to name passed in function arguments
+// with their actual names as I have done here
+// in the compareFoundScaleWithNotes() function?
+function compareFoundScaleWithNotes(foundScale, notes) {
+  // loop through the length of the notes array
+  for (i = 0; i < notes.length; i++) {
+    // compare the indexOf notes[] and foundScale[]
+    if (notes.indexOf(i) == foundScale.indexOf(i)) {
+      // if a match, make note[i].id = "x" (a non-scale tone)
+      notes[i].id = "X";
+    } else {
+      // if not a match, make note[i].id = "O" (a scale tone)
+      notes[i].id = "O";
+    }
+  }
+  // make fretboard and display in the console
+  var fretboard = "";
+
+  for (var i = 0; i < strings.length; i++) {
+    for (var f = 0; f < frets.length; f++) {
+      if (frets[f].string == strings[i]) {
+        fretboard += frets[f].note.id + " ";
+      }
+    }
+    fretboard += "\n";
+  }
+  console.log(fretboard);
 }
 
 function getScale(key, scale) {
@@ -111,12 +140,12 @@ function getScale(key, scale) {
     noteInKey -= scale[modeIndex];
     modeIndex++;
   }
-  console.log(foundScale);
+  compareFoundScaleWithNotes(foundScale, notes);
 }
-
 var ionian = [2, 2, 1, 2, 2, 2, 1];
 // key of C = 8
 getScale(8, ionian);
+
 // console.log(fretboard);
 
 // var buttonHandlers = {
