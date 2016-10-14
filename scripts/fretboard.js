@@ -46,20 +46,6 @@ for (var i = 0; i < strings.length; i++) {
   }
 }
 /*-------------------------*/
-// make a variable fretboard and initalize as an
-// empty string. Print the frets.note.id's into this
-// fretboard by looping through the frets on each string
-// var fretboard = "";
-//
-// for (var i = 0; i < strings.length; i++) {
-//   for (var f = 0; f < frets.length; f++) {
-//     if (frets[f].string == strings[i]) {
-//       fretboard += frets[f].note.id + " ";
-//     }
-//   }
-//   fretboard += "\n";
-// }
-/*-------------------------------*/
 function updateDisplay(currentScale) {
   currentScale = currentScale;
   var fretboard = "";
@@ -97,15 +83,12 @@ function draw() {
   // }
 }
 
-// is it ok to name passed in function arguments
-// with their actual names as I have done here
-// in the compareFoundScaleWithNotes() function?
 function compareFoundScaleWithNotes(foundScale, notes) {
   // loop through the length of the notes array
   for (i = 0; i < notes.length; i++) {
     // compare the indexOf notes[] and foundScale[]
     if (notes.indexOf(i) == foundScale.indexOf(i)) {
-      // if a match, make note[i].id = "x" (a non-scale tone)
+      // if a match, make note[i].id = "-" (a non-scale tone)
       notes[i].id = "-";
     } else {
       // if not a match, make note[i].id = "O" (a scale tone)
@@ -130,7 +113,6 @@ function getScale(key, scale) {
     noteInKey += scale[modeIndex];
     modeIndex++;
   }
-
   // remove the first array element from foundScale[]
   // in order to avoid a doubled first index
   foundScale.splice(0,1);
@@ -146,6 +128,7 @@ function getScale(key, scale) {
     modeIndex++;
   }
   compareFoundScaleWithNotes(foundScale, notes);
+  // reverse the scale to reset
   scale.reverse();
 }
 
@@ -161,9 +144,10 @@ var minPentatonic = [3, 2, 2, 3, 2];
 var currentScale = ionian;
 var currentKeyName = "C"
 var scaleName = "Ionian";
-
 // key of C = 8
 var currentKey = 8;
+
+// display defaults
 getScale(currentKey, currentScale);
 updateDisplay(currentScale);
 
