@@ -2,7 +2,17 @@ h1 {
     color: #3a3287;
     font-family: sans-serif;
 }
-
+p {
+    color: #3a3287;
+    font-family: sans-serif;
+    margin-bottom: 3px;
+    margin-top: 0px;
+}
+div {
+  margin: 0px;
+  padding: 0px;
+  height: auto;
+}
 button {
   margin-bottom: 15px;
 }

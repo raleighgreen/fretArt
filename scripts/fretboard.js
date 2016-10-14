@@ -60,9 +60,24 @@ for (var i = 0; i < strings.length; i++) {
 //   fretboard += "\n";
 // }
 /*-------------------------------*/
+function updateDisplay(currentScale) {
+  currentScale = currentScale;
+  var fretboard = "";
+  for (var i = 0; i < strings.length; i++) {
+    for (var f = 0; f < frets.length; f++) {
+      if (frets[f].string == strings[i]) {
+        fretboard += frets[f].note.id + " ";
+      }
+    }
+    fretboard += "\n";
+  }
+  console.clear();
+  console.log("scale: " + currentKeyName + " "+ scaleName + "   scale pattern: " + currentScale);
+  console.log(fretboard);
+}
 
 function setup() {
-  createCanvas(700, 500);
+  // createCanvas(700, 500);
 }
 
 function play(){
@@ -75,7 +90,7 @@ function mousePressed() {
 }
 
 function draw() {
-  background(0);
+  // background(0);
   // for (var i = 0; i < frets.length; i++) {
     // turn frets[i].display(); back on to display
     // frets[i].display();
@@ -91,24 +106,13 @@ function compareFoundScaleWithNotes(foundScale, notes) {
     // compare the indexOf notes[] and foundScale[]
     if (notes.indexOf(i) == foundScale.indexOf(i)) {
       // if a match, make note[i].id = "x" (a non-scale tone)
-      notes[i].id = "X";
+      notes[i].id = "-";
     } else {
       // if not a match, make note[i].id = "O" (a scale tone)
       notes[i].id = "O";
     }
   }
   // make fretboard and display in the console
-  var fretboard = "";
-
-  for (var i = 0; i < strings.length; i++) {
-    for (var f = 0; f < frets.length; f++) {
-      if (frets[f].string == strings[i]) {
-        fretboard += frets[f].note.id + " ";
-      }
-    }
-    fretboard += "\n";
-  }
-  console.log(fretboard);
 }
 
 function getScale(key, scale) {
@@ -126,6 +130,7 @@ function getScale(key, scale) {
     noteInKey += scale[modeIndex];
     modeIndex++;
   }
+
   // remove the first array element from foundScale[]
   // in order to avoid a doubled first index
   foundScale.splice(0,1);
@@ -141,74 +146,153 @@ function getScale(key, scale) {
     modeIndex++;
   }
   compareFoundScaleWithNotes(foundScale, notes);
+  scale.reverse();
 }
+
 var ionian = [2, 2, 1, 2, 2, 2, 1];
+var dorian = [2, 1, 2, 2, 2, 1, 2];
+var phrygian = [1, 2, 2, 2, 1, 2, 2];
+var lydian = [2, 2, 2, 1, 2, 2, 1];
+var mixolydian = [2, 2, 1, 2, 2, 1, 2];
+var aeolien = [2, 1, 2, 2, 1, 2, 2];
+var locrian = [1, 2, 2, 1, 2, 2, 2];
+var minPentatonic = [3, 2, 2, 3, 2];
+
+var currentScale = ionian;
+var currentKeyName = "C"
+var scaleName = "Ionian";
+
 // key of C = 8
-getScale(8, ionian);
+var currentKey = 8;
+getScale(currentKey, currentScale);
+updateDisplay(currentScale);
 
-// console.log(fretboard);
-
-// var buttonHandlers = {
-//   clearButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//   },
-//   ionianButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//     getScale(ionian);
-//   },
-//   dorianButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//     getScale(dorian);
-//   },
-//   phrygianButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//     getScale(phrygian);
-//   },
-//   lydianButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//     getScale(lydian);
-//   },
-//   mixoButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//     getScale(mixolydian);
-//   },
-//   aeolienButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//     getScale(aeolien);
-//   },
-//   locrianButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//     getScale(locrian);
-//   },
-//   minPentButton: function() {
-//     for (i = 0; i < frets.length; i++) {
-//       frets[i].active = false;
-//       frets[i].playColor = false;
-//     }
-//     getScale(minPent);
-//   }
-// }
+var buttonHandlers = {
+  clearButton: function() {
+    for (i = 0; i < notes.length; i++) {
+      notes[i].id = "-";
+    }
+    scaleName = "-"
+    updateDisplay("-");
+  },
+  ionianButton: function() {
+    scaleName = "Ionian";
+    currentScale = ionian;
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  dorianButton: function() {
+    scaleName = "Dorian";
+    currentScale = dorian;
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  phrygianButton: function() {
+    scaleName = "Phrygian";
+    currentScale = phrygian;
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  lydianButton: function() {
+    scaleName = "Lydian";
+    currentScale = lydian;
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  mixoButton: function() {
+    scaleName = "Mixolydian";
+    currentScale = mixolydian;
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  aeolienButton: function() {
+    scaleName = "Aeolien";
+    currentScale = aeolien;
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  locrianButton: function() {
+    scaleName = "Locrian";
+    currentScale = locrian;
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  minPentButton: function() {
+    scaleName = "Minor Pentatonic";
+    currentScale = minPentatonic;
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfC: function() {
+    currentKey = 8;
+    currentKeyName = "C";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfDb: function() {
+    currentKey = 9;
+    currentKeyName = "Db";
+    getScale(currentKey, currentScale)
+    updateDisplay(currentScale);
+  },
+  keyOfD: function() {
+    currentKey = 10;
+    currentKeyName = "D";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfEb: function() {
+    currentKey = 11;
+    currentKeyName = "Eb";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfE: function() {
+    currentKey = 0;
+    currentKeyName = "E";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfF: function() {
+    currentKey = 1;
+    currentKeyName = "F";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfGb: function() {
+    currentKey = 2;
+    currentKeyName = "Gb";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfG: function() {
+    currentKey = 3;
+    currentKeyName = "G";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfAb: function() {
+    currentKey = 4;
+    currentKeyName = "Ab";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfA: function() {
+    currentKey = 5;
+    currentKeyName = "A";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfBb: function() {
+    currentKey = 6;
+    currentKeyName = "Bb";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  },
+  keyOfB: function() {
+    currentKey = 7;
+    currentKeyName = "B";
+    getScale(currentKey, currentScale);
+    updateDisplay(currentScale);
+  }
+}
