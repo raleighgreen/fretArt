@@ -74,9 +74,7 @@ for (var i = 0; i < strings.length; i++) {
 
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
-  console.log(mode);
-  var foundScale = getScale(key, mode.pattern);
-  console.log(foundScale);
+  var foundScale = getScale(key, mode);
   activateFrets(foundScale);
 
 }
@@ -91,7 +89,6 @@ function clearFretSelection() {
 // Loop through to compare foundScale and frets arrays.
 // Make every note in frets (that matches foundScale note) active.
 function activateFrets(foundScale) {
-  console.log(foundScale);
   clearFretSelection();
   for (var i = 0; i < foundScale.length; i++) {
     for (var f = 0; f < frets.length; f++) {
@@ -118,7 +115,7 @@ function updateDisplay(mode) {
     }
     fretboard += "\n";
   }
-  // console.clear();
+  console.clear();
   console.log("scale: " + currentKeyName + " " + scaleValueField.value + "   scale pattern: " + currentMode.pattern);
   console.log(fretboard);
 }
@@ -178,15 +175,6 @@ showButton.addEventListener("click", function() {
   currentMode = modes[scaleValueField.value];
 
   // Calculate and set the scale and display it in the console
-  console.log(currentKey);
-  console.log(keyValueField.value);
-  console.log(currentMode.pattern);
-  // console.log(keyValueField.selectedIndex);
-  // console.log(keyValueField.value);
-  // console.log(scaleValueField.selectedIndex);
-  // console.log(scaleValueField.value);
-  // console.log(currentMode.pattern);
-
   setScale(currentKey, currentMode.pattern);
   updateDisplay();
 });
