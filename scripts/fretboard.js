@@ -1,25 +1,57 @@
-/*-------------------------*/
-// Build the `Note` objects
+// 1. GLOBAL VARIABLES -----------------
+
+var notes = [];
+var frets = [];
+var strings = [];
+var modes;
+var currentMode;
+var currentKeyName;
+var currentKey;
+
+// 2. OBJECT CONSTRUCTORS -----------------
+
 function Note(id, audioFile) {
   this.id = id;
   this.audioFile = audioFile;
 }
 
-var notes = [];
-
-for (var i = 0; i <= 48; i++) {
-  notes.push(new Note(i));
+function Mode(name, pattern) {
+  this.name = name;
+  this.pattern = pattern;
 }
-/*-------------------------*/
-// Build the `string` objects
-// flip the order of the strings
-// to match guitar orientation.
+
 function String(name, low, high) {
   this.name = name;
   this.low = low;
   this.high = high;
 }
 
+function Fret(note, string) {
+  this.note = note;
+  this.string = string;
+  this.active = false;
+}
+
+// 3. GENERATE DATA USING CONSTRUCTORS -----------------
+
+// Generate notes
+for (var i = 0; i <= 48; i++) {
+  notes.push(new Note(i));
+}
+
+// Create modes and group them in an Object
+modes = {
+  ionian: new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1]);
+  dorian: new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2]);
+  phrygian: new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2]);
+  lydian: new Mode("Lydian",[2, 2, 2, 1, 2, 2, 1]);
+  mixolydian: new Mode("Mixolydian", [2, 2, 1, 2, 2, 1, 2]);
+  aeolien: new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2]);
+  locrian: new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2]);
+  minPentatonic: new Mode("Minor Pentatonic",[3, 2, 2, 3, 2]);
+}
+
+// Create strings and group them in an array
 var strings = [
   new String("E", 24, 48),
   new String("B", 19, 43),
@@ -28,26 +60,20 @@ var strings = [
   new String("A", 5, 29),
   new String("E", 0, 24)
 ];
-/*-------------------------*/
-// Build the `Fret` object and push them into
-// the `frets` array
-function Fret(note, string) {
-  this.note = note;
-  this.string = string;
-}
 
-var frets = [];
-
+// Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
   for (var n = currentString.low; n <= currentString.high; n++) {
     var note = notes[n];
-    frets.push(new Fret(note, currentString));
+    frets.push(new Fret(note, currentString, active));
   }
 }
-/*-------------------------*/
-function updateDisplay(currentScale) {
-  currentScale = currentScale;
+
+// 4.DEFINE FUNCTIONS -----------------
+
+function updateDisplay(currentMode) {
+  currentMode = currentMode;
   var fretboard = "";
   for (var i = 0; i < strings.length; i++) {
     for (var f = 0; f < frets.length; f++) {
@@ -58,7 +84,7 @@ function updateDisplay(currentScale) {
     fretboard += "\n";
   }
   console.clear();
-  console.log("scale: " + currentKeyName + " "+ scaleName + "   scale pattern: " + currentScale);
+  console.log("scale: " + currentKeyName + " "+ scaleName + "   scale pattern: " + currentMode);
   console.log(fretboard);
 }
 
@@ -132,24 +158,10 @@ function getScale(key, scale) {
   scale.reverse();
 }
 
-var ionian = [2, 2, 1, 2, 2, 2, 1];
-var dorian = [2, 1, 2, 2, 2, 1, 2];
-var phrygian = [1, 2, 2, 2, 1, 2, 2];
-var lydian = [2, 2, 2, 1, 2, 2, 1];
-var mixolydian = [2, 2, 1, 2, 2, 1, 2];
-var aeolien = [2, 1, 2, 2, 1, 2, 2];
-var locrian = [1, 2, 2, 1, 2, 2, 2];
-var minPentatonic = [3, 2, 2, 3, 2];
-
-var currentScale = ionian;
-var currentKeyName = "C"
-var scaleName = "Ionian";
-// key of C = 8
-var currentKey = 8;
 
 // display defaults
-getScale(currentKey, currentScale);
-updateDisplay(currentScale);
+getScale(currentKey, currentMode);
+updateDisplay(currentMode);
 
 var buttonHandlers = {
   clearButton: function() {
@@ -161,122 +173,122 @@ var buttonHandlers = {
   },
   ionianButton: function() {
     scaleName = "Ionian";
-    currentScale = ionian;
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    currentMode = ionian;
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   dorianButton: function() {
     scaleName = "Dorian";
-    currentScale = dorian;
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    currentMode = dorian;
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   phrygianButton: function() {
     scaleName = "Phrygian";
-    currentScale = phrygian;
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    currentMode = phrygian;
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   lydianButton: function() {
     scaleName = "Lydian";
-    currentScale = lydian;
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    currentMode = lydian;
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   mixoButton: function() {
     scaleName = "Mixolydian";
-    currentScale = mixolydian;
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    currentMode = mixolydian;
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   aeolienButton: function() {
     scaleName = "Aeolien";
-    currentScale = aeolien;
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    currentMode = aeolien;
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   locrianButton: function() {
     scaleName = "Locrian";
-    currentScale = locrian;
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    currentMode = locrian;
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   minPentButton: function() {
     scaleName = "Minor Pentatonic";
-    currentScale = minPentatonic;
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    currentMode = minPentatonic;
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfC: function() {
     currentKey = 8;
     currentKeyName = "C";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfDb: function() {
     currentKey = 9;
     currentKeyName = "Db";
-    getScale(currentKey, currentScale)
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode)
+    updateDisplay(currentMode);
   },
   keyOfD: function() {
     currentKey = 10;
     currentKeyName = "D";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfEb: function() {
     currentKey = 11;
     currentKeyName = "Eb";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfE: function() {
     currentKey = 0;
     currentKeyName = "E";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfF: function() {
     currentKey = 1;
     currentKeyName = "F";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfGb: function() {
     currentKey = 2;
     currentKeyName = "Gb";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfG: function() {
     currentKey = 3;
     currentKeyName = "G";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfAb: function() {
     currentKey = 4;
     currentKeyName = "Ab";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfA: function() {
     currentKey = 5;
     currentKeyName = "A";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfBb: function() {
     currentKey = 6;
     currentKeyName = "Bb";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   },
   keyOfB: function() {
     currentKey = 7;
     currentKeyName = "B";
-    getScale(currentKey, currentScale);
-    updateDisplay(currentScale);
+    getScale(currentKey, currentMode);
+    updateDisplay(currentMode);
   }
 }
