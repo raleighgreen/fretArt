@@ -151,7 +151,6 @@ function getScale(key, scale) {
 
   scale.reverse();
   return foundScale;
-  // console.log(foundScale);
 }
 
 // 5.SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
@@ -178,6 +177,13 @@ showButton.addEventListener("click", function() {
   setScale(currentKey, currentMode.pattern);
   updateDisplay();
 });
+
+// Clear fretboard and updateDisplay
+clearButton.addEventListener("click", function() {
+  clearFretSelection();
+  updateDisplay();
+});
+
 // function setup() {
 //   // createCanvas(700, 500);
 // }
