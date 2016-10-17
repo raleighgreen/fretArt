@@ -41,14 +41,14 @@ for (var i = 0; i <= 48; i++) {
 
 // Create modes and group them in an Object
 modes = {
-  ionian: new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1]);
-  dorian: new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2]);
-  phrygian: new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2]);
-  lydian: new Mode("Lydian",[2, 2, 2, 1, 2, 2, 1]);
-  mixolydian: new Mode("Mixolydian", [2, 2, 1, 2, 2, 1, 2]);
-  aeolien: new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2]);
-  locrian: new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2]);
-  minPentatonic: new Mode("Minor Pentatonic",[3, 2, 2, 3, 2]);
+  ionian: new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1]),
+  dorian: new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2]),
+  phrygian: new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2]),
+  lydian: new Mode("Lydian",[2, 2, 2, 1, 2, 2, 1]),
+  mixolydian: new Mode("Mixolydian", [2, 2, 1, 2, 2, 1, 2]),
+  aeolien: new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2]),
+  locrian: new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2]),
+  minPentatonic: new Mode("Minor Pentatonic",[3, 2, 2, 3, 2])
 }
 
 // Create strings and group them in an array
@@ -66,229 +66,147 @@ for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
   for (var n = currentString.low; n <= currentString.high; n++) {
     var note = notes[n];
-    frets.push(new Fret(note, currentString, active));
+    frets.push(new Fret(note, currentString));
   }
 }
 
 // 4.DEFINE FUNCTIONS -----------------
 
-function updateDisplay(currentMode) {
-  currentMode = currentMode;
+// Calculates a scale by key and mode and activates it on the frets
+function setScale(key, mode) {
+  console.log(mode);
+  var foundScale = getScale(key, mode.pattern);
+  console.log(foundScale);
+  activateFrets(foundScale);
+
+}
+
+// Deactivates all frets to make blank slate
+function clearFretSelection() {
+  for (var f = 0; f < frets.length; f++) {
+    frets[f].active = false;
+  }
+}
+
+// Loop through to compare foundScale and frets arrays.
+// Make every note in frets (that matches foundScale note) active.
+function activateFrets(foundScale) {
+  console.log(foundScale);
+  clearFretSelection();
+  for (var i = 0; i < foundScale.length; i++) {
+    for (var f = 0; f < frets.length; f++) {
+      if (frets[f].note == foundScale[i]) {
+        frets[f].active = true;
+      }
+    }
+  }
+}
+
+// Loop through frets on each string to check for active status.
+// If the fret is active, show a "O", otherwise show a "-".
+function updateDisplay(mode) {
   var fretboard = "";
   for (var i = 0; i < strings.length; i++) {
     for (var f = 0; f < frets.length; f++) {
       if (frets[f].string == strings[i]) {
-        fretboard += frets[f].note.id + " ";
+        if (frets[f].active) {
+          fretboard += "O ";
+        } else {
+          fretboard += "- ";
+        }
       }
     }
     fretboard += "\n";
   }
-  console.clear();
-  console.log("scale: " + currentKeyName + " "+ scaleName + "   scale pattern: " + currentMode);
+  // console.clear();
+  console.log("scale: " + currentKeyName + " " + scaleValueField.value + "   scale pattern: " + currentMode.pattern);
   console.log(fretboard);
 }
 
-function setup() {
-  // createCanvas(700, 500);
-}
-
-function play(){
-}
-
-function mousePressed() {
-  // for (var i = 0; i < frets.length; i++) {
-  //   frets[i].clicked();
-  // }
-}
-
-function draw() {
-  // background(0);
-  // for (var i = 0; i < frets.length; i++) {
-    // turn frets[i].display(); back on to display
-    // frets[i].display();
-  // }
-}
-
-function compareFoundScaleWithNotes(foundScale, notes) {
-  // loop through the length of the notes array
-  for (i = 0; i < notes.length; i++) {
-    // compare the indexOf notes[] and foundScale[]
-    if (notes.indexOf(i) == foundScale.indexOf(i)) {
-      // if a match, make note[i].id = "-" (a non-scale tone)
-      notes[i].id = "-";
-    } else {
-      // if not a match, make note[i].id = "O" (a scale tone)
-      notes[i].id = "O";
-    }
-  }
-  // make fretboard and display in the console
-}
-
+// Algorithm to find scale within a set of notes
 function getScale(key, scale) {
   var foundScale = [];
-  // start at the beginning of the mode
   var modeIndex = 0;
-  // set the first note to the starting key
   var noteInKey = key;
+
   while (noteInKey < notes.length) {
     var currentNote = notes[noteInKey];
     if (modeIndex >= scale.length) {
       modeIndex = 0;
     }
-    foundScale.push(noteInKey);
+    // Push note object to the foundScale array
+    foundScale.push(currentNote);
     noteInKey += scale[modeIndex];
     modeIndex++;
   }
-  // remove the first array element from foundScale[]
-  // in order to avoid a doubled first index
+
   foundScale.splice(0,1);
-  // reverse the scale[] array
   scale.reverse();
   noteInKey = key;
   modeIndex = 0;
+
   while (noteInKey >= 0) {
     currentNote = notes[noteInKey];
-    // push noteInKey to the beginning of the foundScale[] array
-    foundScale.unshift(noteInKey);
+    foundScale.unshift(currentNote);
     noteInKey -= scale[modeIndex];
     modeIndex++;
   }
-  compareFoundScaleWithNotes(foundScale, notes);
-  // reverse the scale to reset
+
   scale.reverse();
+  return foundScale;
+  // console.log(foundScale);
 }
 
+// 5.SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
-// display defaults
-getScale(currentKey, currentMode);
-updateDisplay(currentMode);
+// Grab the select fields and buttons from the HTML document
+var keyValueField = document.getElementById("key-value");
+var scaleValueField = document.getElementById("scale-value");
+var showButton = document.getElementById("show-scale");
+var clearButton = document.getElementById("clear-scale");
 
-var buttonHandlers = {
-  clearButton: function() {
-    for (i = 0; i < notes.length; i++) {
-      notes[i].id = "-";
-    }
-    scaleName = "-"
-    updateDisplay("-");
-  },
-  ionianButton: function() {
-    scaleName = "Ionian";
-    currentMode = ionian;
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  dorianButton: function() {
-    scaleName = "Dorian";
-    currentMode = dorian;
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  phrygianButton: function() {
-    scaleName = "Phrygian";
-    currentMode = phrygian;
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  lydianButton: function() {
-    scaleName = "Lydian";
-    currentMode = lydian;
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  mixoButton: function() {
-    scaleName = "Mixolydian";
-    currentMode = mixolydian;
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  aeolienButton: function() {
-    scaleName = "Aeolien";
-    currentMode = aeolien;
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  locrianButton: function() {
-    scaleName = "Locrian";
-    currentMode = locrian;
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  minPentButton: function() {
-    scaleName = "Minor Pentatonic";
-    currentMode = minPentatonic;
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfC: function() {
-    currentKey = 8;
-    currentKeyName = "C";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfDb: function() {
-    currentKey = 9;
-    currentKeyName = "Db";
-    getScale(currentKey, currentMode)
-    updateDisplay(currentMode);
-  },
-  keyOfD: function() {
-    currentKey = 10;
-    currentKeyName = "D";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfEb: function() {
-    currentKey = 11;
-    currentKeyName = "Eb";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfE: function() {
-    currentKey = 0;
-    currentKeyName = "E";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfF: function() {
-    currentKey = 1;
-    currentKeyName = "F";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfGb: function() {
-    currentKey = 2;
-    currentKeyName = "Gb";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfG: function() {
-    currentKey = 3;
-    currentKeyName = "G";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfAb: function() {
-    currentKey = 4;
-    currentKeyName = "Ab";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfA: function() {
-    currentKey = 5;
-    currentKeyName = "A";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfBb: function() {
-    currentKey = 6;
-    currentKeyName = "Bb";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  },
-  keyOfB: function() {
-    currentKey = 7;
-    currentKeyName = "B";
-    getScale(currentKey, currentMode);
-    updateDisplay(currentMode);
-  }
-}
+// When the show button is clicked, do the following...
+showButton.addEventListener("click", function() {
+
+  // Grab the key value from the key select fields
+  currentKey = parseInt(keyValueField.selectedIndex);
+
+  // Grab the name of the key from the text content of the option element
+  currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
+
+  // Grab the current mode using the value from the mode select field
+  currentMode = modes[scaleValueField.value];
+
+  // Calculate and set the scale and display it in the console
+  console.log(currentKey);
+  console.log(keyValueField.value);
+  console.log(currentMode.pattern);
+  // console.log(keyValueField.selectedIndex);
+  // console.log(keyValueField.value);
+  // console.log(scaleValueField.selectedIndex);
+  // console.log(scaleValueField.value);
+  // console.log(currentMode.pattern);
+
+  setScale(currentKey, currentMode.pattern);
+  updateDisplay();
+});
+// function setup() {
+//   // createCanvas(700, 500);
+// }
+//
+// function play(){
+// }
+//
+// function mousePressed() {
+//   // for (var i = 0; i < frets.length; i++) {
+//   //   frets[i].clicked();
+//   // }
+// }
+//
+// function draw() {
+//   // background(0);
+//   // for (var i = 0; i < frets.length; i++) {
+//   // turn frets[i].display(); back on to display
+//   // frets[i].display();
+//   // }
+// }
