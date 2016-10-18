@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>fretArt</h1>
-    <p>Choose a scale:</p>
+
     <audio id="_1" src="audio/1.mp3" ></audio>
     <audio id="_2" src="audio/2.mp3" ></audio>
     <audio id="_3" src="audio/3.mp3" ></audio>
@@ -57,32 +57,44 @@
     <audio id="_48" src="audio/48.mp3" ></audio>
     <audio id="_49" src="audio/49.mp3" ></audio>
 
+    <p>Choose a scale:</p>
+
     <div>
-      <button onclick="buttonHandlers.ionianButton()">Ionian</button>
-      <button onclick="buttonHandlers.dorianButton()">Dorian</button>
-      <button onclick="buttonHandlers.phrygianButton()">Phrygian</button>
-      <button onclick="buttonHandlers.lydianButton()">Lydian</button>
-      <button onclick="buttonHandlers.mixoButton()">Mixo</button>
-      <button onclick="buttonHandlers.aeolienButton()">Aeolien</button>
-      <button onclick="buttonHandlers.locrianButton()">Locrian</button>
-      <button onclick="buttonHandlers.minPentButton()">Min Pent</button>
-      <button onclick="buttonHandlers.clearButton()">Clear</button>
+      <select id="scale-value">
+        <option>ionian</option>
+        <option>dorian</option>
+        <option>phrygian</option>
+        <option>lydian</option>
+        <option>mixolydian</option>
+        <option>aeolien</option>
+        <option>locrian</option>
+        <option>minor Pentatonic</option>
+      </select>
     </div>
+
     <p>Choose a key:</p>
     <div>
-      <button onclick="buttonHandlers.keyOfC()">C</button>
-      <button onclick="buttonHandlers.keyOfDb()">C#/Db</button>
-      <button onclick="buttonHandlers.keyOfD()">D</button>
-      <button onclick="buttonHandlers.keyOfEb()">D#/Eb</button>
-      <button onclick="buttonHandlers.keyOfE()">E</button>
-      <button onclick="buttonHandlers.keyOfF()">F</button>
-      <button onclick="buttonHandlers.keyOfGb()">F#/Gb</button>
-      <button onclick="buttonHandlers.keyOfG()">G</button>
-      <button onclick="buttonHandlers.keyOfAb()">G#/Ab</button>
-      <button onclick="buttonHandlers.keyOfA()">A</button>
-      <button onclick="buttonHandlers.keyOfBb()">A#/Bb</button>
-      <button onclick="buttonHandlers.keyOfB()">B</button>
+      <select id="key-value">
+        <option>E</option>
+        <option>F</option>
+        <option>Gb</option>
+        <option>G</option>
+        <option>Ab</option>
+        <option>A</option>
+        <option>Bb</option>
+        <option>B</option>
+        <option selected="selected">C</option>
+        <option>Db</option>
+        <option>D</option>
+        <option>Eb</option>
+      </select>
     </div>
+    <p>Show/Clear scale:</p>
+    <div>
+      <button type="button" id="show-scale">Show</button>
+      <button type="button" id="clear-scale">Clear</button>
+    </div>
+
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/addons/p5.dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/addons/p5.sound.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script> -->
