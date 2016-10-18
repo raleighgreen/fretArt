@@ -26,11 +26,26 @@ function String(name, low, high) {
   this.high = high;
 }
 
-function Fret(note, string) {
+function Fret(x, y, note, string) {
   this.note = note;
   this.string = string;
   this.active = false;
+  this.x = x;
+  this.y = y;
+  this.display = function() {
+    // if (this.active) {
+    //   this.col = noteOnColor;
+    // } else if (this.playColor) {
+    //   this.col = notePlayColor;
+    // } else {
+    //   this.col = noteOffColor;
+    // }
+    fill(color(93,81,214));
+    ellipse(this.x, this.y, 7, 7);
+  };
 }
+
+
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
@@ -61,12 +76,22 @@ var strings = [
   new String("E", 0, 24)
 ];
 
+// calculate the x and y position of the fret
+// define a distance from string to string
+// define a distance from fret to fret
+
+// 1. Draw the frets in the right place on the screen
+// 2. When select options are submitted, highlight the correct frets
+
 // Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
+  var stringDistance = (i * 20) + 20;
   for (var n = currentString.low; n <= currentString.high; n++) {
+    var noteDistance = ((n * 20) + 20) - (currentString.low * 20);
     var note = notes[n];
-    frets.push(new Fret(note, currentString));
+    frets.push(new Fret(noteDistance, stringDistance, note, currentString));
+    // n = 0;
   }
 }
 
@@ -184,9 +209,9 @@ clearButton.addEventListener("click", function() {
   updateDisplay();
 });
 
-// function setup() {
-//   // createCanvas(700, 500);
-// }
+function setup() {
+  createCanvas(700, 500);
+}
 //
 // function play(){
 // }
@@ -197,10 +222,10 @@ clearButton.addEventListener("click", function() {
 //   // }
 // }
 //
-// function draw() {
-//   // background(0);
-//   // for (var i = 0; i < frets.length; i++) {
-//   // turn frets[i].display(); back on to display
-//   // frets[i].display();
-//   // }
-// }
+function draw() {
+  background(0);
+  for (var i = 0; i < frets.length; i++) {
+    // turn frets[i].display(); back on to display
+    frets[i].display();
+  }
+}
