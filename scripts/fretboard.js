@@ -27,20 +27,22 @@ function String(name, low, high) {
 }
 
 function Fret(x, y, note, string) {
+  // var noteOnColor = color(93,81,214);
+  // var noteOffColor = color(30,28,52);
+
   this.note = note;
   this.string = string;
   this.active = false;
   this.x = x;
   this.y = y;
+  // this.col = color(30,28,52);
   this.display = function() {
     // if (this.active) {
     //   this.col = noteOnColor;
-    // } else if (this.playColor) {
-    //   this.col = notePlayColor;
     // } else {
     //   this.col = noteOffColor;
     // }
-    fill(color(93,81,214));
+    // fill(this.col);
     ellipse(this.x, this.y, 7, 7);
   };
 }
@@ -118,7 +120,11 @@ function activateFrets(foundScale) {
   for (var i = 0; i < foundScale.length; i++) {
     for (var f = 0; f < frets.length; f++) {
       if (frets[f].note == foundScale[i]) {
-        frets[f].active = true;
+        if (frets[f].active = true) {
+          frets[f].col = color(93,81,214);
+        } else if (frets[f].active = false){
+          frets[f].col = color(30,28,52);
+        }
       }
     }
   }
@@ -140,7 +146,7 @@ function updateDisplay(mode) {
     }
     fretboard += "\n";
   }
-  console.clear();
+  // console.clear();
   console.log("scale: " + currentKeyName + " " + scaleValueField.value + "   scale pattern: " + currentMode.pattern);
   console.log(fretboard);
 }
