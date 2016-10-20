@@ -27,27 +27,23 @@ function String(name, low, high) {
 }
 
 function Fret(x, y, note, string) {
-  // var noteOnColor = color(93,81,214);
-  // var noteOffColor = color(30,28,52);
-
+  this.x = x;
+  this.y = y;
   this.note = note;
   this.string = string;
   this.active = false;
-  this.x = x;
-  this.y = y;
-  // this.col = color(30,28,52);
   this.display = function() {
-    // if (this.active) {
-    //   this.col = noteOnColor;
-    // } else {
-    //   this.col = noteOffColor;
-    // }
-    // fill(this.col);
-    ellipse(this.x, this.y, 7, 7);
+    var noteOnColor = color(93,81,214);
+    var noteOffColor = color(30,28,52);
+    if (this.active) {
+      this.col = noteOnColor;
+    } else {
+      this.col = noteOffColor;
+    }
+    fill(this.col);
+    ellipse(this.x, this.y, 9, 9);
   };
 }
-
-
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
@@ -78,26 +74,19 @@ var strings = [
   new String("E", 0, 24)
 ];
 
-// calculate the x and y position of the fret
-// define a distance from string to string
-// define a distance from fret to fret
-
-// 1. Draw the frets in the right place on the screen
-// 2. When select options are submitted, highlight the correct frets
-
 // Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
-  var stringDistance = (i * 20) + 20;
+  var stringDistance = (i * 20) + 100;
   for (var n = currentString.low; n <= currentString.high; n++) {
-    var noteDistance = ((n * 20) + 20) - (currentString.low * 20);
+    var noteDistance = ((n * 20) + 100) - (currentString.low * 20);
     var note = notes[n];
     frets.push(new Fret(noteDistance, stringDistance, note, currentString));
     // n = 0;
   }
 }
 
-// 4.DEFINE FUNCTIONS -----------------
+// 4. DEFINE FUNCTIONS -----------------
 
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
@@ -128,27 +117,6 @@ function activateFrets(foundScale) {
       }
     }
   }
-}
-
-// Loop through frets on each string to check for active status.
-// If the fret is active, show a "O", otherwise show a "-".
-function updateDisplay(mode) {
-  var fretboard = "";
-  for (var i = 0; i < strings.length; i++) {
-    for (var f = 0; f < frets.length; f++) {
-      if (frets[f].string == strings[i]) {
-        if (frets[f].active) {
-          fretboard += "O ";
-        } else {
-          fretboard += "- ";
-        }
-      }
-    }
-    fretboard += "\n";
-  }
-  // console.clear();
-  console.log("scale: " + currentKeyName + " " + scaleValueField.value + "   scale pattern: " + currentMode.pattern);
-  console.log(fretboard);
 }
 
 // Algorithm to find scale within a set of notes
