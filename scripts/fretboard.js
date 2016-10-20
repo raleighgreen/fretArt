@@ -82,7 +82,6 @@ for (var i = 0; i < strings.length; i++) {
     var noteDistance = ((n * 20) + 100) - (currentString.low * 20);
     var note = notes[n];
     frets.push(new Fret(noteDistance, stringDistance, note, currentString));
-    // n = 0;
   }
 }
 
@@ -92,7 +91,6 @@ for (var i = 0; i < strings.length; i++) {
 function setScale(key, mode) {
   var foundScale = getScale(key, mode);
   activateFrets(foundScale);
-
 }
 
 // Deactivates all frets to make blank slate
@@ -136,6 +134,7 @@ function getScale(key, scale) {
     modeIndex++;
   }
 
+  // Remove first note from foundScale in order to avoid doubling
   foundScale.splice(0,1);
   scale.reverse();
   noteInKey = key;
@@ -147,12 +146,12 @@ function getScale(key, scale) {
     noteInKey -= scale[modeIndex];
     modeIndex++;
   }
-
+  // Reset scale
   scale.reverse();
   return foundScale;
 }
 
-// 5.SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
+// 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // Grab the select fields and buttons from the HTML document
 var keyValueField = document.getElementById("key-value");
@@ -183,23 +182,15 @@ clearButton.addEventListener("click", function() {
   updateDisplay();
 });
 
+// Required P5 function runs once to initialize setup
 function setup() {
   createCanvas(700, 500);
 }
-//
-// function play(){
-// }
-//
-// function mousePressed() {
-//   // for (var i = 0; i < frets.length; i++) {
-//   //   frets[i].clicked();
-//   // }
-// }
-//
+
+// Required P5 function loops forever
 function draw() {
   background(0);
   for (var i = 0; i < frets.length; i++) {
-    // turn frets[i].display(); back on to display
     frets[i].display();
   }
 }
