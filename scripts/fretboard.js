@@ -151,6 +151,20 @@ function getScale(key, scale) {
   return foundScale;
 }
 
+function processElement() {
+  // Grab the key value from the key select fields
+  currentKey = parseInt(keyValueField.selectedIndex);
+
+  // Grab the name of the key from the text content of the option element
+  currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
+
+  // Grab the current mode using the value from the mode select field
+  currentMode = modes[scaleValueField.value];
+
+  // Calculate and set the scale and display it in the console
+  setScale(currentKey, currentMode.pattern);
+}
+
 // 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // Grab the select fields and buttons from the HTML document
@@ -158,21 +172,6 @@ var keyValueField = document.getElementById("key-value");
 var scaleValueField = document.getElementById("scale-value");
 var showButton = document.getElementById("show-scale");
 var clearButton = document.getElementById("clear-scale");
-
-function processElement() {
-    // Grab the key value from the key select fields
-    currentKey = parseInt(keyValueField.selectedIndex);
-
-    // Grab the name of the key from the text content of the option element
-    currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
-
-    // Grab the current mode using the value from the mode select field
-    currentMode = modes[scaleValueField.value];
-
-    // Calculate and set the scale and display it in the console
-    setScale(currentKey, currentMode.pattern);
-}
-// 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // When the show button is clicked, do the following...
 keyValueField.addEventListener("change", function() {
