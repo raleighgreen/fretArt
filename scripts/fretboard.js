@@ -26,10 +26,23 @@ function String(name, low, high) {
   this.high = high;
 }
 
-function Fret(note, string) {
+function Fret(x, y, note, string) {
+  this.x = x;
+  this.y = y;
   this.note = note;
   this.string = string;
   this.active = false;
+  this.display = function() {
+    var noteOnColor = color(93,81,214);
+    var noteOffColor = color(30,28,52);
+    if (this.active) {
+      this.col = noteOnColor;
+    } else {
+      this.col = noteOffColor;
+    }
+    fill(this.col);
+    ellipse(this.x, this.y, 9, 9);
+  };
 }
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
@@ -64,19 +77,20 @@ var strings = [
 // Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
+  var stringDistance = (i * 20) + 100;
   for (var n = currentString.low; n <= currentString.high; n++) {
+    var noteDistance = ((n * 20) + 100) - (currentString.low * 20);
     var note = notes[n];
-    frets.push(new Fret(note, currentString));
+    frets.push(new Fret(noteDistance, stringDistance, note, currentString));
   }
 }
 
-// 4.DEFINE FUNCTIONS -----------------
+// 4. DEFINE FUNCTIONS -----------------
 
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
   var foundScale = getScale(key, mode);
   activateFrets(foundScale);
-
 }
 
 // Deactivates all frets to make blank slate
@@ -93,31 +107,14 @@ function activateFrets(foundScale) {
   for (var i = 0; i < foundScale.length; i++) {
     for (var f = 0; f < frets.length; f++) {
       if (frets[f].note == foundScale[i]) {
-        frets[f].active = true;
-      }
-    }
-  }
-}
-
-// Loop through frets on each string to check for active status.
-// If the fret is active, show a "O", otherwise show a "-".
-function updateDisplay(mode) {
-  var fretboard = "";
-  for (var i = 0; i < strings.length; i++) {
-    for (var f = 0; f < frets.length; f++) {
-      if (frets[f].string == strings[i]) {
-        if (frets[f].active) {
-          fretboard += "O ";
-        } else {
-          fretboard += "- ";
+        if (frets[f].active = true) {
+          frets[f].col = color(93,81,214);
+        } else if (frets[f].active = false){
+          frets[f].col = color(30,28,52);
         }
       }
     }
-    fretboard += "\n";
   }
-  console.clear();
-  console.log("scale: " + currentKeyName + " " + scaleValueField.value + "   scale pattern: " + currentMode.pattern);
-  console.log(fretboard);
 }
 
 // Algorithm to find scale within a set of notes
@@ -137,6 +134,7 @@ function getScale(key, scale) {
     modeIndex++;
   }
 
+  // Remove first note from foundScale in order to avoid doubling
   foundScale.splice(0,1);
   scale.reverse();
   noteInKey = key;
@@ -148,22 +146,12 @@ function getScale(key, scale) {
     noteInKey -= scale[modeIndex];
     modeIndex++;
   }
-
+  // Reset scale
   scale.reverse();
   return foundScale;
 }
 
-// 5.SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
-
-// Grab the select fields and buttons from the HTML document
-var keyValueField = document.getElementById("key-value");
-var scaleValueField = document.getElementById("scale-value");
-var showButton = document.getElementById("show-scale");
-var clearButton = document.getElementById("clear-scale");
-
-// When the show button is clicked, do the following...
-showButton.addEventListener("click", function() {
-
+function processEventListenerElement() {
   // Grab the key value from the key select fields
   currentKey = parseInt(keyValueField.selectedIndex);
 
@@ -175,32 +163,43 @@ showButton.addEventListener("click", function() {
 
   // Calculate and set the scale and display it in the console
   setScale(currentKey, currentMode.pattern);
-  updateDisplay();
+}
+
+// 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
+
+// Grab the select fields and buttons from the HTML document
+var keyValueField = document.getElementById("key-value");
+var scaleValueField = document.getElementById("scale-value");
+var showButton = document.getElementById("show-scale");
+var clearButton = document.getElementById("clear-scale");
+
+// When the show button is clicked, do the following...
+keyValueField.addEventListener("change", function() {
+  processEventListenerElement();
+});
+
+scaleValueField.addEventListener("change", function() {
+  processEventListenerElement();
+});
+
+showButton.addEventListener("click", function() {
+  processEventListenerElement();
 });
 
 // Clear fretboard and updateDisplay
 clearButton.addEventListener("click", function() {
-  clearFretSelection();
-  updateDisplay();
+  clearFretSelection()
 });
 
-// function setup() {
-//   // createCanvas(700, 500);
-// }
-//
-// function play(){
-// }
-//
-// function mousePressed() {
-//   // for (var i = 0; i < frets.length; i++) {
-//   //   frets[i].clicked();
-//   // }
-// }
-//
-// function draw() {
-//   // background(0);
-//   // for (var i = 0; i < frets.length; i++) {
-//   // turn frets[i].display(); back on to display
-//   // frets[i].display();
-//   // }
-// }
+// Required P5 function runs once to initialize setup
+function setup() {
+  createCanvas(700, 500);
+}
+
+// Required P5 function loops forever
+function draw() {
+  background(0);
+  for (var i = 0; i < frets.length; i++) {
+    frets[i].display();
+  }
+}
