@@ -151,7 +151,7 @@ function getScale(key, scale) {
   return foundScale;
 }
 
-function processElement() {
+function processEventListenerElement() {
   // Grab the key value from the key select fields
   currentKey = parseInt(keyValueField.selectedIndex);
 
@@ -175,20 +175,20 @@ var clearButton = document.getElementById("clear-scale");
 
 // When the show button is clicked, do the following...
 keyValueField.addEventListener("change", function() {
-  processElement();
+  processEventListenerElement();
 });
 
 scaleValueField.addEventListener("change", function() {
-  processElement();
+  processEventListenerElement();
 });
 
 showButton.addEventListener("click", function() {
-  processElement();
+  processEventListenerElement();
 });
 
 // Clear fretboard and updateDisplay
 clearButton.addEventListener("click", function() {
-  processElement();
+  clearFretSelection()
 });
 
 // Required P5 function runs once to initialize setup
