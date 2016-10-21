@@ -33,10 +33,22 @@ function Fret(x, y, note, string) {
   this.string = string;
   this.active = false;
   this.display = function() {
-    var noteOnColor = color(93,81,214);
+    var firstOctaveOnColor = color(74,32,193);
+    var secondOctaveOnColor = color(50,173,212);
+    var thirdOctaveOnColor = color(126,214,72);
+    var fourthOctaveOnColor = color(237,172,85);
+    var fifthOctaveOnColor = color(251,86,20);
     var noteOffColor = color(30,28,52);
-    if (this.active) {
-      this.col = noteOnColor;
+    if (this.active && note.id <= 12) {
+      this.col = firstOctaveOnColor;
+    } else if (this.active && note.id > 12 && note.id <= 24) {
+      this.col = secondOctaveOnColor;
+    } else if (this.active && note.id > 24 && note.id <= 36) {
+      this.col = thirdOctaveOnColor;
+    } else if (this.active && note.id > 36 && note.id <= 47) {
+      this.col = fourthOctaveOnColor;
+    } else if (this.active && note.id == 48) {
+      this.col = fifthOctaveOnColor;
     } else {
       this.col = noteOffColor;
     }
@@ -107,11 +119,7 @@ function activateFrets(foundScale) {
   for (var i = 0; i < foundScale.length; i++) {
     for (var f = 0; f < frets.length; f++) {
       if (frets[f].note == foundScale[i]) {
-        if (frets[f].active = true) {
-          frets[f].col = color(93,81,214);
-        } else if (frets[f].active = false){
-          frets[f].col = color(30,28,52);
-        }
+        frets[f].active = true;
       }
     }
   }
