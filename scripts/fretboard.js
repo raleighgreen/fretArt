@@ -12,7 +12,7 @@ var currentKey;
 
 function Note(id, audioFile) {
   this.id = id;
-  this.audioFile = audioFile;
+  this.audioFile = document.getElementById("_" + audioFile);
 }
 
 function Mode(name, pattern) {
@@ -32,13 +32,26 @@ function Fret(x, y, note, string) {
   this.note = note;
   this.string = string;
   this.active = false;
+  this.noteClickedColor = false;
+  this.col = "";
   this.display = function() {
-    var firstOctaveOnColor = color(74,32,193);
-    var secondOctaveOnColor = color(50,173,212);
-    var thirdOctaveOnColor = color(126,214,72);
-    var fourthOctaveOnColor = color(237,172,85);
-    var fifthOctaveOnColor = color(251,86,20);
-    var noteOffColor = color(30,28,52);
+    var firstOctaveOnColor = color(74,39,88);
+    var firstOctClickedColor = color(174,97,252);
+
+    var secondOctaveOnColor = color(19,85,198);
+    var secondOctClickedColor = color(135,197,255);
+
+    var thirdOctaveOnColor = color(101,113,56);
+    var thirdOctClickedColor = color(154,212,130)
+
+    var fourthOctaveOnColor = color(175,116,3);
+    var fourthOctClickedColor = color(255,209,130);
+
+    var fifthOctaveOnColor = color(176,29,29);
+    var fifthOctClickedColor = color(255,84,84);
+
+    var noteOffColor = color(29,28,29);
+
     if (this.active && note.id <= 12) {
       this.col = firstOctaveOnColor;
     } else if (this.active && note.id > 12 && note.id <= 24) {
@@ -52,16 +65,48 @@ function Fret(x, y, note, string) {
     } else {
       this.col = noteOffColor;
     }
+
+    if (this.noteClickedColor && note.id <= 12) {
+      this.col = firstOctClickedColor;
+    } else if (this.noteClickedColor && note.id > 12 && note.id <= 24) {
+      this.col = secondOctClickedColor;
+    } else if (this.noteClickedColor && note.id > 24 && note.id <= 36) {
+      this.col = thirdOctClickedColor;
+    } else if (this.noteClickedColor && note.id > 36 && note.id <= 47) {
+      this.col = fourthOctClickedColor;
+    } else if (this.noteClickedColor && note.id == 48) {
+      this.col = fifthOctClickedColor;
+    }
+
     fill(this.col);
     ellipse(this.x, this.y, 9, 9);
   };
+
+  // If a note is clicked, play sound and light up
+  this.clicked = function() {
+    var d = dist(mouseX, mouseY, this.x, this.y);
+    var audioNote = this.note.audioFile;
+    // If in the bounds of the note...
+    if (d < 7) {
+      // Play the note's audioFile
+      audioNote.play();
+      this.noteClickedColor = true;
+      var passThisToTimeout = this;
+      setTimeout(function() {
+        passThisToTimeout.noteClickedColor = false;
+        console.log("done");
+      }, 2700);
+    }
+  }
 }
+
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
 for (var i = 0; i <= 48; i++) {
-  notes.push(new Note(i));
+  var audioFileNumber = i + 1;
+  notes.push(new Note(i, audioFileNumber));
 }
 
 // Create modes and group them in an Object
@@ -99,6 +144,11 @@ for (var i = 0; i < strings.length; i++) {
 
 // 4. DEFINE FUNCTIONS -----------------
 
+function mousePressed() {
+  for (var i = 0; i < frets.length; i++) {
+    frets[i].clicked();
+  }
+}
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
   var foundScale = getScale(key, mode);
