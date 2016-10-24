@@ -41,7 +41,7 @@ function Fret(x, y, note, string) {
     var secondOctaveOnColor = color(19,85,198);
     var secondOctClickedColor = color(135,197,255);
 
-    var thirdOctaveOnColor = color(101,113,56);
+    var thirdOctaveOnColor = color(106,128,104);
     var thirdOctClickedColor = color(154,212,130)
 
     var fourthOctaveOnColor = color(175,116,3);
@@ -90,8 +90,10 @@ function Fret(x, y, note, string) {
     if (d < 7) {
       // Play the note's audioFile
       audioNote.play();
+      // And light it up
       this.noteClickedColor = true;
       var passThisToTimeout = this;
+      // Turn light off after some time
       setTimeout(function() {
         passThisToTimeout.noteClickedColor = false;
         console.log("done");
