@@ -102,7 +102,6 @@ function Fret(x, y, note, string) {
   }
 }
 
-
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
