@@ -12,7 +12,7 @@ var currentKey;
 
 function Note(id, audioFile) {
   this.id = id;
-  this.audioFile = audioFile;
+  this.audioFile = document.getElementById("_" + audioFile);
 }
 
 function Mode(name, pattern) {
@@ -26,17 +26,88 @@ function String(name, low, high) {
   this.high = high;
 }
 
-function Fret(note, string) {
+function Fret(x, y, note, string) {
+  this.x = x;
+  this.y = y;
   this.note = note;
   this.string = string;
   this.active = false;
+  this.noteClickedColor = false;
+  this.col = "";
+  this.display = function() {
+    var firstOctaveOnColor = color(74,39,88);
+    var firstOctClickedColor = color(174,97,252);
+
+    var secondOctaveOnColor = color(19,85,198);
+    var secondOctClickedColor = color(135,197,255);
+
+    var thirdOctaveOnColor = color(106,128,104);
+    var thirdOctClickedColor = color(154,212,130)
+
+    var fourthOctaveOnColor = color(175,116,3);
+    var fourthOctClickedColor = color(255,209,130);
+
+    var fifthOctaveOnColor = color(176,29,29);
+    var fifthOctClickedColor = color(255,84,84);
+
+    var noteOffColor = color(29,28,29);
+
+    if (this.active && note.id <= 12) {
+      this.col = firstOctaveOnColor;
+    } else if (this.active && note.id > 12 && note.id <= 24) {
+      this.col = secondOctaveOnColor;
+    } else if (this.active && note.id > 24 && note.id <= 36) {
+      this.col = thirdOctaveOnColor;
+    } else if (this.active && note.id > 36 && note.id <= 47) {
+      this.col = fourthOctaveOnColor;
+    } else if (this.active && note.id == 48) {
+      this.col = fifthOctaveOnColor;
+    } else {
+      this.col = noteOffColor;
+    }
+
+    if (this.noteClickedColor && note.id <= 12) {
+      this.col = firstOctClickedColor;
+    } else if (this.noteClickedColor && note.id > 12 && note.id <= 24) {
+      this.col = secondOctClickedColor;
+    } else if (this.noteClickedColor && note.id > 24 && note.id <= 36) {
+      this.col = thirdOctClickedColor;
+    } else if (this.noteClickedColor && note.id > 36 && note.id <= 47) {
+      this.col = fourthOctClickedColor;
+    } else if (this.noteClickedColor && note.id == 48) {
+      this.col = fifthOctClickedColor;
+    }
+
+    fill(this.col);
+    ellipse(this.x, this.y, 9, 9);
+  };
+
+  // If a note is clicked, play sound and light up
+  this.clicked = function() {
+    var d = dist(mouseX, mouseY, this.x, this.y);
+    var audioNote = this.note.audioFile;
+    // If in the bounds of the note...
+    if (d < 7) {
+      // Play the note's audioFile
+      audioNote.play();
+      // And light it up
+      this.noteClickedColor = true;
+      var passThisToTimeout = this;
+      // Turn light off after some time
+      setTimeout(function() {
+        passThisToTimeout.noteClickedColor = false;
+        console.log("done");
+      }, 2700);
+    }
+  }
 }
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
 for (var i = 0; i <= 48; i++) {
-  notes.push(new Note(i));
+  var audioFileNumber = i + 1;
+  notes.push(new Note(i, audioFileNumber));
 }
 
 // Create modes and group them in an Object
@@ -64,19 +135,25 @@ var strings = [
 // Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
+  var stringDistance = (i * 20) + 100;
   for (var n = currentString.low; n <= currentString.high; n++) {
+    var noteDistance = ((n * 20) + 100) - (currentString.low * 20);
     var note = notes[n];
-    frets.push(new Fret(note, currentString));
+    frets.push(new Fret(noteDistance, stringDistance, note, currentString));
   }
 }
 
-// 4.DEFINE FUNCTIONS -----------------
+// 4. DEFINE FUNCTIONS -----------------
 
+function mousePressed() {
+  for (var i = 0; i < frets.length; i++) {
+    frets[i].clicked();
+  }
+}
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
   var foundScale = getScale(key, mode);
   activateFrets(foundScale);
-
 }
 
 // Deactivates all frets to make blank slate
@@ -99,27 +176,6 @@ function activateFrets(foundScale) {
   }
 }
 
-// Loop through frets on each string to check for active status.
-// If the fret is active, show a "O", otherwise show a "-".
-function updateDisplay(mode) {
-  var fretboard = "";
-  for (var i = 0; i < strings.length; i++) {
-    for (var f = 0; f < frets.length; f++) {
-      if (frets[f].string == strings[i]) {
-        if (frets[f].active) {
-          fretboard += "O ";
-        } else {
-          fretboard += "- ";
-        }
-      }
-    }
-    fretboard += "\n";
-  }
-  console.clear();
-  console.log("scale: " + currentKeyName + " " + scaleValueField.value + "   scale pattern: " + currentMode.pattern);
-  console.log(fretboard);
-}
-
 // Algorithm to find scale within a set of notes
 function getScale(key, scale) {
   var foundScale = [];
@@ -137,6 +193,7 @@ function getScale(key, scale) {
     modeIndex++;
   }
 
+  // Remove first note from foundScale in order to avoid doubling
   foundScale.splice(0,1);
   scale.reverse();
   noteInKey = key;
@@ -148,22 +205,12 @@ function getScale(key, scale) {
     noteInKey -= scale[modeIndex];
     modeIndex++;
   }
-
+  // Reset scale
   scale.reverse();
   return foundScale;
 }
 
-// 5.SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
-
-// Grab the select fields and buttons from the HTML document
-var keyValueField = document.getElementById("key-value");
-var scaleValueField = document.getElementById("scale-value");
-var showButton = document.getElementById("show-scale");
-var clearButton = document.getElementById("clear-scale");
-
-// When the show button is clicked, do the following...
-showButton.addEventListener("click", function() {
-
+function processEventListenerElement() {
   // Grab the key value from the key select fields
   currentKey = parseInt(keyValueField.selectedIndex);
 
@@ -175,32 +222,43 @@ showButton.addEventListener("click", function() {
 
   // Calculate and set the scale and display it in the console
   setScale(currentKey, currentMode.pattern);
-  updateDisplay();
+}
+
+// 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
+
+// Grab the select fields and buttons from the HTML document
+var keyValueField = document.getElementById("key-value");
+var scaleValueField = document.getElementById("scale-value");
+var showButton = document.getElementById("show-scale");
+var clearButton = document.getElementById("clear-scale");
+
+// When the show button is clicked, do the following...
+keyValueField.addEventListener("change", function() {
+  processEventListenerElement();
+});
+
+scaleValueField.addEventListener("change", function() {
+  processEventListenerElement();
+});
+
+showButton.addEventListener("click", function() {
+  processEventListenerElement();
 });
 
 // Clear fretboard and updateDisplay
 clearButton.addEventListener("click", function() {
-  clearFretSelection();
-  updateDisplay();
+  clearFretSelection()
 });
 
-// function setup() {
-//   // createCanvas(700, 500);
-// }
-//
-// function play(){
-// }
-//
-// function mousePressed() {
-//   // for (var i = 0; i < frets.length; i++) {
-//   //   frets[i].clicked();
-//   // }
-// }
-//
-// function draw() {
-//   // background(0);
-//   // for (var i = 0; i < frets.length; i++) {
-//   // turn frets[i].display(); back on to display
-//   // frets[i].display();
-//   // }
-// }
+// Required P5 function runs once to initialize setup
+function setup() {
+  createCanvas(700, 500);
+}
+
+// Required P5 function loops forever
+function draw() {
+  background(0);
+  for (var i = 0; i < frets.length; i++) {
+    frets[i].display();
+  }
+}
