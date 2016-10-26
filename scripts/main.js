@@ -124,6 +124,6 @@ function mousePressed() {
 function draw() {
   background(0);
   for (var i = 0; i < frets.length; i++) {
-    frets[i].display();
+    frets[i].displayWithColor();
   }
 }
