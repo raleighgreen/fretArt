@@ -4,7 +4,7 @@ function Fret(x, y, note, string) {
   this.note = note;
   this.string = string;
   this.active = false;
-  this.noteClickedColor = false;
+  this.playing = false;
   this.col = "";
 }
 
@@ -17,11 +17,11 @@ Fret.prototype.clicked = function() {
     // Play the note's audioFile
     audioNote.play();
     // And light it up
-    this.noteClickedColor = true;
+    this.playing = true;
     var passThisToTimeout = this;
     // Turn light off after some time
     setTimeout(function() {
-      passThisToTimeout.noteClickedColor = false;
+      passThisToTimeout.playing = false;
       console.log("done");
     }, 2700);
   }
@@ -58,16 +58,16 @@ Fret.prototype.displayWithColor = function() {
     this.col = noteOffColor;
   }
 
-  if (this.noteClickedColor) {
-    if (this.noteClickedColor && this.note.id <= 12) {
+  if (this.playing) {
+    if (this.note.id <= 12) {
       this.col = firstOctClickedColor;
-    } else if (this.noteClickedColor && this.note.id > 12 && this.note.id <= 24) {
+    } else if (this.note.id > 12 && this.note.id <= 24) {
       this.col = secondOctClickedColor;
-    } else if (this.noteClickedColor && this.note.id > 24 && this.note.id <= 36) {
+    } else if (this.note.id > 24 && this.note.id <= 36) {
       this.col = thirdOctClickedColor;
-    } else if (this.noteClickedColor && this.note.id > 36 && this.note.id <= 47) {
+    } else if (this.note.id > 36 && this.note.id <= 47) {
       this.col = fourthOctClickedColor;
-    } else if (this.noteClickedColor && this.note.id == 48) {
+    } else if (this.note.id == 48) {
       this.col = fifthOctClickedColor;
     }
   }
