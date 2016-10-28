@@ -7,6 +7,7 @@ var modes;
 var currentMode;
 var currentKeyName;
 var currentKey;
+var currentOctave;
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
@@ -52,8 +53,8 @@ for (var i = 0; i < strings.length; i++) {
 // 4. DEFINE FUNCTIONS -----------------
 
 // Calculates a scale by key and mode and activates it on the frets
-function setScale(key, mode) {
-  var foundScale = getScale(key, mode);
+function setScale(key, mode, octave) {
+  var foundScale = getScale(key, mode, octave);
   activateFrets(foundScale);
 }
 
@@ -80,15 +81,14 @@ function activateFrets(foundScale) {
 function processInput() {
   // Grab the key value from the key select fields
   currentKey = parseInt(keyValueField.selectedIndex);
-
+  // Grab the key value from the key select fields
+  currentOctave = parseInt(keyValueField.selectedIndex);
   // Grab the name of the key from the text content of the option element
   currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
-
   // Grab the current mode using the value from the mode select field
   currentMode = modes[scaleValueField.value];
-
   // Calculate and set the scale and display it in the console
-  setScale(currentKey, currentMode.pattern);
+  setScale(currentKey, currentMode.pattern, currentOctave);
 }
 
 // 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------

@@ -1,11 +1,13 @@
 // Algorithm to find scale within a set of notes
-function getScale(key, scale) {
+function getScale(key, scale, octave) {
   var foundScale = [];
   var modeIndex = 0;
   var noteInKey = key;
+  var octaveNum = octave;
 
   while (noteInKey < notes.length) {
     var currentNote = notes[noteInKey];
+    // Reset modeIndex to 0 if outside of scale range
     if (modeIndex >= scale.length) {
       modeIndex = 0;
     }
