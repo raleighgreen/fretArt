@@ -3,11 +3,12 @@
 var notes = [];
 var frets = [];
 var strings = [];
+var noteNameList = [];
 var modes;
 var currentMode;
 var currentKeyName;
-var currentKey;
-var currentOctave;
+var noteNameList = ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"];
+var noteDegreeList = ["1","b2","2","b3","3","4","b5","5","b6","6","b7","7"];
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
@@ -16,6 +17,7 @@ for (var i = 0; i <= 48; i++) {
   var audioFileNumber = i + 1;
   notes.push(new Note(i, audioFileNumber));
 }
+
 
 // Create modes and group them in an Object
 modes = {
@@ -53,15 +55,45 @@ for (var i = 0; i < strings.length; i++) {
 // 4. DEFINE FUNCTIONS -----------------
 
 // Calculates a scale by key and mode and activates it on the frets
-function setScale(key, mode, octave) {
-  var foundScale = getScale(key, mode, octave);
+function setScale(key, mode) {
+  var foundScale = getScale(key, mode);
   activateFrets(foundScale);
+  setOctave();
 }
 
 // Deactivates all frets to make blank slate
 function clearFretSelection() {
   for (var f = 0; f < frets.length; f++) {
     frets[f].active = false;
+  }
+}
+
+function setOctave() {
+  for (var i = 0; i < frets.length; i++) {
+    var currentKey = parseInt(keyValueField.selectedIndex);
+    var currentNote = frets[i].note.id;
+    // console.log(currentNote);
+    // console.log(currentKey);
+
+    if (currentNote < currentKey) {
+      frets[i].octave = 0;
+      frets[i].col = color(74,39,88);
+    } else if (currentNote >= currentKey && currentNote < (currentKey + 12)) {
+      frets[i].octave = 1;
+      frets[i].col = color(19,85,198);
+    } else if (currentNote >= (currentKey + 12) && currentNote < (currentKey + 24)) {
+      frets[i].octave = 2;
+      frets[i].col = color(106,128,104);
+    } else if (currentNote >= (currentKey + 24) && currentNote < (currentKey + 36)) {
+      frets[i].octave = 3;
+      frets[i].col = color(175,116,3);
+    } else if (currentNote >= (currentKey + 36) && currentNote < (currentKey + 48)) {
+      frets[i].octave = 4;
+      frets[i].col = color(176,29,29);
+    } else if (currentNote >= (currentKey + 48)) {
+      frets[i].octave = 4;
+      frets[i].col = color(74,39,88);
+    }
   }
 }
 
@@ -81,14 +113,12 @@ function activateFrets(foundScale) {
 function processInput() {
   // Grab the key value from the key select fields
   currentKey = parseInt(keyValueField.selectedIndex);
-  // Grab the key value from the key select fields
-  currentOctave = parseInt(keyValueField.selectedIndex);
   // Grab the name of the key from the text content of the option element
   currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   currentMode = modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
-  setScale(currentKey, currentMode.pattern, currentOctave);
+  setScale(currentKey, currentMode.pattern);
 }
 
 // 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
