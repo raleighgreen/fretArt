@@ -34,7 +34,7 @@ Fret.prototype.clicked = function() {
 Fret.prototype.attachNotes = function() {
   // Split notes into octaves
   var octaveSplit = this.note.id % 12;
-  // Connect noteNameList to
+  // Populate notes with noteNames
   for (i = 0; i < noteNameList.length; i++) {
     if (octaveSplit == i) {
       this.noteName = noteNameList[i];
