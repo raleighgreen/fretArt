@@ -56,8 +56,8 @@ for (var i = 0; i < strings.length; i++) {
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
   var foundScale = getScale(key, mode);
-  activateFrets(foundScale);
   setOctave();
+  activateFrets(foundScale);
 }
 
 // Deactivates all frets to make blank slate
@@ -67,23 +67,21 @@ function clearFretSelection() {
   }
 }
 
+// Sets octave range relative to key
 function setOctave() {
   for (var i = 0; i < frets.length; i++) {
-    var currentKey = parseInt(keyValueField.selectedIndex);
-    var currentNote = frets[i].note.id;
+    var id = frets[i].note.id;
     if (frets[i]) {
-      if (currentNote < currentKey) {
+      if (id < key) {
         frets[i].octave = 0;
-      } else if (currentNote >= currentKey && currentNote < (currentKey + 12)) {
+      } else if (id >= key && id < (key + 12)) {
         frets[i].octave = 1;
-      } else if (currentNote >= (currentKey + 12) && currentNote < (currentKey + 24)) {
+      } else if (id >= (key + 12) && id < (key + 24)) {
         frets[i].octave = 2;
-      } else if (currentNote >= (currentKey + 24) && currentNote < (currentKey + 36)) {
+      } else if (id >= (key + 24) && id < (key + 36)) {
         frets[i].octave = 3;
-      } else if (currentNote >= (currentKey + 36) && currentNote < (currentKey + 48)) {
+      } else if (id >= (key + 36) && id < (key + 48)) {
         frets[i].octave = 4;
-      } else if (currentNote >= (currentKey + 48)) {
-        frets[i].octave = 5;
       }
     }
   }
@@ -104,13 +102,13 @@ function activateFrets(foundScale) {
 
 function processInput() {
   // Grab the key value from the key select fields
-  currentKey = parseInt(keyValueField.selectedIndex);
+  key = parseInt(keyValueField.selectedIndex);
   // Grab the name of the key from the text content of the option element
   currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   currentMode = modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
-  setScale(currentKey, currentMode.pattern);
+  setScale(key, currentMode.pattern);
 }
 
 // 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
@@ -147,5 +145,6 @@ function draw() {
   background(0);
   for (var i = 0; i < frets.length; i++) {
     frets[i].displayWithColor();
+    frets[i].attachNotes();
   }
 }
