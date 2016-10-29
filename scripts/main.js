@@ -18,7 +18,6 @@ for (var i = 0; i <= 48; i++) {
   notes.push(new Note(i, audioFileNumber));
 }
 
-
 // Create modes and group them in an Object
 modes = {
   ionian: new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1]),
@@ -72,27 +71,20 @@ function setOctave() {
   for (var i = 0; i < frets.length; i++) {
     var currentKey = parseInt(keyValueField.selectedIndex);
     var currentNote = frets[i].note.id;
-    // console.log(currentNote);
-    // console.log(currentKey);
-
-    if (currentNote < currentKey) {
-      frets[i].octave = 0;
-      frets[i].col = color(74,39,88);
-    } else if (currentNote >= currentKey && currentNote < (currentKey + 12)) {
-      frets[i].octave = 1;
-      frets[i].col = color(19,85,198);
-    } else if (currentNote >= (currentKey + 12) && currentNote < (currentKey + 24)) {
-      frets[i].octave = 2;
-      frets[i].col = color(106,128,104);
-    } else if (currentNote >= (currentKey + 24) && currentNote < (currentKey + 36)) {
-      frets[i].octave = 3;
-      frets[i].col = color(175,116,3);
-    } else if (currentNote >= (currentKey + 36) && currentNote < (currentKey + 48)) {
-      frets[i].octave = 4;
-      frets[i].col = color(176,29,29);
-    } else if (currentNote >= (currentKey + 48)) {
-      frets[i].octave = 4;
-      frets[i].col = color(74,39,88);
+    if (frets[i]) {
+      if (currentNote < currentKey) {
+        frets[i].octave = 0;
+      } else if (currentNote >= currentKey && currentNote < (currentKey + 12)) {
+        frets[i].octave = 1;
+      } else if (currentNote >= (currentKey + 12) && currentNote < (currentKey + 24)) {
+        frets[i].octave = 2;
+      } else if (currentNote >= (currentKey + 24) && currentNote < (currentKey + 36)) {
+        frets[i].octave = 3;
+      } else if (currentNote >= (currentKey + 36) && currentNote < (currentKey + 48)) {
+        frets[i].octave = 4;
+      } else if (currentNote >= (currentKey + 48)) {
+        frets[i].octave = 5;
+      }
     }
   }
 }
