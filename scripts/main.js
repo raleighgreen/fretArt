@@ -3,10 +3,12 @@
 var notes = [];
 var frets = [];
 var strings = [];
+var noteNameList = [];
 var modes;
 var currentMode;
 var currentKeyName;
-var currentKey;
+var noteNameList = ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"];
+var noteDegreeList = ["1","b2","2","b3","3","4","b5","5","b6","6","b7","7"];
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
@@ -54,6 +56,7 @@ for (var i = 0; i < strings.length; i++) {
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
   var foundScale = getScale(key, mode);
+  setOctave();
   activateFrets(foundScale);
 }
 
@@ -61,6 +64,22 @@ function setScale(key, mode) {
 function clearFretSelection() {
   for (var f = 0; f < frets.length; f++) {
     frets[f].active = false;
+  }
+}
+
+// Sets octave range relative to key
+function setOctave() {
+  for (var i = 0; i < frets.length; i++) {
+    var id = frets[i].note.id;
+    var counter = 0;
+    if (frets[i]) {
+      for (var j = 0; j < 5; j++) {
+        if (id >= key + counter -12 && id < key + counter) {
+          frets[i].octave = j;
+        }
+        counter += 12;
+      }
+    }
   }
 }
 
@@ -79,16 +98,13 @@ function activateFrets(foundScale) {
 
 function processInput() {
   // Grab the key value from the key select fields
-  currentKey = parseInt(keyValueField.selectedIndex);
-
+  key = parseInt(keyValueField.selectedIndex);
   // Grab the name of the key from the text content of the option element
   currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
-
   // Grab the current mode using the value from the mode select field
   currentMode = modes[scaleValueField.value];
-
   // Calculate and set the scale and display it in the console
-  setScale(currentKey, currentMode.pattern);
+  setScale(key, currentMode.pattern);
 }
 
 // 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
@@ -125,5 +141,6 @@ function draw() {
   background(0);
   for (var i = 0; i < frets.length; i++) {
     frets[i].displayWithColor();
+    frets[i].attachNotes();
   }
 }
