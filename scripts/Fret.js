@@ -31,19 +31,21 @@ Fret.prototype.clicked = function() {
   }
 }
 
+// Attach note names to frets
 Fret.prototype.attachNotes = function() {
   // Split notes into octaves
   var octaveSplit = this.note.id % 12;
   // Populate notes with noteNames
-  for (i = 0; i < noteNameList.length; i++) {
+  for (var i = 0; i < noteNameList.length; i++) {
     if (octaveSplit == i) {
       this.noteName = noteNameList[i];
     }
   }
 }
 
+// Display frets with color depending on status
 Fret.prototype.displayWithColor = function() {
-  // Set colors for octaves 0 - 4
+  // Set RGB colors for octaves 0 - 4
   var activeColor = [[74,39,88],[19,85,198],[106,128,104],[175,116,3],[176,29,29]];
   var playingColor = [[174,97,252],[135,197,255],[154,212,130],[255,209,130],[255,84,84]];
   var noteOffColor = color(29,28,29);

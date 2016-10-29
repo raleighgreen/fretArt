@@ -71,17 +71,13 @@ function clearFretSelection() {
 function setOctave() {
   for (var i = 0; i < frets.length; i++) {
     var id = frets[i].note.id;
+    var counter = 0;
     if (frets[i]) {
-      if (id < key) {
-        frets[i].octave = 0;
-      } else if (id >= key && id < (key + 12)) {
-        frets[i].octave = 1;
-      } else if (id >= (key + 12) && id < (key + 24)) {
-        frets[i].octave = 2;
-      } else if (id >= (key + 24) && id < (key + 36)) {
-        frets[i].octave = 3;
-      } else if (id >= (key + 36) && id < (key + 48)) {
-        frets[i].octave = 4;
+      for (var j = 0; j < 5; j++) {
+        if (id >= key + counter -12 && id < key + counter) {
+          frets[i].octave = j;
+        }
+        counter += 12;
       }
     }
   }
