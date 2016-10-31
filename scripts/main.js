@@ -140,4 +140,11 @@ function draw() {
     frets[i].displayWithColor();
     frets[i].attachNotes();
   }
+  push();
+  noFill();
+  stroke(19,85,198);
+  strokeWeight(2);
+  strokeJoin(ROUND);
+  rect(220,111,630,127);
+  pop();
 }

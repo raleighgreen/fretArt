@@ -9,12 +9,11 @@ p {
     margin-top: 0px;
 }
 div {
-  margin-bottom: 10px;
-  padding: 0px;
-  height: auto;
+  /*margin: 0px;
+  padding: 0px;*/
 }
 button {
-  margin-bottom: 15px;
+  margin-bottom: 0px;
   width: 70px;
 }
 
@@ -27,6 +26,11 @@ body {
 
 .sideBarContainer {
   position: absolute;
-  margin-top: 0;
+  margin-top: -25px;
   padding: 20px;
+}
+
+.sideContainer {
+  margin: 0px;
+  padding: 3px;
 }
