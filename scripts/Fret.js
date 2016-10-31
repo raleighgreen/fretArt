@@ -48,7 +48,7 @@ Fret.prototype.displayWithColor = function() {
   // Set RGB colors for octaves 0 - 4
   var activeColor = [[74,39,88],[19,85,198],[106,128,104],[175,116,3],[176,29,29]];
   var playingColor = [[174,97,252],[135,197,255],[154,212,130],[255,209,130],[255,84,84]];
-  var noteOffColor = color(29,28,29);
+  var noteOffColor = color(20);
   // Set non-active frets to noteOffColor
   if (!this.active) {
     this.col = noteOffColor;

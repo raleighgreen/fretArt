@@ -43,9 +43,9 @@ var strings = [
 // Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
-  var stringDistance = (i * 20) + 100;
+  var stringDistance = (i * 20) + 125;
   for (var n = currentString.low; n <= currentString.high; n++) {
-    var noteDistance = ((n * 20) + 100) - (currentString.low * 20);
+    var noteDistance = ((n * 25) + 235) - (currentString.low * 25);
     var note = notes[n];
     frets.push(new Fret(noteDistance, stringDistance, note, currentString));
   }
@@ -116,18 +116,15 @@ var showButton = document.getElementById("show-scale");
 var clearButton = document.getElementById("clear-scale");
 
 keyValueField.addEventListener("change", processInput);
-
 scaleValueField.addEventListener("change", processInput);
-
 // When the show button is clicked, do the following...
 showButton.addEventListener("click", processInput);
-
 // Clear fretboard and updateDisplay
 clearButton.addEventListener("click", clearFretSelection);
 
 // Required P5 function runs once to initialize setup
 function setup() {
-  createCanvas(700, 500);
+  createCanvas(900, 450);
 }
 
 function mousePressed() {
