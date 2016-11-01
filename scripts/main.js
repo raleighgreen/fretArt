@@ -114,6 +114,7 @@ var keyValueField = document.getElementById("key-value");
 var scaleValueField = document.getElementById("scale-value");
 var showButton = document.getElementById("show-scale");
 var clearButton = document.getElementById("clear-scale");
+var showLines = document.getElementById("show-lines");
 
 keyValueField.addEventListener("change", processInput);
 scaleValueField.addEventListener("change", processInput);
@@ -121,8 +122,10 @@ scaleValueField.addEventListener("change", processInput);
 showButton.addEventListener("click", processInput);
 // Clear fretboard and updateDisplay
 clearButton.addEventListener("click", clearFretSelection);
+// showLines.addEventListener("click", showDrawLines);
 
 // Required P5 function runs once to initialize setup
+
 function setup() {
   createCanvas(900, 450);
 }
@@ -147,4 +150,5 @@ function draw() {
   strokeJoin(ROUND);
   rect(220,111,630,127);
   pop();
+  // drawLines();
 }
