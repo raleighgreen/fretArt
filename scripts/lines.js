@@ -7,6 +7,8 @@ function drawLines() {
   rect(235,125,600,100);
   pop();
 
+  drawShape();
+
   push();
   noFill();
   stroke(256);

@@ -1,5 +1,6 @@
 // 1. GLOBAL VARIABLES -----------------
 
+var linesVisible = false;
 var notes = [];
 var frets = [];
 var strings = [];
@@ -122,7 +123,9 @@ scaleValueField.addEventListener("change", processInput);
 showButton.addEventListener("click", processInput);
 // Clear fretboard and updateDisplay
 clearButton.addEventListener("click", clearFretSelection);
-// showLines.addEventListener("click", showDrawLines);
+showLines.addEventListener("click", function() {
+  linesVisible = true;
+});
 
 // Required P5 function runs once to initialize setup
 
@@ -134,6 +137,19 @@ function mousePressed() {
   for (var i = 0; i < frets.length; i++) {
     frets[i].clicked();
   }
+}
+
+function drawShape(frets) {
+  push();
+  noFill();
+  stroke(256);
+  strokeWeight(2);
+  strokeJoin(ROUND);
+  for (var i = 0; i < frets.length; i++) {
+    vertex(frets[i].x, frets[i].y);
+  }
+  endShape(CLOSE);
+  pop();
 }
 
 // Required P5 function loops forever
@@ -150,5 +166,7 @@ function draw() {
   strokeJoin(ROUND);
   rect(220,111,630,127);
   pop();
-  // drawLines();
+  if (linesVisible) {
+    drawLine(frets[20], frets[30]);
+  }
 }
