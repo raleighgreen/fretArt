@@ -33,12 +33,12 @@ modes = {
 
 // Create strings and group them in an array
 var strings = [
-  new String("E", 24, 48),
+  new String("highE", 24, 48),
   new String("B", 19, 43),
   new String("G", 15, 39),
   new String("D", 10, 34),
   new String("A", 5, 29),
-  new String("E", 0, 24)
+  new String("lowE", 0, 24)
 ];
 
 // Create fret objects and push them into frets array

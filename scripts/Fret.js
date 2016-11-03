@@ -11,14 +11,19 @@ function Fret(x, y, note, string) {
   this.noteDegreeList;
   this.degreeName;
   this.octave;
+  this.vertex = false;
 }
 
 Fret.prototype.drawLines = function() {
-  if (this.active && (this.string.name == "G" || this.string.name == "B")) {
-    if (this.octave == 1) {
-      console.log(currentMode);
-      drawShape(this.x,this.y);
-    }
+  if (this.note.id == 0 && this.string.name == "lowE" ||
+      this.note.id == 1 && this.string.name == "lowE"||
+      this.note.id == 24 && this.string.name == "highE" ||
+      this.note.id == 25 && this.string.name == "highE" ||
+      this.note.id == 20 && this.string.name == "B" ||
+      this.note.id == 17 && this.string.name == "G" ||
+      this.note.id == 7 && this.string.name == "A") {
+    console.log(this.note.id);
+    drawShape(this.x,this.y);
   }
 }
 
