@@ -14,8 +14,9 @@ function Fret(x, y, note, string) {
 }
 
 Fret.prototype.drawLines = function() {
-  if (this.active) {
+  if (this.active && (this.string.name == "G" || this.string.name == "B")) {
     if (this.octave == 1) {
+      console.log(currentMode);
       drawShape(this.x,this.y);
     }
   }
@@ -48,7 +49,6 @@ Fret.prototype.attachNotes = function() {
   for (var i = 0; i < noteNameList.length; i++) {
     if (octaveSplit == i) {
       this.noteName = noteNameList[i];
-      this.degreeName = noteDegreeList[i];
     }
   }
 }
