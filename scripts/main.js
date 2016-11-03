@@ -9,7 +9,7 @@ var modes;
 var currentMode;
 var currentKeyName;
 var noteNameList = ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"];
-var noteDegreeList = ["1","b2","2","b3","3","4","b5","5","b6","6","b7","7"];
+var noteDegreeList = ["3","4","b5","5","b6","6","b7","7","1","b2","2","b3"];
 
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
@@ -139,17 +139,18 @@ function mousePressed() {
   }
 }
 
-function drawShape(frets) {
+function drawShape(fretX,fretY) {
+  noLoop();
   push();
   noFill();
   stroke(256);
   strokeWeight(2);
   strokeJoin(ROUND);
-  for (var i = 0; i < frets.length; i++) {
-    vertex(frets[i].x, frets[i].y);
-  }
+  vertex(fretX,fretY);
   endShape(CLOSE);
   pop();
+  console.log(fretX);
+  console.log(fretY);
 }
 
 // Required P5 function loops forever
@@ -159,14 +160,9 @@ function draw() {
     frets[i].displayWithColor();
     frets[i].attachNotes();
   }
-  push();
-  noFill();
-  stroke(19,85,198);
-  strokeWeight(2);
-  strokeJoin(ROUND);
-  rect(220,111,630,127);
-  pop();
   if (linesVisible) {
-    drawLine(frets[20], frets[30]);
+    for (var i = 0; i < frets.length; i++) {
+      frets[i].drawLines();
+    }
   }
 }

@@ -8,8 +8,17 @@ function Fret(x, y, note, string) {
   this.col = "";
   this.noteNameList;
   this.noteName;
+  this.noteDegreeList;
+  this.degreeName;
   this.octave;
+}
 
+Fret.prototype.drawLines = function() {
+  if (this.active) {
+    if (this.octave == 1) {
+      drawShape(this.x,this.y);
+    }
+  }
 }
 
 // If a note is clicked, play sound and light up
@@ -39,6 +48,7 @@ Fret.prototype.attachNotes = function() {
   for (var i = 0; i < noteNameList.length; i++) {
     if (octaveSplit == i) {
       this.noteName = noteNameList[i];
+      this.degreeName = noteDegreeList[i];
     }
   }
 }
