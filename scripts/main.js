@@ -92,6 +92,7 @@ function activateFrets(foundScale) {
     for (var f = 0; f < frets.length; f++) {
       if (frets[f].note == foundScale[i]) {
         frets[f].active = true;
+        frets[f].activeId = f;
       }
     }
   }
@@ -138,19 +139,22 @@ function mousePressed() {
     frets[i].clicked();
   }
 }
-
-function drawShape(fretX,fretY) {
-  noLoop();
-  push();
-  noFill();
-  stroke(256);
-  strokeWeight(2);
-  strokeJoin(ROUND);
-  vertex(fretX,fretY);
-  endShape(CLOSE);
-  pop();
-  console.log(fretX);
-  console.log(fretY);
+var shapeArray = [[235,125],[260,125],[260,145],[285,165]];
+function drawShape() {
+  for (i = 0; i < shapeArray.length; i++) {
+    noLoop();
+    push();
+    noFill();
+    stroke(256);
+    strokeWeight(2);
+    strokeJoin(ROUND);
+    vertex(shapeArray[i]);
+    endShape(CLOSE);
+    pop();
+  }
+}
+function drawLines() {
+  drawShape();
 }
 
 // Required P5 function loops forever
@@ -162,7 +166,7 @@ function draw() {
   }
   if (linesVisible) {
     for (var i = 0; i < frets.length; i++) {
-      frets[i].drawLines();
+      drawLines();
     }
   }
 }
