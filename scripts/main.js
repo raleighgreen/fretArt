@@ -139,22 +139,20 @@ function mousePressed() {
     frets[i].clicked();
   }
 }
-var shapeArray = [[235,125],[260,125],[260,145],[285,165]];
-function drawShape() {
+
+// Pass in shapeArray from Fret.prototype.drawLines() and display shape
+function drawShape(shapeArray) {
+  noLoop();
+  push();
+  noFill();
+  stroke(256);
+  strokeWeight(2);
+  strokeJoin(ROUND);
   for (i = 0; i < shapeArray.length; i++) {
-    noLoop();
-    push();
-    noFill();
-    stroke(256);
-    strokeWeight(2);
-    strokeJoin(ROUND);
-    vertex(shapeArray[i]);
-    endShape(CLOSE);
-    pop();
+    vertex(shapeArray[i][0],shapeArray[i][1]);
   }
-}
-function drawLines() {
-  drawShape();
+  endShape(CLOSE);
+  pop();
 }
 
 // Required P5 function loops forever
@@ -166,7 +164,7 @@ function draw() {
   }
   if (linesVisible) {
     for (var i = 0; i < frets.length; i++) {
-      drawLines();
+      frets[i].drawLines();
     }
   }
 }

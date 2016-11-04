@@ -14,13 +14,10 @@ function Fret(x, y, note, string) {
   this.vertex = false;
 }
 
-// Fret.prototype.drawLines = function() {
-//   if (this.active && (this.string.name == "lowE" ||
-//       this.string.name == "A")) {
-//     console.log(this.note.id);
-//     drawShape(this.x,this.y);
-//   }
-// }
+Fret.prototype.drawLines = function() {
+  var shapeArray = [[235,125],[260,125],[260,145],[285,165],[285,205],[260,225],[235,225]];
+  drawShape(shapeArray);
+}
 
 // If a note is clicked, play sound and light up
 Fret.prototype.clicked = function() {
