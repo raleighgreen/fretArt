@@ -1,5 +1,6 @@
 // 1. GLOBAL VARIABLES -----------------
 
+var fretXYArray = [];
 var linesVisible = false;
 var notes = [];
 var frets = [];
@@ -140,8 +141,63 @@ function mousePressed() {
   }
 }
 
+function generateShape(thisFromFret) {
+  var fretXY1 = [];
+  var fretXY2 = [];
+  var fretXY3 = [];
+  var fretXY4 = [];
+  var fretXY5 = [];
+  var fretXY6 = [];
+  for (i = 0; i < frets.length; i++) {
+    // frets[i].fretId = i;
+    if (frets[i].activeId === 0) {
+      frets[i].vertex = true;
+      fretXY1.push(frets[i].x);
+      fretXY1.push(frets[i].y);
+      fretXYArray.push(fretXY1);
+    }
+    if (frets[i].activeId === 1) {
+      frets[i].vertex = true;
+      fretXY2.push(frets[i].x);
+      fretXY2.push(frets[i].y);
+      fretXYArray.push(fretXY2);
+    }
+    if (frets[i].activeId === 26) {
+      frets[i].vertex = true;
+      fretXY3.push(frets[i].x);
+      fretXY3.push(frets[i].y);
+      fretXYArray.push(fretXY3);
+    }
+    if (frets[i].activeId === 52) {
+      frets[i].vertex = true;
+      fretXY4.push(frets[i].x);
+      fretXY4.push(frets[i].y);
+      fretXYArray.push(fretXY4);
+    }
+    if (frets[i].activeId === 50) {
+      frets[i].vertex = true;
+      fretXY5.push(frets[i].x);
+      fretXY5.push(frets[i].y);
+      fretXYArray.push(fretXY5);
+    }
+    if (frets[i].activeId === 25) {
+      frets[i].vertex = true;
+      fretXY6.push(frets[i].x);
+      fretXY6.push(frets[i].y);
+      fretXYArray.push(fretXY6);
+    }
+  }
+  // Passing the shapeArray[] below into drawShape() sucessfully draws one shape
+  // due to the hardcoded coordinates.
+  // With the six 'if' statemets above, I was trying to create a fretXYArray similar
+  // to the shapeArray. Didn't work as well as I had hoped - couldn't quite get the
+  // fretXYArray in the same format as the shapeArray and not exactly sure why.
+  var shapeArray = [[235,125],[260,125],[260,145],[285,165],[285,205],[260,225],[235,225]];
+  drawShape(shapeArray);
+}
 // Pass in shapeArray from Fret.prototype.drawLines() and display shape
 function drawShape(shapeArray) {
+  console.log(shapeArray);
   noLoop();
   push();
   noFill();

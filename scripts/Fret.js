@@ -1,6 +1,7 @@
 function Fret(x, y, note, string) {
   this.x = x;
   this.y = y;
+  this.activeId;
   this.note = note;
   this.string = string;
   this.active = false;
@@ -10,13 +11,13 @@ function Fret(x, y, note, string) {
   this.noteName;
   this.noteDegreeList;
   this.degreeName;
+  this.fretId;
   this.octave;
   this.vertex = false;
 }
 
 Fret.prototype.drawLines = function() {
-  var shapeArray = [[235,125],[260,125],[260,145],[285,165],[285,205],[260,225],[235,225]];
-  drawShape(shapeArray);
+  generateShape();
 }
 
 // If a note is clicked, play sound and light up
