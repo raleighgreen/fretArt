@@ -11,7 +11,6 @@ var currentMode;
 var currentKeyName;
 var noteNameList = ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"];
 var noteDegreeList = ["3","4","b5","5","b6","6","b7","7","1","b2","2","b3"];
-
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
@@ -41,6 +40,13 @@ var strings = [
   new String("A", 5, 29),
   new String("lowE", 0, 24)
 ];
+
+// new Shape([1, -20, ])
+//
+// drawShape(fret[127], shapeA);
+
+// Define shape patterns
+// Draw shape patterns from a given starting note
 
 // Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
@@ -93,7 +99,6 @@ function activateFrets(foundScale) {
     for (var f = 0; f < frets.length; f++) {
       if (frets[f].note == foundScale[i]) {
         frets[f].active = true;
-        frets[f].activeId = f;
       }
     }
   }
@@ -118,6 +123,7 @@ var scaleValueField = document.getElementById("scale-value");
 var showButton = document.getElementById("show-scale");
 var clearButton = document.getElementById("clear-scale");
 var showLines = document.getElementById("show-lines");
+var clearLines = document.getElementById("clear-lines");
 
 keyValueField.addEventListener("change", processInput);
 scaleValueField.addEventListener("change", processInput);
@@ -127,6 +133,9 @@ showButton.addEventListener("click", processInput);
 clearButton.addEventListener("click", clearFretSelection);
 showLines.addEventListener("click", function() {
   linesVisible = true;
+});
+clearLines.addEventListener("click", function() {
+  linesVisible = false;
 });
 
 // Required P5 function runs once to initialize setup
@@ -141,65 +150,29 @@ function mousePressed() {
   }
 }
 
-function generateShape(thisFromFret) {
-  var fretXY1 = [];
-  var fretXY2 = [];
-  var fretXY3 = [];
-  var fretXY4 = [];
-  var fretXY5 = [];
-  var fretXY6 = [];
-  for (i = 0; i < frets.length; i++) {
-    // frets[i].fretId = i;
-    if (frets[i].activeId === 0) {
-      frets[i].vertex = true;
-      fretXY1.push(frets[i].x);
-      fretXY1.push(frets[i].y);
-      fretXYArray.push(fretXY1);
-    }
-    if (frets[i].activeId === 1) {
-      frets[i].vertex = true;
-      fretXY2.push(frets[i].x);
-      fretXY2.push(frets[i].y);
-      fretXYArray.push(fretXY2);
-    }
-    if (frets[i].activeId === 26) {
-      frets[i].vertex = true;
-      fretXY3.push(frets[i].x);
-      fretXY3.push(frets[i].y);
-      fretXYArray.push(fretXY3);
-    }
-    if (frets[i].activeId === 52) {
-      frets[i].vertex = true;
-      fretXY4.push(frets[i].x);
-      fretXY4.push(frets[i].y);
-      fretXYArray.push(fretXY4);
-    }
-    if (frets[i].activeId === 50) {
-      frets[i].vertex = true;
-      fretXY5.push(frets[i].x);
-      fretXY5.push(frets[i].y);
-      fretXYArray.push(fretXY5);
-    }
-    if (frets[i].activeId === 25) {
-      frets[i].vertex = true;
-      fretXY6.push(frets[i].x);
-      fretXY6.push(frets[i].y);
-      fretXYArray.push(fretXY6);
-    }
+function generateShape(fretArray) {
+  // create empty shape array
+  var shapeArray = [];
+  // loop through the passed in frets
+  for (var i = 0; i < fretArray.length; i++) {
+    var coordinates = [];
+    coordinates.push(fretArray[i].x);
+    coordinates.push(fretArray[i].y);
+    shapeArray.push(coordinates);
   }
-  // Passing the shapeArray[] below into drawShape() sucessfully draws one shape
-  // due to the hardcoded coordinates.
-  // With the six 'if' statemets above, I was trying to create a fretXYArray similar
-  // to the shapeArray. Didn't work as well as I had hoped - couldn't quite get the
-  // fretXYArray in the same format as the shapeArray and not exactly sure why.
-  var shapeArray = [[235,125],[260,125],[260,145],[285,165],[285,205],[260,225],[235,225]];
+  // Get x and y values from the frets
+  // Save those in an array
+  // Add them to the overall shape array
+
+  // var shapeArray = [[235,125],[260,125],[260,145],[285,165],[285,205],[260,225],[235,225]];
   drawShape(shapeArray);
 }
+
 // Pass in shapeArray from Fret.prototype.drawLines() and display shape
 function drawShape(shapeArray) {
-  console.log(shapeArray);
-  noLoop();
+  // console.log(shapeArray);
   push();
+  beginShape();
   noFill();
   stroke(256);
   strokeWeight(2);
@@ -218,6 +191,7 @@ function draw() {
     frets[i].displayWithColor();
     frets[i].attachNotes();
   }
+
   if (linesVisible) {
     for (var i = 0; i < frets.length; i++) {
       frets[i].drawLines();
