@@ -43,6 +43,8 @@ var strings = [
 ];
 
 // Create shapes and group them in an array
+// The numbers to the left build left outline of the shape
+// The numbers to the right build the right outline of the shape
 var shapes = [
   new Shape(125,100,75,50,25,0, 1,26,52,77,102,126),
   new Shape(126,102,77,52,26,1, 3,28,54,78,103,128),
@@ -59,11 +61,13 @@ var shapes = [
   new Shape(145,120,96,71,45,20, 22,47,72,97,122,147),
   new Shape(147,122,97,72,47,22, 24,49,74,99,124,149)
 ];
+
 // new Shape([1, -20, ])
-//
+
 // drawShape(fret[127], shapeA);
 
 // Define shape patterns
+
 // Draw shape patterns from a given starting note
 
 // Create fret objects and push them into frets array
