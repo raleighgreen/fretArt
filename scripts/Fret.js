@@ -1,11 +1,27 @@
 function Fret(x, y, note, string) {
   this.x = x;
   this.y = y;
+  this.activeId;
   this.note = note;
   this.string = string;
   this.active = false;
   this.playing = false;
   this.col = "";
+  this.noteNameList;
+  this.noteName;
+  this.noteDegreeList;
+  this.degreeName;
+  this.fretId;
+  this.octave;
+  this.vertex = false;
+}
+
+Fret.prototype.drawLines = function() {
+  //
+  // var filtered = [0,1,26,52,50,25].filter(testIdArray);
+
+  generateShape([frets[125], frets[126], frets[102], frets[77]]);
+  generateShape([frets[3], frets[4], frets[29], frets[28]]);
 }
 
 // If a note is clicked, play sound and light up
@@ -20,58 +36,52 @@ Fret.prototype.clicked = function() {
     this.playing = true;
     var passThisToTimeout = this;
     // Turn light off after some time
+    console.log(this);
     setTimeout(function() {
       passThisToTimeout.playing = false;
-      console.log("done");
     }, 2700);
   }
 }
 
-Fret.prototype.displayWithColor = function() {
-  var firstOctaveOnColor = color(74,39,88);
-  var secondOctaveOnColor = color(19,85,198);
-  var thirdOctaveOnColor = color(106,128,104);
-  var fourthOctaveOnColor = color(175,116,3);
-  var fifthOctaveOnColor = color(176,29,29);
-
-  var firstOctClickedColor = color(174,97,252);
-  var secondOctClickedColor = color(135,197,255);
-  var thirdOctClickedColor = color(154,212,130);
-  var fourthOctClickedColor = color(255,209,130);
-  var fifthOctClickedColor = color(255,84,84);
-
-  var noteOffColor = color(29,28,29);
-
-  if (this.active) {
-    if (this.note.id <= 12) {
-      this.col = firstOctaveOnColor;
-    } else if (this.note.id > 12 && this.note.id <= 24) {
-      this.col = secondOctaveOnColor;
-    } else if (this.note.id > 24 && this.note.id <= 36) {
-      this.col = thirdOctaveOnColor;
-    } else if (this.note.id > 36 && this.note.id <= 47) {
-      this.col = fourthOctaveOnColor;
-    } else if (this.note.id == 48) {
-      this.col = fifthOctaveOnColor;
+// Attach note names to frets
+Fret.prototype.attachNotes = function() {
+  // Split notes into octaves
+  var octaveSplit = this.note.id % 12;
+  // Populate notes with noteNames
+  for (var i = 0; i < noteNameList.length; i++) {
+    if (octaveSplit == i) {
+      this.noteName = noteNameList[i];
     }
-  } else {
+  }
+}
+
+// Display frets with color depending on status
+Fret.prototype.displayWithColor = function() {
+  // Set RGB colors for octaves 0 - 4
+  var activeColor = [[74,39,88],[19,85,198],[106,128,104],[175,116,3],[176,29,29]];
+  var playingColor = [[174,97,252],[135,197,255],[154,212,130],[255,209,130],[255,84,84]];
+  var noteOffColor = color(20);
+  // Set non-active frets to noteOffColor
+  if (!this.active) {
     this.col = noteOffColor;
   }
-
-  if (this.playing) {
-    if (this.note.id <= 12) {
-      this.col = firstOctClickedColor;
-    } else if (this.note.id > 12 && this.note.id <= 24) {
-      this.col = secondOctClickedColor;
-    } else if (this.note.id > 24 && this.note.id <= 36) {
-      this.col = thirdOctClickedColor;
-    } else if (this.note.id > 36 && this.note.id <= 47) {
-      this.col = fourthOctClickedColor;
-    } else if (this.note.id == 48) {
-      this.col = fifthOctClickedColor;
+  // If note is active, set activeColor by octave
+  if (this.active) {
+    for (var i = 0; i < 5; i++) {
+      if (this.octave == i) {
+        this.col = color(activeColor[i]);
+      }
     }
   }
-
+  // If note is playing, set playingColor by octave
+  if (this.playing) {
+    for (var i = 0; i < 5; i++) {
+      if (this.octave == i) {
+        this.col = color(playingColor[i]);
+      }
+    }
+  }
+  // Draw the dots
   fill(this.col);
-  ellipse(this.x, this.y, 9, 9);
+  ellipse(this.x, this.y, 11, 11);
 }
