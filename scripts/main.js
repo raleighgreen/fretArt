@@ -191,7 +191,6 @@ function draw() {
     frets[i].displayWithColor();
     frets[i].attachNotes();
   }
-
   if (linesVisible) {
     for (var i = 0; i < frets.length; i++) {
       frets[i].drawLines();
