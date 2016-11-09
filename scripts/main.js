@@ -5,6 +5,7 @@ var linesVisible = false;
 var notes = [];
 var frets = [];
 var strings = [];
+var shapes = [];
 var noteNameList = [];
 var modes;
 var currentMode;
@@ -41,6 +42,23 @@ var strings = [
   new String("lowE", 0, 24)
 ];
 
+// Create shapes and group them in an array
+var shapes = [
+  new Shape(125,100,75,50,25,0, 1,26,52,77,102,126),
+  new Shape(126,102,77,52,26,1, 3,28,54,78,103,128),
+  new Shape(128,103,78,54,28,3, 5,30,55,80,105,130),
+  new Shape(130,105,80,55,30,5, 7,31,57,82,107,132),
+  new Shape(132,107,82,57,31,7, 8,33,59,84,108,133),
+  new Shape(133,108,84,59,33,8, 10,35,60,85,110,135),
+  new Shape(135,110,85,60,35,10, 12,37,62,87,112,137),
+  new Shape(137,112,87,62,37,12, 13,38,64,89,114,138),
+  new Shape(138,114,89,64,38,13, 15,40,66,90,115,140),
+  new Shape(140,115,90,66,40,15, 17,42,67,92,117,142),
+  new Shape(142,117,92,67,42,17, 19,43,69,94,119,144),
+  new Shape(144,119,94,69,43,19, 20,45,71,96,120,145),
+  new Shape(145,120,96,71,45,20, 22,47,72,97,122,147),
+  new Shape(147,122,97,72,47,22, 24,49,74,99,124,149)
+];
 // new Shape([1, -20, ])
 //
 // drawShape(fret[127], shapeA);

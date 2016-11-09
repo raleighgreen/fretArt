@@ -17,8 +17,16 @@ function Fret(x, y, note, string) {
 }
 
 Fret.prototype.drawLines = function() {
-  generateShape([frets[125], frets[126], frets[102], frets[77]]);
-  generateShape([frets[3], frets[4], frets[29], frets[28]]);
+  for (var i = 0; i < shapes.length; i++) {
+    var currentShape = shapes[i];
+    var currentShapeArray = [];
+    for (var item in currentShape) {
+      if (currentShape.hasOwnProperty(item)) {
+        currentShapeArray.push(frets[currentShape[item]]);
+      }
+    }
+    generateShape(currentShapeArray);
+  }
 }
 
 // If a note is clicked, play sound and light up
