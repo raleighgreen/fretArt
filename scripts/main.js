@@ -156,15 +156,13 @@ function generateShape(fretArray) {
   // loop through the passed in frets
   for (var i = 0; i < fretArray.length; i++) {
     var coordinates = [];
+    // Get x and y values from the frets and
+    // save them in fretArray[];
     coordinates.push(fretArray[i].x);
     coordinates.push(fretArray[i].y);
+    // Add them to the overall shape array
     shapeArray.push(coordinates);
   }
-  // Get x and y values from the frets
-  // Save those in an array
-  // Add them to the overall shape array
-
-  // var shapeArray = [[235,125],[260,125],[260,145],[285,165],[285,205],[260,225],[235,225]];
   drawShape(shapeArray);
 }
 
