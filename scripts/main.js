@@ -207,13 +207,13 @@ function drawShape(shapeArray) {
 // Required P5 function loops forever
 function draw() {
   background(0);
-  for (var i = 0; i < frets.length; i++) {
-    frets[i].displayWithColor();
-    frets[i].attachNotes();
-  }
   if (linesVisible) {
     for (var i = 0; i < frets.length; i++) {
       frets[i].drawLines();
     }
+  }
+  for (var i = 0; i < frets.length; i++) {
+    frets[i].displayWithColor();
+    frets[i].attachNotes();
   }
 }
