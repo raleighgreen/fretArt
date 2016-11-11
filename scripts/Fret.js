@@ -21,9 +21,7 @@ Fret.prototype.drawLines = function() {
     var currentShape = shapes[i];
     var currentShapeArray = [];
     for (var item in currentShape) {
-      if (currentShape.hasOwnProperty(item)) {
-        currentShapeArray.push(frets[currentShape[item]]);
-      }
+      currentShapeArray.push(frets[currentShape[item]]);
     }
     generateShape(currentShapeArray);
   }
