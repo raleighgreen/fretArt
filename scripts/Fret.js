@@ -18,7 +18,7 @@ function Fret(x, y, note, string) {
 
 Fret.prototype.drawLines = function() {
   for (var i = 0; i < shapes.length; i++) {
-    var currentShape = shapes[i];
+    var currentShape = shapes[i].frets;
     var currentShapeArray = [];
     for (var item in currentShape) {
       currentShapeArray.push(frets[currentShape[item]]);
