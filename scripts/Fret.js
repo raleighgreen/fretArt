@@ -24,6 +24,7 @@ Fret.prototype.drawLines = function() {
       currentShapeArray.push(frets[currentShape[item]]);
     }
     generateShape(currentShapeArray);
+    // console.log(currentShapeArray);
   }
 }
 

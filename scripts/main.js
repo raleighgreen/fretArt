@@ -81,12 +81,49 @@ for (var i = 0; i < strings.length; i++) {
   }
 }
 
+// Create a base shape with 12 zeroes as shape frets
+var firstShape = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+console.log(firstShape);
+// Determine lowest active fret
+// loop through all frets
+
+// Check each fret to see if it's active
+// Save the id of the first active fret to a variable
+setScale(8, modes.ionian.pattern);
+console.log(frets);
+var firstActiveFret = 0;
+for (var i = 0; i < frets.length; i++) {
+  if (frets[i].active) {
+    firstActiveFret = i;
+    break;
+  }
+}
+console.log(firstActiveFret);
+
+var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
+// Add index of laf to each shape fret
+// Loop through the array of frets on the shape
+// Add firstActiveFret to each
+// Add base index of all 6 strings
+for (var i = 0; i < firstShape.frets.length; i++) {
+  firstShape.frets[i] += firstActiveFret;
+  firstShape.frets[i] += stringIndices[i];
+}
+console.log(firstShape.frets);
+
+// Add step values from mode array based on loop of mode
+// Save mode index pattern as a variable
+// loop through second half of shape fret array
+// Add mode step values to frets based on mode index pattern
+// generate other shapes based on first
+// maybe use reverse of last half of previous shape to start new shape
+
 // 4. DEFINE FUNCTIONS -----------------
 
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
   var foundScale = getScale(key, mode);
-  setOctave();
+  setOctave(key);
   activateFrets(foundScale);
 }
 
@@ -98,7 +135,7 @@ function clearFretSelection() {
 }
 
 // Sets octave range relative to key
-function setOctave() {
+function setOctave(key) {
   for (var i = 0; i < frets.length; i++) {
     var id = frets[i].note.id;
     var counter = 0;
