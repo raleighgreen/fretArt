@@ -81,16 +81,26 @@ for (var i = 0; i < strings.length; i++) {
   }
 }
 
-// Create a base shape with 12 zeroes as shape frets
-var firstShape = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
-console.log(firstShape);
+// Create 14 shapes with 12 zeroes as shape frets
+var shape1 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape2 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape3 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape4 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape5 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape6 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape7 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape8 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape9 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape10 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape11 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape12 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape13 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
+var shape14 = new Shape([0,0,0,0,0,0,0,0,0,0,0,0]);
 // Determine lowest active fret
 // loop through all frets
-
 // Check each fret to see if it's active
 // Save the id of the first active fret to a variable
 setScale(8, modes.ionian.pattern);
-console.log(frets);
 var firstActiveFret = 0;
 for (var i = 0; i < frets.length; i++) {
   if (frets[i].active) {
@@ -98,19 +108,194 @@ for (var i = 0; i < frets.length; i++) {
     break;
   }
 }
-console.log(firstActiveFret);
 
 var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
 // Add index of laf to each shape fret
 // Loop through the array of frets on the shape
 // Add firstActiveFret to each
 // Add base index of all 6 strings
-for (var i = 0; i < firstShape.frets.length; i++) {
-  firstShape.frets[i] += firstActiveFret;
-  firstShape.frets[i] += stringIndices[i];
+for (var i = 0; i < shape1.frets.length; i++) {
+  shape1.frets[i] += firstActiveFret;
+  shape1.frets[i] += stringIndices[i];
 }
-console.log(firstShape.frets);
 
+shape1.frets[6] += parseInt(modes.ionian.pattern.slice(2,3));
+shape1.frets[7] += parseInt(modes.ionian.pattern.slice(6,7));
+shape1.frets[8] += parseInt(modes.ionian.pattern.slice(4,5));
+shape1.frets[9] += parseInt(modes.ionian.pattern.slice(1,2));
+shape1.frets[10] += parseInt(modes.ionian.pattern.slice(5,6));
+shape1.frets[11] += parseInt(modes.ionian.pattern.slice(2,3));
+console.log(shape1.frets);
+shape2.frets[0] += parseInt(shape1.frets.slice(11,12));
+shape2.frets[1] += parseInt(shape1.frets.slice(10,11));
+shape2.frets[2] += parseInt(shape1.frets.slice(9,10));
+shape2.frets[3] += parseInt(shape1.frets.slice(8,9));
+shape2.frets[4] += parseInt(shape1.frets.slice(7,8));
+shape2.frets[5] += parseInt(shape1.frets.slice(6,7));
+shape2.frets[6] += parseInt(shape1.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape2.frets[7] += parseInt(shape1.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape2.frets[8] += parseInt(shape1.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape2.frets[9] += parseInt(shape1.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape2.frets[10] += parseInt(shape1.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape2.frets[11] += parseInt(shape1.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(3,4));
+console.log(shape2.frets);
+shape3.frets[0] += parseInt(shape2.frets.slice(11,12));
+shape3.frets[1] += parseInt(shape2.frets.slice(10,11));
+shape3.frets[2] += parseInt(shape2.frets.slice(9,10));
+shape3.frets[3] += parseInt(shape2.frets.slice(8,9));
+shape3.frets[4] += parseInt(shape2.frets.slice(7,8));
+shape3.frets[5] += parseInt(shape2.frets.slice(6,7));
+shape3.frets[6] += parseInt(shape2.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape3.frets[7] += parseInt(shape2.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape3.frets[8] += parseInt(shape2.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape3.frets[9] += parseInt(shape2.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape3.frets[10] += parseInt(shape2.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape3.frets[11] += parseInt(shape2.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(4,5));
+console.log(shape3.frets);
+shape4.frets[0] += parseInt(shape3.frets.slice(11,12));
+shape4.frets[1] += parseInt(shape3.frets.slice(10,11));
+shape4.frets[2] += parseInt(shape3.frets.slice(9,10));
+shape4.frets[3] += parseInt(shape3.frets.slice(8,9));
+shape4.frets[4] += parseInt(shape3.frets.slice(7,8));
+shape4.frets[5] += parseInt(shape3.frets.slice(6,7));
+shape4.frets[6] += parseInt(shape3.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape4.frets[7] += parseInt(shape3.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape4.frets[8] += parseInt(shape3.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape4.frets[9] += parseInt(shape3.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape4.frets[10] += parseInt(shape3.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape4.frets[11] += parseInt(shape3.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(5,6));
+console.log(shape4.frets);
+shape5.frets[0] += parseInt(shape4.frets.slice(11,12));
+shape5.frets[1] += parseInt(shape4.frets.slice(10,11));
+shape5.frets[2] += parseInt(shape4.frets.slice(9,10));
+shape5.frets[3] += parseInt(shape4.frets.slice(8,9));
+shape5.frets[4] += parseInt(shape4.frets.slice(7,8));
+shape5.frets[5] += parseInt(shape4.frets.slice(6,7));
+shape5.frets[6] += parseInt(shape4.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape5.frets[7] += parseInt(shape4.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape5.frets[8] += parseInt(shape4.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape5.frets[9] += parseInt(shape4.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape5.frets[10] += parseInt(shape4.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape5.frets[11] += parseInt(shape4.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(6,7));
+console.log(shape5.frets);
+shape6.frets[0] += parseInt(shape5.frets.slice(11,12));
+shape6.frets[1] += parseInt(shape5.frets.slice(10,11));
+shape6.frets[2] += parseInt(shape5.frets.slice(9,10));
+shape6.frets[3] += parseInt(shape5.frets.slice(8,9));
+shape6.frets[4] += parseInt(shape5.frets.slice(7,8));
+shape6.frets[5] += parseInt(shape5.frets.slice(6,7));
+shape6.frets[6] += parseInt(shape5.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape6.frets[7] += parseInt(shape5.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape6.frets[8] += parseInt(shape5.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape6.frets[9] += parseInt(shape5.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape6.frets[10] += parseInt(shape5.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape6.frets[11] += parseInt(shape5.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(0,1));
+console.log(shape6.frets);
+shape7.frets[0] += parseInt(shape6.frets.slice(11,12));
+shape7.frets[1] += parseInt(shape6.frets.slice(10,11));
+shape7.frets[2] += parseInt(shape6.frets.slice(9,10));
+shape7.frets[3] += parseInt(shape6.frets.slice(8,9));
+shape7.frets[4] += parseInt(shape6.frets.slice(7,8));
+shape7.frets[5] += parseInt(shape6.frets.slice(6,7));
+shape7.frets[6] += parseInt(shape6.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape7.frets[7] += parseInt(shape6.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape7.frets[8] += parseInt(shape6.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape7.frets[9] += parseInt(shape6.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape7.frets[10] += parseInt(shape6.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape7.frets[11] += parseInt(shape6.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(1,2));
+console.log(shape7.frets);
+shape8.frets[0] += parseInt(shape7.frets.slice(11,12));
+shape8.frets[1] += parseInt(shape7.frets.slice(10,11));
+shape8.frets[2] += parseInt(shape7.frets.slice(9,10));
+shape8.frets[3] += parseInt(shape7.frets.slice(8,9));
+shape8.frets[4] += parseInt(shape7.frets.slice(7,8));
+shape8.frets[5] += parseInt(shape7.frets.slice(6,7));
+shape8.frets[6] += parseInt(shape7.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape8.frets[7] += parseInt(shape7.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape8.frets[8] += parseInt(shape7.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape8.frets[9] += parseInt(shape7.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape8.frets[10] += parseInt(shape7.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape8.frets[11] += parseInt(shape7.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(2,3));
+console.log(shape8.frets);
+shape9.frets[0] += parseInt(shape8.frets.slice(11,12));
+shape9.frets[1] += parseInt(shape8.frets.slice(10,11));
+shape9.frets[2] += parseInt(shape8.frets.slice(9,10));
+shape9.frets[3] += parseInt(shape8.frets.slice(8,9));
+shape9.frets[4] += parseInt(shape8.frets.slice(7,8));
+shape9.frets[5] += parseInt(shape8.frets.slice(6,7));
+shape9.frets[6] += parseInt(shape8.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape9.frets[7] += parseInt(shape8.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape9.frets[8] += parseInt(shape8.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape9.frets[9] += parseInt(shape8.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape9.frets[10] += parseInt(shape8.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape9.frets[11] += parseInt(shape8.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(3,4));
+console.log(shape9.frets);
+shape10.frets[0] += parseInt(shape9.frets.slice(11,12));
+shape10.frets[1] += parseInt(shape9.frets.slice(10,11));
+shape10.frets[2] += parseInt(shape9.frets.slice(9,10));
+shape10.frets[3] += parseInt(shape9.frets.slice(8,9));
+shape10.frets[4] += parseInt(shape9.frets.slice(7,8));
+shape10.frets[5] += parseInt(shape9.frets.slice(6,7));
+shape10.frets[6] += parseInt(shape9.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape10.frets[7] += parseInt(shape9.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape10.frets[8] += parseInt(shape9.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape10.frets[9] += parseInt(shape9.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape10.frets[10] += parseInt(shape9.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape10.frets[11] += parseInt(shape9.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(4,5));
+console.log(shape10.frets);
+shape11.frets[0] += parseInt(shape10.frets.slice(11,12));
+shape11.frets[1] += parseInt(shape10.frets.slice(10,11));
+shape11.frets[2] += parseInt(shape10.frets.slice(9,10));
+shape11.frets[3] += parseInt(shape10.frets.slice(8,9));
+shape11.frets[4] += parseInt(shape10.frets.slice(7,8));
+shape11.frets[5] += parseInt(shape10.frets.slice(6,7));
+shape11.frets[6] += parseInt(shape10.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape11.frets[7] += parseInt(shape10.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape11.frets[8] += parseInt(shape10.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape11.frets[9] += parseInt(shape10.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape11.frets[10] += parseInt(shape10.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape11.frets[11] += parseInt(shape10.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(5,6));
+console.log(shape11.frets);
+shape12.frets[0] += parseInt(shape11.frets.slice(11,12));
+shape12.frets[1] += parseInt(shape11.frets.slice(10,11));
+shape12.frets[2] += parseInt(shape11.frets.slice(9,10));
+shape12.frets[3] += parseInt(shape11.frets.slice(8,9));
+shape12.frets[4] += parseInt(shape11.frets.slice(7,8));
+shape12.frets[5] += parseInt(shape11.frets.slice(6,7));
+shape12.frets[6] += parseInt(shape11.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape12.frets[7] += parseInt(shape11.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape12.frets[8] += parseInt(shape11.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape12.frets[9] += parseInt(shape11.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape12.frets[10] += parseInt(shape11.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape12.frets[11] += parseInt(shape11.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(6,7));
+console.log(shape12.frets);
+shape13.frets[0] += parseInt(shape12.frets.slice(11,12));
+shape13.frets[1] += parseInt(shape12.frets.slice(10,11));
+shape13.frets[2] += parseInt(shape12.frets.slice(9,10));
+shape13.frets[3] += parseInt(shape12.frets.slice(8,9));
+shape13.frets[4] += parseInt(shape12.frets.slice(7,8));
+shape13.frets[5] += parseInt(shape12.frets.slice(6,7));
+shape13.frets[6] += parseInt(shape12.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape13.frets[7] += parseInt(shape12.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape13.frets[8] += parseInt(shape12.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(2,3));
+shape13.frets[9] += parseInt(shape12.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(6,7));
+shape13.frets[10] += parseInt(shape12.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape13.frets[11] += parseInt(shape12.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(0,1));
+console.log(shape13.frets);
+shape14.frets[0] += parseInt(shape13.frets.slice(11,12));
+shape14.frets[1] += parseInt(shape13.frets.slice(10,11));
+shape14.frets[2] += parseInt(shape13.frets.slice(9,10));
+shape14.frets[3] += parseInt(shape13.frets.slice(8,9));
+shape14.frets[4] += parseInt(shape13.frets.slice(7,8));
+shape14.frets[5] += parseInt(shape13.frets.slice(6,7));
+shape14.frets[6] += parseInt(shape13.frets.slice(6,7)) + parseInt(modes.ionian.pattern.slice(1,2));
+shape14.frets[7] += parseInt(shape13.frets.slice(7,8)) + parseInt(modes.ionian.pattern.slice(5,6));
+shape14.frets[8] += parseInt(shape13.frets.slice(8,9)) + parseInt(modes.ionian.pattern.slice(3,4));
+shape14.frets[9] += parseInt(shape13.frets.slice(9,10)) + parseInt(modes.ionian.pattern.slice(0,1));
+shape14.frets[10] += parseInt(shape13.frets.slice(10,11)) + parseInt(modes.ionian.pattern.slice(4,5));
+shape14.frets[11] += parseInt(shape13.frets.slice(11,12)) + parseInt(modes.ionian.pattern.slice(1,2));
+console.log(shape14.frets);
+console.log(shapes);
 // Add step values from mode array based on loop of mode
 // Save mode index pattern as a variable
 // loop through second half of shape fret array
