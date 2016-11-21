@@ -26,7 +26,7 @@ modes = {
   dorian: new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2]),
   phrygian: new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2]),
   lydian: new Mode("Lydian",[2, 2, 2, 1, 2, 2, 1]),
-  mixolydian: new Mode("Mixolydian", [2, 2, 1, 2, 2, 1, 2]),
+  mixolydian: new Mode("mixolydian", [2, 2, 1, 2, 2, 1, 2]),
   aeolien: new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2]),
   locrian: new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2]),
   minPentatonic: new Mode("Minor Pentatonic",[3, 2, 2, 3, 2])
@@ -69,17 +69,36 @@ var strings = [
 // Define shape patterns
 
 // Draw shape patterns from a given starting note
-
+var noteSpacing = 25;
+var stringSpacing = 20
 // Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
-  var stringDistance = (i * 20) + 125;
+  var stringDistance = (i * stringSpacing) + 125;
   for (var n = currentString.low; n <= currentString.high; n++) {
-    var noteDistance = ((n * 25) + 235) - (currentString.low * 25);
+    var noteDistance = ((n * noteSpacing) + 235) - (currentString.low * noteSpacing);
     var note = notes[n];
     frets.push(new Fret(noteDistance, stringDistance, note, currentString));
   }
 }
+
+
+var shadowFrets = [];
+var originalXPosition = frets[0].x - (25 * noteSpacing);
+var xPosition = originalXPosition;
+
+for (var i = 0; i < strings.length; i++) {
+  var stringDistance = (i * stringSpacing) + 125;
+  for (var n = 0; n < 78; n++) {
+    shadowFrets.push(new ShadowFret(xPosition, stringDistance));
+    xPosition += noteSpacing;
+  }
+  xPosition = originalXPosition;
+}
+
+console.log(shadowFrets);
+console.log(frets[100]);
+console.log(shadowFrets[337]);
 
 // Create 14 shapes with 12 zeroes as shape frets
 var shapes = [
@@ -102,13 +121,24 @@ var shapes = [
 // loop through all frets
 // Check each fret to see if it's active
 // Save the id of the first active fret to a variable
-setScale(8, modes.mixolydian.pattern);
-var firstActiveFret = 0;
+setScale(8, modes.lydian.pattern);
+var currentKey = 8;
 for (var i = 0; i < frets.length; i++) {
   if (frets[i].active) {
     firstActiveFret = i;
     console.log(firstActiveFret);
     break;
+  }
+}
+
+drawLines = function() {
+  for (var i = 0; i < shapes.length; i++) {
+    var currentShape = shapes[i].frets;
+    var currentShapeArray = [];
+    for (var item in currentShape) {
+      currentShapeArray.push(frets[currentShape[item]]);
+    }
+    generateShape(currentShapeArray);
   }
 }
 
@@ -122,12 +152,13 @@ for (var i = 0; i < shapes[0].frets.length; i++) {
   shapes[0].frets[i] += stringIndices[i];
 }
 
-shapes[0].frets[6] += parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[0].frets[7] += parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[0].frets[8] += parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[0].frets[9] += parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[0].frets[10] += parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[0].frets[11] += parseInt(modes.mixolydian.pattern.slice(2,3));
+
+shapes[0].frets[6] += parseInt(modes.lydian.pattern.slice(2,3));
+shapes[0].frets[7] += parseInt(modes.lydian.pattern.slice(6,7));
+shapes[0].frets[8] += parseInt(modes.lydian.pattern.slice(4,5));
+shapes[0].frets[9] += parseInt(modes.lydian.pattern.slice(1,2));
+shapes[0].frets[10] += parseInt(modes.lydian.pattern.slice(5,6));
+shapes[0].frets[11] += parseInt(modes.lydian.pattern.slice(2,3));
 // console.log(shape1.frets);
 shapes[1].frets[0] += parseInt(shapes[0].frets.slice(11,12));
 shapes[1].frets[1] += parseInt(shapes[0].frets.slice(10,11));
@@ -135,12 +166,12 @@ shapes[1].frets[2] += parseInt(shapes[0].frets.slice(9,10));
 shapes[1].frets[3] += parseInt(shapes[0].frets.slice(8,9));
 shapes[1].frets[4] += parseInt(shapes[0].frets.slice(7,8));
 shapes[1].frets[5] += parseInt(shapes[0].frets.slice(6,7));
-shapes[1].frets[6] += parseInt(shapes[0].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[1].frets[7] += parseInt(shapes[0].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[1].frets[8] += parseInt(shapes[0].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[1].frets[9] += parseInt(shapes[0].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[1].frets[10] += parseInt(shapes[0].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[1].frets[11] += parseInt(shapes[0].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(3,4));
+shapes[1].frets[6] += parseInt(shapes[0].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[1].frets[7] += parseInt(shapes[0].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[1].frets[8] += parseInt(shapes[0].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[1].frets[9] += parseInt(shapes[0].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[1].frets[10] += parseInt(shapes[0].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[1].frets[11] += parseInt(shapes[0].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(3,4));
 // console.log(shape2.frets);
 shapes[2].frets[0] += parseInt(shapes[1].frets.slice(11,12));
 shapes[2].frets[1] += parseInt(shapes[1].frets.slice(10,11));
@@ -148,12 +179,12 @@ shapes[2].frets[2] += parseInt(shapes[1].frets.slice(9,10));
 shapes[2].frets[3] += parseInt(shapes[1].frets.slice(8,9));
 shapes[2].frets[4] += parseInt(shapes[1].frets.slice(7,8));
 shapes[2].frets[5] += parseInt(shapes[1].frets.slice(6,7));
-shapes[2].frets[6] += parseInt(shapes[1].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[2].frets[7] += parseInt(shapes[1].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[2].frets[8] += parseInt(shapes[1].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[2].frets[9] += parseInt(shapes[1].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[2].frets[10] += parseInt(shapes[1].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[2].frets[11] += parseInt(shapes[1].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(4,5));
+shapes[2].frets[6] += parseInt(shapes[1].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[2].frets[7] += parseInt(shapes[1].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[2].frets[8] += parseInt(shapes[1].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[2].frets[9] += parseInt(shapes[1].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[2].frets[10] += parseInt(shapes[1].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[2].frets[11] += parseInt(shapes[1].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(4,5));
 // console.log(shape3.frets);
 shapes[3].frets[0] += parseInt(shapes[2].frets.slice(11,12));
 shapes[3].frets[1] += parseInt(shapes[2].frets.slice(10,11));
@@ -161,12 +192,12 @@ shapes[3].frets[2] += parseInt(shapes[2].frets.slice(9,10));
 shapes[3].frets[3] += parseInt(shapes[2].frets.slice(8,9));
 shapes[3].frets[4] += parseInt(shapes[2].frets.slice(7,8));
 shapes[3].frets[5] += parseInt(shapes[2].frets.slice(6,7));
-shapes[3].frets[6] += parseInt(shapes[2].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[3].frets[7] += parseInt(shapes[2].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[3].frets[8] += parseInt(shapes[2].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[3].frets[9] += parseInt(shapes[2].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[3].frets[10] += parseInt(shapes[2].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[3].frets[11] += parseInt(shapes[2].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(5,6));
+shapes[3].frets[6] += parseInt(shapes[2].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[3].frets[7] += parseInt(shapes[2].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[3].frets[8] += parseInt(shapes[2].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[3].frets[9] += parseInt(shapes[2].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[3].frets[10] += parseInt(shapes[2].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[3].frets[11] += parseInt(shapes[2].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(5,6));
 // console.log(shape4.frets);
 shapes[4].frets[0] += parseInt(shapes[3].frets.slice(11,12));
 shapes[4].frets[1] += parseInt(shapes[3].frets.slice(10,11));
@@ -174,12 +205,12 @@ shapes[4].frets[2] += parseInt(shapes[3].frets.slice(9,10));
 shapes[4].frets[3] += parseInt(shapes[3].frets.slice(8,9));
 shapes[4].frets[4] += parseInt(shapes[3].frets.slice(7,8));
 shapes[4].frets[5] += parseInt(shapes[3].frets.slice(6,7));
-shapes[4].frets[6] += parseInt(shapes[3].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[4].frets[7] += parseInt(shapes[3].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[4].frets[8] += parseInt(shapes[3].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[4].frets[9] += parseInt(shapes[3].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[4].frets[10] += parseInt(shapes[3].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[4].frets[11] += parseInt(shapes[3].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(6,7));
+shapes[4].frets[6] += parseInt(shapes[3].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[4].frets[7] += parseInt(shapes[3].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[4].frets[8] += parseInt(shapes[3].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[4].frets[9] += parseInt(shapes[3].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[4].frets[10] += parseInt(shapes[3].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[4].frets[11] += parseInt(shapes[3].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(6,7));
 // console.log(shape5.frets);
 shapes[5].frets[0] += parseInt(shapes[4].frets.slice(11,12));
 shapes[5].frets[1] += parseInt(shapes[4].frets.slice(10,11));
@@ -187,12 +218,12 @@ shapes[5].frets[2] += parseInt(shapes[4].frets.slice(9,10));
 shapes[5].frets[3] += parseInt(shapes[4].frets.slice(8,9));
 shapes[5].frets[4] += parseInt(shapes[4].frets.slice(7,8));
 shapes[5].frets[5] += parseInt(shapes[4].frets.slice(6,7));
-shapes[5].frets[6] += parseInt(shapes[4].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[5].frets[7] += parseInt(shapes[4].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[5].frets[8] += parseInt(shapes[4].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[5].frets[9] += parseInt(shapes[4].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[5].frets[10] += parseInt(shapes[4].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[5].frets[11] += parseInt(shapes[4].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(0,1));
+shapes[5].frets[6] += parseInt(shapes[4].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[5].frets[7] += parseInt(shapes[4].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[5].frets[8] += parseInt(shapes[4].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[5].frets[9] += parseInt(shapes[4].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[5].frets[10] += parseInt(shapes[4].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[5].frets[11] += parseInt(shapes[4].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(0,1));
 // console.log(shape6.frets);
 shapes[6].frets[0] += parseInt(shapes[5].frets.slice(11,12));
 shapes[6].frets[1] += parseInt(shapes[5].frets.slice(10,11));
@@ -200,12 +231,12 @@ shapes[6].frets[2] += parseInt(shapes[5].frets.slice(9,10));
 shapes[6].frets[3] += parseInt(shapes[5].frets.slice(8,9));
 shapes[6].frets[4] += parseInt(shapes[5].frets.slice(7,8));
 shapes[6].frets[5] += parseInt(shapes[5].frets.slice(6,7));
-shapes[6].frets[6] += parseInt(shapes[5].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[6].frets[7] += parseInt(shapes[5].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[6].frets[8] += parseInt(shapes[5].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[6].frets[9] += parseInt(shapes[5].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[6].frets[10] += parseInt(shapes[5].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[6].frets[11] += parseInt(shapes[5].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(1,2));
+shapes[6].frets[6] += parseInt(shapes[5].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[6].frets[7] += parseInt(shapes[5].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[6].frets[8] += parseInt(shapes[5].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[6].frets[9] += parseInt(shapes[5].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[6].frets[10] += parseInt(shapes[5].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[6].frets[11] += parseInt(shapes[5].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(1,2));
 // console.log(shape7.frets);
 shapes[7].frets[0] += parseInt(shapes[6].frets.slice(11,12));
 shapes[7].frets[1] += parseInt(shapes[6].frets.slice(10,11));
@@ -213,12 +244,12 @@ shapes[7].frets[2] += parseInt(shapes[6].frets.slice(9,10));
 shapes[7].frets[3] += parseInt(shapes[6].frets.slice(8,9));
 shapes[7].frets[4] += parseInt(shapes[6].frets.slice(7,8));
 shapes[7].frets[5] += parseInt(shapes[6].frets.slice(6,7));
-shapes[7].frets[6] += parseInt(shapes[6].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[7].frets[7] += parseInt(shapes[6].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[7].frets[8] += parseInt(shapes[6].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[7].frets[9] += parseInt(shapes[6].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[7].frets[10] += parseInt(shapes[6].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[7].frets[11] += parseInt(shapes[6].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(2,3));
+shapes[7].frets[6] += parseInt(shapes[6].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[7].frets[7] += parseInt(shapes[6].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[7].frets[8] += parseInt(shapes[6].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[7].frets[9] += parseInt(shapes[6].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[7].frets[10] += parseInt(shapes[6].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[7].frets[11] += parseInt(shapes[6].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(2,3));
 // console.log(shape8.frets);
 shapes[8].frets[0] += parseInt(shapes[7].frets.slice(11,12));
 shapes[8].frets[1] += parseInt(shapes[7].frets.slice(10,11));
@@ -226,12 +257,12 @@ shapes[8].frets[2] += parseInt(shapes[7].frets.slice(9,10));
 shapes[8].frets[3] += parseInt(shapes[7].frets.slice(8,9));
 shapes[8].frets[4] += parseInt(shapes[7].frets.slice(7,8));
 shapes[8].frets[5] += parseInt(shapes[7].frets.slice(6,7));
-shapes[8].frets[6] += parseInt(shapes[7].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[8].frets[7] += parseInt(shapes[7].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[8].frets[8] += parseInt(shapes[7].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[8].frets[9] += parseInt(shapes[7].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[8].frets[10] += parseInt(shapes[7].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[8].frets[11] += parseInt(shapes[7].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(3,4));
+shapes[8].frets[6] += parseInt(shapes[7].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[8].frets[7] += parseInt(shapes[7].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[8].frets[8] += parseInt(shapes[7].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[8].frets[9] += parseInt(shapes[7].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[8].frets[10] += parseInt(shapes[7].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[8].frets[11] += parseInt(shapes[7].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(3,4));
 // console.log(shape9.frets);
 shapes[9].frets[0] += parseInt(shapes[8].frets.slice(11,12));
 shapes[9].frets[1] += parseInt(shapes[8].frets.slice(10,11));
@@ -239,12 +270,12 @@ shapes[9].frets[2] += parseInt(shapes[8].frets.slice(9,10));
 shapes[9].frets[3] += parseInt(shapes[8].frets.slice(8,9));
 shapes[9].frets[4] += parseInt(shapes[8].frets.slice(7,8));
 shapes[9].frets[5] += parseInt(shapes[8].frets.slice(6,7));
-shapes[9].frets[6] += parseInt(shapes[8].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[9].frets[7] += parseInt(shapes[8].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[9].frets[8] += parseInt(shapes[8].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[9].frets[9] += parseInt(shapes[8].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[9].frets[10] += parseInt(shapes[8].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[9].frets[11] += parseInt(shapes[8].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(4,5));
+shapes[9].frets[6] += parseInt(shapes[8].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[9].frets[7] += parseInt(shapes[8].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[9].frets[8] += parseInt(shapes[8].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[9].frets[9] += parseInt(shapes[8].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[9].frets[10] += parseInt(shapes[8].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[9].frets[11] += parseInt(shapes[8].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(4,5));
 // console.log(shape10.frets);
 shapes[10].frets[0] += parseInt(shapes[9].frets.slice(11,12));
 shapes[10].frets[1] += parseInt(shapes[9].frets.slice(10,11));
@@ -252,12 +283,12 @@ shapes[10].frets[2] += parseInt(shapes[9].frets.slice(9,10));
 shapes[10].frets[3] += parseInt(shapes[9].frets.slice(8,9));
 shapes[10].frets[4] += parseInt(shapes[9].frets.slice(7,8));
 shapes[10].frets[5] += parseInt(shapes[9].frets.slice(6,7));
-shapes[10].frets[6] += parseInt(shapes[9].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[10].frets[7] += parseInt(shapes[9].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[10].frets[8] += parseInt(shapes[9].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[10].frets[9] += parseInt(shapes[9].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[10].frets[10] += parseInt(shapes[9].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[10].frets[11] += parseInt(shapes[9].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(5,6));
+shapes[10].frets[6] += parseInt(shapes[9].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[10].frets[7] += parseInt(shapes[9].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[10].frets[8] += parseInt(shapes[9].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[10].frets[9] += parseInt(shapes[9].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[10].frets[10] += parseInt(shapes[9].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[10].frets[11] += parseInt(shapes[9].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(5,6));
 // console.log(shape11.frets);
 shapes[11].frets[0] += parseInt(shapes[10].frets.slice(11,12));
 shapes[11].frets[1] += parseInt(shapes[10].frets.slice(10,11));
@@ -265,12 +296,12 @@ shapes[11].frets[2] += parseInt(shapes[10].frets.slice(9,10));
 shapes[11].frets[3] += parseInt(shapes[10].frets.slice(8,9));
 shapes[11].frets[4] += parseInt(shapes[10].frets.slice(7,8));
 shapes[11].frets[5] += parseInt(shapes[10].frets.slice(6,7));
-shapes[11].frets[6] += parseInt(shapes[10].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[11].frets[7] += parseInt(shapes[10].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[11].frets[8] += parseInt(shapes[10].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[11].frets[9] += parseInt(shapes[10].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[11].frets[10] += parseInt(shapes[10].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[11].frets[11] += parseInt(shapes[10].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(6,7));
+shapes[11].frets[6] += parseInt(shapes[10].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[11].frets[7] += parseInt(shapes[10].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[11].frets[8] += parseInt(shapes[10].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[11].frets[9] += parseInt(shapes[10].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[11].frets[10] += parseInt(shapes[10].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[11].frets[11] += parseInt(shapes[10].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(6,7));
 // console.log(shape12.frets);
 shapes[12].frets[0] += parseInt(shapes[11].frets.slice(11,12));
 shapes[12].frets[1] += parseInt(shapes[11].frets.slice(10,11));
@@ -278,12 +309,12 @@ shapes[12].frets[2] += parseInt(shapes[11].frets.slice(9,10));
 shapes[12].frets[3] += parseInt(shapes[11].frets.slice(8,9));
 shapes[12].frets[4] += parseInt(shapes[11].frets.slice(7,8));
 shapes[12].frets[5] += parseInt(shapes[11].frets.slice(6,7));
-shapes[12].frets[6] += parseInt(shapes[11].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[12].frets[7] += parseInt(shapes[11].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[12].frets[8] += parseInt(shapes[11].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(2,3));
-shapes[12].frets[9] += parseInt(shapes[11].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(6,7));
-shapes[12].frets[10] += parseInt(shapes[11].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[12].frets[11] += parseInt(shapes[11].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(0,1));
+shapes[12].frets[6] += parseInt(shapes[11].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[12].frets[7] += parseInt(shapes[11].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[12].frets[8] += parseInt(shapes[11].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(2,3));
+shapes[12].frets[9] += parseInt(shapes[11].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(6,7));
+shapes[12].frets[10] += parseInt(shapes[11].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[12].frets[11] += parseInt(shapes[11].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(0,1));
 // console.log(shape13.frets);
 shapes[13].frets[0] += parseInt(shapes[12].frets.slice(11,12));
 shapes[13].frets[1] += parseInt(shapes[12].frets.slice(10,11));
@@ -291,12 +322,12 @@ shapes[13].frets[2] += parseInt(shapes[12].frets.slice(9,10));
 shapes[13].frets[3] += parseInt(shapes[12].frets.slice(8,9));
 shapes[13].frets[4] += parseInt(shapes[12].frets.slice(7,8));
 shapes[13].frets[5] += parseInt(shapes[12].frets.slice(6,7));
-shapes[13].frets[6] += parseInt(shapes[12].frets.slice(6,7)) + parseInt(modes.mixolydian.pattern.slice(1,2));
-shapes[13].frets[7] += parseInt(shapes[12].frets.slice(7,8)) + parseInt(modes.mixolydian.pattern.slice(5,6));
-shapes[13].frets[8] += parseInt(shapes[12].frets.slice(8,9)) + parseInt(modes.mixolydian.pattern.slice(3,4));
-shapes[13].frets[9] += parseInt(shapes[12].frets.slice(9,10)) + parseInt(modes.mixolydian.pattern.slice(0,1));
-shapes[13].frets[10] += parseInt(shapes[12].frets.slice(10,11)) + parseInt(modes.mixolydian.pattern.slice(4,5));
-shapes[13].frets[11] += parseInt(shapes[12].frets.slice(11,12)) + parseInt(modes.mixolydian.pattern.slice(1,2));
+shapes[13].frets[6] += parseInt(shapes[12].frets.slice(6,7)) + parseInt(modes.lydian.pattern.slice(1,2));
+shapes[13].frets[7] += parseInt(shapes[12].frets.slice(7,8)) + parseInt(modes.lydian.pattern.slice(5,6));
+shapes[13].frets[8] += parseInt(shapes[12].frets.slice(8,9)) + parseInt(modes.lydian.pattern.slice(3,4));
+shapes[13].frets[9] += parseInt(shapes[12].frets.slice(9,10)) + parseInt(modes.lydian.pattern.slice(0,1));
+shapes[13].frets[10] += parseInt(shapes[12].frets.slice(10,11)) + parseInt(modes.lydian.pattern.slice(4,5));
+shapes[13].frets[11] += parseInt(shapes[12].frets.slice(11,12)) + parseInt(modes.lydian.pattern.slice(1,2));
 // console.log(shape14.frets);
 console.log(shapes);
 // Add step values from mode array based on loop of mode
@@ -433,7 +464,7 @@ function draw() {
   background(0);
   if (linesVisible) {
     for (var i = 0; i < frets.length; i++) {
-      frets[i].drawLines();
+      drawLines();
     }
   }
   for (var i = 0; i < frets.length; i++) {
