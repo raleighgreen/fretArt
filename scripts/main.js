@@ -121,7 +121,7 @@ var shapes = [
 // loop through all frets
 // Check each fret to see if it's active
 // Save the id of the first active fret to a variable
-setScale(8, modes.lydian.pattern);
+setScale(8, modes.ionian.pattern);
 var currentKey = 8;
 for (var i = 0; i < frets.length; i++) {
   if (frets[i].active) {
@@ -141,19 +141,10 @@ drawLines = function() {
     generateShape(currentShapeArray);
   }
 }
-
+/* ------------------------------------------*/
 var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
-// Add index of laf to each shape fret
-// Loop through the array of frets on the shape
-// Add firstActiveFret to each
-// Add base index of all 6 strings
-for (var i = 0; i < stringIndices.length; i++) {
-  shapes[0].frets[i] += firstActiveFret;
-  shapes[0].frets[i] += stringIndices[i];
-}
-/*--------------------------------*/
-
-var patternSlice = [
+var numberOfShapes = 11;
+var patternSlices = [
   [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]],
   [[3,4],[0,1],[5,6],[2,3],[6,7],[3,4]],
   [[4,5],[1,2],[6,7],[3,4],[0,1],[4,5]],
@@ -165,30 +156,31 @@ var patternSlice = [
   [[3,4],[0,1],[5,6],[2,3],[6,7],[3,4]],
   [[4,5],[1,2],[6,7],[3,4],[0,1],[4,5]],
   [[5,6],[2,3],[0,1],[4,5],[1,2],[5,6]],
-  [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]]
+  [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]],
 ];
+// console.log(newPatternSlices);
+// Make left side of first shape
+for (var i = 0; i < stringIndices.length; i++) {
+  shapes[0].frets[i] += firstActiveFret;
+  shapes[0].frets[i] += stringIndices[i];
+}
+// Make right side of first shape
 for (var i = 0; i < 6; i++) {
-  shapes[0].frets[i + 6] += parseInt(modes.lydian.pattern.slice(patternSlice[0][i][0],patternSlice[0][i][1]));
+  shapes[0].frets[i + 6] += parseInt(modes.ionian.pattern.slice(patternSlices[0][i][0],patternSlices[0][i][1]));
 }
-/*--------------------------------*/
-var numberOfShapes = 11;
-for (var j = 0; j < numberOfShapes; j++){
+// Number of remaining shapes to create (zero indexed)
+// Build the rest of the shapes
+for (var n = 0; n < numberOfShapes; n++){
+  // Build left side of shape
   for (var i = 0; i < 6; i++){
-    shapes[j+1].frets[i] += parseInt(shapes[j].frets.slice(11 - i, 12 - i));
+    shapes[n+1].frets[i] += parseInt(shapes[n].frets.slice(11-i, 12-i));
   }
+  // Build right side of shape
   for (var i = 0; i < 6; i++) {
-    shapes[j+1].frets[i + 6] += parseInt(shapes[j].frets.slice(i + 6, i + 7)) + parseInt(modes.lydian.pattern.slice((patternSlice[j+1][i][0]),(patternSlice[j+1][i][1])));
+    shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.ionian.pattern.slice((patternSlices[n+1][i][0]), (patternSlices[n+1][i][1])));
   }
 }
-
-console.log(shapes);
-// Add step values from mode array based on loop of mode
-// Save mode index pattern as a variable
-// loop through second half of shape fret array
-// Add mode step values to frets based on mode index pattern
-// generate other shapes based on first
-// maybe use reverse of last half of previous shape to start new shape
-
+/* ------------------------------------------*/
 // 4. DEFINE FUNCTIONS -----------------
 
 // Calculates a scale by key and mode and activates it on the frets
