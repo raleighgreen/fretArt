@@ -142,6 +142,7 @@ drawLines = function() {
   }
 }
 /* ------------------------------------------*/
+
 var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
 var numberOfShapes = 11;
 var patternSlices = [
@@ -158,6 +159,7 @@ var patternSlices = [
   [[5,6],[2,3],[0,1],[4,5],[1,2],[5,6]],
   [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]],
 ];
+
 // console.log(newPatternSlices);
 // Make left side of first shape
 for (var i = 0; i < stringIndices.length; i++) {
