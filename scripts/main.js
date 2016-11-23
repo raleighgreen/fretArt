@@ -1,5 +1,4 @@
 // 1. GLOBAL VARIABLES -----------------
-
 var fretXYArray = [];
 var linesVisible = false;
 var notes = [];
@@ -12,6 +11,7 @@ var currentMode;
 var currentKeyName;
 var noteNameList = ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"];
 var noteDegreeList = ["3","4","b5","5","b6","6","b7","7","1","b2","2","b3"];
+var numberOfShapes;
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
@@ -42,33 +42,6 @@ var strings = [
   new String("lowE", 0, 24)
 ];
 
-// Create shapes and group them in an array
-// The numbers to the left build left outline of the shape
-// The numbers to the right build the right outline of the shape
-// var origShapes = [
-//   new Shape([125,100,75,50,25,0, 1,26,52,77,102,126]),
-//   new Shape([126,102,77,52,26,1, 3,28,54,78,103,128]),
-//   new Shape([128,103,78,54,28,3, 5,30,55,80,105,130]),
-//   new Shape([130,105,80,55,30,5, 7,31,57,82,107,132]),
-//   new Shape([132,107,82,57,31,7, 8,33,59,84,108,133]),
-//   new Shape([133,108,84,59,33,8, 10,35,60,85,110,135]),
-//   new Shape([135,110,85,60,35,10, 12,37,62,87,112,137]),
-//   new Shape([137,112,87,62,37,12, 13,38,64,89,114,138]),
-//   new Shape([138,114,89,64,38,13, 15,40,66,90,115,140]),
-//   new Shape([140,115,90,66,40,15, 17,42,67,92,117,142]),
-//   new Shape([142,117,92,67,42,17, 19,43,69,94,119,144]),
-//   new Shape([144,119,94,69,43,19, 20,45,71,96,120,145]),
-//   new Shape([145,120,96,71,45,20, 22,47,72,97,122,147]),
-//   new Shape([147,122,97,72,47,22, 24,49,74,99,124,149])
-// ];
-// console.log(origShapes);
-// new Shape([1, -20, ])
-
-// drawShape(fret[127], shapeA);
-
-// Define shape patterns
-
-// Draw shape patterns from a given starting note
 var noteSpacing = 25;
 var stringSpacing = 20
 // Create fret objects and push them into frets array
@@ -82,7 +55,6 @@ for (var i = 0; i < strings.length; i++) {
   }
 }
 
-
 var shadowFrets = [];
 var originalXPosition = frets[0].x - (25 * noteSpacing);
 var xPosition = originalXPosition;
@@ -95,10 +67,6 @@ for (var i = 0; i < strings.length; i++) {
   }
   xPosition = originalXPosition;
 }
-
-console.log(shadowFrets);
-console.log(frets[100]);
-console.log(shadowFrets[337]);
 
 // Create 14 shapes with 12 zeroes as shape frets
 var shapes = [
@@ -117,17 +85,54 @@ var shapes = [
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0])
 ];
-// Determine lowest active fret
-// loop through all frets
-// Check each fret to see if it's active
-// Save the id of the first active fret to a variable
-setScale(8, modes.ionian.pattern);
+
+
+setScale(8, modes.lydian.pattern);
 var currentKey = 8;
-for (var i = 0; i < frets.length; i++) {
-  if (frets[i].active) {
-    firstActiveFret = i;
-    console.log(firstActiveFret);
-    break;
+var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
+// Set number of shapes to build (zero indexed, hence - 1)
+//
+var arrPositionList = [
+  [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]],
+  [[3,4],[0,1],[5,6],[2,3],[6,7],[3,4]],
+  [[4,5],[1,2],[6,7],[3,4],[0,1],[4,5]],
+  [[5,6],[2,3],[0,1],[4,5],[1,2],[5,6]],
+  [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]],
+  [[0,1],[4,5],[2,3],[6,7],[3,4],[0,1]],
+  [[1,2],[5,6],[3,4],[0,1],[4,5],[1,2]],
+  [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]],
+  [[3,4],[0,1],[5,6],[2,3],[6,7],[3,4]],
+  [[4,5],[1,2],[6,7],[3,4],[0,1],[4,5]],
+  [[5,6],[2,3],[0,1],[4,5],[1,2],[5,6]],
+  [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]],
+  [[0,1],[4,5],[2,3],[6,7],[3,4],[0,1]],
+  [[1,2],[5,6],[3,4],[0,1],[4,5],[1,2]]
+];
+// Set number of shapes based on number of arrays in arrPositionList
+numberOfShapes = arrPositionList.length - 1;
+
+// 4. DEFINE FUNCTIONS -----------------
+
+// Build shapes for current key and mode
+buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
+  // Make left side of first shape
+  for (var i = 0; i < stringIndices.length; i++) {
+    shapes[0].frets[i] += stringIndices[i];
+  }
+  // Make right side of first shape
+  for (var i = 0; i < 6; i++) {
+    shapes[0].frets[i + 6] += parseInt(modes.lydian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
+  }
+  // Build the rest of the shapes
+  for (var n = 0; n < numberOfShapes; n++){
+    // Build left side of shape
+    for (var i = 0; i < 6; i++){
+      shapes[n+1].frets[i] += parseInt(shapes[n].frets.slice(11-i, 12-i));
+    }
+    // Build right side of shape
+    for (var i = 0; i < 6; i++) {
+      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.lydian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
+    }
   }
 }
 
@@ -141,49 +146,6 @@ drawLines = function() {
     generateShape(currentShapeArray);
   }
 }
-/* ------------------------------------------*/
-
-var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
-var numberOfShapes = 11;
-var patternSlices = [
-  [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]],
-  [[3,4],[0,1],[5,6],[2,3],[6,7],[3,4]],
-  [[4,5],[1,2],[6,7],[3,4],[0,1],[4,5]],
-  [[5,6],[2,3],[0,1],[4,5],[1,2],[5,6]],
-  [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]],
-  [[0,1],[4,5],[2,3],[6,7],[3,4],[0,1]],
-  [[1,2],[5,6],[3,4],[0,1],[4,5],[1,2]],
-  [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]],
-  [[3,4],[0,1],[5,6],[2,3],[6,7],[3,4]],
-  [[4,5],[1,2],[6,7],[3,4],[0,1],[4,5]],
-  [[5,6],[2,3],[0,1],[4,5],[1,2],[5,6]],
-  [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]],
-];
-
-// console.log(newPatternSlices);
-// Make left side of first shape
-for (var i = 0; i < stringIndices.length; i++) {
-  shapes[0].frets[i] += firstActiveFret;
-  shapes[0].frets[i] += stringIndices[i];
-}
-// Make right side of first shape
-for (var i = 0; i < 6; i++) {
-  shapes[0].frets[i + 6] += parseInt(modes.ionian.pattern.slice(patternSlices[0][i][0],patternSlices[0][i][1]));
-}
-// Number of remaining shapes to create (zero indexed)
-// Build the rest of the shapes
-for (var n = 0; n < numberOfShapes; n++){
-  // Build left side of shape
-  for (var i = 0; i < 6; i++){
-    shapes[n+1].frets[i] += parseInt(shapes[n].frets.slice(11-i, 12-i));
-  }
-  // Build right side of shape
-  for (var i = 0; i < 6; i++) {
-    shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.ionian.pattern.slice((patternSlices[n+1][i][0]), (patternSlices[n+1][i][1])));
-  }
-}
-/* ------------------------------------------*/
-// 4. DEFINE FUNCTIONS -----------------
 
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
@@ -266,6 +228,7 @@ clearLines.addEventListener("click", function() {
 
 function setup() {
   createCanvas(900, 450);
+  buildShapes(stringIndices,numberOfShapes,arrPositionList);
 }
 
 function mousePressed() {
