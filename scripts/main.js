@@ -86,28 +86,36 @@ var shapes = [
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0])
 ];
 
-
 setScale(8, modes.lydian.pattern);
 var currentKey = 8;
 var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
-// Set number of shapes to build (zero indexed, hence - 1)
-//
-var arrPositionList = [
-  [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]],
-  [[3,4],[0,1],[5,6],[2,3],[6,7],[3,4]],
-  [[4,5],[1,2],[6,7],[3,4],[0,1],[4,5]],
-  [[5,6],[2,3],[0,1],[4,5],[1,2],[5,6]],
-  [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]],
-  [[0,1],[4,5],[2,3],[6,7],[3,4],[0,1]],
-  [[1,2],[5,6],[3,4],[0,1],[4,5],[1,2]],
-  [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]],
-  [[3,4],[0,1],[5,6],[2,3],[6,7],[3,4]],
-  [[4,5],[1,2],[6,7],[3,4],[0,1],[4,5]],
-  [[5,6],[2,3],[0,1],[4,5],[1,2],[5,6]],
-  [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]],
-  [[0,1],[4,5],[2,3],[6,7],[3,4],[0,1]],
-  [[1,2],[5,6],[3,4],[0,1],[4,5],[1,2]]
-];
+var initialArray = [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]];
+var create3DArray = function(array, size){
+  var newArray = [initialArray];
+  for(var i = 0; i < size; i++)
+  {
+    newArray.push(getNextArrayRow(newArray[i]));
+  }
+  return newArray;
+}
+var getNextArrayRow = function(array){
+  var nextRow = [];
+  for(var i = 0; i < array.length; i++)
+  {
+    var innerArray = array[i];
+    var nextElement = [];
+    for(var j = 0; j < innerArray.length; j++)
+    {
+      var value = (innerArray[j] + 1) % (7 + j);
+      value = value === 0 ? j : value;
+      nextElement.push(value);
+    }
+    nextRow.push(nextElement);
+  }
+  return nextRow;
+}
+// Populate arrPositionList by passing in initialArray and number of shapes
+arrPositionList = (create3DArray(initialArray,13));
 // Set number of shapes based on number of arrays in arrPositionList
 numberOfShapes = arrPositionList.length - 1;
 
