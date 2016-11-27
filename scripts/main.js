@@ -87,9 +87,12 @@ var shapes = [
 ];
 
 setScale(8, modes.lydian.pattern);
+
 var currentKey = 8;
 var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
 var initialArray = [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]];
+var numberOfShapes = 12;
+
 var create3DArray = function(array, size){
   var newArray = [initialArray];
   for(var i = 0; i < size; i++)
@@ -115,7 +118,7 @@ var getNextArrayRow = function(array){
   return nextRow;
 }
 // Populate arrPositionList by passing in initialArray and number of shapes
-arrPositionList = (create3DArray(initialArray,13));
+arrPositionList = (create3DArray(initialArray,numberOfShapes));
 // Set number of shapes based on number of arrays in arrPositionList
 numberOfShapes = arrPositionList.length - 1;
 
