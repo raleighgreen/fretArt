@@ -83,15 +83,67 @@ var shapes = [
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0])
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
+  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
 ];
 
-setScale(8, modes.lydian.pattern);
-
+setScale(8, modes.ionian.pattern);
+var stringPos = [];
 var currentKey = 8;
-var stringIndices = [125, 100, 75, 50, 25, 0, 0, 25, 50, 75, 100, 125];
-var initialArray = [[2,3],[6,7],[4,5],[1,2],[5,6],[2,3]];
-var numberOfShapes = 12;
+var initialStringIndices = [402,324,246,168,89,12];
+
+for (var i = 0; i < initialStringIndices.length; i++) {
+  stringPos[i] = currentKey + initialStringIndices[i];
+}
+
+var stringIndices = [stringPos[0], stringPos[1], stringPos[2], stringPos[3], stringPos[4], stringPos[5], stringPos[5], stringPos[4], stringPos[3], stringPos[2], stringPos[1], stringPos[0]];
+var initialArray = [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]];
+var numberOfShapes = 23;
 
 var create3DArray = function(array, size){
   var newArray = [initialArray];
@@ -132,7 +184,7 @@ buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
   }
   // Make right side of first shape
   for (var i = 0; i < 6; i++) {
-    shapes[0].frets[i + 6] += parseInt(modes.lydian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
+    shapes[0].frets[i + 6] += parseInt(modes.ionian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
   }
   // Build the rest of the shapes
   for (var n = 0; n < numberOfShapes; n++){
@@ -142,17 +194,18 @@ buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
     }
     // Build right side of shape
     for (var i = 0; i < 6; i++) {
-      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.lydian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
+      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.ionian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
     }
   }
 }
 
 drawLines = function() {
   for (var i = 0; i < shapes.length; i++) {
+
     var currentShape = shapes[i].frets;
     var currentShapeArray = [];
     for (var item in currentShape) {
-      currentShapeArray.push(frets[currentShape[item]]);
+      currentShapeArray.push(shadowFrets[currentShape[item]]);
     }
     generateShape(currentShapeArray);
   }
