@@ -16,14 +16,6 @@ function Fret(x, y, note, string) {
   this.vertex = false;
 }
 
-Fret.prototype.drawLines = function() {
-  //
-  // var filtered = [0,1,26,52,50,25].filter(testIdArray);
-
-  generateShape([frets[125], frets[126], frets[102], frets[77]]);
-  generateShape([frets[3], frets[4], frets[29], frets[28]]);
-}
-
 // If a note is clicked, play sound and light up
 Fret.prototype.clicked = function() {
   var d = dist(mouseX, mouseY, this.x, this.y);
@@ -60,9 +52,10 @@ Fret.prototype.displayWithColor = function() {
   // Set RGB colors for octaves 0 - 4
   var activeColor = [[74,39,88],[19,85,198],[106,128,104],[175,116,3],[176,29,29]];
   var playingColor = [[174,97,252],[135,197,255],[154,212,130],[255,209,130],[255,84,84]];
-  var noteOffColor = color(20);
+  var noteOffColor = color(256,256,256,0);
   // Set non-active frets to noteOffColor
   if (!this.active) {
+    noStroke();
     this.col = noteOffColor;
   }
   // If note is active, set activeColor by octave
