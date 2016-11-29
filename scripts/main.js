@@ -11,7 +11,9 @@ var currentMode;
 var currentKeyName;
 var noteNameList = ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"];
 var noteDegreeList = ["3","4","b5","5","b6","6","b7","7","1","b2","2","b3"];
+var shadowFrets = [];
 var numberOfShapes;
+var stringPos = [];
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
@@ -55,7 +57,6 @@ for (var i = 0; i < strings.length; i++) {
   }
 }
 
-var shadowFrets = [];
 var originalXPosition = frets[0].x - (25 * noteSpacing);
 var xPosition = originalXPosition;
 
@@ -68,40 +69,7 @@ for (var i = 0; i < strings.length; i++) {
   xPosition = originalXPosition;
 }
 
-// Create lots of shapes with 12 zeroes as shape frets
-var shapes = [
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-  new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
-];
-
+// List lowest frets for each mode (need to make into an object?)
 var ionianLowestFrets = [402,324,246,168,89,12];
 var dorianLowestFrets = [401,323,246,168,89,11];
 var phrygianLowestFrets = [401,323,245,167,89,11];
@@ -110,19 +78,33 @@ var mixolydianLowestFrets = [401,324,246,168,89,11];
 var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
 
-var initialStringIndices = ionianLowestFrets;
-var initialArray = [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]];
+// Sets current mode to build into shapes
+var initialStringIndices = dorianLowestFrets;
+// Current key (8 = C)
 var currentKey = 8;
+// Number of shapes to create (set to 23 for middle shapes)
+var numberOfShapes = 23;
 
-var stringPos = [];
+// Sets indices for initial array
+var initialArray = [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]];
+// Make blank shapes based on numberOfShapes
+for (var i = 0; i <= numberOfShapes; i++) {
+  shapes.push(new Shape([0,0,0,0,0,0,0,0,0,0,0,0]));
+}
+// Combine currentKey with initialStringIndices
 for (var i = 0; i < initialStringIndices.length; i++) {
   stringPos[i] = currentKey + initialStringIndices[i];
 }
+var stringIndices = [];
+// Map coordinates from modesLowestFrets to stringIndices[]
+for (var i = 0; i <= 5; i++) {
+  stringIndices.push(stringPos[i]);
+}
+for (var i = 5; i >= 0; i--) {
+  stringIndices.push(stringPos[i]);
+}
 
-var stringIndices = [stringPos[0], stringPos[1], stringPos[2], stringPos[3], stringPos[4], stringPos[5], stringPos[5], stringPos[4], stringPos[3], stringPos[2], stringPos[1], stringPos[0]];
-var numberOfShapes = 23;
-
-setScale(currentKey, modes.ionian.pattern);
+setScale(currentKey, modes.dorian.pattern);
 var create3DArray = function(array, size){
   var newArray = [initialArray];
   for(var i = 0; i < size; i++)
@@ -162,7 +144,7 @@ buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
   }
   // Make right side of first shape
   for (var i = 0; i < 6; i++) {
-    shapes[0].frets[i + 6] += parseInt(modes.ionian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
+    shapes[0].frets[i + 6] += parseInt(modes.dorian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
   }
   // Build the rest of the shapes
   for (var n = 0; n < numberOfShapes; n++){
@@ -172,7 +154,7 @@ buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
     }
     // Build right side of shape
     for (var i = 0; i < 6; i++) {
-      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.ionian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
+      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.dorian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
     }
   }
 }
