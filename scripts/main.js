@@ -68,7 +68,7 @@ for (var i = 0; i < strings.length; i++) {
   xPosition = originalXPosition;
 }
 
-// Create 14 shapes with 12 zeroes as shape frets
+// Create lots of shapes with 12 zeroes as shape frets
 var shapes = [
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
@@ -132,19 +132,27 @@ var shapes = [
   new Shape([0,0,0,0,0,0,0,0,0,0,0,0]),
 ];
 
-setScale(8, modes.ionian.pattern);
-var stringPos = [];
-var currentKey = 8;
-var initialStringIndices = [402,324,246,168,89,12];
+var ionianLowestFrets = [402,324,246,168,89,12];
+var dorianLowestFrets = [401,323,246,168,89,11];
+var phrygianLowestFrets = [401,323,245,167,89,11];
+var lydianLowestFrets = [402,324,246,168,90,12];
+var mixolydianLowestFrets = [401,324,246,168,89,11];
+var aeolienLowestFrets = [401,323,245,168,89,11];
+var locrianLowestFrets = [401,323,245,167,89,11];
 
+var initialStringIndices = ionianLowestFrets;
+var initialArray = [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]];
+var currentKey = 8;
+
+var stringPos = [];
 for (var i = 0; i < initialStringIndices.length; i++) {
   stringPos[i] = currentKey + initialStringIndices[i];
 }
 
 var stringIndices = [stringPos[0], stringPos[1], stringPos[2], stringPos[3], stringPos[4], stringPos[5], stringPos[5], stringPos[4], stringPos[3], stringPos[2], stringPos[1], stringPos[0]];
-var initialArray = [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]];
 var numberOfShapes = 23;
 
+setScale(currentKey, modes.ionian.pattern);
 var create3DArray = function(array, size){
   var newArray = [initialArray];
   for(var i = 0; i < size; i++)
