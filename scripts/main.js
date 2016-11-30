@@ -4,6 +4,7 @@ var fretArt = {
   key: 8
 }
 
+
 // 1. GLOBAL VARIABLES -----------------
 var fretXYArray = [];
 var linesVisible = false;
@@ -77,16 +78,31 @@ for (var i = 0; i < strings.length; i++) {
 }
 
 // List lowest frets for each mode (need to make into an object?)
-var ionianLowestFrets = [402,324,246,168,89,12];
-var dorianLowestFrets = [401,323,246,168,89,11];
-var phrygianLowestFrets = [401,323,245,167,89,11];
-var lydianLowestFrets = [402,324,246,168,90,12];
-var mixolydianLowestFrets = [401,324,246,168,89,11];
-var aeolienLowestFrets = [401,323,245,168,89,11];
-var locrianLowestFrets = [401,323,245,167,89,11];
+var IonianLowestFrets = [402,324,246,168,89,12];
+var DorianLowestFrets = [401,323,246,168,89,11];
+var PhrygianLowestFrets = [401,323,245,167,89,11];
+var LydianLowestFrets = [402,324,246,168,90,12];
+var MixolydianLowestFrets = [401,324,246,168,89,11];
+var AeolienLowestFrets = [401,323,245,168,89,11];
+var LocrianLowestFrets = [401,323,245,167,89,11];
 
-// Sets current mode to build into shapes
-var initialStringIndices = ionianLowestFrets;
+// Here I'm attempting to set presentMode to the default value of 'ionian'.
+// howver, this only seems to set the initial value, and doesn't get updated for future reference.
+var presentMode = scaleValueField.value;
+
+// This code directly below outputs the string "ionianLowestFrets"
+// I was hoping to be able to pass in a dynamic
+// value into 'modeHolder' by way of the 'presentMode' variable.
+var modeHolder = presentMode + "LowestFrets";
+
+// initialStringIndices = ionianLowestFrets; works great as a way to pass in
+// the [402,324,246,168,89,12] array. This is what I'm trying to pass in with the
+// concatenated version above. However, it won't work unless I
+// used eval(modeHolder). On Stack excahange, threads seem to imply that it's best to avoid eval().
+// Is this an instance where it's safe and justified to use eval()?
+var initialStringIndices = eval(modeHolder);
+
+
 // Current key (8 = C)
 var currentKey = fretArt.key;
 // Number of shapes to create (set to 23 for middle shapes)
@@ -229,32 +245,35 @@ function processInput() {
   currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   currentMode = modes[scaleValueField.value];
+  // Trying to set presentMode to the currently selected scale (ex. Ionian)
+  presentMode = modes[scaleValueField.value].name;
   // Calculate and set the scale and display it in the console
   setScale(fretArt.key, currentMode.pattern);
+  console.log(presentMode);
 }
 
 // 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
-
-// Grab the select fields and buttons from the HTML document
-var keyValueField = document.getElementById("key-value");
-var scaleValueField = document.getElementById("scale-value");
-var showButton = document.getElementById("show-scale");
-var clearButton = document.getElementById("clear-scale");
-var showLines = document.getElementById("show-lines");
-var clearLines = document.getElementById("clear-lines");
-
-keyValueField.addEventListener("change", processInput);
-scaleValueField.addEventListener("change", processInput);
-// When the show button is clicked, do the following...
-showButton.addEventListener("click", processInput);
-// Clear fretboard and updateDisplay
-clearButton.addEventListener("click", clearFretSelection);
-showLines.addEventListener("click", function() {
-  linesVisible = true;
-});
-clearLines.addEventListener("click", function() {
-  linesVisible = false;
-});
+//
+// // Grab the select fields and buttons from the HTML document
+// var keyValueField = document.getElementById("key-value");
+// var scaleValueField = document.getElementById("scale-value");
+// var showButton = document.getElementById("show-scale");
+// var clearButton = document.getElementById("clear-scale");
+// var showLines = document.getElementById("show-lines");
+// var clearLines = document.getElementById("clear-lines");
+//
+// keyValueField.addEventListener("change", processInput);
+// scaleValueField.addEventListener("change", processInput);
+// // When the show button is clicked, do the following...
+// showButton.addEventListener("click", processInput);
+// // Clear fretboard and updateDisplay
+// clearButton.addEventListener("click", clearFretSelection);
+// showLines.addEventListener("click", function() {
+//   linesVisible = true;
+// });
+// clearLines.addEventListener("click", function() {
+//   linesVisible = false;
+// });
 
 // Required P5 function runs once to initialize setup
 
