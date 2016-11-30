@@ -1,3 +1,8 @@
+var fretArt = {
+  currentMode: null,
+  numberOfShapes: null
+}
+
 // 1. GLOBAL VARIABLES -----------------
 var fretXYArray = [];
 var linesVisible = false;
@@ -45,7 +50,7 @@ var strings = [
 ];
 
 var noteSpacing = 25;
-var stringSpacing = 20
+var stringSpacing = 20;
 // Create fret objects and push them into frets array
 for (var i = 0; i < strings.length; i++) {
   var currentString = strings[i];
@@ -79,9 +84,9 @@ var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
 
 // Sets current mode to build into shapes
-var initialStringIndices = dorianLowestFrets;
+var initialStringIndices = phrygianLowestFrets;
 // Current key (8 = C)
-var currentKey = 8;
+var currentKey = 11;
 // Number of shapes to create (set to 23 for middle shapes)
 var numberOfShapes = 23;
 
@@ -104,7 +109,7 @@ for (var i = 5; i >= 0; i--) {
   stringIndices.push(stringPos[i]);
 }
 
-setScale(currentKey, modes.dorian.pattern);
+setScale(currentKey, modes.phrygian.pattern);
 var create3DArray = function(array, size){
   var newArray = [initialArray];
   for(var i = 0; i < size; i++)
@@ -144,7 +149,7 @@ buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
   }
   // Make right side of first shape
   for (var i = 0; i < 6; i++) {
-    shapes[0].frets[i + 6] += parseInt(modes.dorian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
+    shapes[0].frets[i + 6] += parseInt(modes.phrygian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
   }
   // Build the rest of the shapes
   for (var n = 0; n < numberOfShapes; n++){
@@ -154,7 +159,7 @@ buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
     }
     // Build right side of shape
     for (var i = 0; i < 6; i++) {
-      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.dorian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
+      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.phrygian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
     }
   }
 }
