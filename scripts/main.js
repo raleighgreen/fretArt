@@ -1,6 +1,7 @@
 var fretArt = {
-  currentMode: null,
-  numberOfShapes: null
+  // currentMode: null,
+  // numberOfShapes: null
+  key: 8
 }
 
 // 1. GLOBAL VARIABLES -----------------
@@ -19,6 +20,7 @@ var noteDegreeList = ["3","4","b5","5","b6","6","b7","7","1","b2","2","b3"];
 var shadowFrets = [];
 var numberOfShapes;
 var stringPos = [];
+// var key = 0;
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
@@ -84,9 +86,9 @@ var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
 
 // Sets current mode to build into shapes
-var initialStringIndices = phrygianLowestFrets;
+var initialStringIndices = ionianLowestFrets;
 // Current key (8 = C)
-var currentKey = 11;
+var currentKey = fretArt.key;
 // Number of shapes to create (set to 23 for middle shapes)
 var numberOfShapes = 23;
 
@@ -109,7 +111,8 @@ for (var i = 5; i >= 0; i--) {
   stringIndices.push(stringPos[i]);
 }
 
-setScale(currentKey, modes.phrygian.pattern);
+// setScale(currentKey, modes.ionian.pattern);
+
 var create3DArray = function(array, size){
   var newArray = [initialArray];
   for(var i = 0; i < size; i++)
@@ -149,7 +152,7 @@ buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
   }
   // Make right side of first shape
   for (var i = 0; i < 6; i++) {
-    shapes[0].frets[i + 6] += parseInt(modes.phrygian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
+    shapes[0].frets[i + 6] += parseInt(modes.ionian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
   }
   // Build the rest of the shapes
   for (var n = 0; n < numberOfShapes; n++){
@@ -159,7 +162,7 @@ buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
     }
     // Build right side of shape
     for (var i = 0; i < 6; i++) {
-      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.phrygian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
+      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.ionian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
     }
   }
 }
@@ -177,9 +180,9 @@ drawLines = function() {
 }
 
 // Calculates a scale by key and mode and activates it on the frets
-function setScale(key, mode) {
-  var foundScale = getScale(key, mode);
-  setOctave(key);
+function setScale(keyNum, mode) {
+  var foundScale = getScale(keyNum, mode);
+  setOctave(keyNum);
   activateFrets(foundScale);
 }
 
@@ -191,13 +194,13 @@ function clearFretSelection() {
 }
 
 // Sets octave range relative to key
-function setOctave(key) {
+function setOctave(keyNum) {
   for (var i = 0; i < frets.length; i++) {
     var id = frets[i].note.id;
     var counter = 0;
     if (frets[i]) {
       for (var j = 0; j < 5; j++) {
-        if (id >= key + counter -12 && id < key + counter) {
+        if (id >= keyNum + counter -12 && id < keyNum + counter) {
           frets[i].octave = j;
         }
         counter += 12;
@@ -221,13 +224,13 @@ function activateFrets(foundScale) {
 
 function processInput() {
   // Grab the key value from the key select fields
-  key = parseInt(keyValueField.selectedIndex);
+  fretArt.key = parseInt(keyValueField.selectedIndex);
   // Grab the name of the key from the text content of the option element
   currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   currentMode = modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
-  setScale(key, currentMode.pattern);
+  setScale(fretArt.key, currentMode.pattern);
 }
 
 // 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
