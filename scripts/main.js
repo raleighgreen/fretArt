@@ -246,7 +246,7 @@ function drawShape(shapeArray) {
   push();
   beginShape();
   noFill();
-  strokeWeight(1);
+  strokeWeight(2);
   stroke(17,62,185);
   strokeJoin(ROUND);
   for (i = 0; i < shapeArray.length; i++) {
