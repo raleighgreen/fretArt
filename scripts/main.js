@@ -1,34 +1,13 @@
-var fretArt = {
-  currentMode: null,
-  numberOfShapes: null
-}
-
-// 1. GLOBAL VARIABLES -----------------
-var fretXYArray = [];
-var linesVisible = false;
-var notes = [];
-var frets = [];
-var strings = [];
-var shapes = [];
-var noteNameList = [];
-var modes;
-var currentMode;
-var currentKeyName;
-var noteNameList = ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"];
-var noteDegreeList = ["3","4","b5","5","b6","6","b7","7","1","b2","2","b3"];
-var shadowFrets = [];
-var numberOfShapes;
-var stringPos = [];
 // 3. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
 for (var i = 0; i <= 48; i++) {
   var audioFileNumber = i + 1;
-  notes.push(new Note(i, audioFileNumber));
+  fretArt['notes'].push(new Note(i, audioFileNumber));
 }
 
 // Create modes and group them in an Object
-modes = {
+fretArt.modes = {
   ionian: new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1]),
   dorian: new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2]),
   phrygian: new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2]),
@@ -40,7 +19,7 @@ modes = {
 }
 
 // Create strings and group them in an array
-var strings = [
+fretArt.strings = [
   new String("highE", 24, 48),
   new String("B", 19, 43),
   new String("G", 15, 39),
@@ -52,23 +31,23 @@ var strings = [
 var noteSpacing = 25;
 var stringSpacing = 20;
 // Create fret objects and push them into frets array
-for (var i = 0; i < strings.length; i++) {
-  var currentString = strings[i];
+for (var i = 0; i < fretArt.strings.length; i++) {
+  var currentString = fretArt.strings[i];
   var stringDistance = (i * stringSpacing) + 125;
   for (var n = currentString.low; n <= currentString.high; n++) {
     var noteDistance = ((n * noteSpacing) + 235) - (currentString.low * noteSpacing);
-    var note = notes[n];
-    frets.push(new Fret(noteDistance, stringDistance, note, currentString));
+    var note = fretArt.notes[n];
+    fretArt.frets.push(new Fret(noteDistance, stringDistance, note, currentString));
   }
 }
 
-var originalXPosition = frets[0].x - (25 * noteSpacing);
+var originalXPosition = fretArt.frets[0].x - (25 * noteSpacing);
 var xPosition = originalXPosition;
 
-for (var i = 0; i < strings.length; i++) {
+for (var i = 0; i < fretArt.strings.length; i++) {
   var stringDistance = (i * stringSpacing) + 125;
   for (var n = 0; n < 78; n++) {
-    shadowFrets.push(new ShadowFret(xPosition, stringDistance));
+    fretArt.shadowFrets.push(new ShadowFret(xPosition, stringDistance));
     xPosition += noteSpacing;
   }
   xPosition = originalXPosition;
@@ -84,32 +63,32 @@ var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
 
 // Sets current mode to build into shapes
-var initialStringIndices = phrygianLowestFrets;
+var initialStringIndices = ionianLowestFrets;
 // Current key (8 = C)
-var currentKey = 11;
+var currentKey = 8;
 // Number of shapes to create (set to 23 for middle shapes)
-var numberOfShapes = 23;
+fretArt.numberOfShapes = 23;
 
 // Sets indices for initial array
 var initialArray = [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]];
 // Make blank shapes based on numberOfShapes
-for (var i = 0; i <= numberOfShapes; i++) {
-  shapes.push(new Shape([0,0,0,0,0,0,0,0,0,0,0,0]));
+for (var i = 0; i <= fretArt.numberOfShapes; i++) {
+  fretArt.shapes.push(new Shape([0,0,0,0,0,0,0,0,0,0,0,0]));
 }
 // Combine currentKey with initialStringIndices
 for (var i = 0; i < initialStringIndices.length; i++) {
-  stringPos[i] = currentKey + initialStringIndices[i];
+  fretArt.stringPos[i] = currentKey + initialStringIndices[i];
 }
 var stringIndices = [];
 // Map coordinates from modesLowestFrets to stringIndices[]
 for (var i = 0; i <= 5; i++) {
-  stringIndices.push(stringPos[i]);
+  stringIndices.push(fretArt.stringPos[i]);
 }
 for (var i = 5; i >= 0; i--) {
-  stringIndices.push(stringPos[i]);
+  stringIndices.push(fretArt.stringPos[i]);
 }
 
-setScale(currentKey, modes.phrygian.pattern);
+setScale(currentKey, fretArt.modes.ionian.pattern);
 var create3DArray = function(array, size){
   var newArray = [initialArray];
   for(var i = 0; i < size; i++)
@@ -135,42 +114,42 @@ var getNextArrayRow = function(array){
   return nextRow;
 }
 // Populate arrPositionList by passing in initialArray and number of shapes
-arrPositionList = (create3DArray(initialArray,numberOfShapes));
+arrPositionList = (create3DArray(initialArray,fretArt.numberOfShapes));
 // Set number of shapes based on number of arrays in arrPositionList
-numberOfShapes = arrPositionList.length - 1;
+fretArt.numberOfShapes = arrPositionList.length - 1;
 
 // 4. DEFINE FUNCTIONS -----------------
 
 // Build shapes for current key and mode
-buildShapes = function(stringIndices,numberOfShapes,arrPositionList) {
+buildShapes = function(stringIndices,shapeNumber,arrPositionList) {
   // Make left side of first shape
   for (var i = 0; i < stringIndices.length; i++) {
-    shapes[0].frets[i] += stringIndices[i];
+    fretArt.shapes[0].frets[i] += stringIndices[i];
   }
   // Make right side of first shape
   for (var i = 0; i < 6; i++) {
-    shapes[0].frets[i + 6] += parseInt(modes.phrygian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
+    fretArt.shapes[0].frets[i + 6] += parseInt(fretArt.modes.ionian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
   }
   // Build the rest of the shapes
-  for (var n = 0; n < numberOfShapes; n++){
+  for (var n = 0; n < shapeNumber; n++){
     // Build left side of shape
     for (var i = 0; i < 6; i++){
-      shapes[n+1].frets[i] += parseInt(shapes[n].frets.slice(11-i, 12-i));
+      fretArt.shapes[n+1].frets[i] += parseInt(fretArt.shapes[n].frets.slice(11-i, 12-i));
     }
     // Build right side of shape
     for (var i = 0; i < 6; i++) {
-      shapes[n+1].frets[i + 6] += parseInt(shapes[n].frets.slice(i+6, i+ 7)) + parseInt(modes.phrygian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
+      fretArt.shapes[n+1].frets[i + 6] += parseInt(fretArt.shapes[n].frets.slice(i+6, i+ 7)) + parseInt(fretArt.modes.ionian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
     }
   }
 }
 
 drawLines = function() {
-  for (var i = 0; i < shapes.length; i++) {
+  for (var i = 0; i < fretArt.shapes.length; i++) {
 
-    var currentShape = shapes[i].frets;
+    var currentShape = fretArt.shapes[i].frets;
     var currentShapeArray = [];
     for (var item in currentShape) {
-      currentShapeArray.push(shadowFrets[currentShape[item]]);
+      currentShapeArray.push(fretArt.shadowFrets[currentShape[item]]);
     }
     generateShape(currentShapeArray);
   }
@@ -185,20 +164,20 @@ function setScale(key, mode) {
 
 // Deactivates all frets to make blank slate
 function clearFretSelection() {
-  for (var f = 0; f < frets.length; f++) {
-    frets[f].active = false;
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    fretArt.frets[f].active = false;
   }
 }
 
 // Sets octave range relative to key
 function setOctave(key) {
-  for (var i = 0; i < frets.length; i++) {
-    var id = frets[i].note.id;
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    var id = fretArt.frets[i].note.id;
     var counter = 0;
-    if (frets[i]) {
+    if (fretArt.frets[i]) {
       for (var j = 0; j < 5; j++) {
         if (id >= key + counter -12 && id < key + counter) {
-          frets[i].octave = j;
+          fretArt.frets[i].octave = j;
         }
         counter += 12;
       }
@@ -211,9 +190,9 @@ function setOctave(key) {
 function activateFrets(foundScale) {
   clearFretSelection();
   for (var i = 0; i < foundScale.length; i++) {
-    for (var f = 0; f < frets.length; f++) {
-      if (frets[f].note == foundScale[i]) {
-        frets[f].active = true;
+    for (var f = 0; f < fretArt.frets.length; f++) {
+      if (fretArt.frets[f].note == foundScale[i]) {
+        fretArt.frets[f].active = true;
       }
     }
   }
@@ -221,11 +200,11 @@ function activateFrets(foundScale) {
 
 function processInput() {
   // Grab the key value from the key select fields
-  key = parseInt(keyValueField.selectedIndex);
+  var key = parseInt(keyValueField.selectedIndex);
   // Grab the name of the key from the text content of the option element
-  currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
+  var currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
-  currentMode = modes[scaleValueField.value];
+  var currentMode = fretArt.modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
   setScale(key, currentMode.pattern);
 }
@@ -247,22 +226,22 @@ showButton.addEventListener("click", processInput);
 // Clear fretboard and updateDisplay
 clearButton.addEventListener("click", clearFretSelection);
 showLines.addEventListener("click", function() {
-  linesVisible = true;
+  fretArt.linesVisible = true;
 });
 clearLines.addEventListener("click", function() {
-  linesVisible = false;
+  fretArt.linesVisible = false;
 });
 
 // Required P5 function runs once to initialize setup
 
 function setup() {
   createCanvas(900, 450);
-  buildShapes(stringIndices,numberOfShapes,arrPositionList);
+  buildShapes(stringIndices,fretArt.numberOfShapes,arrPositionList);
 }
 
 function mousePressed() {
-  for (var i = 0; i < frets.length; i++) {
-    frets[i].clicked();
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    fretArt.frets[i].clicked();
   }
 }
 
@@ -300,13 +279,13 @@ function drawShape(shapeArray) {
 // Required P5 function loops forever
 function draw() {
   background(0);
-  if (linesVisible) {
-    for (var i = 0; i < frets.length; i++) {
+  if (fretArt.linesVisible) {
+    for (var i = 0; i < fretArt.frets.length; i++) {
       drawLines();
     }
   }
-  for (var i = 0; i < frets.length; i++) {
-    frets[i].displayWithColor();
-    frets[i].attachNotes();
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    fretArt.frets[i].displayWithColor();
+    fretArt.frets[i].attachNotes();
   }
 }

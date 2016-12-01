@@ -40,9 +40,9 @@ Fret.prototype.attachNotes = function() {
   // Split notes into octaves
   var octaveSplit = this.note.id % 12;
   // Populate notes with noteNames
-  for (var i = 0; i < noteNameList.length; i++) {
+  for (var i = 0; i < fretArt.noteNameList.length; i++) {
     if (octaveSplit == i) {
-      this.noteName = noteNameList[i];
+      this.noteName = fretArt.noteNameList[i];
     }
   }
 }
