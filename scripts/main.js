@@ -1,4 +1,4 @@
-// 3. GENERATE DATA USING CONSTRUCTORS -----------------
+// 1. GENERATE DATA USING CONSTRUCTORS -----------------
 
 // Generate notes
 for (var i = 0; i <= 48; i++) {
@@ -28,6 +28,10 @@ fretArt.strings = [
   new String("lowE", 0, 24)
 ];
 
+// Question 1: Should these the 2 variables below be moved out of the
+// global namespace and into fretArt.js? There are lots of other variables
+// that appear to be global. Would it be best to place those variables
+// elsewhere so that they are out of the global namespace as well?
 var noteSpacing = 25;
 var stringSpacing = 20;
 // Create fret objects and push them into frets array
@@ -88,8 +92,13 @@ for (var i = 5; i >= 0; i--) {
   stringIndices.push(fretArt.stringPos[i]);
 }
 
-setScale(currentKey, fretArt.modes.ionian.pattern);
-var create3DArray = function(array, size){
+// 2. DEFINE FUNCTIONS -----------------
+
+// Populate arrPositionList by passing in initialArray and number of shapes
+
+// Question 2: I'm curious about the semantic difference between the two functions
+// below and the rest of them? Which should I use and does it matter?
+create3DArray = function(array, size){
   var newArray = [initialArray];
   for(var i = 0; i < size; i++)
   {
@@ -97,7 +106,8 @@ var create3DArray = function(array, size){
   }
   return newArray;
 }
-var getNextArrayRow = function(array){
+
+getNextArrayRow = function(array){
   var nextRow = [];
   for(var i = 0; i < array.length; i++)
   {
@@ -113,15 +123,16 @@ var getNextArrayRow = function(array){
   }
   return nextRow;
 }
-// Populate arrPositionList by passing in initialArray and number of shapes
-arrPositionList = (create3DArray(initialArray,fretArt.numberOfShapes));
+// Question 3: I tried to move the two fret.arrPositionLists below up into the
+// GERERATE DATA section above. However, they need to be below
+// the create3DArray functions above to work. Is there a way to move these up
+// so that I can keep the functions area clean?
+fretArt.arrPositionList = (create3DArray(initialArray,fretArt.numberOfShapes));
 // Set number of shapes based on number of arrays in arrPositionList
-fretArt.numberOfShapes = arrPositionList.length - 1;
-
-// 4. DEFINE FUNCTIONS -----------------
+fretArt.numberOfShapes = fretArt.arrPositionList.length - 1;
 
 // Build shapes for current key and mode
-buildShapes = function(stringIndices,shapeNumber,arrPositionList) {
+function buildShapes(stringIndices,shapeNumber,arrPositionList) {
   // Make left side of first shape
   for (var i = 0; i < stringIndices.length; i++) {
     fretArt.shapes[0].frets[i] += stringIndices[i];
@@ -143,9 +154,8 @@ buildShapes = function(stringIndices,shapeNumber,arrPositionList) {
   }
 }
 
-drawLines = function() {
+function drawLines() {
   for (var i = 0; i < fretArt.shapes.length; i++) {
-
     var currentShape = fretArt.shapes[i].frets;
     var currentShapeArray = [];
     for (var item in currentShape) {
@@ -209,36 +219,6 @@ function processInput() {
   setScale(key, currentMode.pattern);
 }
 
-// 5. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
-
-// Grab the select fields and buttons from the HTML document
-var keyValueField = document.getElementById("key-value");
-var scaleValueField = document.getElementById("scale-value");
-var showButton = document.getElementById("show-scale");
-var clearButton = document.getElementById("clear-scale");
-var showLines = document.getElementById("show-lines");
-var clearLines = document.getElementById("clear-lines");
-
-keyValueField.addEventListener("change", processInput);
-scaleValueField.addEventListener("change", processInput);
-// When the show button is clicked, do the following...
-showButton.addEventListener("click", processInput);
-// Clear fretboard and updateDisplay
-clearButton.addEventListener("click", clearFretSelection);
-showLines.addEventListener("click", function() {
-  fretArt.linesVisible = true;
-});
-clearLines.addEventListener("click", function() {
-  fretArt.linesVisible = false;
-});
-
-// Required P5 function runs once to initialize setup
-
-function setup() {
-  createCanvas(900, 450);
-  buildShapes(stringIndices,fretArt.numberOfShapes,arrPositionList);
-}
-
 function mousePressed() {
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].clicked();
@@ -266,14 +246,44 @@ function drawShape(shapeArray) {
   push();
   beginShape();
   noFill();
-  stroke(256);
-  strokeWeight(2);
+  strokeWeight(1);
+  stroke(17,62,185);
   strokeJoin(ROUND);
   for (i = 0; i < shapeArray.length; i++) {
     vertex(shapeArray[i][0],shapeArray[i][1]);
   }
   endShape(CLOSE);
   pop();
+}
+
+// 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
+
+// Grab the select fields and buttons from the HTML document
+var keyValueField = document.getElementById("key-value");
+var scaleValueField = document.getElementById("scale-value");
+var showButton = document.getElementById("show-scale");
+var clearButton = document.getElementById("clear-scale");
+var showLines = document.getElementById("show-lines");
+var clearLines = document.getElementById("clear-lines");
+
+keyValueField.addEventListener("change", processInput);
+scaleValueField.addEventListener("change", processInput);
+// When the show button is clicked, do the following...
+showButton.addEventListener("click", processInput);
+// Clear fretboard and updateDisplay
+clearButton.addEventListener("click", clearFretSelection);
+showLines.addEventListener("click", function() {
+  fretArt.linesVisible = true;
+});
+clearLines.addEventListener("click", function() {
+  fretArt.linesVisible = false;
+});
+
+// 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
+
+function setup() {
+  createCanvas(900, 370);
+  buildShapes(stringIndices,fretArt.numberOfShapes,fretArt.arrPositionList);
 }
 
 // Required P5 function loops forever
@@ -284,6 +294,26 @@ function draw() {
       drawLines();
     }
   }
+
+  // Start shapes
+  push();
+  // Make two black rectangles to mask lines overflow
+  fill(0);
+  rect(0, 120,234, 110);
+  rect(836, 120,70, 110);
+  // Make a fretboard outline
+  noFill();
+  strokeWeight(2);
+  stroke(17,62,185);
+  rect(235, 125,600, 100);
+  // Make a thin line with 75% opacity to indicate the nut
+  strokeWeight(1);
+  stroke(17,62,185,75);
+  line(247, 125,247, 225);
+
+  pop();
+  // End shapes
+
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].displayWithColor();
     fretArt.frets[i].attachNotes();
