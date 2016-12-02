@@ -206,7 +206,9 @@ function activateFrets(foundScale) {
       }
     }
   }
+
 }
+
 
 function processInput() {
   // Grab the key value from the key select fields
@@ -318,4 +320,8 @@ function draw() {
     fretArt.frets[i].displayWithColor();
     fretArt.frets[i].attachNotes();
   }
+  var fps = frameRate();
+  fill(255);
+  stroke(0);
+  text("FPS: " + fps.toFixed(2), 10, height - 10);
 }
