@@ -15,6 +15,7 @@ fretArt.modes = {
   mixolydian: new Mode("mixolydian", [2, 2, 1, 2, 2, 1, 2]),
   aeolien: new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2]),
   locrian: new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2]),
+  melMin: new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1]),
   minPentatonic: new Mode("Minor Pentatonic",[3, 2, 2, 3, 2])
 }
 
@@ -65,10 +66,10 @@ var lydianLowestFrets = [402,324,246,168,90,12];
 var mixolydianLowestFrets = [401,324,246,168,89,11];
 var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
-var minPentLowestFrets = [402,324,246,168,89,12];
+var melMinLowestFrets = [402,323,246,168,89,12];
 
 // Sets current mode to build into shapes
-var initialStringIndices = ionianLowestFrets;
+var initialStringIndices = melMinLowestFrets;
 // Current key (8 = C)
 var currentKey = 8;
 // Number of shapes to create (set to 23 for middle shapes)
@@ -140,7 +141,7 @@ function buildShapes(stringIndices,shapeNumber,arrPositionList) {
   }
   // Make right side of first shape
   for (var i = 0; i < 6; i++) {
-    fretArt.shapes[0].frets[i + 6] += parseInt(fretArt.modes.ionian.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
+    fretArt.shapes[0].frets[i + 6] += parseInt(fretArt.modes.melMin.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
   }
   // Build the rest of the shapes
   for (var n = 0; n < shapeNumber; n++){
@@ -150,7 +151,7 @@ function buildShapes(stringIndices,shapeNumber,arrPositionList) {
     }
     // Build right side of shape
     for (var i = 0; i < 6; i++) {
-      fretArt.shapes[n+1].frets[i + 6] += parseInt(fretArt.shapes[n].frets.slice(i+6, i+ 7)) + parseInt(fretArt.modes.ionian.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
+      fretArt.shapes[n+1].frets[i + 6] += parseInt(fretArt.shapes[n].frets.slice(i+6, i+ 7)) + parseInt(fretArt.modes.melMin.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
     }
   }
 }
@@ -220,6 +221,7 @@ function processInput() {
   var currentMode = fretArt.modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
   setScale(key, currentMode.pattern);
+  console.log(currentMode.pattern);
 }
 
 function mousePressed() {
