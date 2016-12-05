@@ -292,9 +292,7 @@ function setup() {
 function draw() {
   background(0);
   if (fretArt.linesVisible) {
-    for (var i = 0; i < fretArt.frets.length; i++) {
-      drawLines();
-    }
+    drawLines();
   }
 
   // Start shapes
@@ -320,8 +318,8 @@ function draw() {
     fretArt.frets[i].displayWithColor();
     fretArt.frets[i].attachNotes();
   }
-  var fps = frameRate();
-  fill(255);
-  stroke(0);
-  text("FPS: " + fps.toFixed(2), 10, height - 10);
+  // var fps = frameRate();
+  // fill(255);
+  // stroke(0);
+  // text("FPS: " + fps.toFixed(2), 10, height - 10);
 }
