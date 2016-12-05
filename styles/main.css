@@ -31,6 +31,7 @@ body {
 
 .sideBarContainer {
   position: absolute;
+  width: 860px;
   margin-top: -25px;
   padding: 20px;
 }
@@ -50,4 +51,15 @@ select {
 
 .thinText {
   font-weight: 100;
+}
+
+#float-here {
+  position: absolute;
+}
+#pedal-tone {
+  position: relative;
+  text-align: center;
+  z-index: 10;
+  float: right;
+  margin: 0 0 10px 10px;
 }

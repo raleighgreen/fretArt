@@ -39,7 +39,7 @@ Fret.prototype.overNote = function() {
   var d = dist(mouseX, mouseY, this.x, this.y);
   var audioNote = this.note.audioFile;
   // If in the bounds of the note...
-  if (d < 7) {
+  if (d < 7 && this.active) {
     // Play the note's audioFile
     audioNote.play();
     // And light it up
