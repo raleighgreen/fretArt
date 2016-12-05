@@ -259,6 +259,19 @@ function drawShape(shapeArray) {
   pop();
 }
 
+function playSound() {
+  var cPedal = document.getElementById("_9");
+  // if(cPedal.cPedalPlay() == false) {
+    cPedal.play();
+  // }
+  console.log();
+}
+
+// function stopsound() {
+//   if(cPedal.isPlaying() == true) {
+//     cPedal.pause();
+//   }
+// }
 // 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // Grab the select fields and buttons from the HTML document
@@ -268,6 +281,8 @@ var showButton = document.getElementById("show-scale");
 var clearButton = document.getElementById("clear-scale");
 var showLines = document.getElementById("show-lines");
 var clearLines = document.getElementById("clear-lines");
+var cPedalPlay = document.getElementById("play-button")
+var cPedalStop = document.getElementById("stop-button")
 
 keyValueField.addEventListener("change", processInput);
 scaleValueField.addEventListener("change", processInput);
@@ -281,6 +296,12 @@ showLines.addEventListener("click", function() {
 clearLines.addEventListener("click", function() {
   fretArt.linesVisible = false;
 });
+cPedalPlay.addEventListener("click", function() {
+  cPedalPlay = true;
+});
+cPedalStop.addEventListener("click", function() {
+ cPedalPlay = false;
+});
 
 // 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
 
@@ -293,11 +314,19 @@ function setup() {
 // Required P5 function loops forever
 function draw() {
   background(0);
+
+  // Turn on lines when Show lines button is clicked
   if (fretArt.linesVisible) {
     drawLines();
   }
 
-
+  // Turn on C Pedal Tone when Play button is clicked
+  if (cPedalPlay == true) {
+    playSound();
+  } else {
+    // Pause C Pedal Tone
+    cPedalPlay = false;
+  }
 
   // Start shapes
   push();
