@@ -68,104 +68,32 @@ var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
 var melMinLowestFrets = [402,323,246,168,89,12];
 
-// Sets current mode to build into shapes
-var initialStringIndices = melMinLowestFrets;
-// Current key (8 = C)
-var currentKey = 8;
-// Number of shapes to create (set to 23 for middle shapes)
-fretArt.numberOfShapes = 23;
-
-// Sets indices for initial array
-var initialArray = [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]];
-// Make blank shapes based on numberOfShapes
-for (var i = 0; i <= fretArt.numberOfShapes; i++) {
-  fretArt.shapes.push(new Shape([0,0,0,0,0,0,0,0,0,0,0,0]));
-}
-// Combine currentKey with initialStringIndices
-for (var i = 0; i < initialStringIndices.length; i++) {
-  fretArt.stringPos[i] = currentKey + initialStringIndices[i];
-}
-var stringIndices = [];
-// Map coordinates from modesLowestFrets to stringIndices[]
-for (var i = 0; i <= 5; i++) {
-  stringIndices.push(fretArt.stringPos[i]);
-}
-for (var i = 5; i >= 0; i--) {
-  stringIndices.push(fretArt.stringPos[i]);
+setShape = function(currentKey, numberOfShapes, initialArray) {
+  // Sets current mode to build into shapes
+  var initialStringIndices = melMinLowestFrets;
+  // Sets indices for initial array
+  initialArray = [[6,7],[3,4],[1,2],[5,6],[2,3],[6,7]];
+  // Make blank shapes based on numberOfShapes
+  for (var i = 0; i <= fretArt.numberOfShapes; i++) {
+    fretArt.shapes.push(new Shape([0,0,0,0,0,0,0,0,0,0,0,0]));
+  }
+  // Combine currentKey with initialStringIndices
+  for (var i = 0; i < initialStringIndices.length; i++) {
+    fretArt.stringPos[i] = currentKey + initialStringIndices[i];
+  }
+  // Map coordinates from modesLowestFrets to stringIndices[]
+  for (var i = 0; i <= 5; i++) {
+    fretArt.stringIndices.push(fretArt.stringPos[i]);
+  }
+  for (var i = 5; i >= 0; i--) {
+    fretArt.stringIndices.push(fretArt.stringPos[i]);
+  }
 }
 
 // 2. DEFINE FUNCTIONS -----------------
 
 // Populate arrPositionList by passing in initialArray and number of shapes
 
-// Question 2: I'm curious about the semantic difference between the two functions
-// below and the rest of them? Which should I use and does it matter?
-create3DArray = function(array, size){
-  var newArray = [initialArray];
-  for(var i = 0; i < size; i++)
-  {
-    newArray.push(getNextArrayRow(newArray[i]));
-  }
-  return newArray;
-}
-
-getNextArrayRow = function(array){
-  var nextRow = [];
-  for(var i = 0; i < array.length; i++)
-  {
-    var innerArray = array[i];
-    var nextElement = [];
-    for(var j = 0; j < innerArray.length; j++)
-    {
-      var value = (innerArray[j] + 1) % (7 + j);
-      value = value === 0 ? j : value;
-      nextElement.push(value);
-    }
-    nextRow.push(nextElement);
-  }
-  return nextRow;
-}
-// Question 3: I tried to move the two fret.arrPositionLists below up into the
-// GERERATE DATA section above. However, they need to be below
-// the create3DArray functions above to work. Is there a way to move these up
-// so that I can keep the functions area clean?
-fretArt.arrPositionList = (create3DArray(initialArray,fretArt.numberOfShapes));
-// Set number of shapes based on number of arrays in arrPositionList
-fretArt.numberOfShapes = fretArt.arrPositionList.length - 1;
-
-// Build shapes for current key and mode
-function buildShapes(stringIndices,shapeNumber,arrPositionList) {
-  // Make left side of first shape
-  for (var i = 0; i < stringIndices.length; i++) {
-    fretArt.shapes[0].frets[i] += stringIndices[i];
-  }
-  // Make right side of first shape
-  for (var i = 0; i < 6; i++) {
-    fretArt.shapes[0].frets[i + 6] += parseInt(fretArt.modes.melMin.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
-  }
-  // Build the rest of the shapes
-  for (var n = 0; n < shapeNumber; n++){
-    // Build left side of shape
-    for (var i = 0; i < 6; i++){
-      fretArt.shapes[n+1].frets[i] += parseInt(fretArt.shapes[n].frets.slice(11-i, 12-i));
-    }
-    // Build right side of shape
-    for (var i = 0; i < 6; i++) {
-      fretArt.shapes[n+1].frets[i + 6] += parseInt(fretArt.shapes[n].frets.slice(i+6, i+ 7)) + parseInt(fretArt.modes.melMin.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
-    }
-  }
-}
-
-function drawLines() {
-  for (var i = 0; i < fretArt.shapes.length; i++) {
-    var currentShape = fretArt.shapes[i].frets;
-    var currentShapeArray = [];
-    for (var item in currentShape) {
-      currentShapeArray.push(fretArt.shadowFrets[currentShape[item]]);
-    }
-    generateShape(currentShapeArray);
-  }
-}
 
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
@@ -221,12 +149,82 @@ function processInput() {
   var currentMode = fretArt.modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
   setScale(key, currentMode.pattern);
-  console.log(currentMode.pattern);
+  console.log(key);
 }
 
 function mousePressed() {
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].clicked();
+  }
+}
+// Question 2: I'm curious about the semantic difference between the two functions
+// below and the rest of them? Which should I use and does it matter?
+create3DArray = function(array, size){
+  var newArray = [fretArt.initialArray];
+  for(var i = 0; i < size; i++)
+  {
+    newArray.push(getNextArrayRow(newArray[i]));
+  }
+  return newArray;
+}
+
+getNextArrayRow = function(array){
+  var nextRow = [];
+  for(var i = 0; i < array.length; i++)
+  {
+    var innerArray = array[i];
+    var nextElement = [];
+    for(var j = 0; j < innerArray.length; j++)
+    {
+      var value = (innerArray[j] + 1) % (7 + j);
+      value = value === 0 ? j : value;
+      nextElement.push(value);
+    }
+    nextRow.push(nextElement);
+  }
+  return nextRow;
+}
+// Question 3: I tried to move the two fret.arrPositionLists below up into the
+// GERERATE DATA section above. However, they need to be below
+// the create3DArray functions above to work. Is there a way to move these up
+// so that I can keep the functions area clean?
+
+
+fretArt.arrPositionList = (create3DArray(fretArt.initialArray,fretArt.numberOfShapes));
+// Set number of shapes based on number of arrays in arrPositionList
+fretArt.numberOfShapes = fretArt.arrPositionList.length - 1;
+
+// Build shapes for current key and mode
+function buildShapes(stringIndices,shapeNumber,arrPositionList) {
+  // Make left side of first shape
+  for (var i = 0; i < stringIndices.length; i++) {
+    fretArt.shapes[0].frets[i] += stringIndices[i];
+  }
+  // Make right side of first shape
+  for (var i = 0; i < 6; i++) {
+    fretArt.shapes[0].frets[i + 6] += parseInt(fretArt.modes.melMin.pattern.slice(arrPositionList[0][i][0],arrPositionList[0][i][1]));
+  }
+  // Build the rest of the shapes
+  for (var n = 0; n < shapeNumber; n++){
+    // Build left side of shape
+    for (var i = 0; i < 6; i++){
+      fretArt.shapes[n+1].frets[i] += parseInt(fretArt.shapes[n].frets.slice(11-i, 12-i));
+    }
+    // Build right side of shape
+    for (var i = 0; i < 6; i++) {
+      fretArt.shapes[n+1].frets[i + 6] += parseInt(fretArt.shapes[n].frets.slice(i+6, i+ 7)) + parseInt(fretArt.modes.melMin.pattern.slice((arrPositionList[n+1][i][0]), (arrPositionList[n+1][i][1])));
+    }
+  }
+}
+
+function drawLines() {
+  for (var i = 0; i < fretArt.shapes.length; i++) {
+    var currentShape = fretArt.shapes[i].frets;
+    var currentShapeArray = [];
+    for (var item in currentShape) {
+      currentShapeArray.push(fretArt.shadowFrets[currentShape[item]]);
+    }
+    generateShape(currentShapeArray);
   }
 }
 
@@ -246,7 +244,6 @@ function generateShape(fretArray) {
   drawShape(shapeArray);
 }
 
-// Pass in shapeArray from Fret.prototype.drawLines() and display shape
 function drawShape(shapeArray) {
   push();
   beginShape();
@@ -309,7 +306,7 @@ cPedalStop.addEventListener("click", function() {
 
 function setup() {
   createCanvas(900, 370);
-  buildShapes(stringIndices,fretArt.numberOfShapes,fretArt.arrPositionList);
+  buildShapes(fretArt.stringIndices,fretArt.numberOfShapes,fretArt.arrPositionList);
 
 }
 
