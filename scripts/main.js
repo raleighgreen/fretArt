@@ -65,6 +65,7 @@ var lydianLowestFrets = [402,324,246,168,90,12];
 var mixolydianLowestFrets = [401,324,246,168,89,11];
 var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
+var minPentLowestFrets = [402,324,246,168,89,12];
 
 // Sets current mode to build into shapes
 var initialStringIndices = ionianLowestFrets;
@@ -286,6 +287,7 @@ clearLines.addEventListener("click", function() {
 function setup() {
   createCanvas(900, 370);
   buildShapes(stringIndices,fretArt.numberOfShapes,fretArt.arrPositionList);
+
 }
 
 // Required P5 function loops forever
@@ -294,6 +296,8 @@ function draw() {
   if (fretArt.linesVisible) {
     drawLines();
   }
+
+
 
   // Start shapes
   push();
@@ -313,6 +317,11 @@ function draw() {
 
   pop();
   // End shapes
+
+  // Trigger note light and sound on note mouseOver
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    fretArt.frets[i].overNote();
+  }
 
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].displayWithColor();

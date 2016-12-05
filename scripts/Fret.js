@@ -35,6 +35,22 @@ Fret.prototype.clicked = function() {
   }
 }
 
+Fret.prototype.overNote = function() {
+  var d = dist(mouseX, mouseY, this.x, this.y);
+  var audioNote = this.note.audioFile;
+  // If in the bounds of the note...
+  if (d < 7) {
+    // Play the note's audioFile
+    audioNote.play();
+    // And light it up
+    this.playing = true;
+    var passThisToTimeout = this;
+    // Turn light off after some time
+    setTimeout(function() {
+      passThisToTimeout.playing = false;
+    }, 2700);
+  }
+}
 // Attach note names to frets
 Fret.prototype.attachNotes = function() {
   // Split notes into octaves
