@@ -98,8 +98,6 @@ for (var i = 5; i >= 0; i--) {
 
 // Populate arrPositionList by passing in initialArray and number of shapes
 
-// Question 2: I'm curious about the semantic difference between the two functions
-// below and the rest of them? Which should I use and does it matter?
 create3DArray = function(array, size){
   var newArray = [initialArray];
   for(var i = 0; i < size; i++)
@@ -221,13 +219,7 @@ function processInput() {
   var currentMode = fretArt.modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
   setScale(key, currentMode.pattern);
-  console.log(currentMode.pattern);
-}
-
-function mousePressed() {
-  for (var i = 0; i < fretArt.frets.length; i++) {
-    fretArt.frets[i].clicked();
-  }
+  console.log(key);
 }
 
 function generateShape(fretArray) {
@@ -259,6 +251,12 @@ function drawShape(shapeArray) {
   }
   endShape(CLOSE);
   pop();
+}
+
+function mousePressed() {
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    fretArt.frets[i].clicked();
+  }
 }
 
 function playSound() {
