@@ -5,10 +5,13 @@ var fretArt = {
   strings: [],
   stringPos: [],
   shadowFrets: [],
-  numberOfShapes: null,
+  numberOfShapes: 23,
   arrPositionList: null,
   modes: null,
   linesVisible: false,
   cPedalPlay: false,
-  noteNameList: ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"]
+  noteNameList: ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"],
+  initialStringIndices: null,
+  currentKey: null,
+  currentMode: null
 }
