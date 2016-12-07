@@ -240,10 +240,10 @@ function pedalToneKeyDisplay(){
 // Grab the select fields and buttons from the HTML document
 var keyValueField = document.getElementById("key-value");
 var scaleValueField = document.getElementById("scale-value");
-var showButton = document.getElementById("show-scale");
-var clearButton = document.getElementById("clear-scale");
-var showLines = document.getElementById("show-lines");
-var clearLines = document.getElementById("clear-lines");
+var showScales = document.getElementById("show-scale");
+var hideScales = document.getElementById("hide-scale");
+var showShapes = document.getElementById("show-shapes");
+var hideShapes = document.getElementById("hide-shapes");
 var cPedalPlay = document.getElementById("play-button")
 var cPedalStop = document.getElementById("stop-button")
 
@@ -268,8 +268,10 @@ keyValueField.addEventListener("change", function(){
   buildShapes();
 });
 // When the show button is clicked, do the following...
-showButton.addEventListener("click", function(){
+showScales.addEventListener("click", function(){
   processInput();
+  turnOnButtonStyle(document.getElementById("show-scale"));
+  turnOffButtonStyle(document.getElementById("hide-scale"));
   for (var f = 0; f < fretArt.frets.length; f++) {
     if (fretArt.frets[f].active = true) {
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
@@ -278,27 +280,52 @@ showButton.addEventListener("click", function(){
   buildShapes();
 });
 // Clear fretboard and updateDisplay
-clearButton.addEventListener("click", clearFretSelection);
-showLines.addEventListener("click", function() {
+hideScales.addEventListener("click", function() {
+  turnOffButtonStyle(document.getElementById("show-scale"));
+  turnOnButtonStyle(document.getElementById("hide-scale"));
+  clearFretSelection();
+});
+showShapes.addEventListener("click", function() {
+  turnOnButtonStyle(document.getElementById("show-shapes"));
+  turnOffButtonStyle(document.getElementById("hide-shapes"));
   fretArt.linesVisible = true;
   processInput();
   buildShapes();
 });
-clearLines.addEventListener("click", function() {
+hideShapes.addEventListener("click", function() {
+  turnOffButtonStyle(document.getElementById("show-shapes"));
+  turnOnButtonStyle(document.getElementById("hide-shapes"));
   fretArt.linesVisible = false;
 });
 cPedalPlay.addEventListener("click", function() {
+  turnOnButtonStyle(document.getElementById("play-button"));
+  turnOffButtonStyle(document.getElementById("stop-button"));
   cPedalPlay = true;
 });
 cPedalStop.addEventListener("click", function() {
- cPedalPlay = false;
+  turnOffButtonStyle(document.getElementById("play-button"));
+  turnOnButtonStyle(document.getElementById("stop-button"));
+  cPedalPlay = false;
 });
 
+function turnOnButtonStyle(onElem) {
+  var onElement = onElem;
+  onElement.style.background='rgb(17,62,185)';
+  onElement.style.color = "black";
+}
+function turnOffButtonStyle(offElem) {
+  var offElement = offElem;
+  offElement.style.background='black';
+  offElement.style.color = '#1354C6';
+}
 // 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
 
 function setup() {
   createCanvas(900, 370);
   // buildShapes();
+  turnOnButtonStyle(document.getElementById("hide-scale"));
+  turnOnButtonStyle(document.getElementById("hide-shapes"));
+  turnOnButtonStyle(document.getElementById("stop-button"));
 }
 
 // Required P5 function loops forever
