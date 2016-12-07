@@ -15,6 +15,8 @@ var mixolydianLowestFrets = [401,324,246,168,89,11];
 var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
 var melMinLowestFrets = [402,323,246,168,89,12];
+var harmMinLowestFrets = [402,323,245,168,89,12];
+
 // Create modes and group them in an Object
 fretArt.modes = {
   ionian: new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1], ionianLowestFrets),
@@ -24,7 +26,8 @@ fretArt.modes = {
   mixolydian: new Mode("mixolydian", [2, 2, 1, 2, 2, 1, 2], mixolydianLowestFrets),
   aeolien: new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2], aeolienLowestFrets),
   locrian: new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2], locrianLowestFrets),
-  melMin: new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets)
+  melMin: new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets),
+  harmMin: new Mode("Harmonic Minor",[2, 1, 2, 2, 1, 3, 1], harmMinLowestFrets)
 }
 
 // Create strings and group them in an array
@@ -37,10 +40,6 @@ fretArt.strings = [
   new String("lowE", 0, 24)
 ];
 
-// Question 1: Should these the 2 variables below be moved out of the
-// global namespace and into fretArt.js? There are lots of other variables
-// that appear to be global. Would it be best to place those variables
-// elsewhere so that they are out of the global namespace as well?
 var noteSpacing = 25;
 var stringSpacing = 20;
 // Create fret objects and push them into frets array
@@ -95,11 +94,6 @@ getNextArrayRow = function(array){
   }
   return nextRow;
 }
-// Question 3: I tried to move the two fret.arrPositionLists below up into the
-// GERERATE DATA section above. However, they need to be below
-// the create3DArray functions above to work. Is there a way to move these up
-// so that I can keep the functions area clean?
-
 
 // Build shapes for current key and mode
 function buildShapes() {
@@ -199,7 +193,6 @@ function activateFrets(foundScale) {
       }
     }
   }
-
 }
 
 
@@ -211,29 +204,10 @@ function processInput() {
   // Grab the current mode using the value from the mode select field
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
-  setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-  buildShapes();
-
-
+  // setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+  // buildShapes();
 }
 
-// function generateShape(fretArray) {
-//   // create empty shape array
-//   var shapeArray = [];
-//   // loop through the passed in frets
-//   for (var i = 0; i < fretArray.length; i++) {
-//     var coordinates = [];
-//     // Get x and y values from the frets and
-//     // save them in fretArray[];
-//     coordinates.push(fretArray[i].x);
-//     coordinates.push(fretArray[i].y);
-//     // Add them to the overall shape array
-//     shapeArray.push(coordinates);
-//   }
-//   drawShape(shapeArray);
-// }
-
-// Pass in shapeArray from Fret.prototype.drawLines() and display shape
 function drawShape(shapeArray) {
   push();
   beginShape();
@@ -258,15 +232,7 @@ function playSound() {
   var cPedal = document.getElementById("_9");
     cPedal.play();
 }
-// function keyPressed() {
-//     if(keyCode == UP_ARROW) {
-//         playSound();
-//     } else if (keyCode == DOWN_ARROW) {
-//         console.log("key down");
-//     }
-//     return 0;
-// }
-// window.addEventListener("keydown", playSound);
+
 // 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // Grab the select fields and buttons from the HTML document
@@ -279,10 +245,34 @@ var clearLines = document.getElementById("clear-lines");
 var cPedalPlay = document.getElementById("play-button")
 var cPedalStop = document.getElementById("stop-button")
 
-keyValueField.addEventListener("change", processInput);
-scaleValueField.addEventListener("change", processInput);
+keyValueField.addEventListener("change", function(){
+  processInput();
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+  buildShapes();
+});
+scaleValueField.addEventListener("change", function(){
+  processInput();
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+  buildShapes();
+});
 // When the show button is clicked, do the following...
-showButton.addEventListener("click", processInput);
+showButton.addEventListener("click", function(){
+  processInput();
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active = true) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+  buildShapes();
+});
 // Clear fretboard and updateDisplay
 clearButton.addEventListener("click", clearFretSelection);
 showLines.addEventListener("click", function() {
