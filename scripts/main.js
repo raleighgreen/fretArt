@@ -277,6 +277,8 @@ showButton.addEventListener("click", function(){
 clearButton.addEventListener("click", clearFretSelection);
 showLines.addEventListener("click", function() {
   fretArt.linesVisible = true;
+  processInput();
+  buildShapes();
 });
 clearLines.addEventListener("click", function() {
   fretArt.linesVisible = false;
