@@ -58,8 +58,12 @@ select {
 }
 #pedal-tone {
   position: relative;
-  text-align: center;
+  text-align: right;
   z-index: 10;
   float: right;
-  margin: 0 0 10px 10px;
+  margin: 0 10px 10px 10px;
+}
+
+#stop-button {
+  margin: 0;
 }

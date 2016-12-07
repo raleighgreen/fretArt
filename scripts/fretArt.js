@@ -13,5 +13,6 @@ var fretArt = {
   noteNameList: ["E","F","F#","G","G#","A","A#","B","C","C#","D","D#"],
   initialStringIndices: null,
   currentKey: null,
+  currentKeyName: null,
   currentMode: null
 }

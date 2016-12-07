@@ -200,12 +200,10 @@ function processInput() {
   // Grab the key value from the key select fields
   fretArt.currentKey = parseInt(keyValueField.selectedIndex);
   // Grab the name of the key from the text content of the option element
-  var currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
+  fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
-  // setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-  // buildShapes();
 }
 
 function drawShape(shapeArray) {
@@ -233,6 +231,10 @@ function playSound() {
     cPedal.play();
 }
 
+function pedalToneKeyDisplay(){
+  document.getElementById("pedal-tone-key").textContent = fretArt.currentKeyName;
+  console.log(fretArt.currentKeyName);
+}
 // 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // Grab the select fields and buttons from the HTML document
@@ -245,7 +247,7 @@ var clearLines = document.getElementById("clear-lines");
 var cPedalPlay = document.getElementById("play-button")
 var cPedalStop = document.getElementById("stop-button")
 
-keyValueField.addEventListener("change", function(){
+scaleValueField.addEventListener("change", function(){
   processInput();
   for (var f = 0; f < fretArt.frets.length; f++) {
     if (fretArt.frets[f].active) {
@@ -254,8 +256,10 @@ keyValueField.addEventListener("change", function(){
   }
   buildShapes();
 });
-scaleValueField.addEventListener("change", function(){
+keyValueField.addEventListener("change", function(){
   processInput();
+  // When new key is chosen, update pedal tone key text with the currentKey
+  pedalToneKeyDisplay();
   for (var f = 0; f < fretArt.frets.length; f++) {
     if (fretArt.frets[f].active) {
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
@@ -300,7 +304,6 @@ function setup() {
 // Required P5 function loops forever
 function draw() {
   background(0);
-
   // Turn on lines when Show lines button is clicked
   if (fretArt.linesVisible) {
     drawLines();
