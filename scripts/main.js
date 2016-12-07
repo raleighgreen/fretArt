@@ -227,13 +227,13 @@ function mousePressed() {
 }
 
 function playSound() {
-  var cPedal = document.getElementById("_9");
+  processInput();
+  var cPedal = document.getElementById("_" + (fretArt.currentKey + 1));
     cPedal.play();
 }
 
 function pedalToneKeyDisplay(){
   document.getElementById("pedal-tone-key").textContent = fretArt.currentKeyName;
-  console.log(fretArt.currentKeyName);
 }
 // 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
