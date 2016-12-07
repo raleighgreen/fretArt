@@ -256,8 +256,8 @@ var showScales = document.getElementById("show-scale");
 var hideScales = document.getElementById("hide-scale");
 var showShapes = document.getElementById("show-shapes");
 var hideShapes = document.getElementById("hide-shapes");
-var cPedalPlay = document.getElementById("play-button")
-var cPedalStop = document.getElementById("stop-button")
+var PedalTonePlay = document.getElementById("play-button")
+var PedalToneStop = document.getElementById("stop-button")
 
 scaleValueField.addEventListener("change", function(){
   processInput();
@@ -309,15 +309,15 @@ hideShapes.addEventListener("click", function() {
   turnOnButtonStyle(document.getElementById("hide-shapes"));
   fretArt.linesVisible = false;
 });
-cPedalPlay.addEventListener("click", function() {
+PedalTonePlay.addEventListener("click", function() {
   turnOnButtonStyle(document.getElementById("play-button"));
   turnOffButtonStyle(document.getElementById("stop-button"));
-  cPedalPlay = true;
+  PedalTonePlay = true;
 });
-cPedalStop.addEventListener("click", function() {
+PedalToneStop.addEventListener("click", function() {
   turnOffButtonStyle(document.getElementById("play-button"));
   turnOnButtonStyle(document.getElementById("stop-button"));
-  cPedalPlay = false;
+  PedalTonePlay = false;
 });
 
 function turnOnButtonStyle(onElem) {
@@ -349,11 +349,11 @@ function draw() {
   }
 
   // Turn on C Pedal Tone when Play button is clicked
-  if (cPedalPlay == true) {
+  if (PedalTonePlay == true) {
     playSound();
   } else {
     // Pause C Pedal Tone
-    cPedalPlay = false;
+    PedalTonePlay = false;
   }
 
   // Start shapes
@@ -379,7 +379,7 @@ function draw() {
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].overNote();
   }
-
+  
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].displayWithColor();
     fretArt.frets[i].attachNotes();
