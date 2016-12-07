@@ -15,6 +15,12 @@ var mixolydianLowestFrets = [401,324,246,168,89,11];
 var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
 var melMinLowestFrets = [402,323,246,168,89,12];
+var phrygianNat6LowestFrets = [401,323,246,167,89,11];
+var lydianAugmentedLowestFrets = [402,324,246,168,90,12];
+var lydianb7LowestFrets = [401,324,246,168,90,11];
+var mixolydianb6LowestFrets = [401,324,245,168,89,11];
+var locrianNat2LowestFrets = [401,323,245,168,89,11];
+var alteredScaleLowestFrets = [401,323,245,167,88,11];
 var harmMinLowestFrets = [402,323,245,168,89,12];
 
 // Create modes and group them in an Object
@@ -27,6 +33,12 @@ fretArt.modes = {
   aeolien: new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2], aeolienLowestFrets),
   locrian: new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2], locrianLowestFrets),
   melMin: new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets),
+  phrygianNat6: new Mode("Phrygian Natural 6", [1, 2, 2, 2, 2, 1, 2], phrygianNat6LowestFrets),
+  lydianAugmented: new Mode("Lydian Augmented",[2, 2, 2, 2, 1, 2, 1], lydianAugmentedLowestFrets),
+  lydianb7: new Mode("Lydian b7", [2, 2, 2, 1, 2, 1, 2], lydianb7LowestFrets),
+  mixolydianb6: new Mode("Mixolydian b6", [2, 2, 1, 2, 1, 2, 2], mixolydianb6LowestFrets),
+  locrianNat2: new Mode("Locrian",[2, 1, 2, 1, 2, 2, 2], locrianNat2LowestFrets),
+  alteredScale: new Mode("Locrian",[1, 2, 1, 2, 2, 2, 2], alteredScaleLowestFrets),
   harmMin: new Mode("Harmonic Minor",[2, 1, 2, 2, 1, 3, 1], harmMinLowestFrets)
 }
 
