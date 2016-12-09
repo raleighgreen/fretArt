@@ -72,3 +72,4 @@ select {
 #stop-button {
   margin: 0;
 }
+#scale-value a:hover {background-color: #3e8e41}

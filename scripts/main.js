@@ -159,7 +159,6 @@ function drawLines() {
     for (var item in currentShape) {
       currentShapeArray.push(fretArt.shadowFrets[currentShape[item]]);
     }
-    console.log(currentShapeArray);
     drawShape(currentShapeArray);
   }
 }
@@ -169,6 +168,20 @@ function setScale(key, mode) {
   var foundScale = getScale(key, mode);
   setOctave(key);
   activateFrets(foundScale);
+  fretArt.foundScaleIds = [];
+  for (var i = 0; i < foundScale.length; i++){
+
+    fretArt.foundScaleIds.push(foundScale[i].audioFile.id);
+  }
+}
+
+function isolateScaleIds(foundScale) {
+  // filter out duplicates and return
+  fretArt.filteredScaleIds = [];
+  fretArt.filteredScaleIds = fretArt.foundScaleIds.filter(function(elem,pos) {
+    return fretArt.foundScaleIds.indexOf(elem) == pos;
+  });
+  console.log(fretArt.filteredScaleIds);
 }
 
 // Deactivates all frets to make blank slate
@@ -247,6 +260,17 @@ function playSound() {
 function pedalToneKeyDisplay(){
   document.getElementById("pedal-tone-key").textContent = fretArt.currentKeyName;
 }
+
+function turnOnButtonStyle(onElem) {
+  var onElement = onElem;
+  onElement.style.background='rgb(17,62,185)';
+  onElement.style.color = "black";
+}
+function turnOffButtonStyle(offElem) {
+  var offElement = offElem;
+  offElement.style.background='black';
+  offElement.style.color = '#1354C6';
+}
 // 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // Grab the select fields and buttons from the HTML document
@@ -266,6 +290,7 @@ scaleValueField.addEventListener("change", function(){
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
     }
   }
+  isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
 keyValueField.addEventListener("change", function(){
@@ -277,6 +302,7 @@ keyValueField.addEventListener("change", function(){
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
     }
   }
+  isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
 // When the show button is clicked, do the following...
@@ -289,6 +315,7 @@ showScales.addEventListener("click", function(){
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
     }
   }
+  isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
 // Clear fretboard and updateDisplay
@@ -302,6 +329,7 @@ showShapes.addEventListener("click", function() {
   turnOffButtonStyle(document.getElementById("hide-shapes"));
   fretArt.linesVisible = true;
   processInput();
+  isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
 hideShapes.addEventListener("click", function() {
@@ -320,16 +348,59 @@ PedalToneStop.addEventListener("click", function() {
   PedalTonePlay = false;
 });
 
-function turnOnButtonStyle(onElem) {
-  var onElement = onElem;
-  onElement.style.background='rgb(17,62,185)';
-  onElement.style.color = "black";
-}
-function turnOffButtonStyle(offElem) {
-  var offElement = offElem;
-  offElement.style.background='black';
-  offElement.style.color = '#1354C6';
-}
+// Make an empty array to hold currentMode note id's
+window.addEventListener("keydown", function (event) {
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
+  }
+  switch (event.key) {
+    case "z":
+      var pitch1 = document.getElementById(fretArt.filteredScaleIds[0]);
+      pitch1.play();
+      break;
+    case "x":
+    var pitch2 = document.getElementById(fretArt.filteredScaleIds[1]);
+      pitch2.play();
+      break;
+    case "c":
+    var pitch3 = document.getElementById(fretArt.filteredScaleIds[2]);
+      pitch3.play();
+      break;
+    case "v":
+    var pitch4 = document.getElementById(fretArt.filteredScaleIds[3]);
+      pitch4.play();
+      break;
+    case "b":
+    var pitch5 = document.getElementById(fretArt.filteredScaleIds[4]);
+      pitch5.play();
+      break;
+    case "n":
+    var pitch6 = document.getElementById(fretArt.filteredScaleIds[5]);
+      pitch6.play();
+      break;
+    case "m":
+    var pitch7 = document.getElementById(fretArt.filteredScaleIds[6]);
+      pitch7.play();
+      break;
+    case ",":
+    var pitch8 = document.getElementById(fretArt.filteredScaleIds[7]);
+      pitch8.play();
+      break;
+    case ".":
+    var pitch9 = document.getElementById(fretArt.filteredScaleIds[8]);
+      pitch9.play();
+      break;
+    case "/":
+    var pitch10 = document.getElementById(fretArt.filteredScaleIds[9]);
+      pitch10.play();
+      break;
+    default:
+      return; // Quit when this doesn't handle the key event.
+  }
+
+  // Cancel the default action to avoid it being handled twice
+  event.preventDefault();
+}, true);
 // 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
 
 function setup() {
@@ -379,7 +450,7 @@ function draw() {
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].overNote();
   }
-  
+
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].displayWithColor();
     fretArt.frets[i].attachNotes();
