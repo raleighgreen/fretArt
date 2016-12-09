@@ -324,6 +324,7 @@ hideScales.addEventListener("click", function() {
   turnOnButtonStyle(document.getElementById("hide-scale"));
   clearFretSelection();
 });
+
 showShapes.addEventListener("click", function() {
   turnOnButtonStyle(document.getElementById("show-shapes"));
   turnOffButtonStyle(document.getElementById("hide-shapes"));
@@ -332,75 +333,25 @@ showShapes.addEventListener("click", function() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
+
 hideShapes.addEventListener("click", function() {
   turnOffButtonStyle(document.getElementById("show-shapes"));
   turnOnButtonStyle(document.getElementById("hide-shapes"));
   fretArt.linesVisible = false;
 });
+
 PedalTonePlay.addEventListener("click", function() {
   turnOnButtonStyle(document.getElementById("play-button"));
   turnOffButtonStyle(document.getElementById("stop-button"));
   PedalTonePlay = true;
 });
+
 PedalToneStop.addEventListener("click", function() {
   turnOffButtonStyle(document.getElementById("play-button"));
   turnOnButtonStyle(document.getElementById("stop-button"));
   PedalTonePlay = false;
 });
 
-// Make an empty array to hold currentMode note id's
-window.addEventListener("keydown", function (event) {
-  if (event.defaultPrevented) {
-    return; // Do nothing if the event was already processed
-  }
-  switch (event.key) {
-    case "z":
-      var pitch1 = document.getElementById(fretArt.filteredScaleIds[0]);
-      pitch1.play();
-      break;
-    case "x":
-    var pitch2 = document.getElementById(fretArt.filteredScaleIds[1]);
-      pitch2.play();
-      break;
-    case "c":
-    var pitch3 = document.getElementById(fretArt.filteredScaleIds[2]);
-      pitch3.play();
-      break;
-    case "v":
-    var pitch4 = document.getElementById(fretArt.filteredScaleIds[3]);
-      pitch4.play();
-      break;
-    case "b":
-    var pitch5 = document.getElementById(fretArt.filteredScaleIds[4]);
-      pitch5.play();
-      break;
-    case "n":
-    var pitch6 = document.getElementById(fretArt.filteredScaleIds[5]);
-      pitch6.play();
-      break;
-    case "m":
-    var pitch7 = document.getElementById(fretArt.filteredScaleIds[6]);
-      pitch7.play();
-      break;
-    case ",":
-    var pitch8 = document.getElementById(fretArt.filteredScaleIds[7]);
-      pitch8.play();
-      break;
-    case ".":
-    var pitch9 = document.getElementById(fretArt.filteredScaleIds[8]);
-      pitch9.play();
-      break;
-    case "/":
-    var pitch10 = document.getElementById(fretArt.filteredScaleIds[9]);
-      pitch10.play();
-      break;
-    default:
-      return; // Quit when this doesn't handle the key event.
-  }
-
-  // Cancel the default action to avoid it being handled twice
-  event.preventDefault();
-}, true);
 // 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
 
 function setup() {
