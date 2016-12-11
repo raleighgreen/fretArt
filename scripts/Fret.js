@@ -8,6 +8,8 @@ function Fret(x, y, note, string) {
   this.playing = false;
   this.col = "";
   this.noteNameList;
+  this.foundNoteName;
+  this.noteOctave;
   this.noteName;
   this.noteDegreeList;
   this.degreeName;
@@ -33,6 +35,16 @@ Fret.prototype.clicked = function() {
       passThisToTimeout.playing = false;
     }, 2700);
   }
+}
+
+Fret.prototype.notePlaying = function() {
+  var audioNote = this.note.audioFile;
+  this.playing = true;
+  var passThisToTimeout = this;
+  // Turn light off after some time
+  setTimeout(function() {
+    passThisToTimeout.playing = false;
+  }, 2700);
 }
 
 Fret.prototype.overNote = function() {

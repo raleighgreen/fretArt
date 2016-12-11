@@ -1,9 +1,13 @@
 // 1. GENERATE DATA USING CONSTRUCTORS -----------------
+var letterNumbers = [["E0","F0","F#0","G0","G#0","A0","A#0","B0","C1","C#1","D1","D#1",
+                      "E1","F1","F#1","G1","G#1","A1","A#1","B1","C2","C#2","D2","D#2",
+                      "E2","F2","F#2","G2","G#2","A2","A#2","B2","C3","C#3","D3","D#3",
+                      "E3","F3","F#3","G3","G#3","A3","A#3","B3","C4","C#4","D4","D#4", "E4"]];
 
 // Generate notes
 for (var i = 0; i <= 48; i++) {
   var audioFileNumber = i + 1;
-  fretArt['notes'].push(new Note(i, audioFileNumber));
+  fretArt['notes'].push(new Note(i, audioFileNumber, letterNumbers[0][i]));
 }
 
 // List lowest frets for each mode (need to make into an object?)
@@ -165,13 +169,13 @@ function drawLines() {
 
 // Calculates a scale by key and mode and activates it on the frets
 function setScale(key, mode) {
-  var foundScale = getScale(key, mode);
+  fretArt.foundScale = getScale(key, mode);
   setOctave(key);
-  activateFrets(foundScale);
+  activateFrets(fretArt.foundScale);
   fretArt.foundScaleIds = [];
-  for (var i = 0; i < foundScale.length; i++){
+  for (var i = 0; i < fretArt.foundScale.length; i++){
 
-    fretArt.foundScaleIds.push(foundScale[i].audioFile.id);
+    fretArt.foundScaleIds.push(fretArt.foundScale[i].audioFile.id);
   }
 }
 
@@ -181,7 +185,6 @@ function isolateScaleIds(foundScale) {
   fretArt.filteredScaleIds = fretArt.foundScaleIds.filter(function(elem,pos) {
     return fretArt.foundScaleIds.indexOf(elem) == pos;
   });
-  console.log(fretArt.filteredScaleIds);
 }
 
 // Deactivates all frets to make blank slate
@@ -270,6 +273,14 @@ function turnOffButtonStyle(offElem) {
   var offElement = offElem;
   offElement.style.background='black';
   offElement.style.color = '#1354C6';
+}
+
+function octaveRestrictor(foundScaleArrPos) {
+  for (i = 0; i < fretArt.frets.length; i++){
+    if (fretArt.frets[i].note.letterNum == fretArt.foundScale[foundScaleArrPos].letterNum) {
+      fretArt.frets[i].notePlaying();
+    }
+  }
 }
 // 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
