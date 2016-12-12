@@ -247,6 +247,7 @@ function processInput() {
   fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
+  console.log(fretArt.modes[scaleValueField.value].name);
   // Calculate and set the scale and display it in the console
 }
 
@@ -329,6 +330,17 @@ keyValueField.addEventListener("change", function(){
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
     }
   }
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    fretArt.frets[i].playing = false;
+  }
+  if (PedalTonePlay) {
+    for (var i = 0; i < fretArt.frets.length; i++) {
+      if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+        fretArt.frets[i].playing = true;
+        break;
+      }
+    }
+  }
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
@@ -370,12 +382,22 @@ hideShapes.addEventListener("click", function() {
 PedalTonePlay.addEventListener("click", function() {
   turnOnButtonStyle(document.getElementById("play-button"));
   turnOffButtonStyle(document.getElementById("stop-button"));
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+      fretArt.frets[i].playing = true;
+      break;
+    }
+  }
   PedalTonePlay = true;
+
 });
 
 PedalToneStop.addEventListener("click", function() {
   turnOffButtonStyle(document.getElementById("play-button"));
   turnOnButtonStyle(document.getElementById("stop-button"));
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    fretArt.frets[i].playing = false;
+  }
   PedalTonePlay = false;
 });
 
@@ -404,23 +426,27 @@ function draw() {
     // Pause C Pedal Tone
     PedalTonePlay = false;
   }
-
   // Start shapes
   push();
   // Make two black rectangles to mask lines overflow
   fill(0);
-  rect(0, 120,234, 110);
-  rect(836, 120,70, 110);
+  rect(0, 120,247, 110);
+  rect(847, 120,70, 110);
   // Make a fretboard outline
   noFill();
   strokeWeight(2);
   stroke(17,62,185);
-  rect(235, 125,600, 100);
+  rect(247, 125,600, 100);
   // Make a thin line with 75% opacity to indicate the nut
-  strokeWeight(1);
-  stroke(17,62,185,75);
+  strokeWeight(2);
+  stroke(17,62,185,95);
+  // Create the frets
   line(247, 125,247, 225);
-
+  var add25 = 271;
+  for (var i = 0; i < 23; i++) {
+    line(add25, 125,add25, 225);
+    add25 = add25 + 25;
+  }
   pop();
   // End shapes
 

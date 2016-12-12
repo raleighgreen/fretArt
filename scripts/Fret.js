@@ -104,5 +104,5 @@ Fret.prototype.displayWithColor = function() {
   }
   // Draw the dots
   fill(this.col);
-  ellipse(this.x, this.y, 11, 11);
+  ellipse(this.x, this.y, 9.5, 9.5);
 }

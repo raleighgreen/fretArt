@@ -5,21 +5,19 @@ h1 {
 }
 p {
     color: rgb(19,85,198);
+    font-weight: 100;
     font-family: sans-serif;
     margin-bottom: 3px;
     margin-top: 0px;
 }
-div {
-  /*margin: 0px;
-  padding: 0px;*/
-}
+
 button {
   margin: 10px;
   background: rgba(0,0,0,0.3);
   color:#1354C6;
-  text-shadow:0 1px 0 rgba(0,0,0,0.4);
   border        : 1px solid #113EB8;
   border-radius : 3px;
+  white-space: pre;
 }
 
 body {
@@ -45,7 +43,6 @@ select {
     margin:10px;
     background: rgba(0,0,0,0.3);
     color:#1354C6;
-    text-shadow:0 1px 0 rgba(0,0,0,0.4);
     border        : 1px solid #113EB8;
 }
 
@@ -72,4 +69,66 @@ select {
 #stop-button {
   margin: 0;
 }
-#scale-value a:hover {background-color: #3e8e41}
+
+#fretsBox {
+  position: relative;
+  color: rgb(19,85,198);
+  margin-top: -185px;
+
+}
+
+.frets {
+  font-weight: 100;
+  font-size: 70%;
+  opacity: .6;
+}
+#fret3 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 287px;
+}
+#fret5 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 337px;
+}
+#fret7 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 387px;
+}
+#fret9 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 437px;
+}
+#fret12 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 507px;
+}
+#fret15 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 583px;
+}
+#fret17 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 634px;
+}
+#fret19 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 683px;
+}
+#fret21 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 734px;
+}
+#fret24 {
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 808px;
+}
