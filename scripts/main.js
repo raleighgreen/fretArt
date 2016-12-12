@@ -239,7 +239,6 @@ function activateFrets(foundScale) {
   }
 }
 
-
 function processInput() {
   // Grab the key value from the key select fields
   fretArt.currentKey = parseInt(keyValueField.selectedIndex);
@@ -283,13 +282,13 @@ function pedalToneKeyDisplay(){
 
 function turnOnButtonStyle(onElem) {
   var onElement = onElem;
-  onElement.style.background='rgb(17,62,185)';
+  onElement.style.background='#113EB8';
   onElement.style.color = "black";
 }
 function turnOffButtonStyle(offElem) {
   var offElement = offElem;
   offElement.style.background='black';
-  offElement.style.color = '#1354C6';
+  offElement.style.color = '#113EB8';
 }
 
 function octaveRestrictor(foundScaleArrPos) {
@@ -299,6 +298,23 @@ function octaveRestrictor(foundScaleArrPos) {
     }
   }
 }
+
+function toggle(button)
+{
+    if(button.value==" Frets on ") {
+        button.value=" Frets off ";
+        turnOffButtonStyle(button);
+        document.getElementById("fretsBox").style.visibility = 'hidden';
+        fretArt.fretsIsShowing = false;
+    }
+    else if(button.value==" Frets off ") {
+        button.value=" Frets on ";
+        turnOnButtonStyle(button);
+        document.getElementById("fretsBox").style.visibility = 'visible';
+        fretArt.fretsIsShowing = true;
+    }
+}
+
 // 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // Grab the select fields and buttons from the HTML document
@@ -308,8 +324,13 @@ var showScales = document.getElementById("show-scale");
 var hideScales = document.getElementById("hide-scale");
 var showShapes = document.getElementById("show-shapes");
 var hideShapes = document.getElementById("hide-shapes");
-var PedalTonePlay = document.getElementById("play-button")
-var PedalToneStop = document.getElementById("stop-button")
+var PedalTonePlay = document.getElementById("play-button");
+var PedalToneStop = document.getElementById("stop-button");
+var fretButton = document.getElementById("fret-button");
+
+fretButton.addEventListener("click", function() {
+  toggle(fretButton);
+});
 
 scaleValueField.addEventListener("change", function(){
   processInput();
@@ -404,11 +425,13 @@ PedalToneStop.addEventListener("click", function() {
 // 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
 
 function setup() {
-  createCanvas(900, 370);
+  createCanvas(882, 370);
   // buildShapes();
   turnOnButtonStyle(document.getElementById("hide-scale"));
   turnOnButtonStyle(document.getElementById("hide-shapes"));
   turnOnButtonStyle(document.getElementById("stop-button"));
+  fretArt.fretsIsShowing = true;
+
 }
 
 // Required P5 function loops forever
@@ -440,12 +463,14 @@ function draw() {
   // Make a thin line with 75% opacity to indicate the nut
   strokeWeight(2);
   stroke(17,62,185,95);
-  // Create the frets
-  line(247, 125,247, 225);
-  var add25 = 271;
-  for (var i = 0; i < 23; i++) {
-    line(add25, 125,add25, 225);
-    add25 = add25 + 25;
+  if (fretArt.fretsIsShowing == true) {
+    // Draw the frets
+    line(247, 125,247, 225);
+    var add25 = 271;
+    for (var i = 0; i < 23; i++) {
+      line(add25, 125,add25, 225);
+      add25 = add25 + 25;
+    }
   }
   pop();
   // End shapes

@@ -27,6 +27,24 @@ body {
   justify-content: center;
 }
 
+#main-container {
+  position: relative;
+}
+
+.fretButton {
+  position: relative;;
+  float: right;
+  margin-right: -113px;
+  margin-top: -243px;
+  font-size: 65%;
+  background: rgba(0,0,0,0.3);
+  color:#1354C6;
+  border: 1px solid #113EB8;
+  border-radius : 3px;
+  white-space: pre;
+
+}
+
 .sideBarContainer {
   position: absolute;
   width: 860px;
@@ -43,11 +61,16 @@ select {
     margin:10px;
     background: rgba(0,0,0,0.3);
     color:#1354C6;
-    border        : 1px solid #113EB8;
+    border: 1px solid #113EB8;
 }
 
 .thinText {
   font-weight: 100;
+}
+
+#fret-button {
+  background: #113EB8;
+  color: black;
 }
 
 #float-here {
@@ -74,7 +97,6 @@ select {
   position: relative;
   color: rgb(19,85,198);
   margin-top: -185px;
-
 }
 
 .frets {
