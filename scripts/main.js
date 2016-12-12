@@ -410,7 +410,6 @@ PedalTonePlay.addEventListener("click", function() {
     }
   }
   PedalTonePlay = true;
-
 });
 
 PedalToneStop.addEventListener("click", function() {
@@ -431,6 +430,20 @@ function setup() {
   turnOnButtonStyle(document.getElementById("hide-shapes"));
   turnOnButtonStyle(document.getElementById("stop-button"));
   fretArt.fretsIsShowing = true;
+  processInput();
+  turnOnButtonStyle(document.getElementById("show-scale"));
+  turnOffButtonStyle(document.getElementById("hide-scale"));
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active = true) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+  turnOnButtonStyle(document.getElementById("show-shapes"));
+  turnOffButtonStyle(document.getElementById("hide-shapes"));
+  fretArt.linesVisible = true;
+  processInput();
+  isolateScaleIds(fretArt.foundScaleIds);
+  buildShapes();
 
 }
 
