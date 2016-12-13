@@ -246,7 +246,6 @@ function processInput() {
   fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
-  console.log(fretArt.modes[scaleValueField.value].name);
   // Calculate and set the scale and display it in the console
 }
 
@@ -426,25 +425,23 @@ PedalToneStop.addEventListener("click", function() {
 function setup() {
   createCanvas(882, 370);
   // buildShapes();
+  processInput();
+  fretArt.fretsIsShowing = true;
+  fretArt.linesVisible = true;
   turnOnButtonStyle(document.getElementById("hide-scale"));
+  turnOffButtonStyle(document.getElementById("hide-scale"));
+  turnOnButtonStyle(document.getElementById("show-shapes"));
   turnOnButtonStyle(document.getElementById("hide-shapes"));
   turnOnButtonStyle(document.getElementById("stop-button"));
-  fretArt.fretsIsShowing = true;
-  processInput();
   turnOnButtonStyle(document.getElementById("show-scale"));
-  turnOffButtonStyle(document.getElementById("hide-scale"));
+  turnOffButtonStyle(document.getElementById("hide-shapes"));
   for (var f = 0; f < fretArt.frets.length; f++) {
     if (fretArt.frets[f].active = true) {
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
     }
   }
-  turnOnButtonStyle(document.getElementById("show-shapes"));
-  turnOffButtonStyle(document.getElementById("hide-shapes"));
-  fretArt.linesVisible = true;
-  processInput();
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
-
 }
 
 // Required P5 function loops forever
