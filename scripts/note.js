@@ -1,5 +1,5 @@
 function Note(id, audioFile, letterNum) {
   this.id = id;
-  this.audioFile = document.getElementById("_" + audioFile);
+  this.audioFile = audioFile;
   this.letterNum = letterNum;
 }

@@ -24,16 +24,20 @@ Fret.prototype.clicked = function() {
   var audioNote = this.note.audioFile;
   // If in the bounds of the note...
   if (d < 7) {
+    console.log(audioNote);
     // Play the note's audioFile
     audioNote.play();
     // And light it up
     this.playing = true;
-    var passThisToTimeout = this;
+    var currentFret = this;
     // Turn light off after some time
-    console.log(this);
-    setTimeout(function() {
-      passThisToTimeout.playing = false;
-    }, 2700);
+    audioNote.onended(function() {
+      currentFret.playing = false;
+    });
+    // console.log(this);
+    // setTimeout(function() {
+    //   passThisToTimeout.playing = false;
+    // }, 2700);
   }
 }
 
@@ -53,7 +57,9 @@ Fret.prototype.overNote = function() {
   // If in the bounds of the note...
   if (d < 7 && this.active) {
     // Play the note's audioFile
-    audioNote.play();
+    if (!audioNote.isPlaying()) {
+      audioNote.play();
+    }
     // And light it up
     this.playing = true;
     var passThisToTimeout = this;

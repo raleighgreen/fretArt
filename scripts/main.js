@@ -5,9 +5,8 @@ var letterNumbers = [["E0","F0","F#0","G0","G#0","A0","A#0","B0","C1","C#1","D1"
                       "E3","F3","F#3","G3","G#3","A3","A#3","B3","C4","C#4","D4","D#4", "E4"]];
 
 // Generate notes
-for (var i = 0; i <= 48; i++) {
-  var audioFileNumber = i + 1;
-  fretArt['notes'].push(new Note(i, audioFileNumber, letterNumbers[0][i]));
+for (var i = 0; i < 49; i++) {
+  fretArt['notes'].push(new Note(i, null, letterNumbers[0][i]));
 }
 
 // List lowest frets for each mode (need to make into an object?)
@@ -37,29 +36,29 @@ var alteredDominantbb7LowestFrets = [400,323,245,167,88,10];
 
 // Create modes and group them in an Object
 fretArt.modes = {
-  ionian: new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1], ionianLowestFrets),
-  dorian: new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2], dorianLowestFrets),
-  phrygian: new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2], phrygianLowestFrets),
-  lydian: new Mode("Lydian",[2, 2, 2, 1, 2, 2, 1], lydianLowestFrets),
-  mixolydian: new Mode("mixolydian", [2, 2, 1, 2, 2, 1, 2], mixolydianLowestFrets),
-  aeolien: new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2], aeolienLowestFrets),
-  locrian: new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2], locrianLowestFrets),
+  "Ionian": new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1], ionianLowestFrets),
+  "Dorian": new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2], dorianLowestFrets),
+  "Phrygian": new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2], phrygianLowestFrets),
+  "Lydian": new Mode("Lydian",[2, 2, 2, 1, 2, 2, 1], lydianLowestFrets),
+  "Mixolydian": new Mode("Mixolydian", [2, 2, 1, 2, 2, 1, 2], mixolydianLowestFrets),
+  "Aeolien": new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2], aeolienLowestFrets),
+  "Locrian": new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2], locrianLowestFrets),
 //---------------------
-  melMin: new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets),
-  phrygianNat6: new Mode("Phrygian Natural 6", [1, 2, 2, 2, 2, 1, 2], phrygianNat6LowestFrets),
-  lydianAugmented: new Mode("Lydian Augmented",[2, 2, 2, 2, 1, 2, 1], lydianAugmentedLowestFrets),
-  lydianb7: new Mode("Lydian b7", [2, 2, 2, 1, 2, 1, 2], lydianb7LowestFrets),
-  mixolydianb6: new Mode("Mixolydian b6", [2, 2, 1, 2, 1, 2, 2], mixolydianb6LowestFrets),
-  locrianNat2: new Mode("Locrian",[2, 1, 2, 1, 2, 2, 2], locrianNat2LowestFrets),
-  alteredScale: new Mode("Altered Scale",[1, 2, 1, 2, 2, 2, 2], alteredScaleLowestFrets),
+  "Melodic Minor": new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets),
+  "Phrygian Natural 6": new Mode("Phrygian Natural 6", [1, 2, 2, 2, 2, 1, 2], phrygianNat6LowestFrets),
+  "Lydian Augmented": new Mode("Lydian Augmented",[2, 2, 2, 2, 1, 2, 1], lydianAugmentedLowestFrets),
+  "Lydian b7": new Mode("Lydian b7", [2, 2, 2, 1, 2, 1, 2], lydianb7LowestFrets),
+  "Mixolydian b6": new Mode("Mixolydian b6", [2, 2, 1, 2, 1, 2, 2], mixolydianb6LowestFrets),
+  "Locrian Nat 2": new Mode("Locrian Nat 2",[2, 1, 2, 1, 2, 2, 2], locrianNat2LowestFrets),
+  "Altered Scale": new Mode("Altered Scale",[1, 2, 1, 2, 2, 2, 2], alteredScaleLowestFrets),
 //---------------------
-  harmMin: new Mode("Harmonic Minor",[2, 1, 2, 2, 1, 3, 1], harmMinLowestFrets),
-  locrianNat6: new Mode("Locrian Natural 6",[1, 2, 2, 1, 3, 1, 2], locrianNat6LowestFrets),
-  ionianSharp5: new Mode("Ionian #5",[2, 2, 1, 3, 1, 2, 1], ionianSharp5LowestFrets),
-  dorianSharp4: new Mode("Dorian #4",[2, 1, 3, 1, 2, 1, 2], dorianSharp4LowestFrets),
-  phrygianDominant: new Mode("Phrygian Dominant",[1, 3, 1, 2, 1, 2, 2], phrygianDominantLowestFrets),
-  lydianSharp2: new Mode("Lydian #2",[3, 1, 2, 1, 2, 2, 1], lydianSharp2LowestFrets),
-  alteredDominantbb7: new Mode("Altered Dominant bb7",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets)
+  "Harmonic Minor": new Mode("Harmonic Minor",[2, 1, 2, 2, 1, 3, 1], harmMinLowestFrets),
+  "Locrian Natural 6": new Mode("Locrian Natural 6",[1, 2, 2, 1, 3, 1, 2], locrianNat6LowestFrets),
+  "Ionian #5": new Mode("Ionian #5",[2, 2, 1, 3, 1, 2, 1], ionianSharp5LowestFrets),
+  "Dorian #4": new Mode("Dorian #4",[2, 1, 3, 1, 2, 1, 2], dorianSharp4LowestFrets),
+  "Phrygian Dominant": new Mode("Phrygian Dominant",[1, 3, 1, 2, 1, 2, 2], phrygianDominantLowestFrets),
+  "Lydian #2": new Mode("Lydian #2",[3, 1, 2, 1, 2, 2, 1], lydianSharp2LowestFrets),
+  "Altered Dominant bb7": new Mode("Altered Dominant bb7",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets)
 }
 
 // Create strings and group them in an array
@@ -421,6 +420,11 @@ PedalToneStop.addEventListener("click", function() {
 });
 
 // 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
+function preload() {
+  for (var i = 0; i < 49; i++) {
+    fretArt.notes[i].audioFile = loadSound("audio/" + (i + 1) + ".mp3");
+  }
+}
 
 function setup() {
   createCanvas(882, 370);
