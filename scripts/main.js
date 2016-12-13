@@ -254,7 +254,7 @@ function drawShape(shapeArray) {
   beginShape();
   noFill();
   strokeWeight(2);
-  stroke(17,62,185);
+  stroke(9,81,201);
   strokeJoin(ROUND);
   for (i = 0; i < shapeArray.length; i++) {
     vertex(shapeArray[i].x,shapeArray[i].y);
@@ -281,13 +281,13 @@ function pedalToneKeyDisplay(){
 
 function turnOnButtonStyle(onElem) {
   var onElement = onElem;
-  onElement.style.background='#113EB8';
+  onElement.style.background='rgb(9,81,201)';
   onElement.style.color = "black";
 }
 function turnOffButtonStyle(offElem) {
   var offElement = offElem;
   offElement.style.background='black';
-  offElement.style.color = '#113EB8';
+  offElement.style.color = 'rgb(9,81,201)';
 }
 
 function octaveRestrictor(foundScaleArrPos) {
@@ -468,17 +468,17 @@ function draw() {
   // Make a fretboard outline
   noFill();
   strokeWeight(2);
-  stroke(17,62,185);
+  stroke(9,81,201);
   rect(247, 125,600, 100);
   // Make a thin line with 75% opacity to indicate the nut
   strokeWeight(2);
-  stroke(17,62,185,95);
+  stroke(9,81,201,95);
   if (fretArt.fretsIsShowing == true) {
     // Draw the frets
-    line(247, 125,247, 225);
+    line(247, 125, 247, 225);
     var add25 = 271;
     for (var i = 0; i < 23; i++) {
-      line(add25, 125,add25, 225);
+      line(add25, 125, add25, 225);
       add25 = add25 + 25;
     }
   }
