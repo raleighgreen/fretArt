@@ -495,9 +495,10 @@ function draw() {
       add25 = add25 + 25;
     }
   }
-  fill(100, 100, 100, 50);
-
-  rect(246, 283,230, 50, 3);
+  noFill();
+  strokeWeight(1);
+  stroke(9,81,201, 170);
+  rect(246, 274,450, 48, 7);
   pop();
   // End shapes
 
