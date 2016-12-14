@@ -24,7 +24,6 @@ Fret.prototype.clicked = function() {
   var audioNote = this.note.audioFile;
   // If in the bounds of the note...
   if (d < 7) {
-    console.log(audioNote);
     // Play the note's audioFile
     audioNote.play();
     // And light it up

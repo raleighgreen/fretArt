@@ -46,7 +46,6 @@ window.addEventListener("keydown", function (event) {
     "9": 29,
     "0": 30
   };
-
   fretArt.foundScale[keyMap[event.key]].audioFile.play();
   octaveRestrictor(keyMap[event.key]);
   // Cancel the default action to avoid it being handled twice

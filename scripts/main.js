@@ -278,6 +278,13 @@ function pedalToneKeyDisplay(){
   document.getElementById("pedal-tone-key").textContent = fretArt.currentKeyName;
 }
 
+function keyAndCurrentScaleDisplay(){
+  document.getElementById("current-key").textContent = fretArt.currentKeyName + " ";
+  document.getElementById("current-scale").textContent = fretArt.currentMode.name;
+  console.log(fretArt.currentMode);
+}
+
+
 function turnOnButtonStyle(onElem) {
   var onElement = onElem;
   onElement.style.background='rgb(9,81,201)';
@@ -332,6 +339,7 @@ fretButton.addEventListener("click", function() {
 
 scaleValueField.addEventListener("change", function(){
   processInput();
+  keyAndCurrentScaleDisplay()
   for (var f = 0; f < fretArt.frets.length; f++) {
     if (fretArt.frets[f].active) {
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
@@ -344,6 +352,7 @@ keyValueField.addEventListener("change", function(){
   processInput();
   // When new key is chosen, update pedal tone key text with the currentKey
   pedalToneKeyDisplay();
+  keyAndCurrentScaleDisplay();
   for (var f = 0; f < fretArt.frets.length; f++) {
     if (fretArt.frets[f].active) {
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
@@ -486,6 +495,9 @@ function draw() {
       add25 = add25 + 25;
     }
   }
+  fill(100, 100, 100, 50);
+
+  rect(246, 283,230, 50, 3);
   pop();
   // End shapes
 
