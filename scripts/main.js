@@ -497,7 +497,7 @@ function draw() {
   }
   noFill();
   strokeWeight(1);
-  stroke(9,81,201, 170);
+  stroke(9,81,201, 255);
   rect(246, 274,450, 48, 7);
   pop();
   // End shapes

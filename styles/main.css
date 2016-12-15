@@ -1,5 +1,6 @@
 h1 {
     margin-top: 26px;
+    margin-bottom: -4px;
     color: rgb(9,81,201);
     font-family: sans-serif;
 }
@@ -63,10 +64,10 @@ canvas {
   line-height: 90px;
   width: 100%;
   margin-left: -30px;
-  margin-top: 156px;
+  margin-top: 151px;
 }
 .key-scale-display-text {
-  font-weight: 200;
+  font-weight: 400;
   font-size: 17px;
 }
 #display-text {
@@ -93,7 +94,7 @@ canvas {
 .sideBarContainer {
   position: absolute;
   width: 860px;
-  margin-top: -25px;
+  margin-top: -29px;
   padding: 26px;
 }
 
@@ -102,6 +103,9 @@ canvas {
   padding: 3px;
 }
 
+#side-bar-top {
+  margin-top: 35px;
+}
 select {
     margin:10px;
     background: rgba(0,0,0,0.3);
@@ -115,6 +119,7 @@ select {
 
 #fret-button {
   background: rgb(9,81,201);
+  margin-top: -331px;
   color: black;
   width: 60px;
 }
@@ -128,6 +133,7 @@ select {
   text-align: right;
   z-index: 10;
   float: right;
+  padding-top: 3px;
   margin: 0 31px 10px 10px;
 }
 
