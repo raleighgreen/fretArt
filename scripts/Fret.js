@@ -109,41 +109,41 @@ Fret.prototype.displayWithColor = function() {
         var endCol1 = 74;
         var endCol2 = 39;
         var endCol3 = 88;
-        this.col1 = lerp(this.col1, endCol1, .009);
-        this.col2 = lerp(this.col2, endCol2, .009);
-        this.col3 = lerp(this.col3, endCol3, .009);
+        this.col1 = lerp(this.col1, endCol1, .005);
+        this.col2 = lerp(this.col2, endCol2, .005);
+        this.col3 = lerp(this.col3, endCol3, .005);
         this.col = color(this.col1,this.col2,this.col3);
       } else if (this.octave == 1) {
         var endCol4 = 19;
         var endCol5 = 85;
         var endCol6 = 198;
-        this.col1 = lerp(this.col1, endCol4, .009);
-        this.col2 = lerp(this.col2, endCol5, .009);
-        this.col3 = lerp(this.col3, endCol6, .009);
+        this.col1 = lerp(this.col1, endCol4, .005);
+        this.col2 = lerp(this.col2, endCol5, .005);
+        this.col3 = lerp(this.col3, endCol6, .005);
         this.col = color(this.col1,this.col2,this.col3);
       } else if (this.octave == 2) {
         var endCol7 = 106;
         var endCol8 = 128;
         var endCol9 = 104;
-        this.col1 = lerp(this.col1, endCol7, .009);
-        this.col2 = lerp(this.col2, endCol8, .009);
-        this.col3 = lerp(this.col3, endCol9, .009);
+        this.col1 = lerp(this.col1, endCol7, .005);
+        this.col2 = lerp(this.col2, endCol8, .005);
+        this.col3 = lerp(this.col3, endCol9, .005);
         this.col = color(this.col1,this.col2,this.col3);
       } else if (this.octave == 3) {
         var endCol10 = 175;
         var endCol11 = 116;
         var endCol12 = 3;
-        this.col1 = lerp(this.col1, endCol10, .009);
-        this.col2 = lerp(this.col2, endCol11, .009);
-        this.col3 = lerp(this.col3, endCol12, .009);
+        this.col1 = lerp(this.col1, endCol10, .005);
+        this.col2 = lerp(this.col2, endCol11, .005);
+        this.col3 = lerp(this.col3, endCol12, .005);
         this.col = color(this.col1,this.col2,this.col3);
       } else if (this.octave == 4) {
         var endCol13 = 176;
         var endCol14 = 29;
         var endCol15 = 29;
-        this.col1 = lerp(this.col1, endCol13, .009);
-        this.col2 = lerp(this.col2, endCol14, .009);
-        this.col3 = lerp(this.col3, endCol15, .009);
+        this.col1 = lerp(this.col1, endCol13, .005);
+        this.col2 = lerp(this.col2, endCol14, .005);
+        this.col3 = lerp(this.col3, endCol15, .005);
         this.col = color(this.col1,this.col2,this.col3);
       }
     }
