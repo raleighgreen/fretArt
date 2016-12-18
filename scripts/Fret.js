@@ -19,6 +19,9 @@ function Fret(x, y, note, string) {
   this.col1 = 255;
   this.col2 = 255;
   this.col3 = 255;
+  this.endCol1;
+  this.endCol2;
+  this.endCol3;
 }
 
 // If a note is clicked, play sound and light up
@@ -97,7 +100,6 @@ Fret.prototype.attachNotes = function() {
 Fret.prototype.displayWithColor = function() {
   // Set RGB colors for octaves 0 - 4
   var activeColor = [[74,39,88],[19,85,198],[106,128,104],[175,116,3],[176,29,29]];
-  var playingColor = [[255,255,255],[255,255,255],[255,255,255],[255,255,255],[255,255,255]];
   var noteOffColor = color(256,256,256,0);
   // Set non-active frets to noteOffColor
   if (!this.active) {
@@ -117,68 +119,20 @@ Fret.prototype.displayWithColor = function() {
   // If note is playing, set playingColor by octave
   if (this.playing) {
     for (var i = 0; i <= 4; i++) {
-      if (this.octave == 0) {
-        var endCol1 = 74;
-        var endCol2 = 39;
-        var endCol3 = 88;
-        var passThisToTimeout = this;
-        setTimeout(function(){
-          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
-          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
-          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
-        },300);
-        this.col = color(this.col1,this.col2,this.col3);
-      } else if (this.octave == 1) {
-        var endCol1 = 19;
-        var endCol2 = 85;
-        var endCol3 = 198;
-        var passThisToTimeout = this;
-        setTimeout(function(){
-          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
-          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
-          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
-        },300);
-        this.col = color(this.col1,this.col2,this.col3);
-      } else if (this.octave == 2) {
-        var endCol1 = 106;
-        var endCol2 = 128;
-        var endCol3 = 104;
-        var passThisToTimeout = this;
-        setTimeout(function(){
-          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
-          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
-          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
-        },300);
-        this.col = color(this.col1,this.col2,this.col3);
-      } else if (this.octave == 3) {
-        var endCol1 = 175;
-        var endCol2 = 116;
-        var endCol3 = 3;
-        var passThisToTimeout = this;
-        setTimeout(function(){
-          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
-          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
-          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
-        },300);
-        this.col = color(this.col1,this.col2,this.col3);
-      } else if (this.octave == 4) {
-        var endCol1 = 176;
-        var endCol2 = 29;
-        var endCol3 = 29;
-        var passThisToTimeout = this;
-        setTimeout(function(){
-          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
-          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
-          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
-        },300);
-        this.col = color(this.col1,this.col2,this.col3);
+      if (this.octave == i){
+          this.endCol1 = activeColor[i][0];
+          this.endCol2 = activeColor[i][1];
+          this.endCol3 = activeColor[i][2];
+          var passThis = this;
+          setTimeout(function(){
+            passThis.col1 = lerp(passThis.col1, passThis.endCol1, .05);
+            passThis.col2 = lerp(passThis.col2, passThis.endCol2, .05);
+            passThis.col3 = lerp(passThis.col3, passThis.endCol3, .05);
+          },200);
+          this.col = color(this.col1,this.col2,this.col3);
       }
     }
     fill(this.col);
-    ellipse(this.x, this.y, 10, 10);
+    ellipse(this.x, this.y, 9.5, 9.5);
   }
-  // Draw the dots
-  // fill(this.col);
-  // ellipse(this.x, this.y, 9.5, 9.5);
-
 }
