@@ -36,10 +36,13 @@ Fret.prototype.clicked = function() {
     audioNote.onended(function() {
       currentFret.playing = false;
     });
-    // console.log(this);
-    // setTimeout(function() {
-    //   passThisToTimeout.playing = false;
-    // }, 2700);
+    console.log(this);
+    setTimeout(function() {
+      passThisToTimeout.playing = false;
+    }, 2700);
+    this.col1 = 255;
+    this.col2 = 255;
+    this.col3 = 255;
   }
 }
 
@@ -50,7 +53,11 @@ Fret.prototype.notePlaying = function() {
   // Turn light off after some time
   setTimeout(function() {
     passThisToTimeout.playing = false;
+
   }, 2700);
+  this.col1 = 255;
+  this.col2 = 255;
+  this.col3 = 255;
 }
 
 Fret.prototype.overNote = function() {
@@ -151,4 +158,5 @@ Fret.prototype.displayWithColor = function() {
   // Draw the dots
   fill(this.col);
   ellipse(this.x, this.y, 9.5, 9.5);
+
 }
