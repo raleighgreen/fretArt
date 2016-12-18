@@ -417,7 +417,6 @@ PedalTonePlay.addEventListener("click", function() {
       fretArt.frets[i].playing = true;
       break;
     }
-
   }
   PedalTonePlay = true;
 });

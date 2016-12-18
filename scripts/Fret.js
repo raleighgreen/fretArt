@@ -27,6 +27,7 @@ function Fret(x, y, note, string) {
 // If a note is clicked, play sound and light up
 Fret.prototype.clicked = function() {
   var d = dist(mouseX, mouseY, this.x, this.y);
+  this.note.audioFile.loop = false;
   var audioNote = this.note.audioFile;
   // If in the bounds of the note...
   if (d < 7) {
@@ -50,7 +51,7 @@ Fret.prototype.clicked = function() {
 }
 
 Fret.prototype.notePlaying = function() {
-  var audioNote = this.note.audioFile;
+  // var audioNote = this.note.audioFile;
   this.playing = true;
   var passThisToTimeout = this;
   // Turn light off after some time
@@ -66,11 +67,12 @@ Fret.prototype.notePlaying = function() {
 Fret.prototype.overNote = function() {
   var d = dist(mouseX, mouseY, this.x, this.y);
   var audioNote = this.note.audioFile;
+
   // If in the bounds of the note...
   if (d < 7 && this.active) {
     // Play the note's audioFile
-    if (!this.note.audioFile.isPlaying()) {
-      this.note.audioFile.play();
+    if (!audioNote.isPlaying()) {
+      audioNote.play();
     }
     // And light it up
     this.playing = true;
