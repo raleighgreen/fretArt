@@ -281,15 +281,14 @@ function pedalToneKeyDisplay(){
 function keyAndCurrentScaleDisplay(){
   document.getElementById("current-key").textContent = fretArt.currentKeyName + " ";
   document.getElementById("current-scale").textContent = fretArt.currentMode.name;
-  console.log(fretArt.currentMode);
 }
-
 
 function turnOnButtonStyle(onElem) {
   var onElement = onElem;
   onElement.style.background='rgb(9,81,201)';
   onElement.style.color = "black";
 }
+
 function turnOffButtonStyle(offElem) {
   var offElement = offElem;
   offElement.style.background='black';
@@ -304,7 +303,7 @@ function octaveRestrictor(foundScaleArrPos) {
   }
 }
 
-function toggle(button)
+function toggleFretButton(button)
 {
     if(button.value==" Frets on ") {
         button.value=" Frets off ";
@@ -334,7 +333,7 @@ var PedalToneStop = document.getElementById("stop-button");
 var fretButton = document.getElementById("fret-button");
 
 fretButton.addEventListener("click", function() {
-  toggle(fretButton);
+  toggleFretButton(fretButton);
 });
 
 scaleValueField.addEventListener("change", function(){
@@ -348,6 +347,7 @@ scaleValueField.addEventListener("change", function(){
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
+
 keyValueField.addEventListener("change", function(){
   processInput();
   // When new key is chosen, update pedal tone key text with the currentKey
@@ -372,6 +372,7 @@ keyValueField.addEventListener("change", function(){
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
+
 // When the show button is clicked, do the following...
 showScales.addEventListener("click", function(){
   processInput();
@@ -385,6 +386,7 @@ showScales.addEventListener("click", function(){
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
+
 // Clear fretboard and updateDisplay
 hideScales.addEventListener("click", function() {
   turnOffButtonStyle(document.getElementById("show-scale"));
@@ -429,6 +431,7 @@ PedalToneStop.addEventListener("click", function() {
 });
 
 // 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
+
 function preload() {
   for (var i = 0; i < 49; i++) {
     fretArt.notes[i].audioFile = loadSound("audio/" + (i + 1) + ".mp3");

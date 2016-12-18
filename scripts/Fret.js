@@ -16,6 +16,9 @@ function Fret(x, y, note, string) {
   this.fretId;
   this.octave;
   this.vertex = false;
+  this.col1 = 255;
+  this.col2 = 255;
+  this.col3 = 255;
 }
 
 // If a note is clicked, play sound and light up
@@ -84,7 +87,7 @@ Fret.prototype.attachNotes = function() {
 Fret.prototype.displayWithColor = function() {
   // Set RGB colors for octaves 0 - 4
   var activeColor = [[74,39,88],[19,85,198],[106,128,104],[175,116,3],[176,29,29]];
-  var playingColor = [[174,97,252],[135,197,255],[154,212,130],[255,209,130],[255,84,84]];
+  var playingColor = [[255,255,255],[255,255,255],[255,255,255],[255,255,255],[255,255,255]];
   var noteOffColor = color(256,256,256,0);
   // Set non-active frets to noteOffColor
   if (!this.active) {
@@ -93,7 +96,7 @@ Fret.prototype.displayWithColor = function() {
   }
   // If note is active, set activeColor by octave
   if (this.active) {
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i <= 4; i++) {
       if (this.octave == i) {
         this.col = color(activeColor[i]);
       }
@@ -101,9 +104,47 @@ Fret.prototype.displayWithColor = function() {
   }
   // If note is playing, set playingColor by octave
   if (this.playing) {
-    for (var i = 0; i < 5; i++) {
-      if (this.octave == i) {
-        this.col = color(playingColor[i]);
+    for (var i = 0; i <= 4; i++) {
+      if (this.octave == 0) {
+        var endCol1 = 74;
+        var endCol2 = 39;
+        var endCol3 = 88;
+        this.col1 = lerp(this.col1, endCol1, .009);
+        this.col2 = lerp(this.col2, endCol2, .009);
+        this.col3 = lerp(this.col3, endCol3, .009);
+        this.col = color(this.col1,this.col2,this.col3);
+      } else if (this.octave == 1) {
+        var endCol4 = 19;
+        var endCol5 = 85;
+        var endCol6 = 198;
+        this.col1 = lerp(this.col1, endCol4, .009);
+        this.col2 = lerp(this.col2, endCol5, .009);
+        this.col3 = lerp(this.col3, endCol6, .009);
+        this.col = color(this.col1,this.col2,this.col3);
+      } else if (this.octave == 2) {
+        var endCol7 = 106;
+        var endCol8 = 128;
+        var endCol9 = 104;
+        this.col1 = lerp(this.col1, endCol7, .009);
+        this.col2 = lerp(this.col2, endCol8, .009);
+        this.col3 = lerp(this.col3, endCol9, .009);
+        this.col = color(this.col1,this.col2,this.col3);
+      } else if (this.octave == 3) {
+        var endCol10 = 175;
+        var endCol11 = 116;
+        var endCol12 = 3;
+        this.col1 = lerp(this.col1, endCol10, .009);
+        this.col2 = lerp(this.col2, endCol11, .009);
+        this.col3 = lerp(this.col3, endCol12, .009);
+        this.col = color(this.col1,this.col2,this.col3);
+      } else if (this.octave == 4) {
+        var endCol13 = 176;
+        var endCol14 = 29;
+        var endCol15 = 29;
+        this.col1 = lerp(this.col1, endCol13, .009);
+        this.col2 = lerp(this.col2, endCol14, .009);
+        this.col3 = lerp(this.col3, endCol15, .009);
+        this.col = color(this.col1,this.col2,this.col3);
       }
     }
   }
