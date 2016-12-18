@@ -66,8 +66,8 @@ Fret.prototype.overNote = function() {
   // If in the bounds of the note...
   if (d < 7 && this.active) {
     // Play the note's audioFile
-    if (!audioNote.isPlaying()) {
-      audioNote.play();
+    if (!this.note.audioFile.isPlaying()) {
+      this.note.audioFile.play();
     }
     // And light it up
     this.playing = true;
@@ -76,6 +76,9 @@ Fret.prototype.overNote = function() {
     setTimeout(function() {
       passThisToTimeout.playing = false;
     }, 2700);
+    this.col1 = 255;
+    this.col2 = 255;
+    this.col3 = 255;
   }
 }
 // Attach note names to frets
@@ -108,6 +111,8 @@ Fret.prototype.displayWithColor = function() {
         this.col = color(activeColor[i]);
       }
     }
+    fill(this.col);
+    ellipse(this.x, this.y, 9, 9);
   }
   // If note is playing, set playingColor by octave
   if (this.playing) {
@@ -116,47 +121,64 @@ Fret.prototype.displayWithColor = function() {
         var endCol1 = 74;
         var endCol2 = 39;
         var endCol3 = 88;
-        this.col1 = lerp(this.col1, endCol1, .005);
-        this.col2 = lerp(this.col2, endCol2, .005);
-        this.col3 = lerp(this.col3, endCol3, .005);
+        var passThisToTimeout = this;
+        setTimeout(function(){
+          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
+          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
+          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
+        },300);
         this.col = color(this.col1,this.col2,this.col3);
       } else if (this.octave == 1) {
-        var endCol4 = 19;
-        var endCol5 = 85;
-        var endCol6 = 198;
-        this.col1 = lerp(this.col1, endCol4, .005);
-        this.col2 = lerp(this.col2, endCol5, .005);
-        this.col3 = lerp(this.col3, endCol6, .005);
+        var endCol1 = 19;
+        var endCol2 = 85;
+        var endCol3 = 198;
+        var passThisToTimeout = this;
+        setTimeout(function(){
+          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
+          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
+          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
+        },300);
         this.col = color(this.col1,this.col2,this.col3);
       } else if (this.octave == 2) {
-        var endCol7 = 106;
-        var endCol8 = 128;
-        var endCol9 = 104;
-        this.col1 = lerp(this.col1, endCol7, .005);
-        this.col2 = lerp(this.col2, endCol8, .005);
-        this.col3 = lerp(this.col3, endCol9, .005);
+        var endCol1 = 106;
+        var endCol2 = 128;
+        var endCol3 = 104;
+        var passThisToTimeout = this;
+        setTimeout(function(){
+          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
+          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
+          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
+        },300);
         this.col = color(this.col1,this.col2,this.col3);
       } else if (this.octave == 3) {
-        var endCol10 = 175;
-        var endCol11 = 116;
-        var endCol12 = 3;
-        this.col1 = lerp(this.col1, endCol10, .005);
-        this.col2 = lerp(this.col2, endCol11, .005);
-        this.col3 = lerp(this.col3, endCol12, .005);
+        var endCol1 = 175;
+        var endCol2 = 116;
+        var endCol3 = 3;
+        var passThisToTimeout = this;
+        setTimeout(function(){
+          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
+          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
+          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
+        },300);
         this.col = color(this.col1,this.col2,this.col3);
       } else if (this.octave == 4) {
-        var endCol13 = 176;
-        var endCol14 = 29;
-        var endCol15 = 29;
-        this.col1 = lerp(this.col1, endCol13, .005);
-        this.col2 = lerp(this.col2, endCol14, .005);
-        this.col3 = lerp(this.col3, endCol15, .005);
+        var endCol1 = 176;
+        var endCol2 = 29;
+        var endCol3 = 29;
+        var passThisToTimeout = this;
+        setTimeout(function(){
+          passThisToTimeout.col1 = lerp(passThisToTimeout.col1, endCol1, .005);
+          passThisToTimeout.col2 = lerp(passThisToTimeout.col2, endCol2, .005);
+          passThisToTimeout.col3 = lerp(passThisToTimeout.col3, endCol3, .005);
+        },300);
         this.col = color(this.col1,this.col2,this.col3);
       }
     }
+    fill(this.col);
+    ellipse(this.x, this.y, 10, 10);
   }
   // Draw the dots
-  fill(this.col);
-  ellipse(this.x, this.y, 9.5, 9.5);
+  // fill(this.col);
+  // ellipse(this.x, this.y, 9.5, 9.5);
 
 }
