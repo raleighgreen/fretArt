@@ -19,9 +19,11 @@ function Fret(x, y, note, string) {
   this.col1 = 255;
   this.col2 = 255;
   this.col3 = 255;
+  this.alpha = 255;
   this.endCol1;
   this.endCol2;
   this.endCol3;
+  this.endAlpha;
 }
 
 // If a note is clicked, play sound and light up
@@ -47,6 +49,7 @@ Fret.prototype.clicked = function() {
     this.col1 = 255;
     this.col2 = 255;
     this.col3 = 255;
+    this.alpha = 255;
   }
 }
 
@@ -62,6 +65,7 @@ Fret.prototype.notePlaying = function() {
   this.col1 = 255;
   this.col2 = 255;
   this.col3 = 255;
+  this.alpha = 255;
 }
 
 Fret.prototype.overNote = function() {
@@ -84,6 +88,7 @@ Fret.prototype.overNote = function() {
     this.col1 = 255;
     this.col2 = 255;
     this.col3 = 255;
+    this.alpha = 255;
   }
 }
 // Attach note names to frets
@@ -101,7 +106,7 @@ Fret.prototype.attachNotes = function() {
 // Display frets with color depending on status
 Fret.prototype.displayWithColor = function() {
   // Set RGB colors for octaves 0 - 4
-  var activeColor = [[74,39,88],[19,85,198],[106,128,104],[175,116,3],[176,29,29]];
+  var activeColor = [[74,39,88,255],[19,85,198,255],[106,128,104,255],[175,116,3,255],[176,29,29,255]];
   var noteOffColor = color(256,256,256,0);
   // Set non-active frets to noteOffColor
   if (!this.active) {
@@ -125,13 +130,17 @@ Fret.prototype.displayWithColor = function() {
           this.endCol1 = activeColor[i][0];
           this.endCol2 = activeColor[i][1];
           this.endCol3 = activeColor[i][2];
+          this.endAlpha = 0;
           var passThis = this;
           setTimeout(function(){
             passThis.col1 = lerp(passThis.col1, passThis.endCol1, .05);
             passThis.col2 = lerp(passThis.col2, passThis.endCol2, .05);
             passThis.col3 = lerp(passThis.col3, passThis.endCol3, .05);
           },200);
-          this.col = color(this.col1,this.col2,this.col3);
+          setTimeout(function() {
+            passThis.alpha = lerp(passThis.alpha, passThis.endAlpha, .05);
+          }, 1500);
+          this.col = color(this.col1, this.col2, this.col3, this.alpha);
       }
     }
     fill(this.col);
