@@ -319,6 +319,20 @@ function toggleFretButton(button)
     }
 }
 
+function toggleStringButton(button)
+{
+    if(button.value==" Strings on ") {
+        button.value=" Strings off ";
+        turnOffButtonStyle(button);
+        fretArt.stringsIsShowing = false;
+    }
+    else if(button.value==" Strings off ") {
+        button.value=" Strings on ";
+        turnOnButtonStyle(button);
+        fretArt.stringsIsShowing = true;
+    }
+}
+
 // 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
 
 // Grab the select fields and buttons from the HTML document
@@ -331,9 +345,14 @@ var hideShapes = document.getElementById("hide-shapes");
 var PedalTonePlay = document.getElementById("play-button");
 var PedalToneStop = document.getElementById("stop-button");
 var fretButton = document.getElementById("fret-button");
+var stringButton = document.getElementById("string-button");
 
 fretButton.addEventListener("click", function() {
   toggleFretButton(fretButton);
+});
+
+stringButton.addEventListener("click", function() {
+  toggleStringButton(stringButton);
 });
 
 scaleValueField.addEventListener("change", function(){
@@ -443,6 +462,7 @@ function setup() {
   // buildShapes();
   processInput();
   fretArt.fretsIsShowing = true;
+  fretArt.stringsIsShowing = true;
   fretArt.linesVisible = true;
   turnOnButtonStyle(document.getElementById("hide-scale"));
   turnOffButtonStyle(document.getElementById("hide-scale"));
@@ -498,36 +518,39 @@ function draw() {
       add25 = add25 + 25;
     }
   }
-  stroke(9,81,201,150);
-  // stroke(175,116,3,150);
-  // stroke(150,150,150,100);
-  // stroke(70,70,70,255);
-  //grey
-  // stroke(90,90,90,255);
-  // purple
-  // stroke(74,39,88,200);
-  // stroke(9,81,201,100);
-  // stroke(88,39,11,255);
-  // stroke(58,21,126,100);
-  // stroke(83,9,140,255);
-  // stroke(75,110,152,255);
-  // stroke(79,47,138,255);
-  strokeWeight(.9);
-  line(180, 125, 895, 125);
-  strokeWeight(1);
-  line(180, 145, 895, 145);
-  strokeWeight(1.2);
-  line(180, 165, 895, 165);
-  strokeWeight(1.7);
-  line(180, 185, 895, 185);
-  strokeWeight(2.1);
-  line(180, 205, 895, 205);
-  strokeWeight(2.6);
-  line(180, 225, 895, 225);
+  if (fretArt.stringsIsShowing == true) {
+    // Draw the strings
+    // stroke(9,81,201,150);
+    // stroke(175,116,3,150);
+    //personal fav:
+    stroke(150,150,150,100);
+    // stroke(70,70,70,255);
+    //grey
+    // stroke(90,90,90,155);
+    // purple
+    // stroke(74,39,88,200);
+    // stroke(9,81,201,100);
+    // stroke(88,39,11,200);
+    // stroke(58,21,126,100);
+    // stroke(83,9,140,155);
+    // stroke(75,110,152,255);
+    // stroke(79,47,138,255);
+    strokeWeight(.9);
+    line(180, 125, 895, 125);
+    strokeWeight(1);
+    line(180, 145, 895, 145);
+    strokeWeight(1.2);
+    line(180, 165, 895, 165);
+    strokeWeight(1.7);
+    line(180, 185, 895, 185);
+    strokeWeight(2.1);
+    line(180, 205, 895, 205);
+    strokeWeight(2.6);
+    line(180, 225, 895, 225);
+  }
 
-  noFill();
-  strokeWeight(1);
-  stroke(9,81,201, 255);
+  strokeWeight(2);
+  stroke(9,81,201, 100);
   rect(246, 274,450, 48, 7);
   pop();
   // End shapes

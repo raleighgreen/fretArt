@@ -6,6 +6,7 @@ var fretArt = {
   stringPos: [],
   shadowFrets: [],
   fretsIsShowing: false,
+  stringsIsShowing: false,
   foundScale: [],
   foundScaleIds: [],
   filteredScaleIds: [],
