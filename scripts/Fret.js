@@ -43,6 +43,7 @@ Fret.prototype.clicked = function() {
       currentFret.playing = false;
     });
     console.log(this);
+    var passThisToTimeout = this;
     setTimeout(function() {
       passThisToTimeout.playing = false;
     }, 2700);
@@ -144,6 +145,7 @@ Fret.prototype.displayWithColor = function() {
       }
     }
     fill(this.col);
+
     ellipse(this.x, this.y, 9.5, 9.5);
   }
 }

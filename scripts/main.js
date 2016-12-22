@@ -498,6 +498,33 @@ function draw() {
       add25 = add25 + 25;
     }
   }
+  stroke(9,81,201,150);
+  // stroke(175,116,3,150);
+  // stroke(150,150,150,100);
+  // stroke(70,70,70,255);
+  //grey
+  // stroke(90,90,90,255);
+  // purple
+  // stroke(74,39,88,200);
+  // stroke(9,81,201,100);
+  // stroke(88,39,11,255);
+  // stroke(58,21,126,100);
+  // stroke(83,9,140,255);
+  // stroke(75,110,152,255);
+  // stroke(79,47,138,255);
+  strokeWeight(.9);
+  line(180, 125, 895, 125);
+  strokeWeight(1);
+  line(180, 145, 895, 145);
+  strokeWeight(1.2);
+  line(180, 165, 895, 165);
+  strokeWeight(1.7);
+  line(180, 185, 895, 185);
+  strokeWeight(2.1);
+  line(180, 205, 895, 205);
+  strokeWeight(2.6);
+  line(180, 225, 895, 225);
+
   noFill();
   strokeWeight(1);
   stroke(9,81,201, 255);
