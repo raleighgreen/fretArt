@@ -509,46 +509,29 @@ function draw() {
   // Make a thin line with 75% opacity to indicate the nut
   strokeWeight(2);
   stroke(9,81,201,95);
+  // If frets button is on, draw the frets
   if (fretArt.fretsIsShowing == true) {
     // Draw the frets
-    line(247, 125, 247, 225);
     var add25 = 271;
     for (var i = 0; i < 23; i++) {
       line(add25, 125, add25, 225);
-      add25 = add25 + 25;
+      add25 += 25;
     }
   }
+  // If strings button is on, draw the strings
   if (fretArt.stringsIsShowing == true) {
-    // Draw the strings
-    // stroke(9,81,201,150);
-    // stroke(175,116,3,150);
-    //personal fav:
+    // Set the string color/opacity
     stroke(150,150,150,100);
-    // stroke(70,70,70,255);
-    //grey
-    // stroke(90,90,90,155);
-    // purple
-    // stroke(74,39,88,200);
-    // stroke(9,81,201,100);
-    // stroke(88,39,11,200);
-    // stroke(58,21,126,100);
-    // stroke(83,9,140,155);
-    // stroke(75,110,152,255);
-    // stroke(79,47,138,255);
-    strokeWeight(.9);
-    line(180, 125, 895, 125);
-    strokeWeight(1);
-    line(180, 145, 895, 145);
-    strokeWeight(1.2);
-    line(180, 165, 895, 165);
-    strokeWeight(1.7);
-    line(180, 185, 895, 185);
-    strokeWeight(2.1);
-    line(180, 205, 895, 205);
-    strokeWeight(2.6);
-    line(180, 225, 895, 225);
+    // Draw the strings
+    var strokeCounter = .5;
+    var add20 = 125;
+    for (var i = 0; i < 6; i++) {
+      strokeWeight(.7 + strokeCounter);
+      line(180, add20, 895, add20);
+      add20 += 20;
+      strokeCounter += .5;
+    }
   }
-
   strokeWeight(2);
   stroke(9,81,201, 100);
   rect(246, 274,450, 48, 7);
