@@ -333,122 +333,6 @@ function toggleStringButton(button)
     }
 }
 
-// 3. SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION -----------------
-
-// Grab the select fields and buttons from the HTML document
-var keyValueField = document.getElementById("key-value");
-var scaleValueField = document.getElementById("scale-value");
-var showScales = document.getElementById("show-scale");
-var hideScales = document.getElementById("hide-scale");
-var showShapes = document.getElementById("show-shapes");
-var hideShapes = document.getElementById("hide-shapes");
-var PedalTonePlay = document.getElementById("play-button");
-var PedalToneStop = document.getElementById("stop-button");
-var fretButton = document.getElementById("fret-button");
-var stringButton = document.getElementById("string-button");
-
-fretButton.addEventListener("click", function() {
-  toggleFretButton(fretButton);
-});
-
-stringButton.addEventListener("click", function() {
-  toggleStringButton(stringButton);
-});
-
-scaleValueField.addEventListener("change", function(){
-  processInput();
-  keyAndCurrentScaleDisplay()
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
-});
-
-keyValueField.addEventListener("change", function(){
-  processInput();
-  // When new key is chosen, update pedal tone key text with the currentKey
-  pedalToneKeyDisplay();
-  keyAndCurrentScaleDisplay();
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
-  for (var i = 0; i < fretArt.frets.length; i++) {
-    fretArt.frets[i].playing = false;
-  }
-  if (PedalTonePlay) {
-    for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-        fretArt.frets[i].playing = true;
-        break;
-      }
-    }
-  }
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
-});
-
-// When the show button is clicked, do the following...
-showScales.addEventListener("click", function(){
-  processInput();
-  turnOnButtonStyle(document.getElementById("show-scale"));
-  turnOffButtonStyle(document.getElementById("hide-scale"));
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active = true) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
-});
-
-// Clear fretboard and updateDisplay
-hideScales.addEventListener("click", function() {
-  turnOffButtonStyle(document.getElementById("show-scale"));
-  turnOnButtonStyle(document.getElementById("hide-scale"));
-  clearFretSelection();
-});
-
-showShapes.addEventListener("click", function() {
-  turnOnButtonStyle(document.getElementById("show-shapes"));
-  turnOffButtonStyle(document.getElementById("hide-shapes"));
-  fretArt.linesVisible = true;
-  processInput();
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
-});
-
-hideShapes.addEventListener("click", function() {
-  turnOffButtonStyle(document.getElementById("show-shapes"));
-  turnOnButtonStyle(document.getElementById("hide-shapes"));
-  fretArt.linesVisible = false;
-});
-
-PedalTonePlay.addEventListener("click", function() {
-  turnOnButtonStyle(document.getElementById("play-button"));
-  turnOffButtonStyle(document.getElementById("stop-button"));
-  for (var i = 0; i < fretArt.frets.length; i++) {
-    if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-      fretArt.frets[i].playing = true;
-      break;
-    }
-  }
-  PedalTonePlay = true;
-});
-
-PedalToneStop.addEventListener("click", function() {
-  turnOffButtonStyle(document.getElementById("play-button"));
-  turnOnButtonStyle(document.getElementById("stop-button"));
-  for (var i = 0; i < fretArt.frets.length; i++) {
-    fretArt.frets[i].playing = false;
-  }
-  PedalTonePlay = false;
-});
-
 // 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
 
 function preload() {
@@ -497,7 +381,7 @@ function draw() {
   }
   // Start shapes
   push();
-  // Make two black rectangles to mask lines overflow
+  // Make two black rectangles to mask fretboard overflow
   fill(0);
   rect(0, 120,247, 110);
   rect(847, 120,70, 110);
@@ -506,33 +390,38 @@ function draw() {
   strokeWeight(2);
   stroke(9,81,201);
   rect(247, 125,600, 100);
-  // Make a thin line with 75% opacity to indicate the nut
+  // Set the fret stroke weight
   strokeWeight(2);
   stroke(9,81,201,95);
-  // If frets button is on, draw the frets
+  // If frets button is clicked on, draw the frets
   if (fretArt.fretsIsShowing == true) {
-    // Draw the frets
     var add25 = 271;
     for (var i = 0; i < 23; i++) {
+      // Draw lines for 24 frets
       line(add25, 125, add25, 225);
+      // Fret spacing
       add25 += 25;
     }
   }
-  // If strings button is on, draw the strings
+  // If strings button is clicked on, draw the strings
   if (fretArt.stringsIsShowing == true) {
-    // Set the string color/opacity
+    // String color/opacity
     stroke(150,150,150,100);
-    // Draw the strings
-    var strokeCounter = .5;
+    var stringThickness = .5;
     var add20 = 125;
     for (var i = 0; i < 6; i++) {
-      strokeWeight(.7 + strokeCounter);
+      // String thickness
+      strokeWeight(.6 + stringThickness);
+      // Draw lines for 6 strings
       line(180, add20, 895, add20);
+      // Add 20px of spacing between each string
       add20 += 20;
-      strokeCounter += .5;
+      // Make each string .4 thicker than the last
+      stringThickness += .4;
     }
   }
-  strokeWeight(2);
+  // Frame key/scale name display with lines above and below
+  strokeWeight(1.5);
   stroke(9,81,201, 100);
   rect(246, 274,450, 48, 7);
   pop();
@@ -542,13 +431,9 @@ function draw() {
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].overNote();
   }
-
+  // M
   for (var i = 0; i < fretArt.frets.length; i++) {
-    fretArt.frets[i].displayWithColor();
     fretArt.frets[i].attachNotes();
+    fretArt.frets[i].displayWithColor();
   }
-  // var fps = frameRate();
-  // fill(255);
-  // stroke(0);
-  // text("FPS: " + fps.toFixed(2), 10, height - 10);
 }
