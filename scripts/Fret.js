@@ -93,7 +93,7 @@ Fret.prototype.overNote = function() {
   }
 }
 // Attach note names to frets
-Fret.prototype.attachNotes = function() {
+Fret.prototype.attachNoteNames = function() {
   // Split notes into octaves
   var octaveSplit = this.note.id % 12;
   // Populate notes with noteNames

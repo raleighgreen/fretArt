@@ -9,7 +9,8 @@ for (var i = 0; i < 49; i++) {
   fretArt['notes'].push(new Note(i, null, letterNumbers[0][i]));
 }
 
-// List lowest frets for each mode (need to make into an object?)
+// List lowest frets for each mode
+// Major scale modes
 var ionianLowestFrets = [402,324,246,168,89,12];
 var dorianLowestFrets = [401,323,246,168,89,11];
 var phrygianLowestFrets = [401,323,245,167,89,11];
@@ -17,7 +18,7 @@ var lydianLowestFrets = [402,324,246,168,90,12];
 var mixolydianLowestFrets = [401,324,246,168,89,11];
 var aeolienLowestFrets = [401,323,245,168,89,11];
 var locrianLowestFrets = [401,323,245,167,89,11];
-//---------------------
+// Melodic Minor modes
 var melMinLowestFrets = [402,323,246,168,89,12];
 var phrygianNat6LowestFrets = [401,323,246,167,89,11];
 var lydianAugmentedLowestFrets = [402,324,246,168,90,12];
@@ -25,7 +26,7 @@ var lydianb7LowestFrets = [401,324,246,168,90,11];
 var mixolydianb6LowestFrets = [401,324,245,168,89,11];
 var locrianNat2LowestFrets = [401,323,245,168,89,11];
 var alteredScaleLowestFrets = [401,323,245,167,88,11];
-//---------------------
+// Harmonic Minor modes
 var harmMinLowestFrets = [402,323,245,168,89,12];
 var locrianNat6LowestFrets = [401,323,246,167,89,11];
 var ionianSharp5LowestFrets = [402,324,246,168,89,12];
@@ -99,7 +100,6 @@ for (var i = 0; i < fretArt.strings.length; i++) {
 // 2. DEFINE FUNCTIONS -----------------
 
 // Populate arrPositionList by passing in initialArray and number of shapes
-
 create3DArray = function(array, size){
   var newArray = [array];
   for(var i = 0; i < size; i++)
@@ -333,7 +333,7 @@ function toggleStringButton(button)
     }
 }
 
-// 4. REQUIRED P5 FUNCTIONS ------------------------------------------------
+// 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
 
 function preload() {
   for (var i = 0; i < 49; i++) {
@@ -431,9 +431,9 @@ function draw() {
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].overNote();
   }
-  // M
+  // Make notes (and octaves) visible with color
   for (var i = 0; i < fretArt.frets.length; i++) {
-    fretArt.frets[i].attachNotes();
+    fretArt.frets[i].attachNoteNames();
     fretArt.frets[i].displayWithColor();
   }
 }
