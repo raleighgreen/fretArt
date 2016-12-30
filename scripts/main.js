@@ -268,10 +268,10 @@ function mousePressed() {
   }
 }
 
-function playSound() {
+function playPedalTone() {
   processInput();
-  var cPedal = document.getElementById("_" + (fretArt.currentKey + 1));
-    cPedal.play();
+  var pedalTone = document.getElementById("_" + (fretArt.currentKey + 1));
+    pedalTone.play();
 }
 
 function pedalToneKeyDisplay(){
@@ -281,6 +281,14 @@ function pedalToneKeyDisplay(){
 function keyAndCurrentScaleDisplay(){
   document.getElementById("current-key").textContent = fretArt.currentKeyName + " ";
   document.getElementById("current-scale").textContent = fretArt.currentMode.name;
+}
+
+function octaveRestrictor(foundScaleArrPos) {
+  for (i = 0; i < fretArt.frets.length; i++){
+    if (fretArt.frets[i].note.letterNum == fretArt.foundScale[foundScaleArrPos].letterNum) {
+      fretArt.frets[i].notePlaying();
+    }
+  }
 }
 
 function turnOnButtonStyle(onElem) {
@@ -293,14 +301,6 @@ function turnOffButtonStyle(offElem) {
   var offElement = offElem;
   offElement.style.background='black';
   offElement.style.color = 'rgb(9,81,201)';
-}
-
-function octaveRestrictor(foundScaleArrPos) {
-  for (i = 0; i < fretArt.frets.length; i++){
-    if (fretArt.frets[i].note.letterNum == fretArt.foundScale[foundScaleArrPos].letterNum) {
-      fretArt.frets[i].notePlaying();
-    }
-  }
 }
 
 function toggleFretButton(button)
@@ -374,7 +374,7 @@ function draw() {
 
   // Turn on C Pedal Tone when Play button is clicked
   if (PedalTonePlay == true) {
-    playSound();
+    playPedalTone();
   } else {
     // Pause C Pedal Tone
     PedalTonePlay = false;
