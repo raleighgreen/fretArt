@@ -37,12 +37,6 @@ Fret.prototype.clicked = function() {
     audioNote.play();
     // And light it up
     this.playing = true;
-    var currentFret = this;
-    // Turn light off after some time
-    audioNote.onended(function() {
-      currentFret.playing = false;
-    });
-    console.log(this);
     var passThisToTimeout = this;
     setTimeout(function() {
       passThisToTimeout.playing = false;
@@ -55,18 +49,19 @@ Fret.prototype.clicked = function() {
 }
 
 Fret.prototype.notePlaying = function() {
-  // var audioNote = this.note.audioFile;
   this.playing = true;
   var passThisToTimeout = this;
   // Turn light off after some time
-  setTimeout(function() {
-    passThisToTimeout.playing = false;
+  if (this.playing) {
+    setTimeout(function() {
+      passThisToTimeout.playing = false;
 
-  }, 2700);
-  this.col1 = 255;
-  this.col2 = 255;
-  this.col3 = 255;
-  this.alpha = 255;
+    }, 2700);
+    this.col1 = 255;
+    this.col2 = 255;
+    this.col3 = 255;
+    this.alpha = 255;
+  }
 }
 
 Fret.prototype.overNote = function() {
@@ -108,7 +103,7 @@ Fret.prototype.attachNoteNames = function() {
 Fret.prototype.displayWithColor = function() {
   // Set RGB colors for octaves 0 - 4
   var activeColor = [[74,39,88,255],[19,85,198,255],[106,128,104,255],[175,116,3,255],[176,29,29,255]];
-  var noteOffColor = color(256,256,256,0);
+  var noteOffColor = color(0,0,0,0);
   // Set non-active frets to noteOffColor
   if (!this.active) {
     noStroke();

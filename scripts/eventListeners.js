@@ -7,7 +7,7 @@ var showScales = document.getElementById("show-scale");
 var hideScales = document.getElementById("hide-scale");
 var showShapes = document.getElementById("show-shapes");
 var hideShapes = document.getElementById("hide-shapes");
-var PedalTonePlay = document.getElementById("play-button");
+var pedalTonePlay = document.getElementById("play-button");
 var PedalToneStop = document.getElementById("stop-button");
 var fretButton = document.getElementById("fret-button");
 var stringButton = document.getElementById("string-button");
@@ -45,7 +45,7 @@ keyValueField.addEventListener("change", function(){
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].playing = false;
   }
-  if (PedalTonePlay) {
+  if (pedalTonePlay) {
     for (var i = 0; i < fretArt.frets.length; i++) {
       if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
         fretArt.frets[i].playing = true;
@@ -93,16 +93,10 @@ hideShapes.addEventListener("click", function() {
   fretArt.linesVisible = false;
 });
 
-PedalTonePlay.addEventListener("click", function() {
+pedalTonePlay.addEventListener("click", function() {
   turnOnButtonStyle(document.getElementById("play-button"));
   turnOffButtonStyle(document.getElementById("stop-button"));
-  for (var i = 0; i < fretArt.frets.length; i++) {
-    if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-      fretArt.frets[i].playing = true;
-      break;
-    }
-  }
-  PedalTonePlay = true;
+  pedalTonePlay = true;
 });
 
 PedalToneStop.addEventListener("click", function() {
@@ -111,5 +105,5 @@ PedalToneStop.addEventListener("click", function() {
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].playing = false;
   }
-  PedalTonePlay = false;
+  pedalTonePlay = false;
 });

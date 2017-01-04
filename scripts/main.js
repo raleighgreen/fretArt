@@ -270,8 +270,22 @@ function mousePressed() {
 
 function playPedalTone() {
   processInput();
-  var pedalTone = document.getElementById("_" + (fretArt.currentKey + 1));
+  var pedalTone = fretArt.notes[fretArt.currentKey].audioFile;
+  // is there a way to find the lowest fret of the root of the scale without the whole loop?
+  // light toggle should trigger here, every time playPedalTone runs rather than a single time in the event listener
+  if (!pedalTone.isPlaying()) {
     pedalTone.play();
+    for (var i = 0; i < fretArt.frets.length; i++) {
+      if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+        fretArt.frets[i].playing = true;
+        fretArt.frets[i].col1 = 255;
+        fretArt.frets[i].col2 = 255;
+        fretArt.frets[i].col3 = 255;
+        fretArt.frets[i].alpha = 255;
+        break;
+      }
+    }
+  }
 }
 
 function pedalToneKeyDisplay(){
@@ -373,11 +387,12 @@ function draw() {
   }
 
   // Turn on C Pedal Tone when Play button is clicked
-  if (PedalTonePlay == true) {
+  if (pedalTonePlay == true) {
+
     playPedalTone();
   } else {
     // Pause C Pedal Tone
-    PedalTonePlay = false;
+    pedalTonePlay = false;
   }
   // Start shapes
   push();
