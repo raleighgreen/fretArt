@@ -3,7 +3,6 @@ window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {
     return; // Do nothing if the event was already processed
   }
-
   var keyMap = {
     "z": 0,
     "x": 1,
@@ -52,6 +51,7 @@ window.addEventListener("keydown", function (event) {
   };
   fretArt.foundScale[keyMap[event.key]].audioFile.play();
   octaveRestrictor(keyMap[event.key]);
+
   // Cancel the default action to avoid it being handled twice
   event.preventDefault();
 }, true);

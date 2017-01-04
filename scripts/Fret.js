@@ -32,7 +32,7 @@ Fret.prototype.clicked = function() {
   this.note.audioFile.loop = false;
   var audioNote = this.note.audioFile;
   // If in the bounds of the note...
-  if (d < 7) {
+  if (d < 9) {
     // Play the note's audioFile
     audioNote.play();
     // And light it up
@@ -55,7 +55,6 @@ Fret.prototype.notePlaying = function() {
   if (this.playing) {
     setTimeout(function() {
       passThisToTimeout.playing = false;
-
     }, 2700);
     this.col1 = 255;
     this.col2 = 255;
@@ -67,15 +66,14 @@ Fret.prototype.notePlaying = function() {
 Fret.prototype.overNote = function() {
   var d = dist(mouseX, mouseY, this.x, this.y);
   var audioNote = this.note.audioFile;
-
   // If in the bounds of the note...
-  if (d < 7 && this.active) {
+  if (d < 9 && this.active) {
     // Play the note's audioFile
     if (!audioNote.isPlaying()) {
       audioNote.play();
     }
-    // And light it up
     this.playing = true;
+    // And light it up
     var passThisToTimeout = this;
     // Turn light off after some time
     setTimeout(function() {
@@ -87,6 +85,7 @@ Fret.prototype.overNote = function() {
     this.alpha = 255;
   }
 }
+
 // Attach note names to frets
 Fret.prototype.attachNoteNames = function() {
   // Split notes into octaves
@@ -140,7 +139,6 @@ Fret.prototype.displayWithColor = function() {
       }
     }
     fill(this.col);
-
     ellipse(this.x, this.y, 9.5, 9.5);
   }
 }
