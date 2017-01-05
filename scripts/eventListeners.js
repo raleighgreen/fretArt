@@ -50,7 +50,32 @@ arrowLeft.addEventListener("mouseover", function() {
   arrowLeft.style.opacity = 1;
 });
 arrowLeft.addEventListener("click", function() {
-  console.log("arrowLeft");
+  var keyIndex = document.getElementById("key-value");
+  if (fretArt.currentKey > 0){
+    keyIndex.selectedIndex -= 1;
+    fretArt.currentKey -= 1;
+  } else {
+    keyIndex.selectedIndex = 11;
+  }
+  processInput();
+  // When new key is chosen, update pedal tone key text with the currentKey
+  pedalToneKeyDisplay();
+  keyAndCurrentScaleDisplay();
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+  if (pedalTonePlay) {
+    for (var i = 0; i < fretArt.frets.length; i++) {
+      if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+        fretArt.frets[i].playing = true;
+        break;
+      }
+    }
+  }
+  isolateScaleIds(fretArt.foundScaleIds);
+  buildShapes();
 });
 arrowLeft.addEventListener("mouseout", function() {
   arrowLeft.style.transition = "opacity .1s";
@@ -62,7 +87,32 @@ arrowRight.addEventListener("mouseover", function() {
   arrowRight.style.opacity = 1;
 });
 arrowRight.addEventListener("click", function() {
-  console.log("arrowRight");
+  var keyIndex = document.getElementById("key-value");
+  if (fretArt.currentKey <= 10){
+    keyIndex.selectedIndex += 1;
+    fretArt.currentKey += 1;
+  } else if (fretArt.currentKey = 10) {
+    keyIndex.selectedIndex = 0;
+  }
+  processInput();
+  // When new key is chosen, update pedal tone key text with the currentKey
+  pedalToneKeyDisplay();
+  keyAndCurrentScaleDisplay();
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+  if (pedalTonePlay) {
+    for (var i = 0; i < fretArt.frets.length; i++) {
+      if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+        fretArt.frets[i].playing = true;
+        break;
+      }
+    }
+  }
+  isolateScaleIds(fretArt.foundScaleIds);
+  buildShapes();
 });
 arrowRight.addEventListener("mouseout", function() {
   arrowRight.style.transition = "opacity .1s";
@@ -98,9 +148,6 @@ keyValueField.addEventListener("change", function(){
     if (fretArt.frets[f].active) {
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
     }
-  }
-  for (var i = 0; i < fretArt.frets.length; i++) {
-    fretArt.frets[i].playing = false;
   }
   if (pedalTonePlay) {
     for (var i = 0; i < fretArt.frets.length; i++) {
