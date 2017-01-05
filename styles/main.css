@@ -99,7 +99,7 @@ canvas {
   margin-top: 0px;
   border-left: 7px solid transparent;
 	border-right: 7px solid transparent;
-	border-bottom: 10px solid rgba(9,81,201,.5);
+	border-bottom: 10px solid rgb(9,81,201);
 }
 
 #arrow-down {
@@ -110,7 +110,7 @@ canvas {
   margin-top: 80px;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-top: 10px solid rgba(9,81,201,.5);
+  border-top: 10px solid rgb(9,81,201);
 }
 
 #arrow-left {
@@ -120,7 +120,7 @@ canvas {
   margin-left: 76px;
   margin-top: 38px;
   border-top: 7px solid transparent;
-  border-right: 10px solid rgba(9,81,201,.5);
+  border-right: 10px solid rgb(9,81,201);
   border-bottom: 7px solid transparent;
 }
 
@@ -131,7 +131,7 @@ canvas {
   margin-left: 370px;
   margin-top: 38px;
   border-top: 7px solid transparent;
-	border-left: 10px solid rgba(9,81,201,.5);
+	border-left: 10px solid rgb(9,81,201);
 	border-bottom: 7px solid transparent;
 }
 

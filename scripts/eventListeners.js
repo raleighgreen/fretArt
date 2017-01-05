@@ -11,6 +11,63 @@ var pedalTonePlay = document.getElementById("play-button");
 var PedalToneStop = document.getElementById("stop-button");
 var fretButton = document.getElementById("fret-button");
 var stringButton = document.getElementById("string-button");
+var arrowUp = document.getElementById("arrow-up");
+var arrowDown = document.getElementById("arrow-down");
+var arrowLeft = document.getElementById("arrow-left");
+var arrowRight = document.getElementById("arrow-right");
+
+arrowUp.style.opacity = .5;
+arrowDown.style.opacity = .5;
+arrowLeft.style.opacity = .5;
+arrowRight.style.opacity = .5;
+
+arrowUp.addEventListener("mouseover", function() {
+  arrowUp.style.transition = "opacity .1s";
+  arrowUp.style.opacity = 1;
+});
+arrowUp.addEventListener("click", function() {
+  console.log("arrowUp");
+});
+arrowUp.addEventListener("mouseout", function() {
+  arrowUp.style.transition = "opacity .1s";
+  arrowUp.style.opacity = .5;
+});
+
+arrowDown.addEventListener("mouseover", function() {
+  arrowDown.style.transition = "opacity .1s";
+  arrowDown.style.opacity = 1;
+});
+arrowDown.addEventListener("click", function() {
+  console.log("arrowDown");
+});
+arrowDown.addEventListener("mouseout", function() {
+  arrowDown.style.transition = "opacity .1s";
+  arrowDown.style.opacity = .5;
+});
+
+arrowLeft.addEventListener("mouseover", function() {
+  arrowLeft.style.transition = "opacity .1s";
+  arrowLeft.style.opacity = 1;
+});
+arrowLeft.addEventListener("click", function() {
+  console.log("arrowLeft");
+});
+arrowLeft.addEventListener("mouseout", function() {
+  arrowLeft.style.transition = "opacity .1s";
+  arrowLeft.style.opacity = .5;
+});
+
+arrowRight.addEventListener("mouseover", function() {
+  arrowRight.style.transition = "opacity .1s";
+  arrowRight.style.opacity = 1;
+});
+arrowRight.addEventListener("click", function() {
+  console.log("arrowRight");
+});
+arrowRight.addEventListener("mouseout", function() {
+  arrowRight.style.transition = "opacity .1s";
+  arrowRight.style.opacity = .5;
+});
 
 fretButton.addEventListener("click", function() {
   toggleFretButton(fretButton);

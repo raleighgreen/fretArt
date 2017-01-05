@@ -345,6 +345,9 @@ function toggleStringButton(button)
     }
 }
 
+function fade() {
+  console.log("fade");
+}
 // 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
 
 function preload() {
