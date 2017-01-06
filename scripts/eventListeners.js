@@ -37,15 +37,7 @@ arrowUp.addEventListener("click", function() {
     scaleCounter -= 1;
     document.getElementById(scaleCounter).selected = true;
   }
-  processInput();
-  keyAndCurrentScaleDisplay()
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
+  keyScaleShapeProcessor();
 });
 arrowUp.addEventListener("mouseout", function() {
   arrowUp.style.transition = "opacity .1s";
@@ -67,15 +59,7 @@ arrowDown.addEventListener("click", function() {
     scaleCounter = 0;
     document.getElementById(scaleCounter).selected = true;
   }
-  processInput();
-  keyAndCurrentScaleDisplay()
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
+  keyScaleShapeProcessor();
 });
 arrowDown.addEventListener("mouseout", function() {
   arrowDown.style.transition = "opacity .1s";
@@ -94,15 +78,8 @@ arrowLeft.addEventListener("click", function() {
   } else {
     keyIndex.selectedIndex = 11;
   }
-  processInput();
   // When new key is chosen, update pedal tone key text with the currentKey
   pedalToneKeyDisplay();
-  keyAndCurrentScaleDisplay();
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
   if (pedalTonePlay) {
     for (var i = 0; i < fretArt.frets.length; i++) {
       if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
@@ -111,8 +88,7 @@ arrowLeft.addEventListener("click", function() {
       }
     }
   }
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
+  keyScaleShapeProcessor();
 });
 arrowLeft.addEventListener("mouseout", function() {
   arrowLeft.style.transition = "opacity .1s";
@@ -131,15 +107,8 @@ arrowRight.addEventListener("click", function() {
   } else if (fretArt.currentKey = 10) {
     keyIndex.selectedIndex = 0;
   }
-  processInput();
   // When new key is chosen, update pedal tone key text with the currentKey
   pedalToneKeyDisplay();
-  keyAndCurrentScaleDisplay();
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
   if (pedalTonePlay) {
     for (var i = 0; i < fretArt.frets.length; i++) {
       if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
@@ -148,8 +117,7 @@ arrowRight.addEventListener("click", function() {
       }
     }
   }
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
+  keyScaleShapeProcessor();
 });
 arrowRight.addEventListener("mouseout", function() {
   arrowRight.style.transition = "opacity .1s";

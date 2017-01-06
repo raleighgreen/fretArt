@@ -345,8 +345,16 @@ function toggleStringButton(button)
     }
 }
 
-function fade() {
-  console.log("fade");
+function keyScaleShapeProcessor() {
+  processInput();
+  keyAndCurrentScaleDisplay();
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+  isolateScaleIds(fretArt.foundScaleIds);
+  buildShapes();
 }
 // 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
 
