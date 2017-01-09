@@ -4,7 +4,21 @@ function checkKey(e) {
 
     e = e || window.event;
 
-    if (e.keyCode == '38') {
+    if (e.keyCode == '32') {
+      if (!pedalTonePlay) {
+        turnOnButtonStyle(document.getElementById("play-button"));
+        turnOffButtonStyle(document.getElementById("stop-button"));
+        pedalTonePlay = true;
+      } else {
+        turnOffButtonStyle(document.getElementById("play-button"));
+        turnOnButtonStyle(document.getElementById("stop-button"));
+        for (var i = 0; i < fretArt.frets.length; i++) {
+          fretArt.frets[i].playing = false;
+        }
+        pedalTonePlay = false;
+      }
+    }
+    else if (e.keyCode == '38') {
         // up arrow
       var scaleIndex = document.getElementById("scale-value");
       // the scaleCounter 20 below needs to be hardcoded (its the id of the last

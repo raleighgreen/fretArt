@@ -356,6 +356,16 @@ function keyScaleShapeProcessor() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 }
+
+function toggleMenu() {
+  var menuBox = document.getElementById('scale-value');
+  if(menuBox.style.display == "block") { // if is menuBox displayed, hide it
+    menuBox.style.display = "none";
+  }
+  else { // if is menuBox hidden, display it
+    menuBox.style.display = "block";
+  }
+}
 // 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
 
 function preload() {
