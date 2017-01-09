@@ -36,53 +36,38 @@ Fret.prototype.clicked = function() {
     // Play the note's audioFile
     audioNote.play();
     // And light it up
-    this.playing = true;
-    var passThisToTimeout = this;
-    setTimeout(function() {
-      passThisToTimeout.playing = false;
-    }, 2700);
-    this.col1 = 255;
-    this.col2 = 255;
-    this.col3 = 255;
-    this.alpha = 255;
+    var passThisToFunction = this;
+    lightTimer(passThisToFunction);
   }
 }
 
 Fret.prototype.notePlaying = function() {
   this.playing = true;
-  var passThisToTimeout = this;
   // Turn light off after some time
-  if (this.playing) {
-    setTimeout(function() {
-      passThisToTimeout.playing = false;
-    }, 2700);
-    this.col1 = 255;
-    this.col2 = 255;
-    this.col3 = 255;
-    this.alpha = 255;
-  }
+  var passThisToFunction = this;
+  lightTimer(passThisToFunction);
 }
 
 Fret.prototype.overNote = function() {
   var d = dist(mouseX, mouseY, this.x, this.y);
   var audioNote = this.note.audioFile;
   // If in the bounds of the note...
+  // if the mouse distance is less than 9 and the mouse entered
+  // play the note
+  // but not if the distance hasn't been greater than 9
+  if (d > 9) {
+    this.didTheMouseMoveAway = true;
+  }
   if (d < 9 && this.active) {
     // Play the note's audioFile
-    if (!audioNote.isPlaying()) {
+    if (this.didTheMouseMoveAway) {
       audioNote.play();
+      this.didTheMouseMoveAway = false;
     }
     this.playing = true;
     // And light it up
-    var passThisToTimeout = this;
-    // Turn light off after some time
-    setTimeout(function() {
-      passThisToTimeout.playing = false;
-    }, 2700);
-    this.col1 = 255;
-    this.col2 = 255;
-    this.col3 = 255;
-    this.alpha = 255;
+    var passThisToFunction = this;
+    lightTimer(passThisToFunction);
   }
 }
 

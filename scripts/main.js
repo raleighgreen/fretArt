@@ -366,6 +366,22 @@ function toggleMenu() {
     menuBox.style.display = "block";
   }
 }
+
+function lightTimer(passedThis) {
+  passedThisIn = passedThis;
+  passedThisIn.playing = true;
+  var passThisToTimeout = passedThisIn;
+  if (passedThisIn.playing) {
+    setTimeout(function() {
+      passThisToTimeout.playing = false;
+    }, 2700);
+    passedThisIn.col1 = 255;
+    passedThisIn.col2 = 255;
+    passedThisIn.col3 = 255;
+    passedThisIn.alpha = 255;
+  }
+}
+
 // 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
 
 function preload() {
@@ -460,7 +476,6 @@ function draw() {
   rect(246, 274,450, 48, 7);
   pop();
   // End shapes
-
   // Trigger note light and sound on note mouseOver
   for (var i = 0; i < fretArt.frets.length; i++) {
     fretArt.frets[i].overNote();
