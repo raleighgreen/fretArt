@@ -6,6 +6,7 @@ function Fret(x, y, note, string) {
   this.string = string;
   this.active = false;
   this.playing = false;
+  this.invisible = false;
   this.col = "";
   this.noteNameList;
   this.foundNoteName;
@@ -100,7 +101,11 @@ Fret.prototype.displayWithColor = function() {
         this.col = color(activeColor[i]);
       }
     }
-    fill(this.col);
+    if (fretArt.invisible) {
+      noFill();
+    } else {
+      fill(this.col);
+    }
     ellipse(this.x, this.y, 9, 9);
   }
   // If note is playing, set playingColor by octave

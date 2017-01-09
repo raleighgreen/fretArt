@@ -168,23 +168,18 @@ keyValueField.addEventListener("change", function(){
 
 // When the show button is clicked, do the following...
 showScales.addEventListener("click", function(){
-  processInput();
+
   turnOnButtonStyle(document.getElementById("show-scale"));
   turnOffButtonStyle(document.getElementById("hide-scale"));
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active = true) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
+  fretArt.invisible = false;
 });
 
 // Clear fretboard and updateDisplay
 hideScales.addEventListener("click", function() {
   turnOffButtonStyle(document.getElementById("show-scale"));
   turnOnButtonStyle(document.getElementById("hide-scale"));
-  clearFretSelection();
+  fretArt.invisible = true;
+  // clearFretSelection();
 });
 
 showShapes.addEventListener("click", function() {
