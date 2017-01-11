@@ -37,12 +37,12 @@ var alteredDominantbb7LowestFrets = [400,323,245,167,88,10];
 
 // Create modes and group them in an Object
 fretArt.modes = {
-  "Ionian": new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1], ionianLowestFrets),
+  "Ionian (Maj Scale)": new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1], ionianLowestFrets),
   "Dorian": new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2], dorianLowestFrets),
   "Phrygian": new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2], phrygianLowestFrets),
   "Lydian": new Mode("Lydian",[2, 2, 2, 1, 2, 2, 1], lydianLowestFrets),
   "Mixolydian": new Mode("Mixolydian", [2, 2, 1, 2, 2, 1, 2], mixolydianLowestFrets),
-  "Aeolien": new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2], aeolienLowestFrets),
+  "Aeolien (Natural Min)": new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2], aeolienLowestFrets),
   "Locrian": new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2], locrianLowestFrets),
 //---------------------
   "Melodic Minor": new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets),
