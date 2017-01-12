@@ -1,3 +1,51 @@
+#test {
+  position: absolute;
+  margin-top: -20px;
+  margin-left: 3px;
+  font-family: sans-serif;
+  font-size: .9em;
+  font-weight: lighter;
+  background-color: black;
+  color: rgb(9,81,201);
+  text-align: center;
+  padding: 12px 0px 12px 0px;
+  border: 1px solid rgb(9,81,201);
+  width: 155px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  line-height: .5;
+  max-height:310px;/* you can change as you need it */
+  overflow:auto;/* to get scroll */
+}
+#test > ul {display: none;}
+#test:hover > ul {
+  text-align: left;
+  margin-top: 12px;
+  margin-bottom: -5px;
+  display: block;
+  background: black;
+  padding: 8px 0px 2px 8px;
+  font-weight: bold;
+  font-size: .9em;
+  border-top: 1px solid rgb(9,81,201);
+  list-style-type: none;
+  line-height: 1.5;
+
+}
+#test:hover > ul > li {background: black; padding: 3px 0px 3px 7px;}
+#test:hover > ul > li:hover {border-radius: 5px 0px 0px 5px; background: rgb(9,81,201); color: black;}
+#test:hover > ul > li:hover > a { color: rgb(9,81,201); }
+
+
+
+.scaNam {
+  font-weight: bold;
+}
+.scaDeg {
+  font-weight: 100;
+}
+
 select {
   margin:10px;
   background: rgba(0,0,0,0.3);
@@ -5,9 +53,15 @@ select {
   border: 1px solid rgb(9,81,201);
 }
 
-.scaleDeg {
-  font-weight:
-}
+.styled-select select {
+   padding: 2px 2px 2px 7px;
+   font-size: 12px;
+   border: 1;
+   border-radius: 3;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   }
 
 h1 {
     margin-top: 26px;

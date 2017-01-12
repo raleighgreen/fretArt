@@ -8,26 +8,27 @@
   <div id="main-container">
     <div class="sideBarContainer">
       <h1><span class="thinText">fret</span>Shapes</h1>
-
       <div class="sideContainer" id="side-bar-top">
         <p>Choose a scale:</p>
-        <div>
-          <select id="scale-value">
+        <div class="styled-select">
+          <select id="scale-value" class="scaleList">
             <option id="0" selected="selected">Ionian (Maj Scale)</option>
-            <option class="scaleDeg" disabled>&nbsp;&nbsp;1 2 3 4 5 6 7</option>
+            <option class="scaleDeg" disabled>&nbsp;&nbsp;&nbsp;1&nbsp;2&nbsp;3&nbsp;4&nbsp;5&nbsp;6&nbsp;7</option>
             <option id="1">Dorian</option>
-            <option class="scaleDeg" disabled>&nbsp;&nbsp;1 2 b3 4 5 6 b7</option>
+            <option class="scaleDeg" disabled>&nbsp;&nbsp;&nbsp;1&nbsp;2&nbsp;b3&nbsp;4&nbsp;5&nbsp;6&nbsp;b7</option>
             <option id="2">Phrygian</option>
-            <option class="scaleDeg" disabled>&nbsp;&nbsp;1 b2 b3 4 5 b6 b7</option>
+            <option class="scaleDeg" disabled>&nbsp;&nbsp;&nbsp;1&nbsp;b2&nbsp;b3&nbsp;4&nbsp;5&nbsp;b6&nbsp;b7</option>
             <option id="3">Lydian</option>
-            <option class="scaleDeg" disabled>&nbsp;&nbsp;1 2 3 #4 5 6 7</option>
+            <option class="scaleDeg" disabled>&nbsp;&nbsp;&nbsp;1&nbsp;2&nbsp;3&nbsp;#4&nbsp;5&nbsp;6&nbsp;7</option>
             <option id="4">Mixolydian</option>
-            <option class="scaleDeg" disabled>&nbsp;&nbsp;1 2 3 4 5 6 b7</option>
+            <option class="scaleDeg" disabled>&nbsp;&nbsp;&nbsp;1&nbsp;2&nbsp;3&nbsp;4&nbsp;5&nbsp;6&nbsp;b7</option>
             <option id="5">Aeolien (Natural Min)</option>
-            <option class="scaleDeg" disabled>&nbsp;&nbsp;1 2 b3 4 5 b6 b7</option>
+            <option class="scaleDeg" disabled>&nbsp;&nbsp;&nbsp;1&nbsp;2&nbsp;b3&nbsp;4&nbsp;5&nbsp;b6&nbsp;b7</option>
             <option id="6">Locrian</option>
-            <option class="scaleDeg" disabled>&nbsp;&nbsp;1 b2 b3 4 b5 b6 b7</option>
-            <option disabled>──────────</option>
+            <option class="scaleDeg" disabled>&nbsp;&nbsp;&nbsp;1&nbsp;b2&nbsp;b3&nbsp;4&nbsp;b5&nbsp;b6&nbsp;b7</option>
+            <option disabled>_____________________</option>
+            <option class="scaleDeg" disabled>&nbsp;&nbsp;</option>
+
             <option id="7">Melodic Minor</option>
             <option class="scaleDeg" disabled>&nbsp;&nbsp;1 2 b3 4 5 6 7</option>
             <option id="8">Phrygian Natural 6</option>
@@ -42,7 +43,8 @@
             <option class="scaleDeg" disabled>&nbsp;&nbsp;1 2 b3 4 b5 b6 b7</option>
             <option id="13">Altered Scale</option>
             <option class="scaleDeg" disabled>&nbsp;&nbsp;1 b9 #9 3 b5 #5 b7</option>
-            <option disabled>──────────</option>
+            <option disabled>______________________</option>
+            <br/>
             <option id="14">Harmonic Minor</option>
             <option class="scaleDeg" disabled>&nbsp;&nbsp;1 2 b3 4 5 b6 7</option>
             <option id="15">Locrian Natural 6</option>
@@ -130,6 +132,34 @@
           <span id="current-key" class="key-scale-display-text">C </span>
           <span id="current-scale" class="key-scale-display-text">Ionian</span>
         </p>
+      </div>
+      <div id="test">
+        Choose Scale
+        <ul>
+          <li class="scaNam">Ionian (Maj Scale)<br/>
+          <span class="scaDeg">1 2 3 4 5 6 7</span></li>
+          <li class="scaNam">Dorian<br/>
+          <span class="scaDeg">1 2 b3 4 5 6 b7</span></li>
+          <li class="scaNam">Phrygian<br/>
+          <span class="scaDeg">1 b2 b3 4 5 b6 b7</span></li>
+          <li class="scaNam">Lydian<br/>
+          <span class="scaDeg">1 b2 b3 4 5 b6 b7</span></li>
+          <li class="scaNam">Mixolydian<br/>
+          <span class="scaDeg">1 b2 b3 4 5 b6 b7</span></li>
+          <li class="scaNam">Aeolien<br/>
+          <span class="scaDeg">1 b2 b3 4 5 b6 b7</span></li>
+          <li class="scaNam">Locrian<br/>
+          <span class="scaDeg">1 b2 b3 4 5 b6 b7</span></li>
+        </ul>
+        <ul>
+
+          <li class="scaNam">Ionian<br/>
+          <span class="scaDeg">1 2 3 4 5 6 7</span></li>
+          <li class="scaNam">Dorian<br/>
+          <span class="scaDeg">1 2 b3 4 5 6 b7</span></li>
+          <li class="scaNam">Phrygian<br/>
+          <span class="scaDeg">1 b2 b3 4 5 b6 b7</span></li>
+        </ul>
       </div>
     </div>
   </div>
