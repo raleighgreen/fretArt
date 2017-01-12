@@ -1,34 +1,39 @@
-#test {
+#scalesDiv {
+    margin-top: -18px;
+    width: 152px;
+    max-height:288px;
+}
+#keyDiv {
+   margin-top: 50px;
+   width: 58px;
+   max-height:220px;
+}
+.dropdownStyle {
   position: absolute;
   margin-top: -18px;
   margin-left: 3px;
-
   font-family: sans-serif;
   font-size: 1em;
   font-weight: lighter;
   background: black;
   color: rgb(9,81,201);
-  /*background-color: black;
-  color: rgb(9,81,201);*/
   padding: 14px 0px 14px 0px;
   border: 1px solid rgb(9,81,201);
-  width: 152px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   line-height: .5;
-  max-height:288px;
   overflow:auto;
-
 }
-#test:hover {
+.dropdownStyle:hover {
     background: black;
     color: rgb(9,81,201);
     padding: 14px 0px 9px 0px;
 }
-
-#test > ul {display: none;}
-#test:hover > ul {
+.dropdownStyle > ul {
+  display: none;
+}
+.dropdownStyle:hover > ul {
   text-align: left;
   margin-top: 14px;
   margin-bottom: -5px;
@@ -42,18 +47,25 @@
   background: black;
   color: rgb(9,81,201);
 }
-#test:hover > ul > li {background: black; padding: 3px 0px 3px 7px;}
-#test:hover > ul > li:hover {border-radius: 5px 0px 0px 5px; background: rgb(9,81,201); color: black;}
-#test:hover > ul > li:hover > span { color:black; }
-
+.dropdownStyle:hover > ul > li {
+  background: black;
+  padding: 3px 0px 3px 7px;
+}
+.dropdownStyle:hover > ul > li:hover {
+  border-radius: 5px 0px 0px 5px;
+  background: rgb(9,81,201);
+  color: black;
+}
+.dropdownStyle:hover > ul > li:hover > span {
+  color:black;
+}
 #scalesText {
   margin-left: 16px;
   margin-bottom: 0;
   padding: 0;
   text-align: left;
-
 }
-#test #lastUl:hover {
+.dropdownStyle #UlSpacer:hover {
   margin-bottom: 2px;
 }
 .scaNam {
@@ -92,7 +104,18 @@
   margin-top: -15px;
   letter-spacing: -7px;
 }
-
+#keyDiv:hover #UlSpacer .headerKey {
+  position: absolute;
+  font-size: 1em;
+  margin-top: -20px;
+  margin-left: 7px;
+}
+#keyDiv .keyName {
+  color: rgb(9,81,201);
+}
+.keyNam:hover .headerKey {
+  color: black;
+}
 select {
   margin:10px;
   background: rgba(0,0,0,0.3);
