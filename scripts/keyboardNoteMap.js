@@ -1,4 +1,3 @@
-// Make an empty array to hold currentMode note id's
 document.onkeydown = checkKey;
 function checkKey(e) {
 
@@ -20,16 +19,25 @@ function checkKey(e) {
     }
     else if (e.keyCode == '38') {
         // up arrow
-      var scaleIndex = document.getElementById("scale-value");
-      // the scaleCounter 20 below needs to be hardcoded (its the id of the last
-      // option in #scale-value).
-      if (scaleIndex.selectedIndex == 0){
-        scaleCounter = 20;
-        document.getElementById(scaleCounter).selected = true;
-      } else {
-        scaleCounter -= 1;
-        document.getElementById(scaleCounter).selected = true;
-      }
+        var scaleIndex = document.getElementById("scale-value");
+        // the scaleCounter 20 below needs to be hardcoded (its the id of the last
+        // option in #scale-value).
+        if (scaleIndex.selectedIndex == 0){
+          scaleCounter = 20;
+          document.getElementById(scaleCounter).selected = true;
+        } else {
+          scaleCounter -= 1;
+          document.getElementById(scaleCounter).selected = true;
+        }
+        processInput();
+        keyAndCurrentScaleDisplay()
+        for (var f = 0; f < fretArt.frets.length; f++) {
+          if (fretArt.frets[f].active) {
+            setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+          }
+        }
+        isolateScaleIds(fretArt.foundScaleIds);
+        buildShapes();
       arrowUp.style.transition = "opacity .1s";
       arrowUp.style.opacity = 1;
       setTimeout(function(){ arrowUp.style.opacity = .5; }, 150);
@@ -47,6 +55,15 @@ function checkKey(e) {
         scaleCounter = 0;
         document.getElementById(scaleCounter).selected = true;
       }
+      processInput();
+      keyAndCurrentScaleDisplay()
+      for (var f = 0; f < fretArt.frets.length; f++) {
+        if (fretArt.frets[f].active) {
+          setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+        }
+      }
+      isolateScaleIds(fretArt.foundScaleIds);
+      buildShapes();
       arrowDown.style.transition = "opacity .1s";
       arrowDown.style.opacity = 1;
       setTimeout(function(){ arrowDown.style.opacity = .5; }, 150);
@@ -61,7 +78,15 @@ function checkKey(e) {
      } else {
        keyIndex.selectedIndex = 11;
      }
+     processInput();
+     // When new key is chosen, update pedal tone key text with the currentKey
      pedalToneKeyDisplay();
+     keyAndCurrentScaleDisplay();
+     for (var f = 0; f < fretArt.frets.length; f++) {
+       if (fretArt.frets[f].active) {
+         setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+       }
+     }
      if (pedalTonePlay) {
        for (var i = 0; i < fretArt.frets.length; i++) {
          if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
@@ -70,6 +95,8 @@ function checkKey(e) {
          }
        }
      }
+     isolateScaleIds(fretArt.foundScaleIds);
+     buildShapes();
      arrowLeft.style.transition = "opacity .1s";
      arrowLeft.style.opacity = 1;
      setTimeout(function(){ arrowLeft.style.opacity = .5; }, 150);
@@ -77,26 +104,36 @@ function checkKey(e) {
     }
     else if (e.keyCode == '39') {
       // right arrow
-     var keyIndex = document.getElementById("key-value");
-     if (fretArt.currentKey <= 10){
-       keyIndex.selectedIndex += 1;
-       fretArt.currentKey += 1;
-     } else if (fretArt.currentKey = 10) {
-       keyIndex.selectedIndex = 0;
-     }
-     pedalToneKeyDisplay();
-     if (pedalTonePlay) {
-       for (var i = 0; i < fretArt.frets.length; i++) {
-         if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-           fretArt.frets[i].playing = true;
-           break;
-         }
-       }
-     }
-     arrowRight.style.transition = "opacity .1s";
-     arrowRight.style.opacity = 1;
-     setTimeout(function(){ arrowRight.style.opacity = .5; }, 150);
-     keyScaleShapeProcessor();
+      var keyIndex = document.getElementById("key-value");
+      if (fretArt.currentKey <= 10){
+        keyIndex.selectedIndex += 1;
+        fretArt.currentKey += 1;
+      } else if (fretArt.currentKey = 10) {
+        keyIndex.selectedIndex = 0;
+      }
+      processInput();
+      // When new key is chosen, update pedal tone key text with the currentKey
+      pedalToneKeyDisplay();
+      keyAndCurrentScaleDisplay();
+      for (var f = 0; f < fretArt.frets.length; f++) {
+        if (fretArt.frets[f].active) {
+          setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+        }
+      }
+      if (pedalTonePlay) {
+        for (var i = 0; i < fretArt.frets.length; i++) {
+          if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+            fretArt.frets[i].playing = true;
+            break;
+          }
+        }
+      }
+      isolateScaleIds(fretArt.foundScaleIds);
+      buildShapes();
+      arrowRight.style.transition = "opacity .1s";
+      arrowRight.style.opacity = 1;
+      setTimeout(function(){ arrowRight.style.opacity = .5; }, 150);
+      keyScaleShapeProcessor();
   }
 }
 
