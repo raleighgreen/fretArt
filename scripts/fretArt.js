@@ -16,6 +16,7 @@ var fretArt = {
   linesVisible: false,
   invisible: false,
   cPedalPlay: false,
+  scaleIndex: null,
   noteNameList: ["E","F","Gb","G","Ab","A","Bb","B","C","Db","D","Eb"],
   initialStringIndices: null,
   currentKey: null,

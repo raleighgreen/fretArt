@@ -54,10 +54,10 @@ arrowUp.addEventListener("mouseover", function() {
 });
 var scaleCounter = 0;
 arrowUp.addEventListener("click", function() {
-  var scaleIndex = document.getElementById("scale-value");
+  fretArt.scaleIndex = document.getElementById("scale-value");
   // the scaleCounter 20 below needs to be hardcoded (its the id of the last
   // option in #scale-value).
-  if (scaleIndex.selectedIndex == 0){
+  if (fretArt.scaleIndex.selectedIndex == 0){
     scaleCounter = 20;
     document.getElementById(scaleCounter).selected = true;
   } else {
@@ -84,10 +84,10 @@ arrowDown.addEventListener("mouseover", function() {
   arrowDown.style.opacity = 1;
 });
 arrowDown.addEventListener("click", function() {
-  var scaleIndex = document.getElementById("scale-value");
+  fretArt.scaleIndex = document.getElementById("scale-value");
   // the number 22 below needs to be hardcoded (its the nuber of id'd options in
   // #scale-value plus the number of disabled options).
-  if (scaleIndex.selectedIndex < 22){
+  if (fretArt.scaleIndex.selectedIndex < 22){
     scaleCounter += 1;
     document.getElementById(scaleCounter).selected = true;
   } else {

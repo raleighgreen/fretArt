@@ -18,44 +18,46 @@ function checkKey(e) {
       }
     }
     else if (e.keyCode == '38') {
-        // up arrow
-        var scaleIndex = document.getElementById("scale-value");
-        // the scaleCounter 20 below needs to be hardcoded (its the id of the last
-        // option in #scale-value).
-        if (scaleIndex.selectedIndex == 0){
-          scaleCounter = 20;
-          document.getElementById(scaleCounter).selected = true;
-        } else {
-          scaleCounter -= 1;
-          document.getElementById(scaleCounter).selected = true;
+      // up arrow
+      fretArt.scaleIndex = document.getElementById("scale-value");
+      // the scaleCounter 20 below needs to be hardcoded (its the id of the last
+      // option in #scale-value).
+      if (fretArt.scaleIndex.selectedIndex == 0){
+        scaleCounter = 20;
+        document.getElementById(scaleCounter).selected = true;
+      } else {
+        scaleCounter -= 1;
+        document.getElementById(scaleCounter).selected = true;
+      }
+      processInput();
+      keyAndCurrentScaleDisplay()
+      for (var f = 0; f < fretArt.frets.length; f++) {
+        if (fretArt.frets[f].active) {
+          setScale(fretArt.currentKey, fretArt.currentMode.pattern);
         }
-        processInput();
-        keyAndCurrentScaleDisplay()
-        for (var f = 0; f < fretArt.frets.length; f++) {
-          if (fretArt.frets[f].active) {
-            setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-          }
-        }
-        isolateScaleIds(fretArt.foundScaleIds);
-        buildShapes();
+      }
+      isolateScaleIds(fretArt.foundScaleIds);
+      buildShapes();
       arrowUp.style.transition = "opacity .1s";
       arrowUp.style.opacity = 1;
       setTimeout(function(){ arrowUp.style.opacity = .5; }, 150);
       keyScaleShapeProcessor();
     }
     else if (e.keyCode == '40') {
+      processInput();
       // down arrow
-      var scaleIndex = document.getElementById("scale-value");
+      fretArt.scaleIndex = document.getElementById("scale-value");
       // the number 22 below needs to be hardcoded (its the nuber of id'd options in
       // #scale-value plus the number of disabled options).
-      if (scaleIndex.selectedIndex < 22){
+      if (fretArt.scaleIndex.selectedIndex <= 41){
+        console.log(fretArt.scaleIndex.selectedIndex);
         scaleCounter += 1;
         document.getElementById(scaleCounter).selected = true;
+        console.log(scaleCounter);
       } else {
         scaleCounter = 0;
         document.getElementById(scaleCounter).selected = true;
       }
-      processInput();
       keyAndCurrentScaleDisplay()
       for (var f = 0; f < fretArt.frets.length; f++) {
         if (fretArt.frets[f].active) {
