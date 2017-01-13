@@ -8,6 +8,9 @@
    width: 58px;
    max-height:220px;
 }
+#spacerDiv {
+  height: 168px;
+}
 .dropdownStyle {
   position: absolute;
   margin-top: -18px;
@@ -116,13 +119,17 @@
 .keyNam:hover .headerKey {
   color: black;
 }
+#showScaleContainer {
+  position: relative;
+  margin-top: -10px;
+  margin-bottom: 8px;
+}
 select {
   margin:10px;
   background: rgba(0,0,0,0.3);
   color: rgb(9,81,201);
   border: 1px solid rgb(9,81,201);
 }
-
 .styled-select select {
    padding: 2px 2px 2px 7px;
    font-size: 12px;

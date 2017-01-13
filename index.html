@@ -8,7 +8,7 @@
   <div id="main-container">
     <div class="sideBarContainer">
       <h1><span class="thinText">fret</span>Shapes</h1>
-      <div class="sideContainer" id="side-bar-top">
+      <div style="display:none;" class="sideContainer" id="side-bar-top">
         <p>Choose a scale:</p>
         <div class="styled-select">
           <select id="scale-value" class="scaleList">
@@ -62,7 +62,7 @@
           </select>
         </div>
       </div>
-      <div class="sideContainer">
+      <div style="display:none;" class="sideContainer">
         <p>Choose a key:</p>
         <div>
           <select id="key-value">
@@ -81,7 +81,8 @@
           </select>
         </div>
       </div>
-      <div class="sideContainer">
+      <div id="spacerDiv"></div>
+      <div id="showScaleContainer" class="sideContainer">
         <p>Show scale:</p>
         <div>
           <button type="button" id="show-scale"> On </button>
