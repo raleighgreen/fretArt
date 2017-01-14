@@ -23,7 +23,7 @@ arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
-scaleField.addEventListener("click", function(){
+scaleField.addEventListener("click", function(e){
   console.log("hello there!");
   // processInput();
   // keyAndCurrentScaleDisplay()
@@ -35,8 +35,13 @@ scaleField.addEventListener("click", function(){
   // isolateScaleIds(fretArt.foundScaleIds);
   // buildShapes();
 });
-keyField.addEventListener("click", function(){
+keyField.addEventListener("click", function(e){
   console.log("hello there again!");
+  console.log(e.target);
+  console.log(e.target.getAttribute("data-id"));
+  fretArt.currentKey = e.target.getAttribute("data-id");
+  console.log(fretArt.currentKey);
+  processInput();
   // processInput();
   // keyAndCurrentScaleDisplay()
   // for (var f = 0; f < fretArt.frets.length; f++) {

@@ -68,7 +68,7 @@
   padding: 0;
   text-align: left;
 }
-.dropdownStyle #UlSpacer:hover {
+.dropdownStyle .UlSpacer:hover {
   margin-bottom: 2px;
 }
 .scaNam {
@@ -107,7 +107,7 @@
   margin-top: -15px;
   letter-spacing: -7px;
 }
-#keyDiv:hover #UlSpacer .headerKey {
+#keyDiv:hover .UlSpacer .headerKey {
   position: absolute;
   font-size: 1em;
   margin-top: -20px;

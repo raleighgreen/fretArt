@@ -97,6 +97,14 @@ for (var i = 0; i < fretArt.strings.length; i++) {
   xPosition = originalXPosition;
 }
 
+var keyNameHolder = document.querySelectorAll('.keyNames');
+keyNameHolder[8].getAttributeNode("data-selected").value = "keySelected";
+for (var i = 0; i < keyNameHolder.length; i++) {
+  if(keyNameHolder[i].getAttributeNode("data-selected").value == "keySelected"){
+   fretArt.currentKeyHolder = keyNameHolder[i].getAttributeNode("data-id").value;
+  }
+}
+
 // 2. DEFINE FUNCTIONS -----------------
 
 // Populate arrPositionList by passing in initialArray and number of shapes
@@ -239,11 +247,18 @@ function activateFrets(foundScale) {
 }
 
 function processInput() {
+  // console.log(keyLetter);
   // Grab the key value from the key select fields
   fretArt.currentKey = parseInt(keyValueField.selectedIndex);
+  // fretArt.currentKey = fretArt.currentKeyHolder;
+  console.log(fretArt.currentKeyHolder);
+  console.log(fretArt.currentKey);
   // Grab the name of the key from the text content of the option element
+  // Current Key name below:
+  // console.log(keyNameHolder[2].childNodes[0].value);
   fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
+
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
   // Calculate and set the scale and display it in the console
 }

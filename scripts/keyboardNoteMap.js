@@ -58,7 +58,7 @@ function checkKey(e) {
         scaleCounter = 0;
         document.getElementById(scaleCounter).selected = true;
       }
-      keyAndCurrentScaleDisplay()
+      keyAndCurrentScaleDisplay();
       for (var f = 0; f < fretArt.frets.length; f++) {
         if (fretArt.frets[f].active) {
           setScale(fretArt.currentKey, fretArt.currentMode.pattern);
