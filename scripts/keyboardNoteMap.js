@@ -50,10 +50,10 @@ function checkKey(e) {
       // the number 22 below needs to be hardcoded (its the nuber of id'd options in
       // #scale-value plus the number of disabled options).
       if (fretArt.scaleIndex.selectedIndex <= 41){
-        console.log(fretArt.scaleIndex.selectedIndex);
+        // console.log(fretArt.scaleIndex.selectedIndex);
         scaleCounter += 1;
         document.getElementById(scaleCounter).selected = true;
-        console.log(scaleCounter);
+        // console.log(scaleCounter);
       } else {
         scaleCounter = 0;
         document.getElementById(scaleCounter).selected = true;
@@ -73,12 +73,45 @@ function checkKey(e) {
     }
     else if (e.keyCode == '37') {
      // left arrow
-     var keyIndex = document.getElementById("key-value");
+     var keyIndex = document.getElementById("keyLetterName");
      if (fretArt.currentKey > 0){
-       keyIndex.selectedIndex -= 1;
+       var currentKeyHolder = null;
+       // Loop through fretArt.keyNameHolder
+       for (var i = 0; i < fretArt.keyNameHolder.length; i++) {
+         // 1. find out which keyLetterName is currently "selected"
+         if (fretArt.keyNameHolder[i].getAttributeNode("data-selected").value === "keySelected"){
+           // 2. make that keyLetterName's data-selected="not"
+           // 3. save it's data-id to a variable currentKeyHolder
+           currentKeyHolder = fretArt.keyNameHolder[i].getAttribute("data-id");
+           // 4. select the keyLetterName using the data-id number that is one less than the saved data-id variable
+           // and make that keyLetterName's data-selected="selected"
+         }
+       }
+       // make all fretArt.keyNameHolder's data-selected value = "not"
+       for (var i = 0; i < fretArt.keyNameHolder.length; i++) {
+         fretArt.keyNameHolder[i].getAttribute("data-selected").value = "not";
+       }
+       // make the new keyNameHolder selected by subtracting 1 from currentKeyHolder
+       fretArt.keyNameHolder[currentKeyHolder - 1].getAttributeNode("data-selected").value = "keySelected";
+       console.log("got through");
+       console.log(currentKeyHolder);
+      // the code above replicates the code line below:
+      //  fretArt.keyNameHolder[i].getAttribute("data-id") -= 1;
+
+       // decrement the currentKey
        fretArt.currentKey -= 1;
      } else {
-       keyIndex.selectedIndex = 11;
+       // set all keyLetterName's data-selected="not"
+       for (var i = 0; fretArt.keyNameHolder.length; i++) {
+         fretArt.keyNameHolder[i].getAttributeNode("data-selected").value = "not"
+       }
+       // set keyLetterName[11]'s data-selected="selected"
+       fretArt.keyNameHolder[11].getAttributeNode("data-selected").value = "keySelected";
+       // set the currentKey to 11
+       fretArt.currentKey = 11;
+
+       // the code above replicates the code line below:
+      //  keyIndex.selectedIndex = 11;
      }
      processInput();
      // When new key is chosen, update pedal tone key text with the currentKey
@@ -106,12 +139,38 @@ function checkKey(e) {
     }
     else if (e.keyCode == '39') {
       // right arrow
-      var keyIndex = document.getElementById("key-value");
+      var keyIndex = document.getElementById("keyLetterName");
       if (fretArt.currentKey <= 10){
-        keyIndex.selectedIndex += 1;
+        // Loop through fretArt.keyNameHolder
+        for (var i = 0; i < fretArt.keyNameHolder.length; i++) {
+          // 1. find out which keyLetterName is currently "selected"
+          if (fretArt.keyNameHolder[i].getAttributeNode("data-selected").value === "keySelected"){
+            // 2. make that keyLetterName's data-selected="not"
+            fretArt.keyNameHolder[i].getAttribute("data-selected").value = "not";
+            // 3. save it's data-id to a variable currentKeyHolder
+            currentKeyHolder = fretArt.keyNameHolder[i].getAttribute("data-id");
+            // 4. select the keyLetterName using the data-id number that is one more than the saved data-id variable
+            // and make that keyLetterName's data-selected="selected"
+            fretArt.keyNameHolder[currentKeyHolder + 1].getAttributeNode("data-selected").value = "keySelected";
+          }
+        }
+        // the code above replicates the code line below:
+        // keyIndex.selectedIndex += 1;
+
+        // increment the currentKey
         fretArt.currentKey += 1;
       } else if (fretArt.currentKey = 10) {
-        keyIndex.selectedIndex = 0;
+        // set all keyLetterName's data-selected="not"
+        for (var i = 0; fretArt.keyNameHolder.length; i++) {
+          fretArt.keyNameHolder[i].getAttributeNode("data-selected").value = "not"
+        }
+        // set keyLetterName[0]'s data-selected="selected"
+        fretArt.keyNameHolder[0].getAttributeNode("data-selected").value = "keySelected";
+        // set the currentKey to 0
+        fretArt.currentKey = 0;
+
+        // the code above replicates the code line below:
+        // keyIndex.selectedIndex = 0;
       }
       processInput();
       // When new key is chosen, update pedal tone key text with the currentKey

@@ -97,14 +97,6 @@ for (var i = 0; i < fretArt.strings.length; i++) {
   xPosition = originalXPosition;
 }
 
-var keyNameHolder = document.querySelectorAll('.keyNames');
-keyNameHolder[8].getAttributeNode("data-selected").value = "keySelected";
-for (var i = 0; i < keyNameHolder.length; i++) {
-  if(keyNameHolder[i].getAttributeNode("data-selected").value == "keySelected"){
-   fretArt.currentKeyHolder = keyNameHolder[i].getAttributeNode("data-id").value;
-  }
-}
-
 // 2. DEFINE FUNCTIONS -----------------
 
 // Populate arrPositionList by passing in initialArray and number of shapes
@@ -248,18 +240,19 @@ function activateFrets(foundScale) {
 
 function processInput() {
   // console.log(keyLetter);
-  // Grab the key value from the key select fields
-  fretArt.currentKey = parseInt(keyValueField.selectedIndex);
-  // fretArt.currentKey = fretArt.currentKeyHolder;
-  console.log(fretArt.currentKeyHolder);
+  for (var i = 0; i < fretArt.keyNameHolder.length; i++) {
+    if (fretArt.keyNameHolder[i].getAttributeNode("data-selected").value === "keySelected") {
+      // Grab the key value from the key select field and place it in fretArt.currentKey
+     fretArt.currentKey = fretArt.keyNameHolder[i].getAttribute("data-id");
+     // save the letter name of the current key to fretArt.currentKeyName
+     fretArt.currentKeyName = fretArt.keyNameHolder[i].textContent;
+    }
+  }
   console.log(fretArt.currentKey);
-  // Grab the name of the key from the text content of the option element
-  // Current Key name below:
-  // console.log(keyNameHolder[2].childNodes[0].value);
-  fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
-  // Grab the current mode using the value from the mode select field
+  console.log(fretArt.currentKeyName);
 
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
+  console.log(fretArt.currentMode);
   // Calculate and set the scale and display it in the console
 }
 
@@ -408,10 +401,14 @@ function preload() {
 function setup() {
   createCanvas(882, 370);
   // buildShapes();
-  processInput();
   fretArt.fretsIsShowing = true;
   fretArt.stringsIsShowing = true;
   fretArt.linesVisible = true;
+  // collect all .keyNames from the #keyLetterName ul. into fretArt.keyNameHolder
+  fretArt.keyNameHolder = document.querySelectorAll('.keyNames');
+  // set keyNameHolder[8]'s 'data-selected'.value = "keySelected"
+  fretArt.keyNameHolder[8].getAttributeNode("data-selected").value = "keySelected";
+  processInput();
   turnOnButtonStyle(document.getElementById("hide-scale"));
   turnOffButtonStyle(document.getElementById("hide-scale"));
   turnOnButtonStyle(document.getElementById("show-shapes"));
