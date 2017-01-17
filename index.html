@@ -3,127 +3,161 @@
 <head>
     <title>fretArt</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/selectric.css">
 </head>
 <body>
-
-    <audio id="_1" src="audio/1.mp3" ></audio>
-    <audio id="_2" src="audio/2.mp3" ></audio>
-    <audio id="_3" src="audio/3.mp3" ></audio>
-    <audio id="_4" src="audio/4.mp3" ></audio>
-    <audio id="_5" src="audio/5.mp3" ></audio>
-    <audio id="_6" src="audio/6.mp3" ></audio>
-    <audio id="_7" src="audio/7.mp3" ></audio>
-    <audio id="_8" src="audio/8.mp3" ></audio>
-    <audio id="_9" src="audio/9.mp3" ></audio>
-    <audio id="_10" src="audio/10.mp3" ></audio>
-    <audio id="_11" src="audio/11.mp3" ></audio>
-    <audio id="_12" src="audio/12.mp3" ></audio>
-    <audio id="_13" src="audio/13.mp3" ></audio>
-    <audio id="_14" src="audio/14.mp3" ></audio>
-    <audio id="_15" src="audio/15.mp3" ></audio>
-    <audio id="_16" src="audio/16.mp3" ></audio>
-    <audio id="_17" src="audio/17.mp3" ></audio>
-    <audio id="_18" src="audio/18.mp3" ></audio>
-    <audio id="_19" src="audio/19.mp3" ></audio>
-    <audio id="_20" src="audio/20.mp3" ></audio>
-    <audio id="_21" src="audio/21.mp3" ></audio>
-    <audio id="_22" src="audio/22.mp3" ></audio>
-    <audio id="_23" src="audio/23.mp3" ></audio>
-    <audio id="_24" src="audio/24.mp3" ></audio>
-    <audio id="_25" src="audio/25.mp3" ></audio>
-    <audio id="_26" src="audio/26.mp3" ></audio>
-    <audio id="_27" src="audio/27.mp3" ></audio>
-    <audio id="_28" src="audio/28.mp3" ></audio>
-    <audio id="_29" src="audio/29.mp3" ></audio>
-    <audio id="_30" src="audio/30.mp3" ></audio>
-    <audio id="_31" src="audio/31.mp3" ></audio>
-    <audio id="_32" src="audio/32.mp3" ></audio>
-    <audio id="_33" src="audio/33.mp3" ></audio>
-    <audio id="_34" src="audio/34.mp3" ></audio>
-    <audio id="_35" src="audio/35.mp3" ></audio>
-    <audio id="_36" src="audio/36.mp3" ></audio>
-    <audio id="_37" src="audio/37.mp3" ></audio>
-    <audio id="_38" src="audio/38.mp3" ></audio>
-    <audio id="_39" src="audio/39.mp3" ></audio>
-    <audio id="_40" src="audio/40.mp3" ></audio>
-    <audio id="_41" src="audio/41.mp3" ></audio>
-    <audio id="_42" src="audio/42.mp3" ></audio>
-    <audio id="_43" src="audio/43.mp3" ></audio>
-    <audio id="_44" src="audio/44.mp3" ></audio>
-    <audio id="_45" src="audio/45.mp3" ></audio>
-    <audio id="_46" src="audio/46.mp3" ></audio>
-    <audio id="_47" src="audio/47.mp3" ></audio>
-    <audio id="_48" src="audio/48.mp3" ></audio>
-    <audio id="_49" src="audio/49.mp3" ></audio>
-  <div>
+  <div id="main-container">
     <div class="sideBarContainer">
-      <h1>fretArt</h1>
+      <h1><span class="thinText">fret</span>Shapes</h1>
 
-      <div class="sideContainer">
+      <div class="sideContainer" id="side-bar-top">
         <p>Choose a scale:</p>
         <div>
-          <select id="scale-value">
-            <option>ionian</option>
-            <option>dorian</option>
-            <option>phrygian</option>
-            <option>lydian</option>
-            <option>mixolydian</option>
-            <option>aeolien</option>
-            <option>locrian</option>
-            <option>minPentatonic</option>
+          <select id="scale-value" >
+            <optgroup label="">
+              <option id="0" selected="selected">Ionian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="1">Dorian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="2">Phrygian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="3">Lydian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="4">Mixolydian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="5">Aeolien</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="6">Locrian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+            </optgroup>
+            <optgroup label="&nbsp;&nbsp;______________________________">
+              <option id="7">Melodic Minor</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="8">Phrygian Natural 6</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="9">Lydian Augmented</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="10">Lydian b7</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="11">Mixolydian b6</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="12">Locrian Nat 2</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="13">Altered Scale</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+            </optgroup>
+            <optgroup label="&nbsp;&nbsp;______________________________">
+              <option id="14">Harmonic Minor</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="15">Locrian Natural 6</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="16">Ionian #5</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="17">Dorian #4</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="18">Phrygian Dominant</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="19">Lydian #2</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="20">Altered Dominant bb7</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+            </optgroup>
           </select>
         </div>
       </div>
-      <div class="sideContainer">
+      <div class="sideContainer" id="keyContainer">
         <p>Choose a key:</p>
         <div>
           <select id="key-value">
-            <option>E</option>
-            <option>F</option>
-            <option>Gb</option>
-            <option>G</option>
-            <option>Ab</option>
-            <option>A</option>
-            <option>Bb</option>
-            <option>B</option>
-            <option selected="selected">C</option>
-            <option>Db</option>
-            <option>D</option>
-            <option>Eb</option>
+            <optgroup label="" >
+              <option class="optionSizer">E</option>
+              <option class="optionSizer">F</option>
+              <option class="optionSizer">Gb</option>
+              <option class="optionSizer">G</option>
+              <option class="optionSizer">Ab</option>
+              <option class="optionSizer">A</option>
+              <option class="optionSizer">Bb</option>
+              <option class="optionSizer">B</option>
+              <option  class="optionSizer" selected="selected">C</option>
+              <option class="optionSizer">Db</option>
+              <option class="optionSizer">D</option>
+              <option class="optionSizer">Eb</option>
+            </optgroup>
           </select>
         </div>
       </div>
-      <div class="sideContainer">
-        <p>Show/Clear scale:</p>
+      <div class="sideContainer" id="scaleContainer">
+        <p>Show scale:</p>
         <div>
-          <button type="button" id="show-scale">Show</button>
-          <button type="button" id="clear-scale">Clear</button>
+          <button type="button" id="show-scale"> On </button>
+          <button type="button" id="hide-scale"> Off </button>
         </div>
       </div>
-      <div class="sideContainer">
-        <p>Lines:</p>
+      <div class="sideContainer" id="float-here">
+        <p>Show shapes:</p>
         <div>
-          <button type="button" id="show-lines">Show</button>
-          <button type="button" id="clear-lines">Clear</button>
+          <button type="button" id="show-shapes"> On </button>
+          <button type="button" id="hide-shapes"> Off </button>
         </div>
+      </div>
+      <div class="sideContainer" id="pedal-tone">
+        <p id="pedal-tone-text"><span id="pedal-tone-key">C</span> Pedal Tone:</p>
+        <div>
+          <button type="button" id="play-button"> On </button>
+          <button type="button" id="stop-button"> Off </button>
+        </div>
+      </div>
+      <div id="fretsBox">
+        <p class="frets" id="fret3">3</p>
+        <p class="frets" id="fret5">5</p>
+        <p class="frets" id="fret7">7</p>
+        <p class="frets" id="fret9">9</p>
+        <p class="frets" id="fret12">12</p>
+        <p class="frets" id="fret15">15</p>
+        <p class="frets" id="fret17">17</p>
+        <p class="frets" id="fret19">19</p>
+        <p class="frets" id="fret21">21</p>
+        <p class="frets" id="fret24">24</p>
+      </div>
+      <div id="fretButtonContainer">
+        <input type="button" value=" Frets on " id="fret-button" class="toggleButton"/>
+      </div>
+      <div id="stringButtonContainer">
+        <input type="button" value=" Strings on " id="string-button" class="toggleButton"/>
+      </div>
+      <div id="display-gradient-mask-right"></div>
+      <div id="display-gradient-mask-bottom"></div>
+      <div id="string-gradient-mask"></div>
+      <div id="key-scale-display">
+      <div id="arrow-up"></div>
+      <div id="arrow-down"></div>
+      <div id="arrow-left"></div>
+      <div id="arrow-right"></div>
+        <p>
+          <span id="current-key" class="key-scale-display-text">C </span>
+          <span id="current-scale" class="key-scale-display-text">Ionian</span>
+        </p>
       </div>
     </div>
-
-      </div>
-
-
+  </div>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/addons/p5.dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/addons/p5.sound.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script> -->
     <script src="libraries/p5.js"></script>
     <script src="libraries/p5.dom.js"></script>
     <script src="libraries/p5.sound.js"></script>
+    <script src="scripts/eventListeners.js"></script>
     <script src="scripts/Note.js"></script>
     <script src="scripts/Fret.js"></script>
+    <script src="scripts/ShadowFret.js"></script>
     <script src="scripts/Mode.js"></script>
     <script src="scripts/String.js"></script>
-    <script src="scripts/lines.js"></script>
+    <script src="scripts/Shape.js"></script>
     <script src="scripts/utilities.js"></script>
+    <script src="scripts/fretArt.js"></script>
+    <script src="scripts/keyboardNoteMap.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="scripts/jquery.selectric.min.js"></script>
 </body>
 </html>
