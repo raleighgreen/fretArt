@@ -6,8 +6,8 @@ function getScale(key, scale) {
   // var octaveNum = octave;
   // console.log(noteInKey);
 
-  while (noteInKey < notes.length) {
-    var currentNote = notes[noteInKey];
+  while (noteInKey < fretArt.notes.length) {
+    var currentNote = fretArt.notes[noteInKey];
     // Reset modeIndex to 0 if outside of scale range
     if (modeIndex >= scale.length) {
       modeIndex = 0;
@@ -25,7 +25,7 @@ function getScale(key, scale) {
   modeIndex = 0;
 
   while (noteInKey >= 0) {
-    currentNote = notes[noteInKey];
+    currentNote = fretArt.notes[noteInKey];
     foundScale.unshift(currentNote);
     noteInKey -= scale[modeIndex];
     modeIndex++;
