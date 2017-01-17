@@ -3,7 +3,6 @@ select {
   background: rgba(0,0,0,0.3);
   color: rgb(9,81,201);
   border: 1px solid rgb(9,81,201);
-
 }
 
 h1 {
@@ -139,7 +138,7 @@ canvas {
 .sideBarContainer {
   position: absolute;
   width: 860px;
-  margin-top: -29px;
+  margin-top: -35px;
   padding: 26px;
 }
 
@@ -149,7 +148,21 @@ canvas {
 }
 
 #side-bar-top {
-  margin-top: 35px;
+  margin-top: 17px;
+
+}
+#keyContainer {
+  position: relative;
+  padding-top: 14px;
+}
+
+#scaleContainer {
+  position: relative;
+  padding-top: 14px;
+}
+
+.optionSizer {
+  margin: 10px 0px 10px 0px;
 }
 
 .thinText {

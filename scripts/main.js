@@ -357,6 +357,9 @@ function preload() {
 }
 
 function setup() {
+  $(function() {
+    $('select').selectric();
+  });
   createCanvas(882, 370);
   // buildShapes();
   processInput();

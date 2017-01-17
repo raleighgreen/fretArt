@@ -3,6 +3,7 @@
 <head>
     <title>fretArt</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/selectric.css">
 </head>
 <body>
   <div id="main-container">
@@ -12,53 +13,80 @@
       <div class="sideContainer" id="side-bar-top">
         <p>Choose a scale:</p>
         <div>
-          <select id="scale-value">
-            <option id="0" selected="selected">Ionian</option>
-            <option id="1">Dorian</option>
-            <option id="2">Phrygian</option>
-            <option id="3">Lydian</option>
-            <option id="4">Mixolydian</option>
-            <option id="5">Aeolien</option>
-            <option id="6">Locrian</option>
-            <option disabled>──────────</option>
-            <option id="7">Melodic Minor</option>
-            <option id="8">Phrygian Natural 6</option>
-            <option id="9">Lydian Augmented</option>
-            <option id="10">Lydian b7</option>
-            <option id="11">Mixolydian b6</option>
-            <option id="12">Locrian Nat 2</option>
-            <option id="13">Altered Scale</option>
-            <option disabled>──────────</option>
-            <option id="14">Harmonic Minor</option>
-            <option id="15">Locrian Natural 6</option>
-            <option id="16">Ionian #5</option>
-            <option id="17">Dorian #4</option>
-            <option id="18">Phrygian Dominant</option>
-            <option id="19">Lydian #2</option>
-            <option id="20">Altered Dominant bb7</option>
+          <select id="scale-value" >
+            <optgroup label="">
+              <option id="0" selected="selected">Ionian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="1">Dorian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="2">Phrygian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="3">Lydian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="4">Mixolydian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="5">Aeolien</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="6">Locrian</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+            </optgroup>
+            <optgroup label="&nbsp;&nbsp;______________________________">
+              <option id="7">Melodic Minor</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="8">Phrygian Natural 6</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="9">Lydian Augmented</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="10">Lydian b7</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="11">Mixolydian b6</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="12">Locrian Nat 2</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="13">Altered Scale</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+            </optgroup>
+            <optgroup label="&nbsp;&nbsp;______________________________">
+              <option id="14">Harmonic Minor</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="15">Locrian Natural 6</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="16">Ionian #5</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="17">Dorian #4</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="18">Phrygian Dominant</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="19">Lydian #2</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+              <option id="20">Altered Dominant bb7</option>
+              <option disabled>1 2 b3 4 5 6 b7</option>
+            </optgroup>
           </select>
         </div>
       </div>
-      <div class="sideContainer">
+      <div class="sideContainer" id="keyContainer">
         <p>Choose a key:</p>
         <div>
           <select id="key-value">
-            <option>E</option>
-            <option>F</option>
-            <option>Gb</option>
-            <option>G</option>
-            <option>Ab</option>
-            <option>A</option>
-            <option>Bb</option>
-            <option>B</option>
-            <option selected="selected">C</option>
-            <option>Db</option>
-            <option>D</option>
-            <option>Eb</option>
+            <optgroup label="" >
+              <option class="optionSizer">E</option>
+              <option class="optionSizer">F</option>
+              <option class="optionSizer">Gb</option>
+              <option class="optionSizer">G</option>
+              <option class="optionSizer">Ab</option>
+              <option class="optionSizer">A</option>
+              <option class="optionSizer">Bb</option>
+              <option class="optionSizer">B</option>
+              <option  class="optionSizer" selected="selected">C</option>
+              <option class="optionSizer">Db</option>
+              <option class="optionSizer">D</option>
+              <option class="optionSizer">Eb</option>
+            </optgroup>
           </select>
         </div>
       </div>
-      <div class="sideContainer">
+      <div class="sideContainer" id="scaleContainer">
         <p>Show scale:</p>
         <div>
           <button type="button" id="show-scale"> On </button>
@@ -129,5 +157,7 @@
     <script src="scripts/fretArt.js"></script>
     <script src="scripts/keyboardNoteMap.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="scripts/jquery.selectric.min.js"></script>
 </body>
 </html>
