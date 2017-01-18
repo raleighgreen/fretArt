@@ -245,6 +245,9 @@ function processInput() {
   fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
+  // fretArt.currentMode = 'Ionian (Maj Scale)';
+  console.log(fretArt.modes['Phrygian']);
+  console.log(fretArt.currentMode);
   // Calculate and set the scale and display it in the console
 }
 
