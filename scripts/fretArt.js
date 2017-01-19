@@ -21,5 +21,6 @@ var fretArt = {
   initialStringIndices: null,
   currentKey: null,
   currentKeyName: null,
-  currentMode: null
+  currentMode: null,
+  selectedModeNameHolder: null
 }

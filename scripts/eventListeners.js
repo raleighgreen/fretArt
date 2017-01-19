@@ -23,17 +23,21 @@ arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
-scaleField.addEventListener("click", function(){
-  console.log("hello there!");
-  // processInput();
-  // keyAndCurrentScaleDisplay()
-  // for (var f = 0; f < fretArt.frets.length; f++) {
-  //   if (fretArt.frets[f].active) {
-  //     setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-  //   }
-  // }
-  // isolateScaleIds(fretArt.foundScaleIds);
-  // buildShapes();
+scaleField.addEventListener("click", function(e){
+  console.log("this is the key field!");
+  console.log(e.target);
+  var selectedModeName = document.getElementById("scalesDiv");
+  // Reset all fretArt.keyNameHolder Nodes to "not"
+
+  for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+   fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
+  }
+  console.log(selectedModeName);
+
+  // make the "data-selected" attribute of the selected Node ="keySelected"
+
+  e.target.getAttributeNode("data-selected").value = "modeSelected";
+console.log(fretArt.selectedModeNameHolder);
 });
 keyField.addEventListener("click", function(){
   console.log("hello there again!");

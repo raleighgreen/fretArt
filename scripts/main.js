@@ -244,6 +244,13 @@ function processInput() {
   // Grab the name of the key from the text content of the option element
   fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
+  // collect all .keyNames from the #keyLetterName ul. into fretArt.keyNameHolder
+  fretArt.selectedModeNameHolder = document.querySelectorAll('.scaNam');
+  // set keyNameHolder[8]'s 'data-selected'.value = "keySelected"
+  fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "modeSelected";
+  // console.log(fretArt.selectedModeHolder);
+  // console.log(fretArt.selectedModeNameHolder);
+
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
   // fretArt.currentMode = 'Ionian (Maj Scale)';
   // Calculate and set the scale and display it in the console
