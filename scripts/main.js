@@ -246,8 +246,6 @@ function processInput() {
   // Grab the current mode using the value from the mode select field
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
   // fretArt.currentMode = 'Ionian (Maj Scale)';
-  console.log(fretArt.modes['Phrygian']);
-  console.log(fretArt.currentMode);
   // Calculate and set the scale and display it in the console
 }
 
@@ -358,16 +356,6 @@ function keyScaleShapeProcessor() {
   }
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
-}
-
-function toggleMenu() {
-  var menuBox = document.getElementById('scale-value');
-  if(menuBox.style.display == "block") { // if is menuBox displayed, hide it
-    menuBox.style.display = "none";
-  }
-  else { // if is menuBox hidden, display it
-    menuBox.style.display = "block";
-  }
 }
 
 function lightTimer(passedThis) {
