@@ -32,12 +32,11 @@ scaleField.addEventListener("click", function(e){
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
    fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
   }
-  console.log(selectedModeName);
 
   // make the "data-selected" attribute of the selected Node ="keySelected"
 
   e.target.getAttributeNode("data-selected").value = "modeSelected";
-console.log(fretArt.selectedModeNameHolder);
+  processInput();
 });
 keyField.addEventListener("click", function(){
   console.log("hello there again!");

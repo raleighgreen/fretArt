@@ -245,12 +245,20 @@ function processInput() {
   fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   // collect all .keyNames from the #keyLetterName ul. into fretArt.keyNameHolder
-  fretArt.selectedModeNameHolder = document.querySelectorAll('.scaNam');
-  // set keyNameHolder[8]'s 'data-selected'.value = "keySelected"
-  fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "modeSelected";
+  for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
+       // Grab the key value from the key select field and place it in fretArt.currentKey
+       var scaleName = document.getElementsByClassName('selectedScaleText');
+      console.log("i'm first");
+      console.log(scaleName[i].textContent);
+      // fretArt.currentKey = fretArt.keyNameHolder[i].getAttribute("data-id");
+      // // save the letter name of the current key to fretArt.currentKeyName
+      // fretArt.currentKeyName = fretArt.keyNameHolder[i].textContent;
+     }
+   }
   // console.log(fretArt.selectedModeHolder);
   // console.log(fretArt.selectedModeNameHolder);
-
+  // console.log(fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value);
   fretArt.currentMode = fretArt.modes[scaleValueField.value];
   // fretArt.currentMode = 'Ionian (Maj Scale)';
   // Calculate and set the scale and display it in the console
@@ -390,6 +398,9 @@ function preload() {
 
 function setup() {
   createCanvas(882, 370);
+  fretArt.selectedModeNameHolder = document.querySelectorAll('.scaNam');
+  // set keyNameHolder[8]'s 'data-selected'.value = "keySelected"
+  fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "modeSelected";
   // buildShapes();
   processInput();
   fretArt.fretsIsShowing = true;
