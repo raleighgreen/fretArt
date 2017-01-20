@@ -42,24 +42,24 @@ fretArt.modes = {
   "Phrygian": new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2], phrygianLowestFrets),
   "Lydian": new Mode("Lydian",[2, 2, 2, 1, 2, 2, 1], lydianLowestFrets),
   "Mixolydian": new Mode("Mixolydian", [2, 2, 1, 2, 2, 1, 2], mixolydianLowestFrets),
-  "Aeolien (Natural Min)": new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2], aeolienLowestFrets),
+  "Aeolien (Nat Min)": new Mode("Aeolien", [2, 1, 2, 2, 1, 2, 2], aeolienLowestFrets),
   "Locrian": new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2], locrianLowestFrets),
 //---------------------
   "Melodic Minor": new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets),
-  "Phrygian Natural 6": new Mode("Phrygian Natural 6", [1, 2, 2, 2, 2, 1, 2], phrygianNat6LowestFrets),
+  "Phrygian Nat 6": new Mode("Phrygian Natural 6", [1, 2, 2, 2, 2, 1, 2], phrygianNat6LowestFrets),
   "Lydian Augmented": new Mode("Lydian Augmented",[2, 2, 2, 2, 1, 2, 1], lydianAugmentedLowestFrets),
   "Lydian b7": new Mode("Lydian b7", [2, 2, 2, 1, 2, 1, 2], lydianb7LowestFrets),
   "Mixolydian b6": new Mode("Mixolydian b6", [2, 2, 1, 2, 1, 2, 2], mixolydianb6LowestFrets),
-  "Locrian Nat 2": new Mode("Locrian Nat 2",[2, 1, 2, 1, 2, 2, 2], locrianNat2LowestFrets),
+  "Locrian Nat 2": new Mode("Locrian Natural 2",[2, 1, 2, 1, 2, 2, 2], locrianNat2LowestFrets),
   "Altered Scale": new Mode("Altered Scale",[1, 2, 1, 2, 2, 2, 2], alteredScaleLowestFrets),
 //---------------------
   "Harmonic Minor": new Mode("Harmonic Minor",[2, 1, 2, 2, 1, 3, 1], harmMinLowestFrets),
-  "Locrian Natural 6": new Mode("Locrian Natural 6",[1, 2, 2, 1, 3, 1, 2], locrianNat6LowestFrets),
+  "Locrian Nat 6": new Mode("Locrian Natural 6",[1, 2, 2, 1, 3, 1, 2], locrianNat6LowestFrets),
   "Ionian #5": new Mode("Ionian #5",[2, 2, 1, 3, 1, 2, 1], ionianSharp5LowestFrets),
   "Dorian #4": new Mode("Dorian #4",[2, 1, 3, 1, 2, 1, 2], dorianSharp4LowestFrets),
   "Phrygian Dominant": new Mode("Phrygian Dominant",[1, 3, 1, 2, 1, 2, 2], phrygianDominantLowestFrets),
   "Lydian #2": new Mode("Lydian #2",[3, 1, 2, 1, 2, 2, 1], lydianSharp2LowestFrets),
-  "Altered Dominant bb7": new Mode("Altered Dominant bb7",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets)
+  "Altered Dom bb7": new Mode("Altered Dominant bb7",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets)
 }
 
 // Create strings and group them in an array
@@ -250,18 +250,12 @@ function processInput() {
        // Grab the key value from the key select field and place it in fretArt.currentKey
        var scaleName = document.getElementsByClassName('selectedScaleText');
       console.log("i'm first");
-      console.log(scaleName[i].textContent);
-      // fretArt.currentKey = fretArt.keyNameHolder[i].getAttribute("data-id");
-      // // save the letter name of the current key to fretArt.currentKeyName
-      // fretArt.currentKeyName = fretArt.keyNameHolder[i].textContent;
+      var scaleNameValue = scaleName[i].textContent;
+      console.log(scaleNameValue);
      }
    }
-  // console.log(fretArt.selectedModeHolder);
-  // console.log(fretArt.selectedModeNameHolder);
-  // console.log(fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value);
-  fretArt.currentMode = fretArt.modes[scaleValueField.value];
-  // fretArt.currentMode = 'Ionian (Maj Scale)';
-  // Calculate and set the scale and display it in the console
+
+  fretArt.currentMode = fretArt.modes[scaleNameValue];
 }
 
 function drawShape(shapeArray) {

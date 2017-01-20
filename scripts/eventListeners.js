@@ -3,7 +3,6 @@
 // Grab the select fields and buttons from the HTML document
 var keyValueField = document.getElementById("key-value");
 var keyField = document.getElementById("keyDiv");
-var scaleValueField = document.getElementById("scale-value");
 var scaleField = document.getElementById("scalesDiv");
 var showScales = document.getElementById("show-scale");
 var hideScales = document.getElementById("hide-scale");
@@ -37,18 +36,17 @@ scaleField.addEventListener("click", function(e){
 
   e.target.getAttributeNode("data-selected").value = "modeSelected";
   processInput();
+  keyAndCurrentScaleDisplay()
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+  isolateScaleIds(fretArt.foundScaleIds);
+  buildShapes();
 });
 keyField.addEventListener("click", function(){
   console.log("hello there again!");
-  // processInput();
-  // keyAndCurrentScaleDisplay()
-  // for (var f = 0; f < fretArt.frets.length; f++) {
-  //   if (fretArt.frets[f].active) {
-  //     setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-  //   }
-  // }
-  // isolateScaleIds(fretArt.foundScaleIds);
-  // buildShapes();
 });
 
 arrowUp.addEventListener("mouseover", function() {
