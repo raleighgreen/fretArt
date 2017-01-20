@@ -19,16 +19,7 @@ function checkKey(e) {
     }
     else if (e.keyCode == '38') {
       // up arrow
-      fretArt.scaleIndex = document.getElementById("scale-value");
-      // the scaleCounter 20 below needs to be hardcoded (its the id of the last
-      // option in #scale-value).
-      if (fretArt.scaleIndex.selectedIndex == 0){
-        scaleCounter = 20;
-        document.getElementById(scaleCounter).selected = true;
-      } else {
-        scaleCounter -= 1;
-        document.getElementById(scaleCounter).selected = true;
-      }
+      moveScaleUp();
       processInput();
       keyAndCurrentScaleDisplay()
       for (var f = 0; f < fretArt.frets.length; f++) {
@@ -46,6 +37,7 @@ function checkKey(e) {
     else if (e.keyCode == '40') {
       processInput();
       // down arrow
+      
       fretArt.scaleIndex = document.getElementById("scale-value");
       // the number 22 below needs to be hardcoded (its the nuber of id'd options in
       // #scale-value plus the number of disabled options).

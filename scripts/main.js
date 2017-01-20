@@ -382,6 +382,28 @@ function lightTimer(passedThis) {
   }
 }
 
+function moveScaleUp() {
+  for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
+       // Grab the key value from the key select field and place it in fretArt.currentKey
+       fretArt.scaleIndex = fretArt.selectedModeNameHolder[i].id;
+     }
+   }
+  if (fretArt.scaleIndex == 0){
+    fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "notSelected";
+    console.log('yep');
+    fretArt.scaleCounter = 20;
+    fretArt.selectedModeNameHolder[fretArt.scaleCounter].getAttributeNode("data-selected").value = "modeSelected"
+    // document.getElementById(scaleCounter).selected = true;
+  } else {
+    console.log('nope');
+    for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+      fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
+    }
+    fretArt.scaleCounter -= 1;
+    fretArt.selectedModeNameHolder[fretArt.scaleCounter].getAttributeNode("data-selected").value = "modeSelected"
+  }
+}
 // 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
 
 function preload() {
