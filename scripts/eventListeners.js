@@ -23,8 +23,6 @@ arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
 scaleField.addEventListener("click", function(e){
-  console.log("this is the key field!");
-  console.log(e.target);
   var selectedModeName = document.getElementById("scalesDiv");
   // Reset all fretArt.keyNameHolder Nodes to "not"
 
@@ -46,7 +44,7 @@ scaleField.addEventListener("click", function(e){
   buildShapes();
 });
 keyField.addEventListener("click", function(){
-  console.log("hello there again!");
+  console.log("hello, soon I will be set up to handle keys!");
 });
 
 //----------------------------------------------------------

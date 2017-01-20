@@ -246,13 +246,12 @@ function processInput() {
   // Grab the current mode using the value from the mode select field
   // collect all .keyNames from the #keyLetterName ul. into fretArt.keyNameHolder
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
-     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
-       // Grab the key value from the key select field and place it in fretArt.currentKey
-       var scaleName = document.getElementsByClassName('selectedScaleText');
-      console.log("i'm first");
+    if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
+      // Grab the key value from the key select field and place it in fretArt.currentKey
+      var scaleName = document.getElementsByClassName('selectedScaleText');
       var scaleNameValue = scaleName[i].textContent;
       console.log(scaleNameValue);
-     }
+    }
    }
 
   fretArt.currentMode = fretArt.modes[scaleNameValue];

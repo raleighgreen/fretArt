@@ -71,6 +71,10 @@
 .dropdownStyle #UlSpacer:hover {
   margin-bottom: 2px;
 }
+.scaNam1 {
+  font-weight: 700;
+  color: purple);
+}
 .scaNam {
   font-weight: 700;
   color: rgb(9,81,201);
