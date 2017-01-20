@@ -49,62 +49,59 @@ keyField.addEventListener("click", function(){
   console.log("hello there again!");
 });
 
+//----------------------------------------------------------
+//---------- Arrow Button Up -------------------------------
+
 arrowUp.addEventListener("mouseover", function() {
-  arrowUp.style.transition = "opacity .1s";
-  arrowUp.style.opacity = 1;
+  lightUpArrowAndStayLit();
+});
+
+arrowUp.addEventListener("mouseout", function() {
+  dimUpArrow();
 });
 
 arrowUp.addEventListener("click", function() {
   moveScaleUp();
   processInput();
   keyAndCurrentScaleDisplay()
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
+  ifActiveSetScale();
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
-});
-arrowUp.addEventListener("mouseout", function() {
-  arrowUp.style.transition = "opacity .1s";
-  arrowUp.style.opacity = .5;
 });
 
+//----------------------------------------------------------
+//---------- Arrow Button Down------------------------------
+
 arrowDown.addEventListener("mouseover", function() {
-  arrowDown.style.transition = "opacity .1s";
-  arrowDown.style.opacity = 1;
+  lightDownArrowAndStayLit();
 });
+
+arrowDown.addEventListener("mouseout", function() {
+  dimDownArrow();
+});
+
 arrowDown.addEventListener("click", function() {
-  fretArt.scaleIndex = document.getElementById("scale-value");
-  // the number 22 below needs to be hardcoded (its the nuber of id'd options in
-  // #scale-value plus the number of disabled options).
-  if (fretArt.scaleIndex.selectedIndex < 22){
-    fretArt.scaleCounter += 1;
-    document.getElementById(fretArt.scaleCounter).selected = true;
-  } else {
-    fretArt.scaleCounter = 0;
-    document.getElementById(fretArt.scaleCounter).selected = true;
-  }
+  moveScaleDown();
   processInput();
-  keyAndCurrentScaleDisplay()
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
+  keyAndCurrentScaleDisplay();
+  ifActiveSetScale();
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
-arrowDown.addEventListener("mouseout", function() {
-  arrowDown.style.transition = "opacity .1s";
-  arrowDown.style.opacity = .5;
-});
+
+//----------------------------------------------------------
+//---------- Arrow Button Left------------------------------
 
 arrowLeft.addEventListener("mouseover", function() {
   arrowLeft.style.transition = "opacity .1s";
   arrowLeft.style.opacity = 1;
 });
+
+arrowLeft.addEventListener("mouseout", function() {
+  arrowLeft.style.transition = "opacity .1s";
+  arrowLeft.style.opacity = .5;
+});
+
 arrowLeft.addEventListener("click", function() {
   var keyIndex = document.getElementById("key-value");
   if (fretArt.currentKey > 0){
@@ -114,7 +111,6 @@ arrowLeft.addEventListener("click", function() {
     keyIndex.selectedIndex = 11;
   }
   processInput();
-  // When new key is chosen, update pedal tone key text with the currentKey
   pedalToneKeyDisplay();
   keyAndCurrentScaleDisplay();
   for (var f = 0; f < fretArt.frets.length; f++) {
@@ -133,10 +129,9 @@ arrowLeft.addEventListener("click", function() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
-arrowLeft.addEventListener("mouseout", function() {
-  arrowLeft.style.transition = "opacity .1s";
-  arrowLeft.style.opacity = .5;
-});
+
+//----------------------------------------------------------
+//---------- Arrow Button Right-----------------------------
 
 arrowRight.addEventListener("mouseover", function() {
   arrowRight.style.transition = "opacity .1s";
@@ -174,6 +169,9 @@ arrowRight.addEventListener("mouseout", function() {
   arrowRight.style.transition = "opacity .1s";
   arrowRight.style.opacity = .5;
 });
+
+//---------------------------------------------------
+//---------------------------------------------------
 
 fretButton.addEventListener("click", function() {
   toggleFretButton(fretButton);

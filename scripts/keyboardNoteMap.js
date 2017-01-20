@@ -2,7 +2,7 @@ document.onkeydown = checkKey;
 function checkKey(e) {
 
     e = e || window.event;
-
+    // toggle pedal tone on/off with the space bar
     if (e.keyCode == '32') {
       if (!pedalTonePlay) {
         turnOnButtonStyle(document.getElementById("play-button"));
@@ -17,50 +17,30 @@ function checkKey(e) {
         pedalTonePlay = false;
       }
     }
+
+    //----------------------------------------------------------
+    //---------- Arrow Key Listeners ---------------------------
+
     else if (e.keyCode == '38') {
       // up arrow
       moveScaleUp();
       processInput();
-      keyAndCurrentScaleDisplay()
-      for (var f = 0; f < fretArt.frets.length; f++) {
-        if (fretArt.frets[f].active) {
-          setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-        }
-      }
+      keyAndCurrentScaleDisplay();
+      ifActiveSetScale();
       isolateScaleIds(fretArt.foundScaleIds);
       buildShapes();
-      arrowUp.style.transition = "opacity .1s";
-      arrowUp.style.opacity = 1;
-      setTimeout(function(){ arrowUp.style.opacity = .5; }, 150);
+      lightUpArrows();
       keyScaleShapeProcessor();
     }
     else if (e.keyCode == '40') {
-      processInput();
       // down arrow
-      
-      fretArt.scaleIndex = document.getElementById("scale-value");
-      // the number 22 below needs to be hardcoded (its the nuber of id'd options in
-      // #scale-value plus the number of disabled options).
-      if (fretArt.scaleIndex.selectedIndex <= 41){
-        console.log(fretArt.scaleIndex.selectedIndex);
-        scaleCounter += 1;
-        document.getElementById(scaleCounter).selected = true;
-        console.log(scaleCounter);
-      } else {
-        scaleCounter = 0;
-        document.getElementById(scaleCounter).selected = true;
-      }
-      keyAndCurrentScaleDisplay()
-      for (var f = 0; f < fretArt.frets.length; f++) {
-        if (fretArt.frets[f].active) {
-          setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-        }
-      }
+      moveScaleDown();
+      processInput();
+      keyAndCurrentScaleDisplay();
+      ifActiveSetScale();
       isolateScaleIds(fretArt.foundScaleIds);
       buildShapes();
-      arrowDown.style.transition = "opacity .1s";
-      arrowDown.style.opacity = 1;
-      setTimeout(function(){ arrowDown.style.opacity = .5; }, 150);
+      lightDownArrows();
       keyScaleShapeProcessor();
     }
     else if (e.keyCode == '37') {
@@ -130,6 +110,9 @@ function checkKey(e) {
       keyScaleShapeProcessor();
   }
 }
+
+//----------------------------------------------------------
+//---------- Keyboard Note Listeners -----------------------
 
 window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {

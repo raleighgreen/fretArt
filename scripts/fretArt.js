@@ -16,12 +16,12 @@ var fretArt = {
   linesVisible: false,
   invisible: false,
   cPedalPlay: false,
-  scaleIndex: null,
+  scaleIndex: 0,
   noteNameList: ["E","F","Gb","G","Ab","A","Bb","B","C","Db","D","Eb"],
   initialStringIndices: null,
   currentKey: null,
   currentKeyName: null,
   currentMode: null,
   selectedModeNameHolder: null,
-  scaleCounter: null
+  scaleCounter: 0
 }

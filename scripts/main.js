@@ -382,27 +382,92 @@ function lightTimer(passedThis) {
   }
 }
 
-function moveScaleUp() {
+function setScaleIndex() {
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
-     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
-       // Grab the key value from the key select field and place it in fretArt.currentKey
-       fretArt.scaleIndex = fretArt.selectedModeNameHolder[i].id;
-     }
-   }
-  if (fretArt.scaleIndex == 0){
-    fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "notSelected";
-    console.log('yep');
-    fretArt.scaleCounter = 20;
-    fretArt.selectedModeNameHolder[fretArt.scaleCounter].getAttributeNode("data-selected").value = "modeSelected"
-    // document.getElementById(scaleCounter).selected = true;
-  } else {
-    console.log('nope');
-    for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+    if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
+      // Grab the key value from the key select field and place it in fretArt.currentKey
+      fretArt.scaleIndex = i;
+      // reset all "data-selected" attributes to "notSelected"
       fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
     }
-    fretArt.scaleCounter -= 1;
-    fretArt.selectedModeNameHolder[fretArt.scaleCounter].getAttributeNode("data-selected").value = "modeSelected"
   }
+}
+
+function resetToNotSelected() {
+  for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+    fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
+  }
+}
+
+// activate the up arrow and keyboard up arrow by incrementing to the next mode
+function moveScaleUp() {
+  setScaleIndex();
+  // if the scale index is 0 (which would be the Ionian default), jump to the last index
+  if (fretArt.scaleIndex == 0){
+    fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "notSelected";
+    fretArt.scaleIndex = fretArt.selectedModeNameHolder.length - 1; // scales are in reverse order
+    fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
+  } else {
+    resetToNotSelected();
+    // otherwise, decrement the scaleIndex to itself - 1
+    fretArt.scaleIndex -= 1;
+    fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
+
+  }
+}
+
+function moveScaleDown() {
+  setScaleIndex();
+  if (fretArt.scaleIndex < fretArt.selectedModeNameHolder.length - 1){
+    fretArt.scaleIndex += 1; // scales are in reverse order
+    fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
+    // document.getElementById(scaleCounter).selected = true;
+  } else {
+    fretArt.scaleIndex = 0;
+    fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
+  }
+}
+
+function ifActiveSetScale() {
+  for (var f = 0; f < fretArt.frets.length; f++) {
+    if (fretArt.frets[f].active) {
+      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
+    }
+  }
+}
+
+//----------------------------------------------------------
+//---------- Arrow Key Functions ---------------------------
+
+function lightUpArrows() {
+  arrowUp.style.transition = "opacity .1s";
+  arrowUp.style.opacity = 1;
+  setTimeout(function(){ arrowUp.style.opacity = .5; }, 150);
+}
+
+function lightDownArrows() {
+  arrowDown.style.transition = "opacity .1s";
+  arrowDown.style.opacity = 1;
+  setTimeout(function(){ arrowDown.style.opacity = .5; }, 150);
+}
+
+function lightDownArrowAndStayLit() {
+  arrowDown.style.transition = "opacity .1s";
+  arrowDown.style.opacity = 1;
+}
+
+function lightUpArrowAndStayLit() {
+  arrowUp.style.transition = "opacity .1s";
+  arrowUp.style.opacity = 1;
+}
+
+function dimDownArrow() {
+  arrowDown.style.transition = "opacity .1s";
+  arrowDown.style.opacity = .5;
+}
+function dimUpArrow() {
+  arrowUp.style.transition = "opacity .1s";
+  arrowUp.style.opacity = .5;
 }
 // 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
 
