@@ -53,17 +53,33 @@ arrowUp.addEventListener("mouseover", function() {
   arrowUp.style.transition = "opacity .1s";
   arrowUp.style.opacity = 1;
 });
-var scaleCounter = 0;
+
 arrowUp.addEventListener("click", function() {
-  fretArt.scaleIndex = document.getElementById("scale-value");
+  // fretArt.scaleIndex = document.getElementById("scale-value");
+  for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
+       // Grab the key value from the key select field and place it in fretArt.currentKey
+       fretArt.scaleIndex = fretArt.selectedModeNameHolder[i].id;
+      console.log(fretArt.scaleIndex);
+     }
+   }
+
   // the scaleCounter 20 below needs to be hardcoded (its the id of the last
   // option in #scale-value).
-  if (fretArt.scaleIndex.selectedIndex == 0){
-    scaleCounter = 20;
-    document.getElementById(scaleCounter).selected = true;
+
+  if (fretArt.scaleIndex == 0){
+    fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "notSelected";
+    console.log('yep');
+    fretArt.scaleCounter = 20;
+    fretArt.selectedModeNameHolder[fretArt.scaleCounter].getAttributeNode("data-selected").value = "modeSelected"
+    // document.getElementById(scaleCounter).selected = true;
   } else {
-    scaleCounter -= 1;
-    document.getElementById(scaleCounter).selected = true;
+    console.log('nope');
+    for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+      fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
+    }
+    fretArt.scaleCounter -= 1;
+    fretArt.selectedModeNameHolder[fretArt.scaleCounter].getAttributeNode("data-selected").value = "modeSelected"
   }
   processInput();
   keyAndCurrentScaleDisplay()
@@ -89,11 +105,11 @@ arrowDown.addEventListener("click", function() {
   // the number 22 below needs to be hardcoded (its the nuber of id'd options in
   // #scale-value plus the number of disabled options).
   if (fretArt.scaleIndex.selectedIndex < 22){
-    scaleCounter += 1;
-    document.getElementById(scaleCounter).selected = true;
+    fretArt.scaleCounter += 1;
+    document.getElementById(fretArt.scaleCounter).selected = true;
   } else {
-    scaleCounter = 0;
-    document.getElementById(scaleCounter).selected = true;
+    fretArt.scaleCounter = 0;
+    document.getElementById(fretArt.scaleCounter).selected = true;
   }
   processInput();
   keyAndCurrentScaleDisplay()
