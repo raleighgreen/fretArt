@@ -401,12 +401,13 @@ function resetToNotSelected() {
 
 // activate the up arrow and keyboard up arrow by incrementing to the next mode
 function moveScaleUp() {
+  // clear out and reset scale index
   setScaleIndex();
   // if the scale index is 0 (which would be the Ionian default), jump to the last index
   if (fretArt.scaleIndex == 0){
-    fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "notSelected";
     fretArt.scaleIndex = fretArt.selectedModeNameHolder.length - 1; // scales are in reverse order
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
+    // otherwise, decrement scale index
   } else {
     resetToNotSelected();
     // otherwise, decrement the scaleIndex to itself - 1
@@ -417,11 +418,13 @@ function moveScaleUp() {
 }
 
 function moveScaleDown() {
+  // clear out and reset scale index
   setScaleIndex();
+  // if the scale index is less than the length of the name holder, increment to the next mode
   if (fretArt.scaleIndex < fretArt.selectedModeNameHolder.length - 1){
     fretArt.scaleIndex += 1; // scales are in reverse order
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
-    // document.getElementById(scaleCounter).selected = true;
+    // otherwise, reset scale index to zero (default Ionian)
   } else {
     fretArt.scaleIndex = 0;
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
