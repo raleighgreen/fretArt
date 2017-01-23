@@ -45,13 +45,7 @@ function checkKey(e) {
     }
     else if (e.keyCode == '37') {
      // left arrow
-     var keyIndex = document.getElementById("key-value");
-     if (fretArt.currentKey > 0){
-       keyIndex.selectedIndex -= 1;
-       fretArt.currentKey -= 1;
-     } else {
-       keyIndex.selectedIndex = 11;
-     }
+     moveKeyDown();
      processInput();
      // When new key is chosen, update pedal tone key text with the currentKey
      pedalToneKeyDisplay();
@@ -78,13 +72,7 @@ function checkKey(e) {
     }
     else if (e.keyCode == '39') {
       // right arrow
-      var keyIndex = document.getElementById("key-value");
-      if (fretArt.currentKey <= 10){
-        keyIndex.selectedIndex += 1;
-        fretArt.currentKey += 1;
-      } else if (fretArt.currentKey = 10) {
-        keyIndex.selectedIndex = 0;
-      }
+      moveKeyUp();
       processInput();
       // When new key is chosen, update pedal tone key text with the currentKey
       pedalToneKeyDisplay();

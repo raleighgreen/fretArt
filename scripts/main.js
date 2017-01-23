@@ -239,15 +239,16 @@ function activateFrets(foundScale) {
 }
 
 function processInput() {
-  // Grab the key value from the key select fields
-  // can put in a number between 0 and 11 and it will change to that key (and won't break the app)
-  fretArt.currentKey = parseInt(keyValueField.selectedIndex);
-
-  // Grab the name of the key from the text content of the option element
-  // can put in a key letter name like 'G' and it will change to that key (and won't break the app)
-  fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
-  // Grab the current mode using the value from the mode select field
-  // collect all .keyNames from the #keyLetterName ul. into fretArt.keyNameHolder
+  for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
+    if (fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value === "keySelected") {
+    // Grab the key value from the key select field and place it in fretArt.currentKey
+      var keyName = document.getElementsByClassName('selectedKeyText');
+      var keyNameValue = keyName[i].textContent;
+      // console.log(scaleNameValue);
+      fretArt.currentKey = i;
+    }
+    fretArt.currentKeyName = keyNameValue;
+  }
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
       // Grab the key value from the key select field and place it in fretArt.currentKey
@@ -256,8 +257,7 @@ function processInput() {
       // console.log(scaleNameValue);
     }
    }
-
-  fretArt.currentMode = fretArt.modes[scaleNameValue];
+   fretArt.currentMode = fretArt.modes[scaleNameValue];
 }
 
 function drawShape(shapeArray) {
@@ -384,6 +384,10 @@ function lightTimer(passedThis) {
   }
 }
 
+//----------------------------------------------------------
+//---------- Scale Functions -------------------------------
+
+// almost done (see setKeyIndex below)
 function setScaleIndex() {
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
@@ -395,7 +399,7 @@ function setScaleIndex() {
   }
 }
 
-function resetToNotSelected() {
+function resetScaleToNotSelected() {
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
     fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
   }
@@ -416,7 +420,7 @@ function moveScaleUp() {
     // add 'target' class to fretArt.selectedModeNameHolder
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].classList.add('target');
   } else {
-    resetToNotSelected();
+    resetScaleToNotSelected();
     // otherwise, decrement the scaleIndex to itself - 1
     fretArt.scaleIndex -= 1;
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
@@ -447,11 +451,87 @@ function moveScaleDown() {
   }
 }
 
+//----------------------------------------------------------
+//---------- Key Dropdown Functions ------------------------
+
+// renamed to setKeyIndex and modified to reflect key connections
+// **still need to replace "data-selected" and "modeSelected" values
+function setKeyIndex() {
+  for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
+    if (fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value === "keySelected") {
+      // Grab the key value from the key select field and place it in fretArt.currentKey
+      fretArt.keyIndex = i;
+      // reset all "data-selected" attributes to "notSelected"
+      fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
+    }
+  }
+}
+
+// nothing yet
+function resetKeyToNotSelected() {
+  for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
+    fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
+  }
+}
+
+// renamed to moveKeyUp
+// activate the up arrow and keyboard up arrow by incrementing to the next mode
+function moveKeyUp() {
+  // clear out and reset key index
+  setKeyIndex();
+  removeKeyTargetClass();
+  // if the scale index is  (which would be the Ionian default), jump to the last index
+  if (fretArt.keyIndex <= 10){
+    fretArt.keyIndex += 1; // scales are in reverse order
+    fretArt.selectedKeyNameHolder[fretArt.keyIndex].getAttributeNode("data-selected").value = "keySelected";
+    // add 'target' class to fretArt.selectedModeNameHolder
+    fretArt.selectedKeyNameHolder[fretArt.keyIndex].classList.add('target');
+  } else {
+    fretArt.keyIndex = 0;
+    fretArt.selectedKeyNameHolder[fretArt.keyIndex].getAttributeNode("data-selected").value = "keySelected";
+    // add 'target' class to fretArt.selectedModeNameHolder
+    fretArt.selectedKeyNameHolder[fretArt.keyIndex].classList.add('target');
+  }
+}
+
+//renamed to moveKeyDown
+function moveKeyDown() {
+  // clear out and reset key index
+  // renamed to setKeyIndex
+  setKeyIndex();
+  removeKeyTargetClass();
+  // if the scale index is less than the length of the name holder, increment to the next mode
+  if (fretArt.keyIndex == 0){
+    fretArt.keyIndex = fretArt.selectedKeyNameHolder.length - 1;
+    fretArt.selectedKeyNameHolder[fretArt.keyIndex].getAttributeNode("data-selected").value = "keySelected";
+    // add 'target' class to fretArt.selectedModeNameHolder
+    fretArt.selectedKeyNameHolder[fretArt.keyIndex].classList.add('target');
+  } else {
+    // otherwise, reset scale index to zero (default Ionian)
+    fretArt.keyIndex <= fretArt.selectedKeyNameHolder.length - 1;
+    fretArt.keyIndex -= 1;
+    fretArt.selectedKeyNameHolder[fretArt.keyIndex].getAttributeNode("data-selected").value = "keySelected";
+    // add 'target' class to fretArt.selectedModeNameHolder
+    fretArt.selectedKeyNameHolder[fretArt.keyIndex].classList.add('target');
+  }
+}
+
+//----------------------------------------------------------
+//----------------------------------------------------------
+
+
 function ifActiveSetScale() {
   for (var f = 0; f < fretArt.frets.length; f++) {
     if (fretArt.frets[f].active) {
       setScale(fretArt.currentKey, fretArt.currentMode.pattern);
     }
+  }
+}
+
+function removeKeyTargetClass() {
+  for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
+   // remove 'target' class from all nodes from scalesDiv
+   fretArt.selectedKeyNameHolder[i].classList.remove('target');
   }
 }
 
@@ -498,10 +578,26 @@ function preload() {
 
 function setup() {
   createCanvas(882, 370);
+
+//----------------------------------------------------------
+//---------- Setup scale dropdown elements and defaults ----
+
   fretArt.selectedModeNameHolder = document.querySelectorAll('.scaNam');
   // set keyNameHolder[8]'s 'data-selected'.value = "keySelected"
   fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "modeSelected";
   fretArt.selectedModeNameHolder[0].classList.add('target');
+
+//----------------------------------------------------------
+//---------- Setup key dropdown elements and defaults ------
+
+  fretArt.selectedKeyNameHolder = document.querySelectorAll('.keyNam');
+  // set keyNameHolder[8]'s 'data-selected'.value = "keySelected"
+  fretArt.selectedKeyNameHolder[8].getAttributeNode("data-selected").value = "keySelected";
+  fretArt.selectedKeyNameHolder[8].classList.add('target');
+
+//----------------------------------------------------------
+//----------------------------------------------------------
+
   // buildShapes();
   processInput();
   fretArt.fretsIsShowing = true;

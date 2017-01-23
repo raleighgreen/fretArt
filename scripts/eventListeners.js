@@ -1,8 +1,12 @@
 //------ SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION ------
 
 // Grab the select fields and buttons from the HTML document
-var keyValueField = document.getElementById("key-value");
+// Try to delete this old one?
+
+// keyField dropdown div working new version
 var keyField = document.getElementById("keyDiv");
+
+// scaleField dropdown div
 var scaleField = document.getElementById("scalesDiv");
 var showScales = document.getElementById("show-scale");
 var hideScales = document.getElementById("hide-scale");
@@ -23,7 +27,6 @@ arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
 scaleField.addEventListener("click", function(e){
-  var selectedModeName = document.getElementById("scalesDiv");
   // Reset all fretArt.keyNameHolder Nodes to "not"
 
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
@@ -38,16 +41,29 @@ scaleField.addEventListener("click", function(e){
 
   processInput();
   keyAndCurrentScaleDisplay()
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
+  ifActiveSetScale();
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
-keyField.addEventListener("click", function(){
-  console.log("hello, soon I will be set up to handle keys!");
+
+keyField.addEventListener("click", function(e){
+  // Reset all fretArt.keyNameHolder Nodes to "not"
+
+  for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
+   fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
+   // remove 'target' class from all nodes from scalesDiv
+   fretArt.selectedKeyNameHolder[i].classList.remove('target');
+  }
+  // make the "data-selected" attribute of the selected Node ="keySelected"
+  e.target.getAttributeNode("data-selected").value = "keySelected";
+  // add a 'target' class to the selected element
+  e.target.classList.add('target');
+
+  processInput();
+  keyAndCurrentScaleDisplay()
+  ifActiveSetScale()
+  isolateScaleIds(fretArt.foundScaleIds);
+  buildShapes();
 });
 
 //----------------------------------------------------------
@@ -104,13 +120,7 @@ arrowLeft.addEventListener("mouseout", function() {
 });
 
 arrowLeft.addEventListener("click", function() {
-  var keyIndex = document.getElementById("key-value");
-  if (fretArt.currentKey > 0){
-    keyIndex.selectedIndex -= 1;
-    fretArt.currentKey -= 1;
-  } else {
-    keyIndex.selectedIndex = 11;
-  }
+  moveKeyDown();
   processInput();
   pedalToneKeyDisplay();
   keyAndCurrentScaleDisplay();
@@ -139,13 +149,7 @@ arrowRight.addEventListener("mouseover", function() {
   arrowRight.style.opacity = 1;
 });
 arrowRight.addEventListener("click", function() {
-  var keyIndex = document.getElementById("key-value");
-  if (fretArt.currentKey <= 10){
-    keyIndex.selectedIndex += 1;
-    fretArt.currentKey += 1;
-  } else if (fretArt.currentKey = 10) {
-    keyIndex.selectedIndex = 0;
-  }
+  moveKeyUp();
   processInput();
   // When new key is chosen, update pedal tone key text with the currentKey
   pedalToneKeyDisplay();

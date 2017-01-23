@@ -8,25 +8,7 @@
   <div id="main-container">
     <div class="sideBarContainer">
       <h1><span class="thinText">fret</span>Shapes</h1>
-      <div style="display:none;" class="sideContainer">
-        <p>Choose a key:</p>
-        <div>
-          <select id="key-value">
-            <option>E</option>
-            <option>F</option>
-            <option>Gb</option>
-            <option>G</option>
-            <option>Ab</option>
-            <option>A</option>
-            <option>Bb</option>
-            <option>B</option>
-            <option selected="selected">C</option>
-            <option>Db</option>
-            <option>D</option>
-            <option>Eb</option>
-          </select>
-        </div>
-      </div>
+
       <div id="spacerDiv"></div>
       <div id="showScaleContainer" class="sideContainer">
         <p>Show scale:</p>
@@ -83,28 +65,28 @@
       <div id="keyDiv" class="dropdownStyle">
         <p id="scalesText">Key</p>
         <ul id="UlSpacer">
-          <li class="keyNam">E<br/>
-          <li class="keyNam">F<br/>
-          <li class="keyNam">G<p class="headerKey">&#x266d;</p><br/>
-          <li class="keyNam">G<br/>
-          <li class="keyNam">A<p class="headerKey">&#x266d;</p><br/>
-          <li class="keyNam">A<br/>
-          <li class="keyNam">B<p class="headerKey">&#x266d;</p><br/>
-          <li class="keyNam">B<br/>
-          <li class="keyNam">C<br/>
-          <li class="keyNam">D<p class="headerKey">&#x266d;</p><br/>
-          <li class="keyNam">D<br/>
-          <li class="keyNam">E<p class="headerKey">&#x266d;</p><br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">E<br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">F<br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">G<p class="headerKey">&#x266d;</p><br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">G<br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">A<p class="headerKey">&#x266d;</p><br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">A<br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">B<p class="headerKey">&#x266d;</p><br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">B<br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">C<br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">D<p class="headerKey">&#x266d;</p><br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">D<br/>
+          <li data-selected="notSelected" class="keyNam selectedKeyText">E<p class="headerKey">&#x266d;</p><br/>
         </ul>
       </div>
       <div id="scalesDiv" class="dropdownStyle">
         <p id="scalesText">Scales</p>
         <ul>
-          <li id="1" data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Ionian (Maj Scale)</span><br/>
+          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Ionian (Maj Scale)</span><br/>
           <span class="scaDeg">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
-          <li id="2" data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Dorian</span><br/>
+          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Dorian</span><br/>
           <span class="scaDeg">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li id="3" data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Phrygian</span><br/>
+          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Phrygian</span><br/>
           <span class="scaDeg">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
           <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Lydian</span><br/>
           <span class="scaDeg">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>

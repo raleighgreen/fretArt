@@ -1,5 +1,19 @@
+#pedal-tone-text {
+  margin-top: 0px;
+}
+#pedal-tone-key {
+  width: 140px;
+  margin-left: -148px;
+  margin-top: -2px;
+  position: absolute;
+  font-size: .8em;
+}
+#pedal-tone-key::first-letter {
+  position: absolute;
+  font-size: 17px;
+}
 #scalesDiv {
-    margin-top: -18px;
+    margin-bottom: -18px;
     width: 152px;
     max-height:288px;
 }
@@ -71,12 +85,13 @@
   background: rgb(9,81,201);
   color: black;
 }
-
+/*target color*/
 .dropdownStyle:hover > ul > li.target {
   border-radius: 5px 0px 0px 5px;
   background: rgb(9,81,201);
   color: black;
 }
+/*target color*/
 .dropdownStyle:hover > ul > li.target > span {
   color:black;
 }
