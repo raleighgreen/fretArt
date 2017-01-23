@@ -240,8 +240,11 @@ function activateFrets(foundScale) {
 
 function processInput() {
   // Grab the key value from the key select fields
+  // can put in a number between 0 and 11 and it will change to that key (and won't break the app)
   fretArt.currentKey = parseInt(keyValueField.selectedIndex);
+
   // Grab the name of the key from the text content of the option element
+  // can put in a key letter name like 'G' and it will change to that key (and won't break the app)
   fretArt.currentKeyName = keyValueField.options[keyValueField.selectedIndex].textContent;
   // Grab the current mode using the value from the mode select field
   // collect all .keyNames from the #keyLetterName ul. into fretArt.keyNameHolder
