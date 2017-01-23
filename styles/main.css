@@ -50,18 +50,42 @@
   background: black;
   color: rgb(9,81,201);
 }
+/*dropdown when open*/
 .dropdownStyle:hover > ul > li {
   background: black;
   padding: 3px 0px 3px 7px;
 }
+/*dropdown when hovered upon*/
 .dropdownStyle:hover > ul > li:hover {
+  border-radius: 5px 0px 0px 5px;
+  background: rgba(9,81,201,.7);
+  color: black;
+}
+
+.dropdownStyle:hover > ul > li:hover > span {
+  color:black;
+}
+/*dropdown when active*/
+.dropdownStyle:hover > ul > li:active {
   border-radius: 5px 0px 0px 5px;
   background: rgb(9,81,201);
   color: black;
 }
-.dropdownStyle:hover > ul > li:hover > span {
+
+.dropdownStyle:hover > ul > li.target {
+  border-radius: 5px 0px 0px 5px;
+  background: rgb(9,81,201);
+  color: black;
+}
+.dropdownStyle:hover > ul > li.target > span {
   color:black;
 }
+:target {
+  border-radius: 5px 0px 0px 5px;
+  background: rgba(9,81,201,.7);
+  color: black;
+}
+
 #scalesText {
   margin-left: 16px;
   margin-bottom: 0;
@@ -71,10 +95,7 @@
 .dropdownStyle #UlSpacer:hover {
   margin-bottom: 2px;
 }
-.scaNam1 {
-  font-weight: 700;
-  color: purple);
-}
+
 .scaNam {
   font-weight: 700;
   color: rgb(9,81,201);

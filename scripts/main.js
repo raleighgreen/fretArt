@@ -250,7 +250,7 @@ function processInput() {
       // Grab the key value from the key select field and place it in fretArt.currentKey
       var scaleName = document.getElementsByClassName('selectedScaleText');
       var scaleNameValue = scaleName[i].textContent;
-      console.log(scaleNameValue);
+      // console.log(scaleNameValue);
     }
    }
 
@@ -402,31 +402,45 @@ function resetToNotSelected() {
 function moveScaleUp() {
   // clear out and reset scale index
   setScaleIndex();
+  for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+   // remove 'target' class from all nodes from scalesDiv
+   fretArt.selectedModeNameHolder[i].classList.remove('target');
+  }
   // if the scale index is 0 (which would be the Ionian default), jump to the last index
   if (fretArt.scaleIndex == 0){
     fretArt.scaleIndex = fretArt.selectedModeNameHolder.length - 1; // scales are in reverse order
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
-    // otherwise, decrement scale index
+    // add 'target' class to fretArt.selectedModeNameHolder
+    fretArt.selectedModeNameHolder[fretArt.scaleIndex].classList.add('target');
   } else {
     resetToNotSelected();
     // otherwise, decrement the scaleIndex to itself - 1
     fretArt.scaleIndex -= 1;
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
-
+    // add 'target' class to fretArt.selectedModeNameHolder
+    fretArt.selectedModeNameHolder[fretArt.scaleIndex].classList.add('target');
   }
 }
 
 function moveScaleDown() {
   // clear out and reset scale index
   setScaleIndex();
+  for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
+   // remove 'target' class from all nodes from scalesDiv
+   fretArt.selectedModeNameHolder[i].classList.remove('target');
+  }
   // if the scale index is less than the length of the name holder, increment to the next mode
   if (fretArt.scaleIndex < fretArt.selectedModeNameHolder.length - 1){
     fretArt.scaleIndex += 1; // scales are in reverse order
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
-    // otherwise, reset scale index to zero (default Ionian)
+    // add 'target' class to fretArt.selectedModeNameHolder
+    fretArt.selectedModeNameHolder[fretArt.scaleIndex].classList.add('target');
   } else {
+    // otherwise, reset scale index to zero (default Ionian)
     fretArt.scaleIndex = 0;
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].getAttributeNode("data-selected").value = "modeSelected";
+    // add 'target' class to fretArt.selectedModeNameHolder
+    fretArt.selectedModeNameHolder[fretArt.scaleIndex].classList.add('target');
   }
 }
 

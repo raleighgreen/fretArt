@@ -28,11 +28,14 @@ scaleField.addEventListener("click", function(e){
 
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
    fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
+   // remove 'target' class from all nodes from scalesDiv
+   fretArt.selectedModeNameHolder[i].classList.remove('target');
   }
-
   // make the "data-selected" attribute of the selected Node ="keySelected"
-
   e.target.getAttributeNode("data-selected").value = "modeSelected";
+  // add a 'target' class to the selected element
+  e.target.classList.add('target');
+
   processInput();
   keyAndCurrentScaleDisplay()
   for (var f = 0; f < fretArt.frets.length; f++) {
