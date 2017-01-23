@@ -501,6 +501,7 @@ function setup() {
   fretArt.selectedModeNameHolder = document.querySelectorAll('.scaNam');
   // set keyNameHolder[8]'s 'data-selected'.value = "keySelected"
   fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "modeSelected";
+  fretArt.selectedModeNameHolder[0].classList.add('target');
   // buildShapes();
   processInput();
   fretArt.fretsIsShowing = true;
