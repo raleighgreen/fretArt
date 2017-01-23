@@ -481,13 +481,15 @@ function moveKeyUp() {
   setKeyIndex();
   removeKeyTargetClass();
   // if the scale index is  (which would be the Ionian default), jump to the last index
-  if (fretArt.keyIndex <= 10){
+  if (fretArt.keyIndex <= fretArt.selectedKeyNameHolder.length - 2){
     fretArt.keyIndex += 1; // scales are in reverse order
+    console.log(fretArt.keyIndex);
     fretArt.selectedKeyNameHolder[fretArt.keyIndex].getAttributeNode("data-selected").value = "keySelected";
     // add 'target' class to fretArt.selectedModeNameHolder
     fretArt.selectedKeyNameHolder[fretArt.keyIndex].classList.add('target');
   } else {
     fretArt.keyIndex = 0;
+    console.log(fretArt.keyIndex);
     fretArt.selectedKeyNameHolder[fretArt.keyIndex].getAttributeNode("data-selected").value = "keySelected";
     // add 'target' class to fretArt.selectedModeNameHolder
     fretArt.selectedKeyNameHolder[fretArt.keyIndex].classList.add('target');
