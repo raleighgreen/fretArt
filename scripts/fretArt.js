@@ -26,6 +26,6 @@ var fretArt = {
   scaleIndex: 0,
   scaleCounter: 0,
   selectedKeyNameHolder: null,
-  keyIndex: 0,
+  keyIndex: 8,
   keyCounter: 8
 }

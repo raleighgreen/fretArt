@@ -244,14 +244,14 @@ function processInput() {
     // Grab the key value from the key select field and place it in fretArt.currentKey
       var keyName = document.getElementsByClassName('selectedKeyText');
       var keyNameValue = keyName[i].textContent;
+      // console.log(fretArt.selectedKeyNameHolder);
       // console.log(scaleNameValue);
       fretArt.currentKey = i;
+      fretArt.currentKeyName = keyNameValue;
     }
-    fretArt.currentKeyName = keyNameValue;
   }
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
-      // Grab the key value from the key select field and place it in fretArt.currentKey
       var scaleName = document.getElementsByClassName('selectedScaleText');
       var scaleNameValue = scaleName[i].textContent;
       // console.log(scaleNameValue);
@@ -286,13 +286,13 @@ function playPedalTone() {
   if (!pedalTone.isPlaying()) {
     pedalTone.play();
     for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.keyIndex == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+      if (fretArt.keyIndex == fretArt.frets[i].note.id && fretArt.frets[i].string.name == "lowE") {
         fretArt.frets[i].playing = true;
         fretArt.frets[i].col1 = 255;
         fretArt.frets[i].col2 = 255;
         fretArt.frets[i].col3 = 255;
         fretArt.frets[i].alpha = 255;
-        console.log(fretArt.frets[i]);
+        // console.log(fretArt.frets[i]);
         break;
       }
     }
@@ -302,9 +302,9 @@ function playPedalTone() {
 function pedalToneActivator() {
   if (pedalTonePlay) {
     for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.selectedKeyNameHolder == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+      if (fretArt.keyIndex == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
         fretArt.frets[i].playing = true;
-        console.log(fretArt.frets[i]);
+        // console.log(fretArt.frets[i]);
         break;
       }
     }
@@ -463,6 +463,7 @@ function moveScaleDown() {
     fretArt.selectedModeNameHolder[fretArt.scaleIndex].classList.add('target');
   }
 }
+
 
 //----------------------------------------------------------
 //---------- Key Dropdown Functions ------------------------

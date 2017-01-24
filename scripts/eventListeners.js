@@ -46,20 +46,26 @@ scaleField.addEventListener("click", function(e){
 });
 
 keyField.addEventListener("click", function(e){
+  setKeyIndex();
   // Reset all fretArt.keyNameHolder Nodes to "not"
   for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
    fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
    // remove 'target' class from all nodes from scalesDiv
    fretArt.selectedKeyNameHolder[i].classList.remove('target');
+
   }
   // make the "data-selected" attribute of the selected Node ="keySelected"
   e.target.getAttributeNode("data-selected").value = "keySelected";
   // add a 'target' class to the selected element
   e.target.classList.add('target');
 
+  fretArt.keyIndex = e.target.id;
+  console.log(fretArt.keyIndex);
   processInput();
+  pedalToneKeyDisplay();
   keyAndCurrentScaleDisplay()
   ifActiveSetScale()
+  pedalToneActivator();
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
