@@ -1,3 +1,18 @@
+.pointable {
+  cursor: pointer;
+  outline: none;
+}
+.unselectable {
+  pointer-events: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari*/
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 #pedal-tone-text {
   margin-top: 0px;
 }
@@ -72,6 +87,7 @@
 }
 /*dropdown when hovered upon*/
 .dropdownStyle:hover > ul > li:hover {
+  cursor: pointer;
   border-radius: 5px 0px 0px 5px;
   background: rgba(9,81,201,.7);
   color: black;

@@ -695,7 +695,7 @@ function draw() {
   // Frame key/scale name display with lines above and below
   strokeWeight(1.5);
   stroke(9,81,201, 100);
-  rect(246, 274,450, 48, 7);
+  rect(246, 275,450, 48, 7);
   pop();
   // End shapes
   // Trigger note light and sound on note mouseOver

@@ -7,27 +7,27 @@
 <body>
   <div id="main-container">
     <div class="sideBarContainer">
-      <h1><span class="thinText">fret</span>Shapes</h1>
+      <h1 class="unselectable"><span class="thinText">fret</span>Shapes</h1>
       <div id="spacerDiv"></div>
       <div id="showScaleContainer" class="sideContainer">
-        <p>Show scale:</p>
+        <p class="unselectable">Show scale:</p>
         <div>
-          <button type="button" id="show-scale"> On </button>
-          <button type="button" id="hide-scale"> Off </button>
+          <button type="button" id="show-scale" class="pointable"> On </button>
+          <button type="button" id="hide-scale" class="pointable"> Off </button>
         </div>
       </div>
       <div class="sideContainer" id="float-here">
-        <p>Show shapes:</p>
+        <p class="unselectable">Show shapes:</p>
         <div>
-          <button type="button" id="show-shapes"> On </button>
-          <button type="button" id="hide-shapes"> Off </button>
+          <button type="button" id="show-shapes" class="pointable"> On </button>
+          <button type="button" id="hide-shapes" class="pointable"> Off </button>
         </div>
       </div>
       <div class="sideContainer" id="pedal-tone">
-        <p id="pedal-tone-text"><span id="pedal-tone-key">C</span> Pedal Tone:</p>
+        <p id="pedal-tone-text" class="unselectable"><span id="pedal-tone-key">C</span> Pedal Tone:</p>
         <div>
-          <button type="button" id="play-button"> On </button>
-          <button type="button" id="stop-button"> Off </button>
+          <button type="button" id="play-button" class="pointable"> On </button>
+          <button type="button" id="stop-button" class="pointable"> Off </button>
         </div>
       </div>
       <div id="fretsBox">
@@ -43,90 +43,90 @@
         <p class="frets" id="fret24">24</p>
       </div>
       <div id="fretButtonContainer">
-        <input type="button" value=" Frets on " id="fret-button" class="toggleButton"/>
+        <input type="button" value=" Frets on " id="fret-button" class="toggleButton pointable"/>
       </div>
       <div id="stringButtonContainer">
-        <input type="button" value=" Strings on " id="string-button" class="toggleButton"/>
+        <input type="button" value=" Strings on " id="string-button" class="toggleButton pointable"/>
       </div>
       <div id="display-gradient-mask-right"></div>
       <div id="display-gradient-mask-bottom"></div>
       <div id="string-gradient-mask"></div>
       <div id="key-scale-display">
-      <div id="arrow-up"></div>
-      <div id="arrow-down"></div>
-      <div id="arrow-left"></div>
-      <div id="arrow-right"></div>
+      <div id="arrow-up" class="pointable" title="Previous scale"></div>
+      <div id="arrow-down" class="pointable" title="Next scale"></div>
+      <div id="arrow-left" class="pointable" title="Transpose down"></div>
+      <div id="arrow-right" class="pointable" title="Transpose up"></div>
         <p>
-          <span id="current-key" class="key-scale-display-text">C </span>
-          <span id="current-scale" class="key-scale-display-text">Ionian</span>
+          <span id="current-key" class="key-scale-display-text unselectable">C </span>
+          <span id="current-scale" class="key-scale-display-text unselectable">Ionian</span>
         </p>
       </div>
       <div id="keyDiv" class="dropdownStyle">
-        <p id="scalesText">Key</p>
+        <p id="scalesText" class="unselectable">Key</p>
         <ul id="UlSpacer">
-          <li id="0" data-selected="notSelected" class="keyNam selectedKeyText">E<br/>
-          <li id="1" data-selected="notSelected" class="keyNam selectedKeyText">F<br/>
-          <li id="2" data-selected="notSelected" class="keyNam selectedKeyText">G<p class="headerKey">&#x266d;</p><br/>
-          <li id="3" data-selected="notSelected" class="keyNam selectedKeyText">G<br/>
-          <li id="4" data-selected="notSelected" class="keyNam selectedKeyText">A<p class="headerKey">&#x266d;</p><br/>
-          <li id="5" data-selected="notSelected" class="keyNam selectedKeyText">A<br/>
-          <li id="6" data-selected="notSelected" class="keyNam selectedKeyText">B<p class="headerKey">&#x266d;</p><br/>
-          <li id="7" data-selected="notSelected" class="keyNam selectedKeyText">B<br/>
-          <li id="8" data-selected="notSelected" class="keyNam selectedKeyText">C<br/>
-          <li id="9" data-selected="notSelected" class="keyNam selectedKeyText">D<p class="headerKey">&#x266d;</p><br/>
-          <li id="10" data-selected="notSelected" class="keyNam selectedKeyText">D<br/>
-          <li id="11" data-selected="notSelected" class="keyNam selectedKeyText">E<p class="headerKey">&#x266d;</p><br/>
+          <li id="0" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">E</span><br/>
+          <li id="1" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">F</span><br/>
+          <li id="2" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">G</span><p class="headerKey unselectable">&#x266d;</p><br/>
+          <li id="3" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">G</span><br/>
+          <li id="4" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">A</span><p class="headerKey unselectable">&#x266d;</p><br/>
+          <li id="5" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">A</span><br/>
+          <li id="6" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">B</span><p class="headerKey unselectable">&#x266d;</p><br/>
+          <li id="7" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">B</span><br/>
+          <li id="8" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">C</span><br/>
+          <li id="9" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">D</span><p class="headerKey unselectable">&#x266d;</p><br/>
+          <li id="10" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">D</span><br/>
+          <li id="11" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">E</span><p class="headerKey unselectable">&#x266d;</p><br/>
         </ul>
       </div>
       <div id="scalesDiv" class="dropdownStyle">
-        <p id="scalesText">Scales</p>
+        <p id="scalesText" class="unselectable">Scales</p>
         <ul>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Ionian (Maj Scale)</span><br/>
-          <span class="scaDeg">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Dorian</span><br/>
-          <span class="scaDeg">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Phrygian</span><br/>
-          <span class="scaDeg">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Lydian</span><br/>
-          <span class="scaDeg">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Mixolydian</span><br/>
-          <span class="scaDeg">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Aeolien (Nat Min)</span><br/>
-          <span class="scaDeg">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Locrian</span><br/>
-          <span class="scaDeg">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Ionian (Maj Scale)</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
+          <li data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Dorian</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Phrygian</span><br/>
+          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Lydian</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>
+          <li data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Mixolydian</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Aeolien (Nat Min)</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Locrian</span><br/>
+          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
         </ul>
         <ul>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Melodic Minor</span><br/>
-          <span class="scaDeg">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Phrygian Nat 6</span><br/>
-          <span class="scaDeg">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Lydian Augmented</span><br/>
-          <span class="scaDeg">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 <sup class="accidental">&#x266f;</sup>5 &#160;6 &#160;7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Lydian b7</span><br/>
-          <span class="scaDeg">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Mixolydian b6</span><br/>
-          <span class="scaDeg">1 &#160;2 &#160;3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Locrian Nat 2</span><br/>
-          <span class="scaDeg">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Altered Scale</span><br/>
-          <span class="scaDeg">1 <sup class="accidental">&#x266d;</sup>9 <sup class="accidental">&#x266f;</sup>9 &#160;3 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266f;</sup>5 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Melodic Minor</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
+          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Phrygian Nat 6</span><br/>
+          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian Augmented</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 <sup class="accidental">&#x266f;</sup>5 &#160;6 &#160;7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian b7</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Mixolydian b6</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Locrian Nat 2</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Altered Scale</span><br/>
+          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>9 <sup class="accidental">&#x266f;</sup>9 &#160;3 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266f;</sup>5 <sup class="accidental">&#x266d;</sup>7</span></li>
         </ul>
         <ul id="UlSpacer">
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Harmonic Minor</span><br/>
-          <span class="scaDeg">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 &#160;7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Locrian Nat 6</span><br/>
-          <span class="scaDeg">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Ionian #5</span><br/>
-          <span class="scaDeg">1 &#160;2 &#160;3 &#160;4 <sup class="accidental">&#x266f;</sup>5 &#160;6 &#160;7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Dorian #4</span><br/>
-          <span class="scaDeg">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Phrygian Dominant</span><br/>
-          <span class="scaDeg">1 <sup class="accidental">&#x266d;</sup>2 &#160;3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Lydian #2</span><br/>
-          <span class="scaDeg">1 <sup class="accidental">&#x266f;</sup>2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>
-          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText">Altered Dom bb7</span><br/>
-          <span class="scaDeg">1 <sup class="accidental">&#x266d;</sup>9 <sup class="accidental">&#x266f;</sup>9 &#160;3 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266f;</sup>5 <sup class="accidental2">&#x266d;
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Harmonic Minor</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 &#160;7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Locrian Nat 6</span><br/>
+          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Ionian #5</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 <sup class="accidental">&#x266f;</sup>5 &#160;6 &#160;7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Dorian #4</span><br/>
+          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Phrygian Dominant</span><br/>
+          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 &#160;3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian #2</span><br/>
+          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266f;</sup>2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>
+          <li i data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Altered Dom bb7</span><br/>
+          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>9 <sup class="accidental">&#x266f;</sup>9 &#160;3 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266f;</sup>5 <sup class="accidental2">&#x266d;
           </sup><sup class="accidental">&#x266d;</sup>7</span></li>
         </ul>
       </div>
