@@ -50,19 +50,8 @@ function checkKey(e) {
      // When new key is chosen, update pedal tone key text with the currentKey
      pedalToneKeyDisplay();
      keyAndCurrentScaleDisplay();
-     for (var f = 0; f < fretArt.frets.length; f++) {
-       if (fretArt.frets[f].active) {
-         setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-       }
-     }
-     if (pedalTonePlay) {
-       for (var i = 0; i < fretArt.frets.length; i++) {
-         if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-           fretArt.frets[i].playing = true;
-           break;
-         }
-       }
-     }
+     ifActiveSetScale();
+     pedalToneActivator();
      isolateScaleIds(fretArt.foundScaleIds);
      buildShapes();
      arrowLeft.style.transition = "opacity .1s";
@@ -77,19 +66,8 @@ function checkKey(e) {
       // When new key is chosen, update pedal tone key text with the currentKey
       pedalToneKeyDisplay();
       keyAndCurrentScaleDisplay();
-      for (var f = 0; f < fretArt.frets.length; f++) {
-        if (fretArt.frets[f].active) {
-          setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-        }
-      }
-      if (pedalTonePlay) {
-        for (var i = 0; i < fretArt.frets.length; i++) {
-          if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-            fretArt.frets[i].playing = true;
-            break;
-          }
-        }
-      }
+      ifActiveSetScale();
+      pedalToneActivator();
       isolateScaleIds(fretArt.foundScaleIds);
       buildShapes();
       arrowRight.style.transition = "opacity .1s";

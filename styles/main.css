@@ -25,6 +25,7 @@
 #spacerDiv {
   height: 168px;
 }
+
 .dropdownStyle {
   position: absolute;
   margin-top: -18px;
@@ -79,6 +80,11 @@
 .dropdownStyle:hover > ul > li:hover > span {
   color:black;
 }
+
+.dropdownStyle:hover > ul > li:hover > p {
+  color:black;
+}
+
 /*dropdown when active*/
 .dropdownStyle:hover > ul > li:active {
   border-radius: 5px 0px 0px 5px;
@@ -95,6 +101,11 @@
 .dropdownStyle:hover > ul > li.target > span {
   color:black;
 }
+
+.dropdownStyle:hover > ul > li.target > p {
+  color:black;
+}
+
 :target {
   border-radius: 5px 0px 0px 5px;
   background: rgba(9,81,201,.7);
@@ -156,9 +167,9 @@
 #keyDiv .keyName {
   color: rgb(9,81,201);
 }
-.keyNam:hover .headerKey {
-  color: black;
-}
+/*.keyNam:hover .headerKey {
+  color:black;
+}*/
 #showScaleContainer {
   position: relative;
   margin-top: -10px;

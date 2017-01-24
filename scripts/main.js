@@ -282,16 +282,29 @@ function mousePressed() {
 
 function playPedalTone() {
   processInput();
-  var pedalTone = fretArt.notes[fretArt.currentKey].audioFile;
+  var pedalTone = fretArt.notes[fretArt.keyIndex].audioFile;
   if (!pedalTone.isPlaying()) {
     pedalTone.play();
     for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+      if (fretArt.keyIndex == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
         fretArt.frets[i].playing = true;
         fretArt.frets[i].col1 = 255;
         fretArt.frets[i].col2 = 255;
         fretArt.frets[i].col3 = 255;
         fretArt.frets[i].alpha = 255;
+        console.log(fretArt.frets[i]);
+        break;
+      }
+    }
+  }
+}
+
+function pedalToneActivator() {
+  if (pedalTonePlay) {
+    for (var i = 0; i < fretArt.frets.length; i++) {
+      if (fretArt.selectedKeyNameHolder == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+        fretArt.frets[i].playing = true;
+        console.log(fretArt.frets[i]);
         break;
       }
     }

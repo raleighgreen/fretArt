@@ -28,7 +28,6 @@ arrowRight.style.opacity = .5;
 
 scaleField.addEventListener("click", function(e){
   // Reset all fretArt.keyNameHolder Nodes to "not"
-
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
    fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
    // remove 'target' class from all nodes from scalesDiv
@@ -48,7 +47,6 @@ scaleField.addEventListener("click", function(e){
 
 keyField.addEventListener("click", function(e){
   // Reset all fretArt.keyNameHolder Nodes to "not"
-
   for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
    fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value = "notSelected";
    // remove 'target' class from all nodes from scalesDiv
@@ -124,19 +122,8 @@ arrowLeft.addEventListener("click", function() {
   processInput();
   pedalToneKeyDisplay();
   keyAndCurrentScaleDisplay();
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
-  if (pedalTonePlay) {
-    for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-        fretArt.frets[i].playing = true;
-        break;
-      }
-    }
-  }
+  ifActiveSetScale();
+  pedalToneActivator();
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
@@ -154,19 +141,8 @@ arrowRight.addEventListener("click", function() {
   // When new key is chosen, update pedal tone key text with the currentKey
   pedalToneKeyDisplay();
   keyAndCurrentScaleDisplay();
-  for (var f = 0; f < fretArt.frets.length; f++) {
-    if (fretArt.frets[f].active) {
-      setScale(fretArt.currentKey, fretArt.currentMode.pattern);
-    }
-  }
-  if (pedalTonePlay) {
-    for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.currentKeyName == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-        fretArt.frets[i].playing = true;
-        break;
-      }
-    }
-  }
+  ifActiveSetScale();
+  pedalToneActivator();
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 });
