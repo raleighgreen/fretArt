@@ -4,18 +4,7 @@ function checkKey(e) {
     e = e || window.event;
     // toggle pedal tone on/off with the space bar
     if (e.keyCode == '32') {
-      if (!pedalTonePlay) {
-        turnOnButtonStyle(document.getElementById("play-button"));
-        turnOffButtonStyle(document.getElementById("stop-button"));
-        pedalTonePlay = true;
-      } else {
-        turnOffButtonStyle(document.getElementById("play-button"));
-        turnOnButtonStyle(document.getElementById("stop-button"));
-        for (var i = 0; i < fretArt.frets.length; i++) {
-          fretArt.frets[i].playing = false;
-        }
-        pedalTonePlay = false;
-      }
+      togglePedalTone();
     }
 
     //----------------------------------------------------------

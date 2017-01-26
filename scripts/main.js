@@ -420,7 +420,31 @@ function styleShapeButtonOn() {
   turnOffButtonStyle(document.getElementById("hide-shapes"));
   fretArt.linesVisible = true;
 }
+//----------------------------------------------------------
+//----------------------------------------------------------
 
+function togglePedalTone() {
+  if (!pedalTonePlay) {
+    pedalToneButtonOn();
+  } else {
+    pedalToneButtonOff();
+  }
+}
+
+function pedalToneButtonOff() {
+  turnOffButtonStyle(document.getElementById("play-button"));
+  turnOnButtonStyle(document.getElementById("stop-button"));
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    fretArt.frets[i].playing = false;
+  }
+  pedalTonePlay = false;
+}
+
+function pedalToneButtonOn() {
+  turnOnButtonStyle(document.getElementById("play-button"));
+  turnOffButtonStyle(document.getElementById("stop-button"));
+  pedalTonePlay = true;
+}
 //----------------------------------------------------------
 //----------------------------------------------------------
 

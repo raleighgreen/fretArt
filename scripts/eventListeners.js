@@ -196,16 +196,9 @@ hideShapes.addEventListener("click", function() {
 //---------- Pedal Tone Buttons ---------------------
 
 pedalTonePlay.addEventListener("click", function() {
-  turnOnButtonStyle(document.getElementById("play-button"));
-  turnOffButtonStyle(document.getElementById("stop-button"));
-  pedalTonePlay = true;
+  pedalToneButtonOn();
 });
 
 PedalToneStop.addEventListener("click", function() {
-  turnOffButtonStyle(document.getElementById("play-button"));
-  turnOnButtonStyle(document.getElementById("stop-button"));
-  for (var i = 0; i < fretArt.frets.length; i++) {
-    fretArt.frets[i].playing = false;
-  }
-  pedalTonePlay = false;
+  pedalToneButtonOff();
 });
