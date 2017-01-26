@@ -87,7 +87,7 @@ Fret.prototype.attachNoteNames = function() {
 // Display frets with color depending on status
 Fret.prototype.displayWithColor = function() {
   // Set RGB colors for octaves 0 - 4
-  var activeColor = [[74,39,88,255],[19,85,198,255],[106,128,104,255],[175,116,3,255],[176,29,29,255]];
+  var activeColor = [[92,40,114,255],[19,85,198,255],[106,128,104,255],[175,116,3,255],[176,29,29,255]];
   var noteOffColor = color(0,0,0,0);
   // Set non-active frets to noteOffColor
   if (!this.active) {

@@ -19,6 +19,28 @@ function checkKey(e) {
     }
 
     //----------------------------------------------------------
+    //---------- Frets and Strings Listeners -------------------
+
+    else if (e.keyCode == '189') {
+      toggleFretButton(fretButton);
+    }
+
+    else if (e.keyCode == '187') {
+      toggleStringButton(stringButton);
+    }
+
+    //----------------------------------------------------------
+    //---------- Scale and Shapes Listeners -------------------
+
+    else if (e.keyCode == '57') {
+      toggleScale();
+    }
+
+    else if (e.keyCode == '48') {
+      toggleShape();
+    }
+
+    //----------------------------------------------------------
     //---------- Arrow Key Listeners ---------------------------
 
     else if (e.keyCode == '38') {

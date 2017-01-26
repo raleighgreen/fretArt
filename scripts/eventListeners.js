@@ -158,7 +158,7 @@ arrowRight.addEventListener("mouseout", function() {
 });
 
 //---------------------------------------------------
-//---------------------------------------------------
+//---------- Fret and String Buttons ----------------
 
 fretButton.addEventListener("click", function() {
   toggleFretButton(fretButton);
@@ -168,36 +168,32 @@ stringButton.addEventListener("click", function() {
   toggleStringButton(stringButton);
 });
 
+//---------------------------------------------------
+//---------- Scale Buttons --------------------------
+
 // When the show button is clicked, do the following...
 showScales.addEventListener("click", function(){
-
-  turnOnButtonStyle(document.getElementById("show-scale"));
-  turnOffButtonStyle(document.getElementById("hide-scale"));
-  fretArt.invisible = false;
+  styleScaleButtonOn();
 });
 
 // Clear fretboard and updateDisplay
 hideScales.addEventListener("click", function() {
-  turnOffButtonStyle(document.getElementById("show-scale"));
-  turnOnButtonStyle(document.getElementById("hide-scale"));
-  fretArt.invisible = true;
-  // clearFretSelection();
+  styleScaleButtonOff();
 });
 
+//---------------------------------------------------
+//---------- Shape Buttons --------------------------
+
 showShapes.addEventListener("click", function() {
-  turnOnButtonStyle(document.getElementById("show-shapes"));
-  turnOffButtonStyle(document.getElementById("hide-shapes"));
-  fretArt.linesVisible = true;
-  processInput();
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
+  styleShapeButtonOn();
 });
 
 hideShapes.addEventListener("click", function() {
-  turnOffButtonStyle(document.getElementById("show-shapes"));
-  turnOnButtonStyle(document.getElementById("hide-shapes"));
-  fretArt.linesVisible = false;
+  styleShapeButtonOff();
 });
+
+//---------------------------------------------------
+//---------- Pedal Tone Buttons ---------------------
 
 pedalTonePlay.addEventListener("click", function() {
   turnOnButtonStyle(document.getElementById("play-button"));

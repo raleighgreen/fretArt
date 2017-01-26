@@ -340,35 +340,89 @@ function turnOffButtonStyle(offElem) {
   offElement.style.color = 'rgb(9,81,201)';
 }
 
-function toggleFretButton(button)
-{
-    if(button.value==" Frets on ") {
-        button.value=" Frets off ";
+//----------------------------------------------------------
+//---------- Fret and String Button Functions --------------
+
+function toggleFretButton(button) {
+    if (button.value == " Frets on ") {
+        button.value = " Frets off ";
         turnOffButtonStyle(button);
         document.getElementById("fretsBox").style.visibility = 'hidden';
         fretArt.fretsIsShowing = false;
     }
-    else if(button.value==" Frets off ") {
-        button.value=" Frets on ";
+    else if (button.value == " Frets off ") {
+        button.value = " Frets on ";
         turnOnButtonStyle(button);
         document.getElementById("fretsBox").style.visibility = 'visible';
         fretArt.fretsIsShowing = true;
     }
 }
 
-function toggleStringButton(button)
-{
-    if(button.value==" Strings on ") {
-        button.value=" Strings off ";
+function toggleStringButton(button) {
+    if (button.value == " Strings on ") {
+        button.value = " Strings off ";
         turnOffButtonStyle(button);
         fretArt.stringsIsShowing = false;
     }
-    else if(button.value==" Strings off ") {
-        button.value=" Strings on ";
+    else if (button.value == " Strings off ") {
+        button.value = " Strings on ";
         turnOnButtonStyle(button);
         fretArt.stringsIsShowing = true;
     }
 }
+
+//----------------------------------------------------------
+//---------- Scale and Shape Button Functions --------------
+
+function toggleScale() {
+  if (fretArt.scaleButtonStatus) {
+    styleScaleButtonOff();
+    fretArt.scaleButtonStatus = false;
+  } else {
+    styleScaleButtonOn();
+    fretArt.scaleButtonStatus = true;
+  }
+}
+
+function styleScaleButtonOff() {
+  turnOffButtonStyle(document.getElementById("show-scale"));
+  turnOnButtonStyle(document.getElementById("hide-scale"));
+  fretArt.invisible = true;
+}
+
+function styleScaleButtonOn() {
+  turnOnButtonStyle(document.getElementById("show-scale"));
+  turnOffButtonStyle(document.getElementById("hide-scale"));
+  fretArt.invisible = false;
+}
+
+function toggleShape() {
+  if (fretArt.shapeButtonStatus) {
+    styleShapeButtonOn();
+    fretArt.shapeButtonStatus = false;
+  } else {
+    styleShapeButtonOff();
+    fretArt.shapeButtonStatus = true;
+  }
+}
+
+function styleShapeButtonOff() {
+  processInput();
+  isolateScaleIds(fretArt.foundScaleIds);
+  buildShapes();
+  turnOffButtonStyle(document.getElementById("show-shapes"));
+  turnOnButtonStyle(document.getElementById("hide-shapes"));
+  fretArt.linesVisible = false;
+}
+
+function styleShapeButtonOn() {
+  turnOnButtonStyle(document.getElementById("show-shapes"));
+  turnOffButtonStyle(document.getElementById("hide-shapes"));
+  fretArt.linesVisible = true;
+}
+
+//----------------------------------------------------------
+//----------------------------------------------------------
 
 function keyScaleShapeProcessor() {
   processInput();
@@ -619,6 +673,7 @@ function setup() {
   fretArt.fretsIsShowing = true;
   fretArt.stringsIsShowing = true;
   fretArt.linesVisible = true;
+  fretArt.scaleButtonStatus = true;
   turnOnButtonStyle(document.getElementById("hide-scale"));
   turnOffButtonStyle(document.getElementById("hide-scale"));
   turnOnButtonStyle(document.getElementById("show-shapes"));
