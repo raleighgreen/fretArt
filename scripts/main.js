@@ -280,41 +280,6 @@ function mousePressed() {
   }
 }
 
-function playPedalTone() {
-  processInput();
-  var pedalTone = fretArt.notes[fretArt.keyIndex].audioFile;
-  if (!pedalTone.isPlaying()) {
-    pedalTone.play();
-    for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.keyIndex == fretArt.frets[i].note.id && fretArt.frets[i].string.name == "lowE") {
-        fretArt.frets[i].playing = true;
-        fretArt.frets[i].col1 = 255;
-        fretArt.frets[i].col2 = 255;
-        fretArt.frets[i].col3 = 255;
-        fretArt.frets[i].alpha = 255;
-        // console.log(fretArt.frets[i]);
-        break;
-      }
-    }
-  }
-}
-
-function pedalToneActivator() {
-  if (pedalTonePlay) {
-    for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.keyIndex == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-        fretArt.frets[i].playing = true;
-        // console.log(fretArt.frets[i]);
-        break;
-      }
-    }
-  }
-}
-
-function pedalToneKeyDisplay(){
-  document.getElementById("pedal-tone-key").textContent = fretArt.currentKeyName;
-}
-
 function keyAndCurrentScaleDisplay(){
   document.getElementById("current-key").textContent = fretArt.currentKeyName + " ";
   document.getElementById("current-scale").textContent = fretArt.currentMode.name;
@@ -421,7 +386,42 @@ function styleShapeButtonOn() {
   fretArt.linesVisible = true;
 }
 //----------------------------------------------------------
-//----------------------------------------------------------
+//---------- Pedal Tone Functions --------------------------
+
+function playPedalTone() {
+  processInput();
+  var pedalTone = fretArt.notes[fretArt.keyIndex].audioFile;
+  if (!pedalTone.isPlaying()) {
+    pedalTone.play();
+    for (var i = 0; i < fretArt.frets.length; i++) {
+      if (fretArt.keyIndex == fretArt.frets[i].note.id && fretArt.frets[i].string.name == "lowE") {
+        fretArt.frets[i].playing = true;
+        fretArt.frets[i].col1 = 255;
+        fretArt.frets[i].col2 = 255;
+        fretArt.frets[i].col3 = 255;
+        fretArt.frets[i].alpha = 255;
+        // console.log(fretArt.frets[i]);
+        break;
+      }
+    }
+  }
+}
+
+function pedalToneActivator() {
+  if (pedalTonePlay) {
+    for (var i = 0; i < fretArt.frets.length; i++) {
+      if (fretArt.keyIndex == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+        fretArt.frets[i].playing = true;
+        // console.log(fretArt.frets[i]);
+        break;
+      }
+    }
+  }
+}
+
+function pedalToneKeyDisplay(){
+  document.getElementById("pedal-tone-key").textContent = fretArt.currentKeyName;
+}
 
 function togglePedalTone() {
   if (!pedalTonePlay) {
@@ -478,7 +478,6 @@ function lightTimer(passedThis) {
 //----------------------------------------------------------
 //---------- Scale Functions -------------------------------
 
-// almost done (see setKeyIndex below)
 function setScaleIndex() {
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
@@ -542,12 +541,9 @@ function moveScaleDown() {
   }
 }
 
-
 //----------------------------------------------------------
 //---------- Key Dropdown Functions ------------------------
 
-// renamed to setKeyIndex and modified to reflect key connections
-// **still need to replace "data-selected" and "modeSelected" values
 function setKeyIndex() {
   for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
     if (fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value === "keySelected") {
@@ -575,13 +571,11 @@ function moveKeyUp() {
   // if the scale index is  (which would be the Ionian default), jump to the last index
   if (fretArt.keyIndex <= fretArt.selectedKeyNameHolder.length - 2){
     fretArt.keyIndex += 1; // scales are in reverse order
-    console.log(fretArt.keyIndex);
     fretArt.selectedKeyNameHolder[fretArt.keyIndex].getAttributeNode("data-selected").value = "keySelected";
     // add 'target' class to fretArt.selectedModeNameHolder
     fretArt.selectedKeyNameHolder[fretArt.keyIndex].classList.add('target');
   } else {
     fretArt.keyIndex = 0;
-    console.log(fretArt.keyIndex);
     fretArt.selectedKeyNameHolder[fretArt.keyIndex].getAttributeNode("data-selected").value = "keySelected";
     // add 'target' class to fretArt.selectedModeNameHolder
     fretArt.selectedKeyNameHolder[fretArt.keyIndex].classList.add('target');
@@ -661,6 +655,26 @@ function dimDownArrow() {
 function dimUpArrow() {
   arrowUp.style.transition = "opacity .1s";
   arrowUp.style.opacity = .5;
+}
+
+function lightUpArrowLeftAndStayLit() {
+  arrowLeft.style.transition = "opacity .1s";
+  arrowLeft.style.opacity = 1;
+}
+
+function lightDownArrowRightAndStayLit() {
+  arrowLeft.style.transition = "opacity .1s";
+  arrowLeft.style.opacity = .5;
+}
+
+function arrowRightAndLeftProcesses() {
+  processInput();
+  pedalToneKeyDisplay();
+  keyAndCurrentScaleDisplay();
+  ifActiveSetScale();
+  pedalToneActivator();
+  isolateScaleIds(fretArt.foundScaleIds);
+  buildShapes();
 }
 // 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
 

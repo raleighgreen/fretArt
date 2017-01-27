@@ -58,9 +58,8 @@ keyField.addEventListener("click", function(e){
   e.target.getAttributeNode("data-selected").value = "keySelected";
   // add a 'target' class to the selected element
   e.target.classList.add('target');
-
   fretArt.keyIndex = e.target.id;
-  console.log(fretArt.keyIndex);
+
   processInput();
   pedalToneKeyDisplay();
   keyAndCurrentScaleDisplay()
@@ -114,24 +113,16 @@ arrowDown.addEventListener("click", function() {
 //---------- Arrow Button Left------------------------------
 
 arrowLeft.addEventListener("mouseover", function() {
-  arrowLeft.style.transition = "opacity .1s";
-  arrowLeft.style.opacity = 1;
+  lightUpArrowLeftAndStayLit();
 });
 
 arrowLeft.addEventListener("mouseout", function() {
-  arrowLeft.style.transition = "opacity .1s";
-  arrowLeft.style.opacity = .5;
+  lightDownArrowAndStayLit();
 });
 
 arrowLeft.addEventListener("click", function() {
   moveKeyDown();
-  processInput();
-  pedalToneKeyDisplay();
-  keyAndCurrentScaleDisplay();
-  ifActiveSetScale();
-  pedalToneActivator();
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
+  arrowRightAndLeftProcesses();
 });
 
 //----------------------------------------------------------
@@ -141,20 +132,15 @@ arrowRight.addEventListener("mouseover", function() {
   arrowRight.style.transition = "opacity .1s";
   arrowRight.style.opacity = 1;
 });
-arrowRight.addEventListener("click", function() {
-  moveKeyUp();
-  processInput();
-  // When new key is chosen, update pedal tone key text with the currentKey
-  pedalToneKeyDisplay();
-  keyAndCurrentScaleDisplay();
-  ifActiveSetScale();
-  pedalToneActivator();
-  isolateScaleIds(fretArt.foundScaleIds);
-  buildShapes();
-});
+
 arrowRight.addEventListener("mouseout", function() {
   arrowRight.style.transition = "opacity .1s";
   arrowRight.style.opacity = .5;
+});
+
+arrowRight.addEventListener("click", function() {
+  moveKeyUp();
+  arrowRightAndLeftProcesses();
 });
 
 //---------------------------------------------------
