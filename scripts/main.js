@@ -626,47 +626,63 @@ function removeKeyTargetClass() {
 //----------------------------------------------------------
 //---------- Arrow Key Functions ---------------------------
 
-function lightUpArrows() {
+//---------- Up Arrows -------------------------------------
+function lightUpArrow() {
   arrowUp.style.transition = "opacity .1s";
   arrowUp.style.opacity = 1;
   setTimeout(function(){ arrowUp.style.opacity = .5; }, 150);
 }
-
-function lightDownArrows() {
-  arrowDown.style.transition = "opacity .1s";
-  arrowDown.style.opacity = 1;
-  setTimeout(function(){ arrowDown.style.opacity = .5; }, 150);
-}
-
-function lightDownArrowAndStayLit() {
-  arrowDown.style.transition = "opacity .1s";
-  arrowDown.style.opacity = 1;
-}
-
 function lightUpArrowAndStayLit() {
   arrowUp.style.transition = "opacity .1s";
   arrowUp.style.opacity = 1;
-}
-
-function dimDownArrow() {
-  arrowDown.style.transition = "opacity .1s";
-  arrowDown.style.opacity = .5;
 }
 function dimUpArrow() {
   arrowUp.style.transition = "opacity .1s";
   arrowUp.style.opacity = .5;
 }
-
-function lightUpArrowLeftAndStayLit() {
+//---------- Down Arrows -------------------------------------
+function lightDownArrow() {
+  arrowDown.style.transition = "opacity .1s";
+  arrowDown.style.opacity = 1;
+  setTimeout(function(){ arrowDown.style.opacity = .5; }, 150);
+}
+function lightDownArrowAndStayLit() {
+  arrowDown.style.transition = "opacity .1s";
+  arrowDown.style.opacity = 1;
+}
+function dimDownArrow() {
+  arrowDown.style.transition = "opacity .1s";
+  arrowDown.style.opacity = .5;
+}
+//---------- Left Arrows -------------------------------------
+function lightLeftArrow() {
+  arrowLeft.style.transition = "opacity .1s";
+  arrowLeft.style.opacity = 1;
+  setTimeout(function(){ arrowLeft.style.opacity = .5; }, 150);
+}
+function lightLeftArrowAndStayLit() {
   arrowLeft.style.transition = "opacity .1s";
   arrowLeft.style.opacity = 1;
 }
-
-function lightDownArrowRightAndStayLit() {
+function dimLeftArrow() {
   arrowLeft.style.transition = "opacity .1s";
   arrowLeft.style.opacity = .5;
 }
-
+//---------- Right Arrows -------------------------------------
+function lightRightArrow() {
+  arrowRight.style.transition = "opacity .1s";
+  arrowRight.style.opacity = 1;
+  setTimeout(function(){ arrowRight.style.opacity = .5; }, 150);
+}
+function lightRightArrowAndStayLit() {
+  arrowRight.style.transition = "opacity .1s";
+  arrowRight.style.opacity = 1;
+}
+function dimRightArrow() {
+  arrowRight.style.transition = "opacity .1s";
+  arrowRight.style.opacity = .5;
+}
+//---------- Right and Left Arrow processes -------------------
 function arrowRightAndLeftProcesses() {
   processInput();
   pedalToneKeyDisplay();
@@ -676,7 +692,8 @@ function arrowRightAndLeftProcesses() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 }
-// 3. P5 PRELOAD, SETUP AND DRAW FUNCTIONS ------------------------------------------------
+//----------------------------------------------------------
+//---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
 
 function preload() {
   for (var i = 0; i < 49; i++) {

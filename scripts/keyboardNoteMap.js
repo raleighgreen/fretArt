@@ -40,7 +40,7 @@ function checkKey(e) {
       ifActiveSetScale();
       isolateScaleIds(fretArt.foundScaleIds);
       buildShapes();
-      lightUpArrows();
+      lightUpArrow();
       keyScaleShapeProcessor();
     }
     else if (e.keyCode == '40') {
@@ -51,7 +51,7 @@ function checkKey(e) {
       ifActiveSetScale();
       isolateScaleIds(fretArt.foundScaleIds);
       buildShapes();
-      lightDownArrows();
+      lightDownArrow();
       keyScaleShapeProcessor();
     }
     else if (e.keyCode == '37') {
@@ -65,9 +65,7 @@ function checkKey(e) {
      pedalToneActivator();
      isolateScaleIds(fretArt.foundScaleIds);
      buildShapes();
-     arrowLeft.style.transition = "opacity .1s";
-     arrowLeft.style.opacity = 1;
-     setTimeout(function(){ arrowLeft.style.opacity = .5; }, 150);
+     lightLeftArrow();
      keyScaleShapeProcessor();
     }
     else if (e.keyCode == '39') {
@@ -81,9 +79,7 @@ function checkKey(e) {
       pedalToneActivator();
       isolateScaleIds(fretArt.foundScaleIds);
       buildShapes();
-      arrowRight.style.transition = "opacity .1s";
-      arrowRight.style.opacity = 1;
-      setTimeout(function(){ arrowRight.style.opacity = .5; }, 150);
+      lightRightArrow();
       keyScaleShapeProcessor();
   }
 }

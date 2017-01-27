@@ -70,7 +70,7 @@ keyField.addEventListener("click", function(e){
 });
 
 //----------------------------------------------------------
-//---------- Arrow Button Up -------------------------------
+//---------- Arrow Button Up Listners ----------------------
 
 arrowUp.addEventListener("mouseover", function() {
   lightUpArrowAndStayLit();
@@ -90,7 +90,7 @@ arrowUp.addEventListener("click", function() {
 });
 
 //----------------------------------------------------------
-//---------- Arrow Button Down------------------------------
+//---------- Arrow Button Down Listeners -------------------
 
 arrowDown.addEventListener("mouseover", function() {
   lightDownArrowAndStayLit();
@@ -110,14 +110,14 @@ arrowDown.addEventListener("click", function() {
 });
 
 //----------------------------------------------------------
-//---------- Arrow Button Left------------------------------
+//---------- Arrow Button Left Listeners -------------------
 
 arrowLeft.addEventListener("mouseover", function() {
-  lightUpArrowLeftAndStayLit();
+  lightLeftArrowAndStayLit();
 });
 
 arrowLeft.addEventListener("mouseout", function() {
-  lightDownArrowAndStayLit();
+  dimLeftArrow();
 });
 
 arrowLeft.addEventListener("click", function() {
@@ -126,16 +126,14 @@ arrowLeft.addEventListener("click", function() {
 });
 
 //----------------------------------------------------------
-//---------- Arrow Button Right-----------------------------
+//---------- Arrow Button Right Listeners ------------------
 
 arrowRight.addEventListener("mouseover", function() {
-  arrowRight.style.transition = "opacity .1s";
-  arrowRight.style.opacity = 1;
+  lightRightArrowAndStayLit();
 });
 
 arrowRight.addEventListener("mouseout", function() {
-  arrowRight.style.transition = "opacity .1s";
-  arrowRight.style.opacity = .5;
+  dimRightArrow();
 });
 
 arrowRight.addEventListener("click", function() {
@@ -143,8 +141,8 @@ arrowRight.addEventListener("click", function() {
   arrowRightAndLeftProcesses();
 });
 
-//---------------------------------------------------
-//---------- Fret and String Buttons ----------------
+//----------------------------------------------------------
+//---------- Fret and String Buttons Listeners -------------
 
 fretButton.addEventListener("click", function() {
   toggleFretButton(fretButton);
@@ -154,8 +152,8 @@ stringButton.addEventListener("click", function() {
   toggleStringButton(stringButton);
 });
 
-//---------------------------------------------------
-//---------- Scale Buttons --------------------------
+//----------------------------------------------------------
+//---------- Scale Buttons Listerners ----------------------
 
 // When the show button is clicked, do the following...
 showScales.addEventListener("click", function(){
@@ -167,8 +165,8 @@ hideScales.addEventListener("click", function() {
   styleScaleButtonOff();
 });
 
-//---------------------------------------------------
-//---------- Shape Buttons --------------------------
+//----------------------------------------------------------
+//---------- Shape Buttons Listeners -----------------------
 
 showShapes.addEventListener("click", function() {
   styleShapeButtonOn();
@@ -178,8 +176,8 @@ hideShapes.addEventListener("click", function() {
   styleShapeButtonOff();
 });
 
-//---------------------------------------------------
-//---------- Pedal Tone Buttons ---------------------
+//----------------------------------------------------------
+//---------- Pedal Tone Buttons Listerners------------------
 
 pedalTonePlay.addEventListener("click", function() {
   pedalToneButtonOn();
