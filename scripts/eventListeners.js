@@ -1,12 +1,7 @@
 //------ SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION ------
 
 // Grab the select fields and buttons from the HTML document
-// Try to delete this old one?
-
-// keyField dropdown div working new version
 var keyField = document.getElementById("keyDiv");
-
-// scaleField dropdown div
 var scaleField = document.getElementById("scalesDiv");
 var showScales = document.getElementById("show-scale");
 var hideScales = document.getElementById("hide-scale");

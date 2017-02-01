@@ -46,20 +46,20 @@ fretArt.modes = {
   "Locrian": new Mode("Locrian",[1, 2, 2, 1, 2, 2, 2], locrianLowestFrets),
 //---------------------
   "Melodic Minor": new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets),
-  "Phrygian Nat 6": new Mode("Phrygian Natural 6", [1, 2, 2, 2, 2, 1, 2], phrygianNat6LowestFrets),
+  "Phrygian Nat 6": new Mode("Phrygian &#x266e;6", [1, 2, 2, 2, 2, 1, 2], phrygianNat6LowestFrets),
   "Lydian Augmented": new Mode("Lydian Augmented",[2, 2, 2, 2, 1, 2, 1], lydianAugmentedLowestFrets),
-  "Lydian b7": new Mode("Lydian b7", [2, 2, 2, 1, 2, 1, 2], lydianb7LowestFrets),
-  "Mixolydian b6": new Mode("Mixolydian b6", [2, 2, 1, 2, 1, 2, 2], mixolydianb6LowestFrets),
-  "Locrian Nat 2": new Mode("Locrian Natural 2",[2, 1, 2, 1, 2, 2, 2], locrianNat2LowestFrets),
-  "Altered Scale": new Mode("Altered Scale",[1, 2, 1, 2, 2, 2, 2], alteredScaleLowestFrets),
+  "Lydian b7": new Mode("Lydian &#9837;7", [2, 2, 2, 1, 2, 1, 2], lydianb7LowestFrets),
+  "Mixolydian b6": new Mode("Mixolydian &#9837;6", [2, 2, 1, 2, 1, 2, 2], mixolydianb6LowestFrets),
+  "Locrian Nat 2": new Mode("Locrian &#x266e;2",[2, 1, 2, 1, 2, 2, 2], locrianNat2LowestFrets),
+  "Super Locrian": new Mode("Super Locrian",[1, 2, 1, 2, 2, 2, 2], alteredScaleLowestFrets),
 //---------------------
   "Harmonic Minor": new Mode("Harmonic Minor",[2, 1, 2, 2, 1, 3, 1], harmMinLowestFrets),
-  "Locrian Nat 6": new Mode("Locrian Natural 6",[1, 2, 2, 1, 3, 1, 2], locrianNat6LowestFrets),
-  "Ionian #5": new Mode("Ionian #5",[2, 2, 1, 3, 1, 2, 1], ionianSharp5LowestFrets),
-  "Dorian #4": new Mode("Dorian #4",[2, 1, 3, 1, 2, 1, 2], dorianSharp4LowestFrets),
+  "Locrian Nat 6": new Mode("Locrian &#x266e;6",[1, 2, 2, 1, 3, 1, 2], locrianNat6LowestFrets),
+  "Ionian #5": new Mode("Ionian &#x266f;5",[2, 2, 1, 3, 1, 2, 1], ionianSharp5LowestFrets),
+  "Dorian #4": new Mode("Dorian &#x266f;4",[2, 1, 3, 1, 2, 1, 2], dorianSharp4LowestFrets),
   "Phrygian Dominant": new Mode("Phrygian Dominant",[1, 3, 1, 2, 1, 2, 2], phrygianDominantLowestFrets),
-  "Lydian #2": new Mode("Lydian #2",[3, 1, 2, 1, 2, 2, 1], lydianSharp2LowestFrets),
-  "Altered Dom bb7": new Mode("Altered Dominant bb7",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets)
+  "Lydian #2": new Mode("Lydian &#x266f;2",[3, 1, 2, 1, 2, 2, 1], lydianSharp2LowestFrets),
+  "Ultra Locrian": new Mode("Ultra Locrian",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets)
 }
 
 // Create strings and group them in an array
@@ -239,9 +239,10 @@ function activateFrets(foundScale) {
 }
 
 function processInput() {
+  // Process the key index and key name
   for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
     if (fretArt.selectedKeyNameHolder[i].getAttributeNode("data-selected").value === "keySelected") {
-    // Grab the key value from the key select field and place it in fretArt.currentKey
+    // Grab the key value from the selectedKeyText field and place it in fretArt.currentKey
       var keyName = document.getElementsByClassName('selectedKeyText');
       var keyNameValue = keyName[i].textContent;
       // console.log(fretArt.selectedKeyNameHolder);
@@ -250,6 +251,7 @@ function processInput() {
       fretArt.currentKeyName = keyNameValue;
     }
   }
+  // process the selected scale Text
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
       var scaleName = document.getElementsByClassName('selectedScaleText');
@@ -282,7 +284,8 @@ function mousePressed() {
 
 function keyAndCurrentScaleDisplay(){
   document.getElementById("current-key").textContent = fretArt.currentKeyName + " ";
-  document.getElementById("current-scale").textContent = fretArt.currentMode.name;
+  // document.getElementById("current-scale").textContent = fretArt.currentMode.name;
+  document.getElementById("current-scale").innerHTML = fretArt.currentMode.name;
 }
 
 function octaveRestrictor(foundScaleArrPos) {
@@ -682,7 +685,9 @@ function dimRightArrow() {
   arrowRight.style.transition = "opacity .1s";
   arrowRight.style.opacity = .5;
 }
+
 //---------- Right and Left Arrow processes -------------------
+
 function arrowRightAndLeftProcesses() {
   processInput();
   pedalToneKeyDisplay();
@@ -692,6 +697,7 @@ function arrowRightAndLeftProcesses() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 }
+
 //----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
 

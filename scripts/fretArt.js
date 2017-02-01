@@ -23,7 +23,6 @@ var fretArt = {
   currentMode: null,
   scaleButtonStatus: null,
   shapeButtonStatus: null,
-
   selectedModeNameHolder: null,
   scaleIndex: 0,
   scaleCounter: 0,
