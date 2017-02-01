@@ -256,16 +256,22 @@ canvas {
   font-weight: 400;
   font-size: 17px;
   position: relative;
-  left:193px;
-  top:0px;
 }
-
-#display-text {
-  /*position: fixed;
-  left:370px;
-  top:295px;*/
+#scale-display-outercontainer {
+  position:absolute;
+  display: block;
+  width: 450px;
+  align-content: center;
+  pointer-events: none;
 }
-
+#scale-display-innercontainer {
+  position:relative;
+  display: block;
+  margin: auto;
+  width: 70%;
+  text-align: center;
+  pointer-events: none;
+}
 #display-gradient-mask-right {
   position: absolute;
   width: 240px;
