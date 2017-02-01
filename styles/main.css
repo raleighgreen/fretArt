@@ -183,9 +183,6 @@
 #keyDiv .keyName {
   color: rgb(9,81,201);
 }
-/*.keyNam:hover .headerKey {
-  color:black;
-}*/
 #showScaleContainer {
   position: relative;
   margin-top: -10px;
@@ -249,37 +246,39 @@ canvas {
 
 #key-scale-display  {
   position: absolute;
-  text-align: center;
-  vertical-align: middle;
+  display: block;
   line-height: 90px;
-  width: 50%;
-  margin-left: 188px;
-  margin-top: 151px;
+  left:214px;
+  top:283px;
 }
 
 .key-scale-display-text {
   font-weight: 400;
   font-size: 17px;
+  position: relative;
+  left:193px;
+  top:0px;
 }
 
 #display-text {
-  position: absolute;
-  margin-left: 150;
+  /*position: fixed;
+  left:370px;
+  top:295px;*/
 }
 
 #display-gradient-mask-right {
   position: absolute;
   width: 240px;
-  height: 60px;
+  height: 90px;
   background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1));
-  margin-left: 450px;
+  margin-left: 420px;
   margin-top: 170px;
 }
 
 #display-gradient-mask-bottom {
   position: absolute;
   width: 200px;
-  height: 70px;
+  height: 90px;
   background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
   margin-left: 200px;
   margin-top: 157px;

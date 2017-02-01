@@ -47,7 +47,7 @@ fretArt.modes = {
 //---------------------
   "Melodic Minor": new Mode("Melodic Minor",[2, 1, 2, 2, 2, 2, 1], melMinLowestFrets),
   "Phrygian Nat 6": new Mode("Phrygian &#x266e;6", [1, 2, 2, 2, 2, 1, 2], phrygianNat6LowestFrets),
-  "Lydian Augmented": new Mode("Lydian Augmented",[2, 2, 2, 2, 1, 2, 1], lydianAugmentedLowestFrets),
+  "Lydian Augmented": new Mode("Lydian &#x266f;5",[2, 2, 2, 2, 1, 2, 1], lydianAugmentedLowestFrets),
   "Lydian b7": new Mode("Lydian &#9837;7", [2, 2, 2, 1, 2, 1, 2], lydianb7LowestFrets),
   "Mixolydian b6": new Mode("Mixolydian &#9837;6", [2, 2, 1, 2, 1, 2, 2], mixolydianb6LowestFrets),
   "Locrian Nat 2": new Mode("Locrian &#x266e;2",[2, 1, 2, 1, 2, 2, 2], locrianNat2LowestFrets),
@@ -69,7 +69,8 @@ fretArt.strings = [
   new String("G", 15, 39),
   new String("D", 10, 34),
   new String("A", 5, 29),
-  new String("lowE", 0, 24)
+  new
+   String("lowE", 0, 24)
 ];
 
 var noteSpacing = 25;
@@ -255,11 +256,13 @@ function processInput() {
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
       var scaleName = document.getElementsByClassName('selectedScaleText');
+      var textData = fretArt.selectedModeNameHolder[i].getAttributeNode('data-text').value;
       var scaleNameValue = scaleName[i].textContent;
       // console.log(scaleNameValue);
+      console.log(textData);
     }
    }
-   fretArt.currentMode = fretArt.modes[scaleNameValue];
+   fretArt.currentMode = fretArt.modes[textData];
 }
 
 function drawShape(shapeArray) {
@@ -811,7 +814,7 @@ function draw() {
   // Frame key/scale name display with lines above and below
   strokeWeight(1.5);
   stroke(9,81,201, 100);
-  rect(246, 275,450, 48, 7);
+  rect(236, 275,439, 48, 7);
   pop();
   // End shapes
   // Trigger note light and sound on note mouseOver
