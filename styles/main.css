@@ -1,3 +1,10 @@
+img {
+	position: absolute;
+  top: 139px;
+  left: 1px;
+  width:880px;
+  height:210px
+}
 #tipsButton {
   position: absolute;
   align: left;
@@ -40,7 +47,7 @@
   display: none;
   width: 882px;
   height: 350px;
-  background: RebeccaPurple;
+  background: black;
   margin: auto;
   top: 50px;
   z-index: 1001;
