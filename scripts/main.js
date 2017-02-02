@@ -701,6 +701,19 @@ function arrowRightAndLeftProcesses() {
   buildShapes();
 }
 
+function infoButtonToggle() {
+  console.log("hey");
+  console.log(fretArt.infoButtonStatus);
+  if (!fretArt.infoButtonStatus) {
+    console.log("hey it's false");
+    fretArt.infoButtonStatus = true;
+    infoButtonElement.style.display='block';
+  } else if (fretArt.infoButtonStatus){
+    console.log("hey it's true");
+    fretArt.infoButtonStatus = false;
+    infoButtonElement.style.display='none';
+  }
+}
 //----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
 
@@ -712,8 +725,8 @@ function preload() {
 
 function setup() {
   createCanvas(882, 370);
+  infoButtonElement.style.display='none'
 
-//----------------------------------------------------------
 //---------- Setup scale dropdown elements and defaults ----
 
   fretArt.selectedModeNameHolder = document.querySelectorAll('.scaNam');
@@ -721,7 +734,6 @@ function setup() {
   fretArt.selectedModeNameHolder[0].getAttributeNode("data-selected").value = "modeSelected";
   fretArt.selectedModeNameHolder[0].classList.add('target');
 
-//----------------------------------------------------------
 //---------- Setup key dropdown elements and defaults ------
 
   fretArt.selectedKeyNameHolder = document.querySelectorAll('.keyNam');
@@ -738,6 +750,8 @@ function setup() {
   fretArt.stringsIsShowing = true;
   fretArt.linesVisible = true;
   fretArt.scaleButtonStatus = true;
+  fretArt.infoButtonStatus = false;
+
   turnOnButtonStyle(document.getElementById("hide-scale"));
   turnOffButtonStyle(document.getElementById("hide-scale"));
   turnOnButtonStyle(document.getElementById("show-shapes"));

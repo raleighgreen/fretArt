@@ -15,11 +15,18 @@ var arrowUp = document.getElementById("arrow-up");
 var arrowDown = document.getElementById("arrow-down");
 var arrowLeft = document.getElementById("arrow-left");
 var arrowRight = document.getElementById("arrow-right");
+var infoButton = document.getElementById("fretShapesButton");
+var infoButtonElement = document.getElementById('middleDiv');
 
 arrowUp.style.opacity = .5;
 arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
+
+infoButton.addEventListener("click", function() {
+  infoButtonToggle();
+  console.log('this far');
+});
 
 scaleField.addEventListener("click", function(e){
   // Reset all fretArt.keyNameHolder Nodes to "not"

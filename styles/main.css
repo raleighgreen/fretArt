@@ -1,3 +1,25 @@
+#topDiv {
+  position: relative;
+  display: block;
+  width: 702px;
+  height: 200;
+  background: Indigo;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  top: 70px;
+  z-index: 1002;
+}
+#middleDiv {
+  position: absolute;
+  display: none;
+  width: 882px;
+  height: 350px;
+  background: RebeccaPurple;
+  margin: auto;
+  top: 50px;
+  z-index: 1001;
+}
 #fretShapesButton {
   font-size: 1em;
 }
@@ -19,26 +41,6 @@
   z-index: 0;
   font-size: .8em;
   cursor: pointer;
-}
-#topDiv {
-  position: absolute;
-  display: none;
-  width: 702px;
-  height: 200;
-  background: blue;
-  margin: auto;
-  top: 70px;
-  z-index: 1002;
-}
-#middleDiv {
-  position: absolute;
-  display: none;
-  width: 882px;
-  height: 350px;
-  background: purple;
-  margin: auto;
-  top: 50px;
-  z-index: 1001;
 }
 .pointable {
   cursor: pointer;
