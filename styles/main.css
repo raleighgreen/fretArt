@@ -1,3 +1,45 @@
+#fretShapesButton {
+  font-size: 1em;
+}
+#copyright {
+  position: absolute;
+  justify-content: center;
+  font-weight: 100;
+  margin-left: 347px;
+  top: 425px;
+  font-size: .8em;
+  pointer-events: none;
+}
+#tipsButton {
+  position: absolute;
+  justify-content: center;
+  font-weight: 100;
+  margin-left: -343px;
+  top: 399px;
+  z-index: 0;
+  font-size: .8em;
+  cursor: pointer;
+}
+#topDiv {
+  position: absolute;
+  display: none;
+  width: 702px;
+  height: 200;
+  background: blue;
+  margin: auto;
+  top: 70px;
+  z-index: 1002;
+}
+#middleDiv {
+  position: absolute;
+  display: none;
+  width: 882px;
+  height: 350px;
+  background: purple;
+  margin: auto;
+  top: 50px;
+  z-index: 1001;
+}
 .pointable {
   cursor: pointer;
   outline: none;
@@ -62,6 +104,7 @@
     background: black;
     color: rgb(9,81,201);
     padding: 14px 0px 9px 0px;
+    z-index: 1003;
 }
 .dropdownStyle > ul {
   display: none;
