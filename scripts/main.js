@@ -702,16 +702,23 @@ function arrowRightAndLeftProcesses() {
 }
 
 function infoButtonToggle() {
-  console.log("hey");
-  console.log(fretArt.infoButtonStatus);
+  var arrowElement = document.getElementById('arrow');
   if (!fretArt.infoButtonStatus) {
-    console.log("hey it's false");
     fretArt.infoButtonStatus = true;
     infoButtonElement.style.display='block';
+    infoButton.style.marginLeft='-58px';
+    arrowElement.innerHTML = '\&#8592';
+    document.getElementById('fretShapesButton').style.marginTop="26px";
+    document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
+    document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
   } else if (fretArt.infoButtonStatus){
-    console.log("hey it's true");
     fretArt.infoButtonStatus = false;
     infoButtonElement.style.display='none';
+    infoButton.style.marginLeft='25px';
+    arrowElement.innerHTML = '\&rarr;';
+    document.getElementById('fretShapesButton').style.marginTop="26px";
+    document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" What is fret";
+    document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="Shapes?";
   }
 }
 //----------------------------------------------------------

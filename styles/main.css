@@ -1,3 +1,28 @@
+#tipsButton {
+  position: absolute;
+  align: left;
+  font-weight: 100;
+  margin-left: -347px;
+  top: 392px;
+  z-index: 0;
+  font-size: .8em;
+  cursor: pointer;
+}
+#fretShapesButton {
+  font-size: 1em;
+  margin-left: 25px;
+  opacity: .7;
+}
+#fretShapesButton:hover {
+  opacity: 1;
+}
+
+#arrow {
+  position: relative;
+  align: left;
+  top: .1em;
+  font-size: 1.5em;
+}
 #topDiv {
   position: relative;
   display: block;
@@ -20,9 +45,6 @@
   top: 50px;
   z-index: 1001;
 }
-#fretShapesButton {
-  font-size: 1em;
-}
 #copyright {
   position: absolute;
   justify-content: center;
@@ -31,16 +53,7 @@
   top: 425px;
   font-size: .8em;
   pointer-events: none;
-}
-#tipsButton {
-  position: absolute;
-  justify-content: center;
-  font-weight: 100;
-  margin-left: -343px;
-  top: 399px;
-  z-index: 0;
-  font-size: .8em;
-  cursor: pointer;
+  opacity: .7;
 }
 .pointable {
   cursor: pointer;
