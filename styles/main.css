@@ -5,6 +5,55 @@ img {
   width:880px;
   height:210px;
 }
+/*blue text*/
+#text1 {
+  position: absolute;
+  font-weight: bold;
+  top: 50px;
+  left: 449px;
+  font-size: .84em;
+  visibility: hidden;
+}
+/*tan text*/
+#text2 {
+  position: absolute;
+  font-weight: bold;
+  top: 43px;
+  left: 449px;
+  font-size: .787em;
+  color: #687d66;
+  visibility: hidden;
+}
+/*orange text*/
+#text3 {
+  position: absolute;
+  font-weight: bold;
+  top: 50px;
+  left: 449px;
+  font-size: .791em;
+  color: #9c6704;
+  visibility: hidden;
+}
+/*red text*/
+#text4 {
+  position: absolute;
+  font-weight: bold;
+  top: 50px;
+  left: 449px;
+  font-size: .805em;
+  color: #9d1a1a;
+  visibility: hidden;
+}
+/*purple text*/
+#text5 {
+  position: absolute;
+  font-weight: bold;
+  top: 43px;
+  left: 449px;
+  font-size: .79em;
+  color: #5c2872;
+  visibility: hidden;
+}
 #infoPageIntroText {
   position: absolute;
   top: 30px;

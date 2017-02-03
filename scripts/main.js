@@ -737,46 +737,18 @@ function dimLine() {
   console.log(fretArt.notes);
 }
 
-function toggleBlueDiv() {
-  var img = document.getElementById('overlay1');
+function toggleInfoDivs(divButton, textId) {
+  var text = document.getElementById(textId);
+  var img = document.getElementById(divButton);
   if (img.style.visibility == 'visible') {
+    text.style.visibility = 'hidden';
     img.style.visibility = 'hidden';
   } else {
     img.style.visibility = 'visible';
+    text.style.visibility = 'visible';
   }
 }
-function toggleTanDiv() {
-  var img = document.getElementById('overlay2');
-  if (img.style.visibility == 'visible') {
-    img.style.visibility = 'hidden';
-  } else {
-    img.style.visibility = 'visible';
-  }
-}
-function toggleOrangeDiv() {
-  var img = document.getElementById('overlay3');
-  if (img.style.visibility == 'visible') {
-    img.style.visibility = 'hidden';
-  } else {
-    img.style.visibility = 'visible';
-  }
-}
-function toggleRedDiv() {
-  var img = document.getElementById('overlay5');
-  if (img.style.visibility == 'visible') {
-    img.style.visibility = 'hidden';
-  } else {
-    img.style.visibility = 'visible';
-  }
-}
-function togglePurpleDiv() {
-  var img = document.getElementById('overlay4');
-  if (img.style.visibility == 'visible') {
-    img.style.visibility = 'hidden';
-  } else {
-    img.style.visibility = 'visible';
-  }
-}
+
 //----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
 

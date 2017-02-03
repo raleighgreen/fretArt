@@ -37,75 +37,75 @@ arrowRight.style.opacity = .5;
 //------ info page invisible div button listeners ----------
 
 blueDiv1Button.addEventListener("mouseover", function() {
-  toggleBlueDiv();
+  toggleInfoDivs('overlay1', 'text1');
   dimLine();
 });
 blueDiv1Button.addEventListener("mouseout", function() {
-  toggleBlueDiv();
+  toggleInfoDivs('overlay1', 'text1');
   dimLine();
 });
 blueDiv2Button.addEventListener("mouseover", function() {
-  toggleBlueDiv();
+  toggleInfoDivs('overlay1', 'text1');
   dimLine();
 });
 blueDiv2Button.addEventListener("mouseout", function() {
-  toggleBlueDiv();
+  toggleInfoDivs('overlay1', 'text1');
   dimLine();
 });
 blueDiv3Button.addEventListener("mouseover", function() {
-  toggleBlueDiv();
+  toggleInfoDivs('overlay1', 'text1');
   dimLine();
 });
 blueDiv3Button.addEventListener("mouseout", function() {
-  toggleBlueDiv();
+  toggleInfoDivs('overlay1', 'text1');
   dimLine();
 });
 blueDiv4Button.addEventListener("mouseover", function() {
-  toggleBlueDiv();
+  toggleInfoDivs('overlay1', 'text1');
   dimLine();
 });
 blueDiv4Button.addEventListener("mouseout", function() {
-  toggleBlueDiv();
+  toggleInfoDivs('overlay1', 'text1');
   dimLine();
 });
 tanDivButton.addEventListener("mouseover", function() {
-  toggleTanDiv();
+  toggleInfoDivs('overlay2', 'text2');
   dimLine();
 });
 tanDivButton.addEventListener("mouseout", function() {
-  toggleTanDiv();
+  toggleInfoDivs('overlay2', 'text2');
   dimLine();
 });
 orangeDivButton.addEventListener("mouseover", function() {
-  toggleOrangeDiv();
+  toggleInfoDivs('overlay3', 'text3');
   dimLine();
 });
 orangeDivButton.addEventListener("mouseout", function() {
-  toggleOrangeDiv();
+  toggleInfoDivs('overlay3', 'text3');
   dimLine();
 });
 redDiv1Button.addEventListener("mouseover", function() {
-  toggleRedDiv();
+  toggleInfoDivs('overlay4', 'text4');
   dimLine();
 });
 redDiv1Button.addEventListener("mouseout", function() {
-  toggleRedDiv();
+  toggleInfoDivs('overlay4', 'text4');
   dimLine();
 });
 redDiv2Button.addEventListener("mouseover", function() {
-  toggleRedDiv();
+  toggleInfoDivs('overlay4', 'text4');
   dimLine();
 });
 redDiv2Button.addEventListener("mouseout", function() {
-  toggleRedDiv();
+  toggleInfoDivs('overlay4', 'text4');
   dimLine();
 });
 purpleDivButton.addEventListener("mouseover", function() {
-  togglePurpleDiv();
+  toggleInfoDivs('overlay5', 'text5');
   dimLine();
 });
 purpleDivButton.addEventListener("mouseout", function() {
-  togglePurpleDiv();
+  toggleInfoDivs('overlay5', 'text5');
   dimLine();
 });
 
