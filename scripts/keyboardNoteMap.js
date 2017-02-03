@@ -33,6 +33,7 @@ function checkKey(e) {
     //---------- Arrow Key Listeners ---------------------------
 
     else if (e.keyCode == '38') {
+      e.preventDefault()
       // up arrow
       moveScaleUp();
       processInput();
@@ -44,6 +45,7 @@ function checkKey(e) {
       keyScaleShapeProcessor();
     }
     else if (e.keyCode == '40') {
+      e.preventDefault()
       // down arrow
       moveScaleDown();
       processInput();
@@ -55,6 +57,7 @@ function checkKey(e) {
       keyScaleShapeProcessor();
     }
     else if (e.keyCode == '37') {
+      e.preventDefault()
      // left arrow
      moveKeyDown();
      processInput();
@@ -69,6 +72,7 @@ function checkKey(e) {
      keyScaleShapeProcessor();
     }
     else if (e.keyCode == '39') {
+      e.preventDefault()
       // right arrow
       moveKeyUp();
       processInput();
