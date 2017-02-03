@@ -17,14 +17,101 @@ var arrowLeft = document.getElementById("arrow-left");
 var arrowRight = document.getElementById("arrow-right");
 var infoButton = document.getElementById("fretShapesButton");
 var infoButtonElement = document.getElementById('infoDiv');
+var blueDiv1Button = document.getElementById('blueDiv1');
+var blueDiv2Button = document.getElementById('blueDiv2');
+var blueDiv3Button = document.getElementById('blueDiv3');
+var blueDiv4Button = document.getElementById('blueDiv4');
+var tanDivButton = document.getElementById('tanDiv');
+var orangeDivButton = document.getElementById('orangeDiv');
+var redDiv1Button = document.getElementById('redDiv1');
+var redDiv2Button = document.getElementById('redDiv2');
+var purpleDivButton = document.getElementById('purpleDiv');
+
+
 
 arrowUp.style.opacity = .5;
 arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
+//----------------------------------------------------------
+//------ info page invisible div button listeners ----------
+
+blueDiv1Button.addEventListener("mouseover", function() {
+  toggleBlueDiv();
+  dimLine();
+});
+blueDiv1Button.addEventListener("mouseout", function() {
+  toggleBlueDiv();
+  dimLine();
+});
+blueDiv2Button.addEventListener("mouseover", function() {
+  toggleBlueDiv();
+  dimLine();
+});
+blueDiv2Button.addEventListener("mouseout", function() {
+  toggleBlueDiv();
+  dimLine();
+});
+blueDiv3Button.addEventListener("mouseover", function() {
+  toggleBlueDiv();
+  dimLine();
+});
+blueDiv3Button.addEventListener("mouseout", function() {
+  toggleBlueDiv();
+  dimLine();
+});
+blueDiv4Button.addEventListener("mouseover", function() {
+  toggleBlueDiv();
+  dimLine();
+});
+blueDiv4Button.addEventListener("mouseout", function() {
+  toggleBlueDiv();
+  dimLine();
+});
+tanDivButton.addEventListener("mouseover", function() {
+  toggleTanDiv();
+  dimLine();
+});
+tanDivButton.addEventListener("mouseout", function() {
+  toggleTanDiv();
+  dimLine();
+});
+orangeDivButton.addEventListener("mouseover", function() {
+  toggleOrangeDiv();
+  dimLine();
+});
+orangeDivButton.addEventListener("mouseout", function() {
+  toggleOrangeDiv();
+  dimLine();
+});
+redDiv1Button.addEventListener("mouseover", function() {
+  toggleRedDiv();
+  dimLine();
+});
+redDiv1Button.addEventListener("mouseout", function() {
+  toggleRedDiv();
+  dimLine();
+});
+redDiv2Button.addEventListener("mouseover", function() {
+  toggleRedDiv();
+  dimLine();
+});
+redDiv2Button.addEventListener("mouseout", function() {
+  toggleRedDiv();
+  dimLine();
+});
+purpleDivButton.addEventListener("mouseover", function() {
+  togglePurpleDiv();
+  dimLine();
+});
+purpleDivButton.addEventListener("mouseout", function() {
+  togglePurpleDiv();
+  dimLine();
+});
 
 infoButton.addEventListener("click", function() {
   infoButtonToggle();
+  dimLine();
 });
 
 scaleField.addEventListener("click", function(e){

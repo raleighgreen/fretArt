@@ -5,79 +5,102 @@ img {
   width:880px;
   height:210px;
 }
+#infoPageIntroText {
+  position: absolute;
+  top: 30px;
+  left: 25px;
+  font-size: .96em;
+}
+#thickText {
+  font-weight: bold;
+}
+#overlay1 {
+  visibility: hidden;
+}
+#overlay2 {
+  visibility: hidden;
+}
+#overlay3 {
+  visibility: hidden;
+}
+#overlay4 {
+  visibility: hidden;
+}
+#overlay5 {
+  visibility: hidden;
+}
 #blueDiv1 {
   position: absolute;
-  background-color: blue;
   top: 181px;
   left: 49px;
   width: 195px;
   height: 24px;
+  cursor: pointer;
 }
 #blueDiv2 {
   position: absolute;
-  background-color: blue;
   top: 204px;
   left: 60px;
   width: 318px;
   height: 25px;
+  cursor: pointer;
 }
 #blueDiv3 {
   position: absolute;
-  background-color: blue;
   top: 228px;
   left: 66px;
   width: 269px;
   height: 25px;
+  cursor: pointer;
 }
 #blueDiv4 {
   position: absolute;
-  background-color: blue;
   top: 252px;
   left: 78px;
   width: 245px;
   height: 24px;
+  cursor: pointer;
 }
 #tanDiv {
   position: absolute;
-  background-color: #687d66;
   top: 181px;
   left: 244px;
   width: 49px;
   height: 23px;
+  cursor: pointer;
 }
 #orangeDiv {
   position: absolute;
-  background-color: #9c6704;
   top: 181px;
   left: 293px;
   width: 49px;
   height: 23px;
+  cursor: pointer;
 }
 #redDiv1 {
   position: absolute;
-  background-color: #9d1a1a;
   top: 276px;
   left: 330px;
   width: 24px;
   height: 14px;
+  cursor: pointer;
 }
 #redDiv2 {
   position: absolute;
-  background-color: #9d1a1a;
   top: 289px;
   left: 306px;
   width: 72px;
   height: 14px;
+  cursor: pointer;
 }
 #purpleDiv {
   position: absolute;
-  background-color: #5c2872;
   top: 276px;
   left: 127px;
   width: 123px;
   height: 27px;
+  cursor: pointer;
 }
-
 #infoTextContainer {
   position: absolute;
   width: 432px;

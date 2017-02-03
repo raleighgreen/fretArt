@@ -722,6 +722,62 @@ function infoButtonToggle() {
   }
 }
 //----------------------------------------------------------
+//---------- info page toggle functions --------------------
+
+function dimLine() {
+  var line = document.getElementById('lineDivider');
+  var textContainer = document.getElementById('infoTextContainer');
+  if (line.style.opacity == 1) {
+    line.style.opacity = .7;
+    textContainer.style.opacity = .3;
+  } else {
+    line.style.opacity = 1;
+    textContainer.style.opacity = .5;
+  }
+  console.log(fretArt.notes);
+}
+
+function toggleBlueDiv() {
+  var img = document.getElementById('overlay1');
+  if (img.style.visibility == 'visible') {
+    img.style.visibility = 'hidden';
+  } else {
+    img.style.visibility = 'visible';
+  }
+}
+function toggleTanDiv() {
+  var img = document.getElementById('overlay2');
+  if (img.style.visibility == 'visible') {
+    img.style.visibility = 'hidden';
+  } else {
+    img.style.visibility = 'visible';
+  }
+}
+function toggleOrangeDiv() {
+  var img = document.getElementById('overlay3');
+  if (img.style.visibility == 'visible') {
+    img.style.visibility = 'hidden';
+  } else {
+    img.style.visibility = 'visible';
+  }
+}
+function toggleRedDiv() {
+  var img = document.getElementById('overlay5');
+  if (img.style.visibility == 'visible') {
+    img.style.visibility = 'hidden';
+  } else {
+    img.style.visibility = 'visible';
+  }
+}
+function togglePurpleDiv() {
+  var img = document.getElementById('overlay4');
+  if (img.style.visibility == 'visible') {
+    img.style.visibility = 'hidden';
+  } else {
+    img.style.visibility = 'visible';
+  }
+}
+//----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
 
 function preload() {
