@@ -112,6 +112,7 @@ purpleDivButton.addEventListener("mouseout", function() {
 infoButton.addEventListener("click", function() {
   infoScreenToggle();
   dimLine();
+  toggleSound();
 });
 
 scaleField.addEventListener("click", function(e){

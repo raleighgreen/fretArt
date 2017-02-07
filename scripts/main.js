@@ -239,6 +239,17 @@ function activateFrets(foundScale) {
   }
 }
 
+function deactivateFrets(foundScale) {
+  clearFretSelection();
+  for (var i = 0; i < foundScale.length; i++) {
+    for (var f = 0; f < fretArt.frets.length; f++) {
+      if (fretArt.frets[f].note == foundScale[i]) {
+        fretArt.frets[f].active = false;
+      }
+    }
+  }
+}
+
 function processInput() {
   // Process the key index and key name
   for (var i = 0; i < fretArt.selectedKeyNameHolder.length; i++) {
@@ -258,8 +269,6 @@ function processInput() {
       var scaleName = document.getElementsByClassName('selectedScaleText');
       var textData = fretArt.selectedModeNameHolder[i].getAttributeNode('data-text').value;
       var scaleNameValue = scaleName[i].textContent;
-      // console.log(scaleNameValue);
-      console.log(textData);
     }
    }
    fretArt.currentMode = fretArt.modes[textData];
@@ -748,6 +757,16 @@ function toggleInfoDivs(divButton, textId) {
   }
 }
 
+// When noteProximity is 0, the note can't be triggered
+// because the note zone has 0 width.
+function toggleSound() {
+  if (fretArt.noteProximity == 9) {
+    fretArt.noteProximity = 0;
+  } else if (fretArt.noteProximity == 0){
+    fretArt.noteProximity = 9;
+  }
+}
+
 //----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
 
@@ -802,7 +821,7 @@ function setup() {
   buildShapes();
 }
 
-// Required P5 function loops forever
+// Required P5 function loops
 function draw() {
   background(0);
   // Turn on lines when Show lines button is clicked

@@ -33,7 +33,8 @@ Fret.prototype.clicked = function() {
   this.note.audioFile.loop = false;
   var audioNote = this.note.audioFile;
   // If in the bounds of the note...
-  if (d < 9) {
+  if (d < fretArt.noteProximity) {
+    console.log(fretArt.noteProximity);
     // Play the note's audioFile
     audioNote.play();
     // And light it up
@@ -56,10 +57,10 @@ Fret.prototype.overNote = function() {
   // if the mouse distance is less than 9 and the mouse entered
   // play the note
   // but not if the distance hasn't been greater than 9
-  if (d > 9) {
+  if (d > fretArt.noteProximity) {
     this.didTheMouseMoveAway = true;
   }
-  if (d < 9 && this.active) {
+  if (d < fretArt.noteProximity && this.active) {
     // Play the note's audioFile
     if (this.didTheMouseMoveAway) {
       audioNote.play();
