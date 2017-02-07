@@ -110,7 +110,7 @@ purpleDivButton.addEventListener("mouseout", function() {
 });
 
 infoButton.addEventListener("click", function() {
-  infoButtonToggle();
+  infoScreenToggle();
   dimLine();
 });
 

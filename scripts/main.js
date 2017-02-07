@@ -701,7 +701,7 @@ function arrowRightAndLeftProcesses() {
   buildShapes();
 }
 
-function infoButtonToggle() {
+function infoScreenToggle() {
   var arrowElement = document.getElementById('arrow');
   if (!fretArt.infoButtonStatus) {
     fretArt.infoButtonStatus = true;
@@ -734,7 +734,6 @@ function dimLine() {
     line.style.opacity = 1;
     textContainer.style.opacity = .5;
   }
-  console.log(fretArt.notes);
 }
 
 function toggleInfoDivs(divButton, textId) {
