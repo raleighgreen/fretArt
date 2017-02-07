@@ -1,3 +1,46 @@
+#welcomeSubText {
+	position: relative;
+	text-align: center;
+	color: rgba(9,81,201,.6);
+	z-index: 1006;
+	top: 67px;
+	font-size: 1.27em;
+}
+
+#welcomeTitle {
+	position: relative;
+	text-align: center;
+  vertical-align: middle;
+	font-size: 3.8em;
+	font-weight: bold;
+	top:65px;
+	z-index: 1005;
+	color: rgb(9,81,201);
+}
+
+#infoButtonBlocker {
+	position: absolute;
+	display: block;
+	width:180px;
+	height: 35px;
+	top:365px;
+	background: black;
+	margin-left: 10px;
+	z-index: 1004;
+}
+
+#welcomeScreen {
+	position: absolute;
+  display: block;
+  width: 882px;
+  height: 340px;
+  background: black;
+  margin: auto;
+  top: 50px;
+  z-index: 1003;
+	visibility: visible;
+}
+
 img {
 	position: absolute;
   top: 139px;
@@ -194,18 +237,6 @@ img {
   align: left;
   top: .1em;
   font-size: 1.5em;
-}
-#topDiv {
-  position: relative;
-  display: block;
-  width: 702px;
-  height: 200;
-  background: Indigo;
-  margin: auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  top: 70px;
-  z-index: 1002;
 }
 #infoDiv {
   position: absolute;

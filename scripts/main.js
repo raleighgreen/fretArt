@@ -745,6 +745,7 @@ function dimLine() {
   }
 }
 
+// Makes the overlays hidden or visible when the infoButton is pressed
 function toggleInfoDivs(divButton, textId) {
   var text = document.getElementById(textId);
   var img = document.getElementById(divButton);
