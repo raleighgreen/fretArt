@@ -709,25 +709,29 @@ function arrowRightAndLeftProcesses() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 }
-
+function showInfoScreen() {
+  fretArt.infoButtonStatus = true;
+  infoButtonElement.style.display='block';
+  infoButton.style.marginLeft='-58px';
+  arrowElement.innerHTML = '\&#8592';
+  document.getElementById('fretShapesButton').style.marginTop="26px";
+  document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
+  document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
+}
+function hideInfoScreen() {
+  fretArt.infoButtonStatus = false;
+  infoButtonElement.style.display='none';
+  infoButton.style.marginLeft='25px';
+  arrowElement.innerHTML = '\&rarr;';
+  document.getElementById('fretShapesButton').style.marginTop="26px";
+  document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" What is fret";
+  document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="Shapes?";
+}
 function infoScreenToggle() {
-  var arrowElement = document.getElementById('arrow');
   if (!fretArt.infoButtonStatus) {
-    fretArt.infoButtonStatus = true;
-    infoButtonElement.style.display='block';
-    infoButton.style.marginLeft='-58px';
-    arrowElement.innerHTML = '\&#8592';
-    document.getElementById('fretShapesButton').style.marginTop="26px";
-    document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
-    document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
+    showInfoScreen();
   } else if (fretArt.infoButtonStatus){
-    fretArt.infoButtonStatus = false;
-    infoButtonElement.style.display='none';
-    infoButton.style.marginLeft='25px';
-    arrowElement.innerHTML = '\&rarr;';
-    document.getElementById('fretShapesButton').style.marginTop="26px";
-    document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" What is fret";
-    document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="Shapes?";
+    hideInfoScreen();
   }
 }
 //----------------------------------------------------------

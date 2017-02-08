@@ -1,6 +1,7 @@
 //------ SET UP DOM EVENT LISTENERS AND WAIT FOR USER ACTION ------
 
 // Grab the select fields and buttons from the HTML document
+var arrowElement = document.getElementById('arrow');
 var keyField = document.getElementById("keyDiv");
 var scaleField = document.getElementById("scalesDiv");
 var showScales = document.getElementById("show-scale");
@@ -26,13 +27,25 @@ var orangeDivButton = document.getElementById('orangeDiv');
 var redDiv1Button = document.getElementById('redDiv1');
 var redDiv2Button = document.getElementById('redDiv2');
 var purpleDivButton = document.getElementById('purpleDiv');
-
-
+var startButton = document.getElementById('startButton');
+var whatButton = document.getElementById('whatIsButton');
 
 arrowUp.style.opacity = .5;
 arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
+
+startButton.addEventListener("click", function(){
+  console.log("it's working");
+  welcomeScreen.style.visibility = 'hidden';
+  fretArt.noteProximity = 9;
+});
+whatButton.addEventListener("click", function(){
+  console.log("this is working as well");
+  welcomeScreen.style.visibility = 'hidden';
+  showInfoScreen();
+});
+
 //----------------------------------------------------------
 //------ info page invisible div button listeners ----------
 

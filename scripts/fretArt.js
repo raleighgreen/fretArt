@@ -30,5 +30,5 @@ var fretArt = {
   keyIndex: 8,
   keyCounter: 8,
   infoButtonStatus: false,
-  noteProximity: 9
+  noteProximity: 0
 }
