@@ -1,9 +1,62 @@
+#xtraThinText {
+	font-weight: 100;
+}
+#startScreenButtonHolder {
+	position: absolute;
+	display: inline-flex;
+	margin: auto;
+	top: 206px;
+	left: 283px;
+	width: 35.9%;
+	height: 92px;
+}
+#startButton {
+	position: relative;
+	float: left;
+	height: 44px;
+	width: 170px;
+	border-radius: 5px;
+	margin: 10px 18px 10px 10px;
+	padding: 0;
+	font-size: 1.3em;
+	font-weight: 300;
+	padding-bottom: 3px;
+	color: black;
+	background-color: rgba(9,81,201,1);
+	cursor: pointer;
+}
+
+#whatIsButton {
+	position: relative;
+	height: 44px;
+	width: 300px;
+	border-radius: 5px;
+	margin-left: 5px;
+	font-size: .8em;
+	padding-bottom: 3px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#rainbowUnderline {
+	position: relative;
+	display: block;
+	margin: auto;
+	height: 1px;
+	width: 296px;
+	background: linear-gradient(to right, #0a4fc4, #0a4fc4, #687d66, #9c6704, #9d1a1a, #5c2872, #0a4fc4);
+	z-index: 1007;
+	top: 45px;
+
+}
+
 #welcomeSubText {
 	position: relative;
 	text-align: center;
-	color: rgba(9,81,201,.6);
+	color: rgba(9,81,201,.9);
 	z-index: 1006;
-	top: 67px;
+	top: 46px;
+	font-weight: 100;
 	font-size: 1.27em;
 }
 
@@ -13,11 +66,10 @@
   vertical-align: middle;
 	font-size: 3.8em;
 	font-weight: bold;
-	top:65px;
+	top:42px;
 	z-index: 1005;
 	color: rgb(9,81,201);
 }
-
 #infoButtonBlocker {
 	position: absolute;
 	display: block;
@@ -32,6 +84,7 @@
 #welcomeScreen {
 	position: absolute;
   display: block;
+	justify-content: center;
   width: 882px;
   height: 340px;
   background: black;
@@ -40,7 +93,6 @@
   z-index: 1003;
 	visibility: visible;
 }
-
 img {
 	position: absolute;
   top: 139px;
