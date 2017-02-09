@@ -89,6 +89,7 @@
   top: 50px;
   z-index: 1003;
 	visibility: visible;
+	opacity: 1;
 }
 img {
 	position: absolute;
@@ -262,7 +263,7 @@ img {
   width: 1px;
   opacity: 1;
 }
-#tipsButton {
+#introInfoButton {
   position: absolute;
   align: left;
   font-weight: 100;
@@ -271,6 +272,26 @@ img {
   z-index: 0;
   font-size: .8em;
   cursor: pointer;
+	visibility: visible;
+}
+#appButton {
+  position: absolute;
+  align: left;
+  font-weight: 100;
+	margin-top: .9px;
+  margin-left: -330.6px;
+  top: 397px;
+  z-index: 0;
+  font-size: 1em;
+  cursor: pointer;
+	visibility: hidden;
+}
+#startArrow {
+	position: absolute;
+	display: inline-block;
+	top: 22.5px;
+	margin-left: -25px;
+	font-size: 1.2em;
 }
 #fretShapesButton {
   font-size: 1em;

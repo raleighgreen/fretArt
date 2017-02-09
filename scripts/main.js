@@ -709,23 +709,40 @@ function arrowRightAndLeftProcesses() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 }
-function showInfoScreen() {
-  fretArt.infoButtonStatus = true;
-  infoButtonElement.style.display='block';
-  infoButton.style.marginLeft='-58px';
-  arrowElement.innerHTML = '\&#8592';
-  document.getElementById('fretShapesButton').style.marginTop="26px";
-  document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
-  document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
-}
-function hideInfoScreen() {
+function processMainScreen() {
   fretArt.infoButtonStatus = false;
-  infoButtonElement.style.display='none';
   infoButton.style.marginLeft='25px';
   arrowElement.innerHTML = '\&rarr;';
   document.getElementById('fretShapesButton').style.marginTop="26px";
   document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" What is fret";
   document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="Shapes?";
+}
+function hideWelcomeScreen() {
+  fretArt.infoButtonStatus = false;
+  welcomeScreen.style.display = 'none';
+  processMainScreen();
+}
+function showInfoScreen() {
+  if (fretArt.startButtonShowsFirst) {
+    fretArt.infoButtonStatus = false;
+    fretArt.startButtonShowsFirst = false;
+    infoButtonScreen.style.display='block';
+    document.getElementById('appButton').style.visibility = 'visible';
+    document.getElementById('fretShapesButton').style.visibility = 'hidden';
+  } else {
+    fretArt.startButtonShowsFirst = false;
+    infoButtonScreen.style.display='block';
+    fretArt.infoButtonStatus = true;
+    infoButton.style.marginLeft='-58px';
+    arrowElement.innerHTML = '\&#8592';
+    document.getElementById('fretShapesButton').style.marginTop="26px";
+    document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
+    document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
+  }
+}
+function hideInfoScreen() {
+  infoButtonScreen.style.display='none';
+  processMainScreen();
 }
 function infoScreenToggle() {
   if (!fretArt.infoButtonStatus) {
@@ -783,7 +800,7 @@ function preload() {
 
 function setup() {
   createCanvas(882, 370);
-  infoButtonElement.style.display='none'
+  infoButtonScreen.style.display='none'
 
 //---------- Setup scale dropdown elements and defaults ----
 

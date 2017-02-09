@@ -17,7 +17,7 @@ var arrowDown = document.getElementById("arrow-down");
 var arrowLeft = document.getElementById("arrow-left");
 var arrowRight = document.getElementById("arrow-right");
 var infoButton = document.getElementById("fretShapesButton");
-var infoButtonElement = document.getElementById('infoDiv');
+var infoButtonScreen = document.getElementById('infoDiv');
 var blueDiv1Button = document.getElementById('blueDiv1');
 var blueDiv2Button = document.getElementById('blueDiv2');
 var blueDiv3Button = document.getElementById('blueDiv3');
@@ -29,21 +29,38 @@ var redDiv2Button = document.getElementById('redDiv2');
 var purpleDivButton = document.getElementById('purpleDiv');
 var startButton = document.getElementById('startButton');
 var whatButton = document.getElementById('whatIsButton');
+var appScreenButton = document.getElementById('appButton');
+var welcomeScreenDiv = document.getElementById('welcomeScreen');
 
 arrowUp.style.opacity = .5;
 arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
-startButton.addEventListener("click", function(){
-  console.log("it's working");
-  welcomeScreen.style.visibility = 'hidden';
-  fretArt.noteProximity = 9;
+startButton.addEventListener("click", function() {
+  fretArt.startButtonShowsFirst = false;
+  hideWelcomeScreen();
+  toggleSound();
 });
-whatButton.addEventListener("click", function(){
-  console.log("this is working as well");
-  welcomeScreen.style.visibility = 'hidden';
+
+whatButton.addEventListener("click", function() {
+  fretArt.startButtonShowsFirst = true;
+  hideWelcomeScreen();
   showInfoScreen();
+});
+
+appScreenButton.addEventListener("click", function() {
+ hideInfoScreen();
+ dimLine();
+ toggleSound();
+ document.getElementById('appButton').style.visibility = 'hidden';
+ document.getElementById('fretShapesButton').style.visibility = 'visible';
+});
+
+infoButton.addEventListener("click", function() {
+  infoScreenToggle();
+  dimLine();
+  toggleSound();
 });
 
 //----------------------------------------------------------
@@ -122,11 +139,8 @@ purpleDivButton.addEventListener("mouseout", function() {
   dimLine();
 });
 
-infoButton.addEventListener("click", function() {
-  infoScreenToggle();
-  dimLine();
-  toggleSound();
-});
+//----------------------------------------------------------
+//----------------------------------------------------------
 
 scaleField.addEventListener("click", function(e){
   // Reset all fretArt.keyNameHolder Nodes to "not"
