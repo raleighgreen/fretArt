@@ -789,6 +789,13 @@ function toggleSound() {
   }
 }
 
+
+function fadeFromBlack() {
+  var fadeDiv = document.getElementById('fadeFromBlackDiv');
+  fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
+  fadeDiv.style.opacity = fretArt.startPoint;
+
+}
 //----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
 
@@ -846,6 +853,7 @@ function setup() {
 // Required P5 function loops
 function draw() {
   background(0);
+  fadeFromBlack();
   // Turn on lines when Show lines button is clicked
   if (fretArt.linesVisible) {
     drawLines();

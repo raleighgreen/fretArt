@@ -1,3 +1,15 @@
+#fadeFromBlackDiv {
+	position: absolute;
+	display: block;
+	width: 100%;
+	top: 0px;
+	height: 500px;
+	background: black;
+	opacity: 1;
+	z-index: 1008;
+	visibility: visible;
+}
+
 #startScreenButtonHolder {
 	position: absolute;
 	display: inline-flex;
@@ -7,6 +19,7 @@
 	width: 35.9%;
 	height: 92px;
 }
+
 #startButton {
 	position: relative;
 	float: left;
@@ -44,7 +57,6 @@
 	background: linear-gradient(to right, #0a4fc4, #0a4fc4, #687d66, #9c6704, #9d1a1a, #5c2872, #0a4fc4);
 	z-index: 1007;
 	top: 45px;
-
 }
 
 #welcomeSubText {
