@@ -710,12 +710,12 @@ function arrowRightAndLeftProcesses() {
   buildShapes();
 }
 function processMainScreen() {
-  fretArt.infoButtonStatus = false;
-  infoButton.style.marginLeft='25px';
-  arrowElement.innerHTML = '\&rarr;';
   document.getElementById('fretShapesButton').style.marginTop="26px";
   document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" What is fret";
   document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="Shapes?";
+  fretArt.infoButtonStatus = false;
+  infoButton.style.marginLeft='25px';
+  arrowElement.innerHTML = '\&rarr;';
 }
 function hideWelcomeScreen() {
   fretArt.infoButtonStatus = false;
@@ -724,20 +724,20 @@ function hideWelcomeScreen() {
 }
 function showInfoScreen() {
   if (fretArt.startButtonShowsFirst) {
+    document.getElementById('appButton').style.visibility = 'visible';
+    document.getElementById('fretShapesButton').style.visibility = 'hidden';
     fretArt.infoButtonStatus = false;
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
-    document.getElementById('appButton').style.visibility = 'visible';
-    document.getElementById('fretShapesButton').style.visibility = 'hidden';
   } else {
+    document.getElementById('fretShapesButton').style.marginTop="26px";
+    document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
+    document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
     fretArt.infoButtonStatus = true;
     infoButton.style.marginLeft='-58px';
     arrowElement.innerHTML = '\&#8592';
-    document.getElementById('fretShapesButton').style.marginTop="26px";
-    document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
-    document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
   }
 }
 function hideInfoScreen() {
@@ -794,6 +794,9 @@ function fadeFromBlack() {
   var fadeDiv = document.getElementById('fadeFromBlackDiv');
   fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
   fadeDiv.style.opacity = fretArt.startPoint;
+  setTimeout(function() {
+    fadeDiv.style.visibility = 'hidden';
+  }, 300);
 
 }
 //----------------------------------------------------------
