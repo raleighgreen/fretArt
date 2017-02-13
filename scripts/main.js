@@ -723,13 +723,7 @@ function hideWelcomeScreen() {
   processMainScreen();
 }
 function showInfoScreen() {
-  if (fretArt.startButtonShowsFirst) {
-    document.getElementById('appButton').style.visibility = 'visible';
-    document.getElementById('fretShapesButton').style.visibility = 'hidden';
-    fretArt.infoButtonStatus = false;
-    fretArt.startButtonShowsFirst = false;
-    infoButtonScreen.style.display='block';
-  } else {
+
     document.getElementById('fretShapesButton').style.marginTop="26px";
     document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
     document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
@@ -738,10 +732,11 @@ function showInfoScreen() {
     fretArt.infoButtonStatus = true;
     infoButton.style.marginLeft='-58px';
     arrowElement.innerHTML = '\&#8592';
-  }
+
 }
 function hideInfoScreen() {
   infoButtonScreen.style.display='none';
+  console.log("here as well!");
   processMainScreen();
 }
 function infoScreenToggle() {
@@ -792,12 +787,33 @@ function toggleSound() {
 
 function fadeFromBlack() {
   var fadeDiv = document.getElementById('fadeFromBlackDiv');
-  fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
-  fadeDiv.style.opacity = fretArt.startPoint;
+  setTimeout(function() {
+
+    fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
+    fadeDiv.style.opacity = fretArt.startPoint;
+  }, 500);
   setTimeout(function() {
     fadeDiv.style.visibility = 'hidden';
-  }, 300);
+  }, 800);
+}
 
+function fadeFromWhatIsButton() {
+
+  infoButtonScreen.style.visibility = 'visible';
+  infoButtonScreen.style.display = 'block';
+  fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
+  welcomeScreenDiv.style.opacity = fretArt.startPoint;
+  setTimeout(function() {
+    welcomeScreenDiv.style.visibility = 'hidden';
+  }, 800);
+
+  document.getElementById('appButton').style.visibility = 'visible';
+  document.getElementById('fretShapesButton').style.visibility = 'hidden';
+  fretArt.infoButtonStatus = false;
+
+  infoButtonScreen.style.display='block';
+  // hideWelcomeScreen();
+  // showInfoScreen();
 }
 //----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
@@ -857,6 +873,9 @@ function setup() {
 function draw() {
   background(0);
   fadeFromBlack();
+  if (fretArt.whatIsButtonStatus) {
+    fadeFromWhatIsButton();
+  }
   // Turn on lines when Show lines button is clicked
   if (fretArt.linesVisible) {
     drawLines();

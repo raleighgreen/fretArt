@@ -44,14 +44,18 @@ startButton.addEventListener("click", function() {
 });
 
 whatButton.addEventListener("click", function() {
-  fretArt.startButtonShowsFirst = true;
-  hideWelcomeScreen();
-  showInfoScreen();
+  dimLine();
+
+  // hideWelcomeScreen();
+  // showInfoScreen();
+  fretArt.startPoint = 1;
+  fretArt.endPoint = 0;
+  fretArt.whatIsButtonStatus = true;
 });
 
 appScreenButton.addEventListener("click", function() {
+  console.log("just a test here");
  hideInfoScreen();
- dimLine();
  toggleSound();
  document.getElementById('appButton').style.visibility = 'hidden';
  document.getElementById('fretShapesButton').style.visibility = 'visible';
