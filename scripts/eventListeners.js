@@ -46,6 +46,7 @@ startButton.addEventListener("click", function() {
 whatButton.addEventListener("click", function() {
   fretArt.startButtonShowsFirst = true;
   hideWelcomeScreen();
+  dimLine();
   showInfoScreen();
 });
 

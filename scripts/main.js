@@ -792,11 +792,13 @@ function toggleSound() {
 
 function fadeFromBlack() {
   var fadeDiv = document.getElementById('fadeFromBlackDiv');
-  fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
-  fadeDiv.style.opacity = fretArt.startPoint;
+  setTimeout(function() {
+    fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
+    fadeDiv.style.opacity = fretArt.startPoint;
+  }, 500);
   setTimeout(function() {
     fadeDiv.style.visibility = 'hidden';
-  }, 300);
+  }, 800);
 
 }
 //----------------------------------------------------------
