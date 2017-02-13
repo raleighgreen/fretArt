@@ -332,6 +332,7 @@ img {
 }
 #copyright {
   position: absolute;
+	width: 130px;
   justify-content: center;
   font-weight: 100;
   margin-left: 347px;
