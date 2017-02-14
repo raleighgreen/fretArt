@@ -1,3 +1,10 @@
+#keyboardHeader {
+ font-size: .78em;
+ margin-left: 50px;
+ opacity: .7;
+
+}
+
 #fadeFromBlackDiv {
 	position: absolute;
 	display: block;
@@ -431,10 +438,10 @@ img {
 }
 /*dropdown when hovered upon*/
 .dropdownStyle:hover > ul > li:hover {
-  cursor: pointer;
   border-radius: 5px 0px 0px 5px;
   background: rgba(9,81,201,.7);
   color: black;
+	cursor: pointer;
 }
 
 .dropdownStyle:hover > ul > li:hover > span {
