@@ -33,5 +33,7 @@ var fretArt = {
   noteProximity: 0,
   startButtonShowsFirst: true,
   startPoint: 1,
-  endPoint: 0
+  endPoint: 0,
+  noteSpacing: 25,
+  stringSpacing: 20
 }

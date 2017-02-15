@@ -1,3 +1,5 @@
+//----------------------------------------------------------
+//----------------- scale and mode data --------------------
 
 // The numbers in the arrays below represent the left-most frets for each mode.
 // Placing these on each string provides a starting point with which
@@ -29,6 +31,7 @@ var lydianSharp2LowestFrets = [402,324,246,169,90,12];
 var alteredDominantbb7LowestFrets = [400,323,245,167,88,10];
 
 // Create modes and group them in an Object
+// The data from the scales above are placed into each new Mode constructor below:
 fretArt.modes = {
   "Ionian (Maj Scale)": new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1], ionianLowestFrets),
   "Dorian": new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2], dorianLowestFrets),

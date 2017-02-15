@@ -20,27 +20,25 @@ fretArt.strings = [
    String("lowE", 0, 24)
 ];
 
-var noteSpacing = 25;
-var stringSpacing = 20;
 // Create fret objects and push them into frets array
 for (var i = 0; i < fretArt.strings.length; i++) {
   var currentString = fretArt.strings[i];
-  var stringDistance = (i * stringSpacing) + 125;
+  var stringDistance = (i * fretArt.stringSpacing) + 125;
   for (var n = currentString.low; n <= currentString.high; n++) {
-    var noteDistance = ((n * noteSpacing) + 235) - (currentString.low * noteSpacing);
+    var noteDistance = ((n * fretArt.noteSpacing) + 235) - (currentString.low * fretArt.noteSpacing);
     var note = fretArt.notes[n];
     fretArt.frets.push(new Fret(noteDistance, stringDistance, note, currentString));
   }
 }
 
-var originalXPosition = fretArt.frets[0].x - (25 * noteSpacing);
+var originalXPosition = fretArt.frets[0].x - (25 * fretArt.noteSpacing);
 var xPosition = originalXPosition;
 
 for (var i = 0; i < fretArt.strings.length; i++) {
-  var stringDistance = (i * stringSpacing) + 125;
+  var stringDistance = (i * fretArt.stringSpacing) + 125;
   for (var n = 0; n < 78; n++) {
     fretArt.shadowFrets.push(new ShadowFret(xPosition, stringDistance));
-    xPosition += noteSpacing;
+    xPosition += fretArt.noteSpacing;
   }
   xPosition = originalXPosition;
 }
