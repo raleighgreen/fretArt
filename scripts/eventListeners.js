@@ -31,6 +31,7 @@ var startButton = document.getElementById('startButton');
 var whatButton = document.getElementById('whatIsButton');
 var appScreenButton = document.getElementById('appButton');
 var welcomeScreenDiv = document.getElementById('welcomeScreen');
+var fadeDiv = document.getElementById('fadeFromBlackDiv');
 
 arrowUp.style.opacity = .5;
 arrowDown.style.opacity = .5;

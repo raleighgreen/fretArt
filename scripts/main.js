@@ -736,15 +736,16 @@ function toggleSound() {
 
 
 function fadeFromBlack() {
-  var fadeDiv = document.getElementById('fadeFromBlackDiv');
-  setTimeout(function() {
-    fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
-    fadeDiv.style.opacity = fretArt.startPoint;
-  }, 500);
-  setTimeout(function() {
-    fadeDiv.style.visibility = 'hidden';
-  }, 800);
-
+  if(fretArt.startPoint == 1) {
+    console.log('it is one');
+    setTimeout(function() {
+      fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
+      fadeDiv.style.opacity = fretArt.startPoint;
+    }, 500);
+    setTimeout(function() {
+      fadeDiv.style.visibility = 'hidden';
+    }, 800);
+  }
 }
 //----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
