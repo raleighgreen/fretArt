@@ -45,8 +45,10 @@
   width: 130px;
 }
 #keyboardHeader {
+ position: absolute;
+ top: 90px;
  font-size: .78em;
- margin-left: 50px;
+ margin-left: 86px;
  opacity: .7;
 }
 
@@ -213,7 +215,7 @@ img {
 }
 #infoPageIntroText {
   position: absolute;
-  top: 30px;
+  top: 35px;
   left: 25px;
   font-size: .96em;
 }

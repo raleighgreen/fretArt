@@ -734,10 +734,8 @@ function toggleSound() {
   }
 }
 
-
 function fadeFromBlack() {
   if(fretArt.startPoint == 1) {
-    console.log('it is one');
     setTimeout(function() {
       fretArt.startPoint = lerp(fretArt.startPoint, fretArt.endPoint, 0.1);
       fadeDiv.style.opacity = fretArt.startPoint;
