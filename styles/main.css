@@ -1,8 +1,53 @@
+.socialIcons {
+  position: absolute;
+  display: inline-block;
+  opacity: .6;
+
+}
+.socialIcons:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#social {
+  position: relative;
+  margin-top: 385px;
+  left: 600px;
+}
+#messageIcon {
+  top: -2px;
+  left: 145px;
+  height: 18px;
+  width: 18px;
+}
+#messageIcon:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#twitterIcon {
+  top: -2px;
+  left: 175px;
+  height: 18px;
+  width: 18px;
+}
+#facebookIcon {
+  top: -1px;
+  left: 206px;
+  height: 15px;
+  width: 15px;
+}
+#githubIcon {
+  top: -2px;
+  left: 235px;
+  height: 17px;
+  width: 17px;
+}
+#copyrightText {
+  width: 130px;
+}
 #keyboardHeader {
  font-size: .78em;
  margin-left: 50px;
  opacity: .7;
-
 }
 
 #fadeFromBlackDiv {
@@ -339,14 +384,14 @@ img {
 }
 #copyright {
   position: absolute;
-	width: 130px;
   justify-content: center;
   font-weight: 100;
-  margin-left: 347px;
-  top: 425px;
+  margin-left: 39px;
+  top: 375px;
   font-size: .8em;
   pointer-events: none;
   opacity: .7;
+  z-index: 1030;
 }
 .pointable {
   cursor: pointer;
@@ -583,7 +628,7 @@ body {
   margin-top:40px;
   display: flex;
   justify-content: center;
-  background: black;
+  background: black
 }
 
 #main-container {
@@ -697,7 +742,7 @@ canvas {
   position: absolute;
   width: 860px;
   margin-top: -29px;
-  padding: 26px;
+  padding: 26px 26px 0px 26px;
 }
 
 .sideContainer {

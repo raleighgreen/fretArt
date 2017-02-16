@@ -744,6 +744,7 @@ function fadeFromBlack() {
     }, 500);
     setTimeout(function() {
       fadeDiv.style.visibility = 'hidden';
+      fadeDiv.style.display = 'none';
     }, 800);
   }
 }
