@@ -843,7 +843,7 @@ function draw() {
   rect(0, 120,247, 130);
   fill(fretArt.guitarBodyColor);
   // headstock fade
-  rect(160, 109,88, 133);
+  rect(178, 109,70,133);
   fill(0);
   ellipse(240, 110, 80, 28);
   ellipse(240, 240, 80, 28);
@@ -877,7 +877,7 @@ function draw() {
       // String thickness
       strokeWeight(.6 + stringThickness);
       // Draw lines for 6 strings
-      line(160, add20, 895, add20);
+      line(180, add20, 895, add20);
       // Add 20px of spacing between each string
       add20 += 20;
       // Make each string .4 thicker than the last

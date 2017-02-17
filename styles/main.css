@@ -633,13 +633,13 @@ body {
   background: black
 }
 
-#main-container {
-  position: relative;
-}
-
 canvas {
   border: 1px solid rgb(9,81,201);
   border-radius: 7px;
+}
+
+#main-container {
+  position: relative;
 }
 
 #key-scale-display  {
@@ -690,7 +690,7 @@ canvas {
   width:63px;
   height: 150px;
   background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
-  margin-left: 133px;
+  margin-left: 153px;
   margin-top:5px;
 }
 #guit-body-gradient-mask {
