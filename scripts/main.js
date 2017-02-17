@@ -692,8 +692,10 @@ function hideInfoScreen() {
 function infoScreenToggle() {
   if (!fretArt.infoButtonStatus) {
     showInfoScreen();
+    fretArt.guitarBodyDisplay = false;
   } else if (fretArt.infoButtonStatus){
     hideInfoScreen();
+    fretArt.guitarBodyDisplay = true;
   }
 }
 //----------------------------------------------------------
@@ -722,6 +724,20 @@ function toggleInfoDivs(divButton, textId) {
     img.style.visibility = 'visible';
     text.style.visibility = 'visible';
   }
+}
+// build a guitar body background with simple shapes
+function buildGuitarBody() {
+  fill(fretArt.guitarBodyColor);
+
+  rect(750,0,210,220);
+  ellipse(837.5, 247, 355, 360);
+  // square blue patch
+  rect(660.2,220,20,20);
+  fill(0);
+  ellipse(743, 60, 135, 125);
+  // black div covering the 17th - 24th frets
+  rect(651,125,200,100);
+  rect(710,100,40,40);
 }
 
 // When noteProximity is 0, the note can't be triggered
@@ -803,12 +819,16 @@ function setup() {
 // Required P5 function loops
 function draw() {
   background(0);
+  // If app screen is in view, display the guitar body background
+  if(fretArt.guitarBodyDisplay) {
+    buildGuitarBody();
+  }
+  // fade welcome screen in
   fadeFromBlack();
   // Turn on lines when Show lines button is clicked
   if (fretArt.linesVisible) {
     drawLines();
   }
-
   // Turn on C Pedal Tone when Play button is clicked
   if (pedalTonePlay == true) {
 
@@ -821,13 +841,20 @@ function draw() {
   push();
   // Make two black rectangles to mask fretboard overflow
   fill(0);
-  rect(0, 120,247, 110);
-  rect(847, 120,70, 110);
+  rect(0, 120,247, 130);
+  fill(fretArt.guitarBodyColor);
+  // headstock fade
+  rect(178, 110,70, 129);
+  fill(0);
+  ellipse(240, 110, 80, 28);
+  ellipse(240, 240, 80, 28);
+  fill(fretArt.guitarBodyColor);
+  rect(847, 123,70, 110);
   // Make a fretboard outline
   noFill();
   strokeWeight(2);
   stroke(9,81,201);
-  rect(247, 125,600, 100);
+  rect(247,125,600,100);
   // Set the fret stroke weight
   strokeWeight(2);
   stroke(9,81,201,95);
@@ -861,7 +888,7 @@ function draw() {
   // Frame key/scale name display with lines above and below
   strokeWeight(1.5);
   stroke(9,81,201, 100);
-  rect(236, 275,439, 48, 7);
+  rect(256, 275, 385, 48, 7);
   pop();
   // End shapes
   // Trigger note light and sound on note mouseOver

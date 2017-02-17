@@ -35,5 +35,7 @@ var fretArt = {
   startPoint: 1,
   endPoint: 0,
   noteSpacing: 25,
-  stringSpacing: 20
+  stringSpacing: 20,
+  guitarBodyColor: [0,18,40],
+  guitarBodyDisplay: false
 }

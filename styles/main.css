@@ -647,7 +647,7 @@ canvas {
   display: block;
   line-height: 90px;
   left:214px;
-  top:283px;
+  top:285px;
 }
 
 .key-scale-display-text {
@@ -675,8 +675,8 @@ canvas {
   width: 240px;
   height: 90px;
   background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1));
-  margin-left: 420px;
-  margin-top: 170px;
+  margin-left: 380px;
+  margin-top: 168px;
 }
 
 #display-gradient-mask-bottom {
@@ -684,17 +684,17 @@ canvas {
   width: 200px;
   height: 90px;
   background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
-  margin-left: 200px;
+  margin-left: 225px;
   margin-top: 157px;
 }
 
 #string-gradient-mask {
   position: absolute;
   width:55px;
-  height: 110px;
+  height: 150px;
   background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
   margin-left: 153px;
-  margin-top:15px;
+  margin-top:5px;
 }
 #arrow-up {
   width: 0;

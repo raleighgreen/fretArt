@@ -40,6 +40,7 @@ arrowRight.style.opacity = .5;
 
 startButton.addEventListener("click", function() {
   fretArt.startButtonShowsFirst = false;
+  fretArt.guitarBodyDisplay = true;
   hideWelcomeScreen();
   toggleSound();
 });
@@ -52,6 +53,7 @@ whatButton.addEventListener("click", function() {
 });
 
 appScreenButton.addEventListener("click", function() {
+ fretArt.guitarBodyDisplay = true;
  hideInfoScreen();
  dimLine();
  toggleSound();
