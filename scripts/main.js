@@ -728,7 +728,6 @@ function toggleInfoDivs(divButton, textId) {
 // build a guitar body background with simple shapes
 function buildGuitarBody() {
   fill(fretArt.guitarBodyColor);
-
   rect(750,0,210,220);
   ellipse(837.5, 247, 355, 360);
   // square blue patch
@@ -844,7 +843,7 @@ function draw() {
   rect(0, 120,247, 130);
   fill(fretArt.guitarBodyColor);
   // headstock fade
-  rect(178, 110,70, 129);
+  rect(160, 109,88, 133);
   fill(0);
   ellipse(240, 110, 80, 28);
   ellipse(240, 240, 80, 28);
@@ -878,7 +877,7 @@ function draw() {
       // String thickness
       strokeWeight(.6 + stringThickness);
       // Draw lines for 6 strings
-      line(180, add20, 895, add20);
+      line(160, add20, 895, add20);
       // Add 20px of spacing between each string
       add20 += 20;
       // Make each string .4 thicker than the last
