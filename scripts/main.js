@@ -761,6 +761,16 @@ function fadeFromBlack() {
     }, 800);
   }
 }
+var cnv;
+
+function centerCanvas() {
+  var x = (windowWidth - width) / 2;
+  var y = (50);
+  cnv.position(x, y);
+}
+function windowResized() {
+  centerCanvas();
+}
 //----------------------------------------------------------
 //---------- P5 PRELOAD, SETUP AND DRAW FUNCTIONS ----------
 
@@ -771,9 +781,11 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(882, 370);
-  infoButtonScreen.style.display='none'
+  cnv = createCanvas(882, 370);
+  centerCanvas();
 
+
+  infoButtonScreen.style.display='none'
 //---------- Setup scale dropdown elements and defaults ----
 
   fretArt.selectedModeNameHolder = document.querySelectorAll('.scaNam');

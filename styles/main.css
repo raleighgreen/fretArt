@@ -145,15 +145,16 @@
 }
 
 #welcomeScreen {
-	position: absolute;
+	position: relative;
   display: block;
-	justify-content: center;
-  width: 882px;
+	/*justify-content: center;*/
+  width: 881px;
   height: 340px;
   background: black;
-  margin: auto;
-  top: 50px;
+  margin-left: 3px;
+  top: 20px;
   z-index: 1003;
+  background: red;
 	visibility: visible;
 	opacity: 1;
 }
@@ -640,6 +641,7 @@ canvas {
 
 #main-container {
   position: relative;
+  display: block;
 }
 
 #key-scale-display  {
@@ -750,10 +752,13 @@ canvas {
   position: absolute;
   width: 860px;
   margin-top: -29px;
+  margin-left: -420px;
   padding: 26px 26px 0px 26px;
+  z-index: 1015;
 }
 
 .sideContainer {
+  position: absolute;
   margin: 0px;
   padding: 3px;
 }
