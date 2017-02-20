@@ -665,6 +665,7 @@ function processMainScreen() {
 function hideWelcomeScreen() {
   fretArt.infoButtonStatus = false;
   welcomeScreen.style.display = 'none';
+  sideBarCont.style.visibility = 'visible';
   processMainScreen();
 }
 function showInfoScreen() {

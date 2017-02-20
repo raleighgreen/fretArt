@@ -748,13 +748,14 @@ canvas {
 	border-bottom: 7px solid transparent;
 }
 
-.sideBarContainer {
+#sideBarContainer {
   position: absolute;
+  visibility: hidden;
   width: 860px;
-  margin-top: -29px;
-  margin-left: -420px;
+  margin-top: -18px;
+  margin-left: -441px;
   padding: 26px 26px 0px 26px;
-  z-index: 1015;
+  z-index: 800;
 }
 
 .sideContainer {
