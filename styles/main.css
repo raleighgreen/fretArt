@@ -11,7 +11,7 @@
 #social {
   position: relative;
   display: inline-block;
-  top: 775px;
+  top: 770px;
   left: 600px;
 }
 #messageIcon {
@@ -154,7 +154,7 @@
   margin-left: 3px;
   top: 370px;
   z-index: 1003;
-  background: red;
+  background: black;
 	visibility: visible;
 	opacity: 1;
 }
@@ -346,8 +346,8 @@ img {
   height: 40px;
   font-weight: 100;
 	margin-top: 2px;
-  margin-left: 0px;
-  top: 397px;
+  margin-left: -312px;
+  top: -349px;
   z-index: 0;
   font-size: 1em;
   cursor: pointer;
@@ -356,7 +356,7 @@ img {
 #startArrow {
 	position: absolute;
 	display: block;
-	/*top: -4px;*/
+	top: 0px;
   margin-top: -4px;
 	margin-left: -25px;
 	font-size: 1.2em;
@@ -365,7 +365,7 @@ img {
   position: absolute;
   width: 200px;
   font-size: 1em;
-  top: 360px;
+  top: 355px;
   left: 365px;
   opacity: .7;
 }
@@ -393,8 +393,8 @@ img {
   position: absolute;
   justify-content: center;
   font-weight: 100;
-  margin-left: 39px;
-  top: 375px;
+  margin-left: 27px;
+  top: 370px;
   font-size: .8em;
   pointer-events: none;
   opacity: .7;

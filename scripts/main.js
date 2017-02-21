@@ -655,11 +655,11 @@ function arrowRightAndLeftProcesses() {
   buildShapes();
 }
 function processMainScreen() {
-  document.getElementById('fretShapesButton').style.marginTop="26px";
+  document.getElementById('fretShapesButton').style.marginTop="30px";
   document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" What is fret";
   document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="Shapes?";
   fretArt.infoButtonStatus = false;
-  infoButton.style.marginLeft='25px';
+  infoButton.style.marginLeft='10px';
   arrowElement.innerHTML = '\&rarr;';
 }
 function hideWelcomeScreen() {
@@ -676,14 +676,15 @@ function showInfoScreen() {
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
     sideBarCont.style.visibility = 'hidden';
+    document.getElementById('fretShapesButton').style.marginTop="40px";
   } else {
-    document.getElementById('fretShapesButton').style.marginTop="26px";
+    document.getElementById('fretShapesButton').style.marginTop="30px";
     document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
     document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
     fretArt.infoButtonStatus = true;
-    infoButton.style.marginLeft='-58px';
+    infoButton.style.marginLeft='10px';
     arrowElement.innerHTML = '\&#8592';
     sideBarCont.style.visibility = 'hidden';
   }
