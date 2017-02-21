@@ -342,11 +342,11 @@ img {
 	visibility: visible;
 }
 #appButton {
-  position: absolute;
-  align: left;
+  position: relative;
+  height: 40px;
   font-weight: 100;
-	margin-top: .9px;
-  margin-left: -330.6px;
+	margin-top: 2px;
+  margin-left: 0px;
   top: 397px;
   z-index: 0;
   font-size: 1em;
@@ -355,14 +355,18 @@ img {
 }
 #startArrow {
 	position: absolute;
-	display: inline-block;
-	top: 22.5px;
+	display: block;
+	/*top: -4px;*/
+  margin-top: -4px;
 	margin-left: -25px;
 	font-size: 1.2em;
 }
 #fretShapesButton {
+  position: absolute;
+  width: 200px;
   font-size: 1em;
-  margin-left: 25px;
+  top: -32px;
+  margin-left: -825px;
   opacity: .7;
 }
 #fretShapesButton:hover {
