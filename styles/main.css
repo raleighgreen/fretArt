@@ -10,7 +10,8 @@
 }
 #social {
   position: relative;
-  margin-top: 385px;
+  display: inline-block;
+  top: 775px;
   left: 600px;
 }
 #messageIcon {
@@ -151,7 +152,7 @@
   height: 340px;
   background: black;
   margin-left: 3px;
-  top: 29px;
+  top: 370px;
   z-index: 1003;
   background: red;
 	visibility: visible;
@@ -650,7 +651,7 @@ canvas {
 
 #main-container {
   position: relative;
-  top: -340px;
+  top: 25px;
   width: 884px;
   height: 380px;
   display: block;
