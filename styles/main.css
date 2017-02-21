@@ -54,9 +54,9 @@
 
 #fadeFromBlackDiv {
 	position: absolute;
-	display: block;
-	width: 100%;
-	top: 0px;
+	display: inline-block;
+	width: 900px;
+	top: 300px;
 	height: 500px;
 	background: black;
 	opacity: 1;
@@ -147,12 +147,11 @@
 #welcomeScreen {
 	position: relative;
   display: block;
-	/*justify-content: center;*/
   width: 881px;
   height: 340px;
   background: black;
   margin-left: 3px;
-  top: 20px;
+  top: 29px;
   z-index: 1003;
   background: red;
 	visibility: visible;
@@ -635,9 +634,15 @@ body {
   margin-top:40px;
   display: flex;
   justify-content: center;
-  background: black
+  background: black;
 }
-
+#container {
+  position: relative;
+  margin-top: -385px;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 882px;
+}
 canvas {
   border: 1px solid rgb(9,81,201);
   border-radius: 7px;
@@ -645,6 +650,9 @@ canvas {
 
 #main-container {
   position: relative;
+  top: -340px;
+  width: 884px;
+  height: 380px;
   display: block;
 }
 
@@ -756,8 +764,8 @@ canvas {
   position: absolute;
   visibility: hidden;
   width: 860px;
-  margin-top: -18px;
-  margin-left: -441px;
+  top:320px;
+  /*margin-left: -441px;*/
   padding: 26px 26px 0px 26px;
   z-index: 800;
 }

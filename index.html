@@ -5,234 +5,236 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div id="fadeFromBlackDiv"></div>
-  <div id="social">
-    <a href="mailto:raleighgreen@gmail.com?&subject=fretShapes!" target="_blank" >
-      <img src="images/message.png" alt="github social-media" class="socialIcons" id="messageIcon"/>
-    </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.fretshapes.com/" target="_blank">
-      <img src="images/facebook.png" alt="github social-media" class="socialIcons" id="facebookIcon"/>
-    </a>
-    <a href="https://twitter.com/home?status=Have%20you%20ever%20visualized%20guitar%20scales%20as%20shapes?%20Checkout%20fretShapes!%20http%3A//www.fretshapes.com/" target="_blank">
-      <img src="images/twitter.png" alt="github social-media" class="socialIcons" id="twitterIcon"/>
-    </a>
-    <a href="https://github.com/raleighgreen" target="_blank">
-      <img src="images/github.png" alt="github social-media" class="socialIcons" id="githubIcon"/>
-    </a>
-  </div>
-  <div id="welcomeScreen">
-    <div id="copyright">
-      <p id="copyrightText">
-        &copy; 2017 Raleigh Green
+  <div id="container">
+    <div id="fadeFromBlackDiv"></div>
+    <div id="social">
+      <a href="mailto:raleighgreen@gmail.com?&subject=fretShapes!" target="_blank" >
+        <img src="images/message.png" alt="github social-media" class="socialIcons" id="messageIcon"/>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.fretshapes.com/" target="_blank">
+        <img src="images/facebook.png" alt="github social-media" class="socialIcons" id="facebookIcon"/>
+      </a>
+      <a href="https://twitter.com/home?status=Have%20you%20ever%20visualized%20guitar%20scales%20as%20shapes?%20Checkout%20fretShapes!%20http%3A//www.fretshapes.com/" target="_blank">
+        <img src="images/twitter.png" alt="github social-media" class="socialIcons" id="twitterIcon"/>
+      </a>
+      <a href="https://github.com/raleighgreen" target="_blank">
+        <img src="images/github.png" alt="github social-media" class="socialIcons" id="githubIcon"/>
+      </a>
+    </div>
+    <div id="welcomeScreen">
+      <div id="copyright">
+        <p id="copyrightText">
+          &copy; 2017 Raleigh Green
+        </p>
+      </div>
+      <h1 id="welcomeTitle"><span class="thinText">fret</span>Shapes</h1>
+      <p id="welcomeSubText" class="thinText">Scale Shape Visualizer for Guitar</p>
+      <div id="rainbowUnderline"></div>
+      <div id="startScreenButtonHolder">
+        <button id="startButton">Start</button>
+        <button id="whatIsButton"><span class="thinText">What is fret</span>Shapes<span class="thinText">?</span></button>
+      </div>
+      <div id="infoButtonBlocker"></div>
+    </div>
+    <div id="infoDiv">
+      <img src="images/fretShapesInfo1@2x.png" alt="fretShapes keyboard mapping">
+      <img id="lineDivider" src="images/fretShapesInfo7@2x.png" alt="fretShapes keyboard mapping">
+      <!-- info overlays -->
+      <img id="overlay1" src="images/fretShapesInfo2@2x.png" alt="fretShapes keyboard mapping">
+      <img id="overlay2" src="images/fretShapesInfo3@2x.png" alt="fretShapes keyboard mapping">
+      <img id="overlay3" src="images/fretShapesInfo4@2x.png" alt="fretShapes keyboard mapping">
+      <img id="overlay4" src="images/fretShapesInfo6@2x.png" alt="fretShapes keyboard mapping">
+      <img id="overlay5" src="images/fretShapesInfo5@2x.png" alt="fretShapes keyboard mapping">
+      <!-- invisible keyboard buttons -->
+      <div id="blueDiv1"></div>
+      <div id="blueDiv2"></div>
+      <div id="blueDiv3"></div>
+      <div id="blueDiv4"></div>
+      <div id="tanDiv"></div>
+      <div id="orangeDiv"></div>
+      <div id="redDiv1"></div>
+      <div id="redDiv2"></div>
+      <div id="purpleDiv"></div>
+      <!-- info text container -->
+      <div id="infoTextContainer"></div>
+      <p id="infoPageIntroText">
+        <br>
+        <span class="thinText">fret</span><span id="thickText">Shapes</span>
+        is a scale visualization tool for guitarists. <br>
+        It's also a computer instrument that you can play. <br>
+        <span id="keyboardHeader">Mouse over the keyboard for tips:</span>
+      </p>
+      <p id="text1">
+        Make music with your compter keyboard! These keys trigger<br>
+        notes on the fretboard (mousing over the fretboard works as<br>
+        well). The notes on the fretboard are color coded by octave.
+      </p>
+      <p id="text2">
+        The '9' key is a toggle switch which shows and hides the current<br>
+        scale. The '0' key toggles the visibiltiy of the scale shapes. To<br>
+        experience the shapes in their purest form, leave the shapes 'on'<br>
+        while hiding the frets, strings and notes.
+      </p>
+      <p id="text3">
+        The '-' key and the '=' key toggle the visibility of the frets and the<br>
+        strings. Want a challenge? With the strings and the frets off,<br>
+        try to visualize the frets beneath the shapes as you play!
+      </p>
+      <p id="text4">
+        The left and right arrow keys transpose the key, and the up and<br>
+        down arrow keys scroll to the next (or previous) scale. As you<br>
+        play, use the arrow keys to change the key and scale on the fly!
+      </p>
+      <p id="text5">
+        The spacebar toggles the pedal tone (a repeating tonic note on<br>
+        the low E sting) on and off. It's highly reccomended to leave this<br>
+        button 'on' while playing so that the tonal center of the scale can<br>
+        be extablished and the 'color' of the scale can be heard.
       </p>
     </div>
-    <h1 id="welcomeTitle"><span class="thinText">fret</span>Shapes</h1>
-    <p id="welcomeSubText" class="thinText">Scale Shape Visualizer for Guitar</p>
-    <div id="rainbowUnderline"></div>
-    <div id="startScreenButtonHolder">
-      <button id="startButton">Start</button>
-      <button id="whatIsButton"><span class="thinText">What is fret</span>Shapes<span class="thinText">?</span></button>
-    </div>
-    <div id="infoButtonBlocker"></div>
-  </div>
-  <div id="infoDiv">
-    <img src="images/fretShapesInfo1@2x.png" alt="fretShapes keyboard mapping">
-    <img id="lineDivider" src="images/fretShapesInfo7@2x.png" alt="fretShapes keyboard mapping">
-    <!-- info overlays -->
-    <img id="overlay1" src="images/fretShapesInfo2@2x.png" alt="fretShapes keyboard mapping">
-    <img id="overlay2" src="images/fretShapesInfo3@2x.png" alt="fretShapes keyboard mapping">
-    <img id="overlay3" src="images/fretShapesInfo4@2x.png" alt="fretShapes keyboard mapping">
-    <img id="overlay4" src="images/fretShapesInfo6@2x.png" alt="fretShapes keyboard mapping">
-    <img id="overlay5" src="images/fretShapesInfo5@2x.png" alt="fretShapes keyboard mapping">
-    <!-- invisible keyboard buttons -->
-    <div id="blueDiv1"></div>
-    <div id="blueDiv2"></div>
-    <div id="blueDiv3"></div>
-    <div id="blueDiv4"></div>
-    <div id="tanDiv"></div>
-    <div id="orangeDiv"></div>
-    <div id="redDiv1"></div>
-    <div id="redDiv2"></div>
-    <div id="purpleDiv"></div>
-    <!-- info text container -->
-    <div id="infoTextContainer"></div>
-    <p id="infoPageIntroText">
-      <br>
-      <span class="thinText">fret</span><span id="thickText">Shapes</span>
-      is a scale visualization tool for guitarists. <br>
-      It's also a computer instrument that you can play. <br>
-      <span id="keyboardHeader">Mouse over the keyboard for tips:</span>
-    </p>
-    <p id="text1">
-      Make music with your compter keyboard! These keys trigger<br>
-      notes on the fretboard (mousing over the fretboard works as<br>
-       well). The notes on the fretboard are color coded by octave.
-    </p>
-    <p id="text2">
-      The '9' key is a toggle switch which shows and hides the current<br>
-      scale. The '0' key toggles the visibiltiy of the scale shapes. To<br>
-      experience the shapes in their purest form, leave the shapes 'on'<br>
-      while hiding the frets, strings and notes.
-    </p>
-    <p id="text3">
-      The '-' key and the '=' key toggle the visibility of the frets and the<br>
-      strings. Want a challenge? With the strings and the frets off,<br>
-      try to visualize the frets beneath the shapes as you play!
-    </p>
-    <p id="text4">
-      The left and right arrow keys transpose the key, and the up and<br>
-      down arrow keys scroll to the next (or previous) scale. As you<br>
-      play, use the arrow keys to change the key and scale on the fly!
-    </p>
-    <p id="text5">
-      The spacebar toggles the pedal tone (a repeating tonic note on<br>
-      the low E sting) on and off. It's highly reccomended to leave this<br>
-      button 'on' while playing so that the tonal center of the scale can<br>
-      be extablished and the 'color' of the scale can be heard.
-    </p>
-  </div>
 
-  <div id="main-container">
-    <div id="sideBarContainer">
-      <h1 class="unselectable"><span class="thinText">fret</span>Shapes</h1>
-      <div id="spacerDiv"></div>
-      <div id="showScaleContainer" class="sideContainer">
-        <p class="unselectable">Show scale:</p>
-        <div>
-          <button type="button" id="show-scale" class="pointable"> On </button>
-          <button type="button" id="hide-scale" class="pointable"> Off </button>
-        </div>
-      </div>
-      <div class="sideContainer" id="float-here">
-        <p class="unselectable">Show shapes:</p>
-        <div>
-          <button type="button" id="show-shapes" class="pointable"> On </button>
-          <button type="button" id="hide-shapes" class="pointable"> Off </button>
-        </div>
-      </div>
-      <div class="sideContainer" id="pedal-tone">
-        <p id="pedal-tone-text" class="unselectable"><span id="pedal-tone-key">C</span> Pedal Tone:</p>
-        <div>
-          <button type="button" id="play-button" class="pointable"> On </button>
-          <button type="button" id="stop-button" class="pointable"> Off </button>
-        </div>
-      </div>
-      <div id="fretsBox">
-        <p class="frets" id="fret3">3</p>
-        <p class="frets" id="fret5">5</p>
-        <p class="frets" id="fret7">7</p>
-        <p class="frets" id="fret9">9</p>
-        <p class="frets" id="fret12">12</p>
-        <p class="frets" id="fret15">15</p>
-        <p class="frets" id="fret17">17</p>
-        <p class="frets" id="fret19">19</p>
-        <p class="frets" id="fret21">21</p>
-        <p class="frets" id="fret24">24</p>
-      </div>
-      <div id="fretButtonContainer">
-        <input type="button" value=" Frets on " id="fret-button" class="toggleButton pointable"/>
-      </div>
-      <div id="stringButtonContainer">
-        <input type="button" value=" Strings on " id="string-button" class="toggleButton pointable"/>
-      </div>
-      <div id="display-gradient-mask-right"></div>
-      <div id="display-gradient-mask-bottom"></div>
-      <div id="string-gradient-mask"></div>
-      <div id="guit-body-gradient-mask"></div>
-      <div id="key-scale-display">
-        <div id="arrow-up" class="pointable" title="Previous scale"></div>
-        <div id="arrow-down" class="pointable" title="Next scale"></div>
-        <div id="arrow-left" class="pointable" title="Transpose down"></div>
-        <div id="arrow-right" class="pointable" title="Transpose up"></div>
-        <div id="scale-display-outercontainer">
-          <div id="scale-display-innercontainer">
-            <p id="display-text-container">
-              <span id="current-key" class="key-scale-display-text unselectable">C </span>
-              <span id="current-scale" class="key-scale-display-text unselectable">Ionian</span>
-            </p>
+    <div id="main-container">
+      <div id="sideBarContainer">
+        <h1 class="unselectable"><span class="thinText">fret</span>Shapes</h1>
+        <div id="spacerDiv"></div>
+        <div id="showScaleContainer" class="sideContainer">
+          <p class="unselectable">Show scale:</p>
+          <div>
+            <button type="button" id="show-scale" class="pointable"> On </button>
+            <button type="button" id="hide-scale" class="pointable"> Off </button>
           </div>
         </div>
-      </div>
-      <div id="keyDiv" class="dropdownStyle">
-        <p id="scalesText" class="unselectable">Key</p>
-        <ul id="UlSpacer">
-          <li id="0" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">E</span><br/>
-          <li id="1" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">F</span><br/>
-          <li id="2" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">G</span><p class="headerKey unselectable">&#x266d;</p><br/>
-          <li id="3" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">G</span><br/>
-          <li id="4" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">A</span><p class="headerKey unselectable">&#x266d;</p><br/>
-          <li id="5" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">A</span><br/>
-          <li id="6" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">B</span><p class="headerKey unselectable">&#x266d;</p><br/>
-          <li id="7" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">B</span><br/>
-          <li id="8" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">C</span><br/>
-          <li id="9" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">D</span><p class="headerKey unselectable">&#x266d;</p><br/>
-          <li id="10" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">D</span><br/>
-          <li id="11" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">E</span><p class="headerKey unselectable">&#x266d;</p><br/>
-        </ul>
-      </div>
-      <div id="scalesDiv" class="dropdownStyle">
-        <p id="scalesText" class="unselectable">Scales</p>
-        <ul>
-          <li data-text="Ionian (Maj Scale)" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Ionian (Maj Scale)</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
-          <li data-text="Dorian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Dorian</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Phrygian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Phrygian</span><br/>
-          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Lydian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Lydian</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>
-          <li data-text="Mixolydian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Mixolydian</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Aeolien (Nat Min)" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Aeolien (Nat Min)</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Locrian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Locrian</span><br/>
-          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-        </ul>
-        <ul>
-          <li data-text="Melodic Minor" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Melodic Minor</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
-          <li data-text="Phrygian Nat 6" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Phrygian &#x266e;6</span><br/>
-          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Lydian Augmented" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian &#x266f;5</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 <sup class="accidental">&#x266f;</sup>5 &#160;6 &#160;7</span></li>
-          <li data-text="Lydian b7" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian &#9837;7</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Mixolydian b6" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Mixolydian &#9837;6</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Locrian Nat 2" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Locrian &#x266e;2</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Super Locrian" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Super Locrian</span><br/>
-          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>9 <sup class="accidental">&#x266f;</sup>9 &#160;3 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266f;</sup>5 <sup class="accidental">&#x266d;</sup>7</span></li>
-        </ul>
-        <ul id="UlSpacer">
-          <li data-text="Harmonic Minor" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Harmonic Minor</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 &#160;7</span></li>
-          <li data-text="Locrian Nat 6" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Locrian &#x266e;6</span><br/>
-          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Ionian #5" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Ionian &#x266f;5</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 <sup class="accidental">&#x266f;</sup>5 &#160;6 &#160;7</span></li>
-          <li data-text="Dorian #4" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Dorian &#x266f;4</span><br/>
-          <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Phrygian Dominant" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Phrygian Dominant</span><br/>
-          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 &#160;3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
-          <li data-text="Lydian #2" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian &#x266f;2</span><br/>
-          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266f;</sup>2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>
-          <li data-text="Ultra Locrian" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Ultra Locrian</span><br/>
-          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>9 <sup class="accidental">&#x266f;</sup>9 &#160;3 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266f;</sup>5 <sup class="accidental2">&#x266d;
-          </sup><sup class="accidental">&#x266d;</sup>7</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div id="introInfoButton">
-    <p>
-      <h1 id="fretShapesButton"><span id="arrow">&rarr;</span><span class="thinText" id="whatIsText"> What is fret</span><span>Shapes?</span></h1>
-    </p>
-  </div>
-  <div id="appButton">
-    <p>
-      <h1 id="fretShapesButton"><span id="startArrow">&rarr;</span><span class="thinText" id="whatIsText"> Start fret</span><span>Shapes!</span></h1>
-    </p>
+        <div class="sideContainer" id="float-here">
+          <p class="unselectable">Show shapes:</p>
+          <div>
+            <button type="button" id="show-shapes" class="pointable"> On </button>
+            <button type="button" id="hide-shapes" class="pointable"> Off </button>
+          </div>
+        </div>
+        <div class="sideContainer" id="pedal-tone">
+          <p id="pedal-tone-text" class="unselectable"><span id="pedal-tone-key">C</span> Pedal Tone:</p>
+          <div>
+            <button type="button" id="play-button" class="pointable"> On </button>
+            <button type="button" id="stop-button" class="pointable"> Off </button>
+          </div>
+        </div>
+        <div id="fretsBox">
+          <p class="frets" id="fret3">3</p>
+          <p class="frets" id="fret5">5</p>
+          <p class="frets" id="fret7">7</p>
+          <p class="frets" id="fret9">9</p>
+          <p class="frets" id="fret12">12</p>
+          <p class="frets" id="fret15">15</p>
+          <p class="frets" id="fret17">17</p>
+          <p class="frets" id="fret19">19</p>
+          <p class="frets" id="fret21">21</p>
+          <p class="frets" id="fret24">24</p>
+        </div>
+        <div id="fretButtonContainer">
+          <input type="button" value=" Frets on " id="fret-button" class="toggleButton pointable"/>
+        </div>
+        <div id="stringButtonContainer">
+          <input type="button" value=" Strings on " id="string-button" class="toggleButton pointable"/>
+        </div>
+        <div id="display-gradient-mask-right"></div>
+        <div id="display-gradient-mask-bottom"></div>
+        <div id="string-gradient-mask"></div>
+        <div id="guit-body-gradient-mask"></div>
+        <div id="key-scale-display">
+          <div id="arrow-up" class="pointable" title="Previous scale"></div>
+          <div id="arrow-down" class="pointable" title="Next scale"></div>
+          <div id="arrow-left" class="pointable" title="Transpose down"></div>
+          <div id="arrow-right" class="pointable" title="Transpose up"></div>
+          <div id="scale-display-outercontainer">
+            <div id="scale-display-innercontainer">
+              <p id="display-text-container">
+                <span id="current-key" class="key-scale-display-text unselectable">C </span>
+                <span id="current-scale" class="key-scale-display-text unselectable">Ionian</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="keyDiv" class="dropdownStyle">
+          <p id="scalesText" class="unselectable">Key</p>
+          <ul id="UlSpacer">
+            <li id="0" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">E</span><br/>
+              <li id="1" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">F</span><br/>
+                <li id="2" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">G</span><p class="headerKey unselectable">&#x266d;</p><br/>
+                  <li id="3" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">G</span><br/>
+                    <li id="4" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">A</span><p class="headerKey unselectable">&#x266d;</p><br/>
+                      <li id="5" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">A</span><br/>
+                        <li id="6" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">B</span><p class="headerKey unselectable">&#x266d;</p><br/>
+                          <li id="7" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">B</span><br/>
+                            <li id="8" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">C</span><br/>
+                              <li id="9" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">D</span><p class="headerKey unselectable">&#x266d;</p><br/>
+                                <li id="10" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">D</span><br/>
+                                  <li id="11" data-selected="notSelected" class="keyNam selectedKeyText"><span class="unselectable">E</span><p class="headerKey unselectable">&#x266d;</p><br/>
+                                  </ul>
+                                </div>
+                                <div id="scalesDiv" class="dropdownStyle">
+                                  <p id="scalesText" class="unselectable">Scales</p>
+                                  <ul>
+                                    <li data-text="Ionian (Maj Scale)" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Ionian (Maj Scale)</span><br/>
+                                      <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
+                                      <li data-text="Dorian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Dorian</span><br/>
+                                        <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                        <li data-text="Phrygian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Phrygian</span><br/>
+                                          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                          <li data-text="Lydian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Lydian</span><br/>
+                                            <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>
+                                            <li data-text="Mixolydian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Mixolydian</span><br/>
+                                              <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                              <li data-text="Aeolien (Nat Min)" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Aeolien (Nat Min)</span><br/>
+                                                <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                <li data-text="Locrian" data-selected="notSelected" class="scaNam "><span class="selectedScaleText unselectable">Locrian</span><br/>
+                                                  <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                </ul>
+                                                <ul>
+                                                  <li data-text="Melodic Minor" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Melodic Minor</span><br/>
+                                                    <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 &#160;7</span></li>
+                                                    <li data-text="Phrygian Nat 6" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Phrygian &#x266e;6</span><br/>
+                                                      <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                      <li data-text="Lydian Augmented" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian &#x266f;5</span><br/>
+                                                        <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 <sup class="accidental">&#x266f;</sup>5 &#160;6 &#160;7</span></li>
+                                                        <li data-text="Lydian b7" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian &#9837;7</span><br/>
+                                                          <span class="scaDeg unselectable">1 &#160;2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                          <li data-text="Mixolydian b6" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Mixolydian &#9837;6</span><br/>
+                                                            <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                            <li data-text="Locrian Nat 2" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Locrian &#x266e;2</span><br/>
+                                                              <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                              <li data-text="Super Locrian" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Super Locrian</span><br/>
+                                                                <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>9 <sup class="accidental">&#x266f;</sup>9 &#160;3 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266f;</sup>5 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                              </ul>
+                                                              <ul id="UlSpacer">
+                                                                <li data-text="Harmonic Minor" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Harmonic Minor</span><br/>
+                                                                  <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 &#160;7</span></li>
+                                                                  <li data-text="Locrian Nat 6" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Locrian &#x266e;6</span><br/>
+                                                                    <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 <sup class="accidental">&#x266d;</sup>3 &#160;4 <sup class="accidental">&#x266d;</sup>5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                                    <li data-text="Ionian #5" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Ionian &#x266f;5</span><br/>
+                                                                      <span class="scaDeg unselectable">1 &#160;2 &#160;3 &#160;4 <sup class="accidental">&#x266f;</sup>5 &#160;6 &#160;7</span></li>
+                                                                      <li data-text="Dorian #4" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Dorian &#x266f;4</span><br/>
+                                                                        <span class="scaDeg unselectable">1 &#160;2 <sup class="accidental">&#x266d;</sup>3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                                        <li data-text="Phrygian Dominant" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Phrygian Dominant</span><br/>
+                                                                          <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>2 &#160;3 &#160;4 &#160;5 <sup class="accidental">&#x266d;</sup>6 <sup class="accidental">&#x266d;</sup>7</span></li>
+                                                                          <li data-text="Lydian #2" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Lydian &#x266f;2</span><br/>
+                                                                            <span class="scaDeg unselectable">1 <sup class="accidental">&#x266f;</sup>2 &#160;3 <sup class="accidental">&#x266f;</sup>4 &#160;5 &#160;6 &#160;7</span></li>
+                                                                            <li data-text="Ultra Locrian" data-selected="notSelected" class="scaNam"><span class="selectedScaleText unselectable">Ultra Locrian</span><br/>
+                                                                              <span class="scaDeg unselectable">1 <sup class="accidental">&#x266d;</sup>9 <sup class="accidental">&#x266f;</sup>9 &#160;3 <sup class="accidental">&#x266d;</sup>5 <sup class="accidental">&#x266f;</sup>5 <sup class="accidental2">&#x266d;
+                                                                              </sup><sup class="accidental">&#x266d;</sup>7</span></li>
+                                                                            </ul>
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                      <div id="introInfoButton">
+                                                                        <p>
+                                                                          <h1 id="fretShapesButton"><span id="arrow">&rarr;</span><span class="thinText" id="whatIsText"> What is fret</span><span>Shapes?</span></h1>
+                                                                        </p>
+                                                                      </div>
+                                                                      <div id="appButton">
+                                                                        <p>
+                                                                          <h1 id="fretShapesButton"><span id="startArrow">&rarr;</span><span class="thinText" id="whatIsText"> Start fret</span><span>Shapes!</span></h1>
+                                                                        </p>
+                                                                      </div>
   </div>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/addons/p5.dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/addons/p5.sound.js"></script>
