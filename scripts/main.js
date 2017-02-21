@@ -676,7 +676,6 @@ function showInfoScreen() {
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
     sideBarCont.style.visibility = 'hidden';
-    document.getElementById('fretShapesButton').style.marginTop="40px";
   } else {
     document.getElementById('fretShapesButton').style.marginTop="30px";
     document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";

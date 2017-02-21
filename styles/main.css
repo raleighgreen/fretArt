@@ -139,7 +139,7 @@
 	display: block;
 	width:180px;
 	height: 35px;
-	top:365px;
+	top:360px;
 	background: black;
 	margin-left: 10px;
 	z-index: 1004;
@@ -152,7 +152,7 @@
   height: 340px;
   background: black;
   margin-left: 3px;
-  top: 370px;
+  top: 377px;
   z-index: 1003;
   background: black;
 	visibility: visible;
@@ -394,7 +394,7 @@ img {
   justify-content: center;
   font-weight: 100;
   margin-left: 27px;
-  top: 370px;
+  top: 364px;
   font-size: .8em;
   pointer-events: none;
   opacity: .7;
