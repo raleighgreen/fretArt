@@ -51,6 +51,7 @@ whatButton.addEventListener("click", function() {
   hideWelcomeScreen();
   dimLine();
   showInfoScreen();
+  sideBarCont.style.visibility = 'hidden';
 });
 
 appScreenButton.addEventListener("click", function() {
