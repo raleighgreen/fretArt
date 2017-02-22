@@ -4,7 +4,7 @@
 // The numbers in the arrays below represent the left-most frets for each mode.
 // Placing these on each string provides a starting point with which
 // to map the rest of the scale pattern.
-
+var minPentLowestFrets = [403,324,246,168,91,13];
 // Major scale modes
 var ionianLowestFrets = [402,324,246,168,89,12];
 var dorianLowestFrets = [401,323,246,168,89,11];
@@ -33,6 +33,8 @@ var alteredDominantbb7LowestFrets = [400,323,245,167,88,10];
 // Create modes and group them in an Object
 // The data from the scales above are placed into each new Mode constructor below:
 fretArt.modes = {
+  "Minor Pentatonic": new Mode("Minor Pentatonic", [2, 2, 1, 2, 2, 2, 1], minPentLowestFrets),
+//---------------------
   "Ionian (Maj Scale)": new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1], ionianLowestFrets),
   "Dorian": new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2], dorianLowestFrets),
   "Phrygian": new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2], phrygianLowestFrets),
