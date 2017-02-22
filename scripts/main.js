@@ -655,7 +655,8 @@ function arrowRightAndLeftProcesses() {
   buildShapes();
 }
 function processMainScreen() {
-  document.getElementById('fretShapesButton').style.marginTop="30px";
+  // style.marginTop below sets the height of the "what is fretShapes?" button
+  document.getElementById('fretShapesButton').style.marginTop="27px";
   document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" What is fret";
   document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="Shapes?";
   fretArt.infoButtonStatus = false;
@@ -677,7 +678,8 @@ function showInfoScreen() {
     infoButtonScreen.style.display='block';
     sideBarCont.style.visibility = 'hidden';
   } else {
-    document.getElementById('fretShapesButton').style.marginTop="30px";
+    // style.marginTop below sets the height of the "back" button
+    document.getElementById('fretShapesButton').style.marginTop="27px";
     document.getElementById('fretShapesButton').getElementsByTagName('span')[1].innerHTML=" Back";
     document.getElementById('fretShapesButton').getElementsByTagName('span')[2].innerHTML="";
     fretArt.startButtonShowsFirst = false;
