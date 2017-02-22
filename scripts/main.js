@@ -771,7 +771,7 @@ var cnv;
 
 function centerCanvas() {
   var x = (windowWidth - width) / 2;
-  var y = (50);
+  var y = (95);
   cnv.position(x, y);
 }
 function windowResized() {

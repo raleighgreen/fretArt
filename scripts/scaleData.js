@@ -4,7 +4,7 @@
 // The numbers in the arrays below represent the left-most frets for each mode.
 // Placing these on each string provides a starting point with which
 // to map the rest of the scale pattern.
-var minPentLowestFrets = [403,324,246,168,91,13];
+
 // Major scale modes
 var ionianLowestFrets = [402,324,246,168,89,12];
 var dorianLowestFrets = [401,323,246,168,89,11];
@@ -29,12 +29,18 @@ var dorianSharp4LowestFrets = [401,323,246,168,90,11];
 var phrygianDominantLowestFrets = [401,324,245,167,89,11];
 var lydianSharp2LowestFrets = [402,324,246,169,90,12];
 var alteredDominantbb7LowestFrets = [400,323,245,167,88,10];
-
+// Other scales
+// var minPentLowestFrets = [403,324,246,168,91,13];
+var harmonicMajorLowestFrets = [402,324,245,168,89,12];
+var dorianb5LowestFrets = [401,323,246,168,89,11];
+var phrygianb4LowestFrets = [401,323,245,167,88,11];
+var lydianb3LowestFrets = [402,323,246,168,90,12];
+var mixolydianb2LowestFrets = [401,324,246,167,89,11];
+var lydianAugmentedSharp2LowestFrets = [402,324,246,169,90,12];
+var locrianDim7LowestFrets = [400,323,245,167,89,10];
 // Create modes and group them in an Object
 // The data from the scales above are placed into each new Mode constructor below:
 fretArt.modes = {
-  "Minor Pentatonic": new Mode("Minor Pentatonic", [2, 2, 1, 2, 2, 2, 1], minPentLowestFrets),
-//---------------------
   "Ionian (Maj Scale)": new Mode("Ionian", [2, 2, 1, 2, 2, 2, 1], ionianLowestFrets),
   "Dorian": new Mode("Dorian", [2, 1, 2, 2, 2, 1, 2], dorianLowestFrets),
   "Phrygian": new Mode("Phrygian", [1, 2, 2, 2, 1, 2, 2], phrygianLowestFrets),
@@ -55,7 +61,16 @@ fretArt.modes = {
   "Locrian Nat 6": new Mode("Locrian &#x266e;6",[1, 2, 2, 1, 3, 1, 2], locrianNat6LowestFrets),
   "Ionian #5": new Mode("Ionian &#x266f;5",[2, 2, 1, 3, 1, 2, 1], ionianSharp5LowestFrets),
   "Dorian #4": new Mode("Dorian &#x266f;4",[2, 1, 3, 1, 2, 1, 2], dorianSharp4LowestFrets),
-  "Phrygian Dominant": new Mode("Phrygian Dominant",[1, 3, 1, 2, 1, 2, 2], phrygianDominantLowestFrets),
+  "Phrygian Domin ant": new Mode("Phrygian Dominant",[1, 3, 1, 2, 1, 2, 2], phrygianDominantLowestFrets),
   "Lydian #2": new Mode("Lydian &#x266f;2",[3, 1, 2, 1, 2, 2, 1], lydianSharp2LowestFrets),
-  "Ultra Locrian": new Mode("Ultra Locrian",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets)
+  "Ultra Locrian": new Mode("Ultra Locrian",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets),
+  //---------------------
+  // "Minor Pentatonic": new Mode("Minor Pentatonic", [3, 2, 2, 3, 2], minPentLowestFrets),
+  "Harmonic Major": new Mode("Harmonic Major", [2, 2, 1, 2, 1, 3, 1], harmonicMajorLowestFrets),
+  "Dorian b5": new Mode("Dorian &#9837;5", [2, 1, 2, 1, 3, 1, 2], dorianb5LowestFrets),
+  "Phrygian b4": new Mode("Phrygian &#9837;4", [1, 2, 1, 3, 1, 2, 2], phrygianb4LowestFrets),
+  "Lydian b3": new Mode("Lydian &#9837;3",[2, 1, 3, 1, 2, 2, 1], lydianb3LowestFrets),
+  "Mixolydian b2": new Mode("Mixolydian &#9837;2", [1, 3, 1, 2, 2, 1, 2], mixolydianb2LowestFrets),
+  "Lydian Augmented #2": new Mode("Lydian &#x266f;2 &#x266f;5",[3, 1, 2, 2, 1, 2, 1], lydianAugmentedSharp2LowestFrets),
+  "Locrian Diminished 7": new Mode("Locrian Diminished 7",[1, 2, 2, 1, 2, 1, 3], locrianDim7LowestFrets)
 }
