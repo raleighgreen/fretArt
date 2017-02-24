@@ -1,5 +1,11 @@
 #fretShapesLogo {
+  position: absolute;
   cursor: pointer;
+  float: left;
+  padding-left:5px;
+  width: 180px;
+  margin: 0;
+  top: -3px;
 }
 
 .socialIcons {
@@ -669,7 +675,7 @@ canvas {
   display: block;
   line-height: 90px;
   left:214px;
-  top:286px;
+  top:231px;
 }
 .key-scale-display-text {
   font-weight: 400;
@@ -772,7 +778,7 @@ canvas {
   position: absolute;
   visibility: hidden;
   width: 860px;
-  top:321px;
+  top:377px;
   padding: 26px 26px 0px 28px;
   z-index: 800;
 }
