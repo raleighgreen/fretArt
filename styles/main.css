@@ -13,7 +13,7 @@
   display: inline-block;
   top: 768px;
   left: 600px;
-  z-index: 1010;
+  z-index: 1000;
 }
 #messageIcon {
   top: -2px;
