@@ -39,6 +39,11 @@ arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
+document.body.addEventListener("touchmove", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+}, false);
+
 startButton.addEventListener("click", function() {
   fretArt.startButtonShowsFirst = false;
   fretArt.guitarBodyDisplay = true;
