@@ -33,11 +33,16 @@ var appScreenButton = document.getElementById('appButton');
 var welcomeScreenDiv = document.getElementById('welcomeScreen');
 var fadeDiv = document.getElementById('fadeFromBlackDiv');
 var sideBarCont = document.getElementById('sideBarContainer');
+var fretShapesLogoButton = document.getElementById('fretShapesLogo');
 
 arrowUp.style.opacity = .5;
 arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
+
+fretShapesLogoButton.addEventListener("click", function() {
+  window.location.reload();
+});
 
 document.body.addEventListener("touchmove", function(event) {
     event.preventDefault();
