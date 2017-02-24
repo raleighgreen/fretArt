@@ -789,7 +789,6 @@ function preload() {
 function setup() {
   cnv = createCanvas(882, 370);
   centerCanvas();
-  document.body.style.zoom = 1.0;
 
   infoButtonScreen.style.display='none'
 //---------- Setup scale dropdown elements and defaults ----
