@@ -633,7 +633,9 @@ button {
 
 body {
   padding: 0;
-  margin-top:40px;
+  margin: 40px 0px 0px 0px;
+  height: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   background: black;
