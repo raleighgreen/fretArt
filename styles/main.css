@@ -13,7 +13,7 @@
   display: inline-block;
   top: 768px;
   left: 600px;
-  z-index: 1000;
+  z-index: 1010;
 }
 #messageIcon {
   top: -2px;
@@ -454,7 +454,7 @@ img {
   background: black;
   color: rgb(9,81,201);
   padding: 14px 0px 14px 0px;
-  border: 1px solid rgb(9,81,201);
+  border: 2px solid rgb(9,81,201);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -478,7 +478,7 @@ img {
   padding: 9px 0px 0px 9px;
   font-weight: bold;
   font-size: .8em;
-  border-top: 1px solid #042864;
+  border-top: 2px solid #042864;
   list-style-type: none;
   line-height: 1.5;
   background: black;
@@ -596,12 +596,12 @@ select {
   margin:10px;
   background: rgba(0,0,0,0.3);
   color: rgb(9,81,201);
-  border: 1px solid rgb(9,81,201);
+  border: 2px solid rgb(9,81,201);
 }
 .styled-select select {
    padding: 2px 2px 2px 7px;
    font-size: 12px;
-   border: 1;
+   border: 2;
    border-radius: 3;
    -webkit-appearance: none;
    -moz-appearance: none;
@@ -626,7 +626,7 @@ button {
   margin: 10px;
   background: rgba(0,0,0,0.3);
   color: rgb(9,81,201);
-  border: 1px solid rgb(9,81,201);
+  border: 2px solid rgb(9,81,201);
   border-radius : 3px;
   white-space: pre;
 }
@@ -646,7 +646,7 @@ body {
   min-width: 882px;
 }
 canvas {
-  border: 1px solid rgb(9,81,201);
+  border: 2px solid rgb(9,81,201);
   border-radius: 7px;
 }
 
@@ -793,7 +793,7 @@ canvas {
   font-size: 65%;
   background: rgba(0,0,0,0.3);
   color: rgb(9,81,201);
-  border: 1px solid rgb(9,81,201);
+  border: 2px solid rgb(9,81,201);
   border-radius : 3px;
   white-space: pre;
 }
