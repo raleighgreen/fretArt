@@ -677,6 +677,7 @@ function showInfoScreen() {
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
     sideBarCont.style.visibility = 'hidden';
+
   } else {
     // style.marginTop below sets the height of the "back" button
     document.getElementById('fretShapesButton').style.marginTop="27px";
@@ -770,7 +771,7 @@ function fadeFromBlack() {
 var cnv;
 
 function centerCanvas() {
-  var x = (windowWidth - width) / 2;
+  var x = ((windowWidth - width) / 2) - 2;
   // Adjust p5 canvas elements below
   var y = (85);
   cnv.position(x, y);

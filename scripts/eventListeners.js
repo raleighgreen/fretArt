@@ -34,6 +34,7 @@ var welcomeScreenDiv = document.getElementById('welcomeScreen');
 var fadeDiv = document.getElementById('fadeFromBlackDiv');
 var sideBarCont = document.getElementById('sideBarContainer');
 var fretShapesLogoButton = document.getElementById('fretShapesLogo');
+var socialBlock = document.getElementById('social');
 
 arrowUp.style.opacity = .5;
 arrowDown.style.opacity = .5;

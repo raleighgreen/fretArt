@@ -11,6 +11,7 @@
 .socialIcons {
   position: absolute;
   display: inline-block;
+
   opacity: .6;
 
 }
@@ -396,8 +397,8 @@ img {
   width: 882px;
   height: 350px;
   background: black;
-  margin-left: 4px;
-  top: 386px;
+  margin-left: 2px;
+  top: 388px;
   z-index: 1001;
 }
 #copyright {
@@ -644,7 +645,7 @@ button {
 body {
   padding: 0;
   /*Adjust margin below for app height*/
-  margin: 50px 0px 0px 0px;
+  margin: 50px 2px 0px 0px;
   height: 100%;
   overflow: hidden;
   display: flex;
@@ -666,7 +667,7 @@ canvas {
 #main-container {
   position: relative;
   top: 25px;
-  width: 884px;
+  width: 882px;
   height: 380px;
   display: block;
 }
