@@ -70,6 +70,7 @@
 	display: inline-block;
 	width: 900px;
 	top: 300px;
+  left: -7px;
 	height: 550px;
 	background: black;
 	opacity: 1;
