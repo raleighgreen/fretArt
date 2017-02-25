@@ -771,7 +771,8 @@ var cnv;
 
 function centerCanvas() {
   var x = (windowWidth - width) / 2;
-  var y = (95);
+  // Height of the p5 canvas elements
+  var y = (35);
   cnv.position(x, y);
 }
 function windowResized() {

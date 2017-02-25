@@ -396,7 +396,7 @@ img {
   width: 882px;
   height: 350px;
   background: black;
-  margin-left: 3px;
+  margin-left: 4px;
   top: 386px;
   z-index: 1001;
 }
@@ -643,7 +643,7 @@ button {
 
 body {
   padding: 0;
-  margin: 40px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   height: 100%;
   overflow: hidden;
   display: flex;
@@ -652,7 +652,7 @@ body {
 }
 #container {
   position: relative;
-  margin-top: -340px;
+  margin-top: -360px;
   margin-left: auto;
   margin-right: auto;
   min-width: 882px;
