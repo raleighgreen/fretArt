@@ -662,11 +662,13 @@ function processMainScreen() {
   fretArt.infoButtonStatus = false;
   infoButton.style.marginLeft='10px';
   arrowElement.innerHTML = '\&rarr;';
+  socialBlock.style.marginLeft='-1px';
 }
 function hideWelcomeScreen() {
   fretArt.infoButtonStatus = false;
   welcomeScreen.style.display = 'none';
   sideBarCont.style.visibility = 'visible';
+
   processMainScreen();
 }
 function showInfoScreen() {
@@ -677,7 +679,7 @@ function showInfoScreen() {
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
     sideBarCont.style.visibility = 'hidden';
-
+    socialBlock.style.marginLeft='0px';
   } else {
     // style.marginTop below sets the height of the "back" button
     document.getElementById('fretShapesButton').style.marginTop="27px";
@@ -689,6 +691,7 @@ function showInfoScreen() {
     infoButton.style.marginLeft='10px';
     arrowElement.innerHTML = '\&#8592';
     sideBarCont.style.visibility = 'hidden';
+    socialBlock.style.marginLeft='0px';
   }
 }
 function hideInfoScreen() {
