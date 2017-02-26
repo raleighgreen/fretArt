@@ -93,7 +93,7 @@ fretArt.modes = {
   "Locrian Nat 6": new Mode("Locrian &#x266e;6",[1, 2, 2, 1, 3, 1, 2], locrianNat6LowestFrets),
   "Ionian #5": new Mode("Ionian &#x266f;5",[2, 2, 1, 3, 1, 2, 1], ionianSharp5LowestFrets),
   "Dorian #4": new Mode("Dorian &#x266f;4",[2, 1, 3, 1, 2, 1, 2], dorianSharp4LowestFrets),
-  "Phrygian Domin ant": new Mode("Phrygian Dominant",[1, 3, 1, 2, 1, 2, 2], phrygianDominantLowestFrets),
+  "Phrygian Dominant": new Mode("Phrygian Dominant",[1, 3, 1, 2, 1, 2, 2], phrygianDominantLowestFrets),
   "Lydian #2": new Mode("Lydian &#x266f;2",[3, 1, 2, 1, 2, 2, 1], lydianSharp2LowestFrets),
   "Ultra Locrian": new Mode("Ultra Locrian",[1, 2, 1, 2, 2, 1, 3], alteredDominantbb7LowestFrets),
   //---------------------
