@@ -269,14 +269,14 @@ function turnOffButtonStyle(offElem) {
 //---------- Fret and String Button Functions --------------
 
 function toggleFretButton(button) {
-    if (button.textContent == " Frets on ") {
-        button.textContent = " Frets off ";
+    if (button.textContent == "Frets on") {
+        button.textContent = "Frets off";
         turnOffButtonStyle(button);
         document.getElementById("fretsBox").style.visibility = 'hidden';
         fretArt.fretsIsShowing = false;
     }
-    else if (button.textContent == " Frets off ") {
-        button.textContent = " Frets on ";
+    else if (button.textContent == "Frets off") {
+        button.textContent = "Frets on";
         turnOnButtonStyle(button);
         document.getElementById("fretsBox").style.visibility = 'visible';
         fretArt.fretsIsShowing = true;
@@ -284,13 +284,13 @@ function toggleFretButton(button) {
 }
 
 function toggleStringButton(button) {
-    if (button.textContent == " Strings on ") {
-        button.textContent = " Strings off ";
+    if (button.textContent == "Strings on") {
+        button.textContent = "Strings off";
         turnOffButtonStyle(button);
         fretArt.stringsIsShowing = false;
     }
-    else if (button.textContent == " Strings off ") {
-        button.textContent = " Strings on ";
+    else if (button.textContent == " trings off") {
+        button.textContent = "Strings on";
         turnOnButtonStyle(button);
         fretArt.stringsIsShowing = true;
     }
