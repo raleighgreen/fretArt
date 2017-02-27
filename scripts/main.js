@@ -289,7 +289,7 @@ function toggleStringButton(button) {
         turnOffButtonStyle(button);
         fretArt.stringsIsShowing = false;
     }
-    else if (button.textContent == " trings off") {
+    else if (button.textContent == "Strings off") {
         button.textContent = "Strings on";
         turnOnButtonStyle(button);
         fretArt.stringsIsShowing = true;

@@ -640,7 +640,7 @@ button {
   color: rgb(9,81,201);
   border: 2px solid rgb(9,81,201);
   border-radius : 3px;
-  white-space: pre;
+  text-align: center;
 }
 
 body {
