@@ -702,9 +702,11 @@ function hideInfoScreen() {
 function infoScreenToggle() {
   if (!fretArt.infoButtonStatus) {
     showInfoScreen();
+    infoButton.style.width = '60px';
     fretArt.guitarBodyDisplay = false;
   } else if (fretArt.infoButtonStatus){
     hideInfoScreen();
+    infoButton.style.width = '145px';
     fretArt.guitarBodyDisplay = true;
   }
 }

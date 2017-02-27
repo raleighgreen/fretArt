@@ -29,7 +29,7 @@ var redDiv2Button = document.getElementById('redDiv2');
 var purpleDivButton = document.getElementById('purpleDiv');
 var startButton = document.getElementById('startButton');
 var whatButton = document.getElementById('whatIsButton');
-var appScreenButton = document.getElementById('appButton');
+var backButton = document.getElementById('appButton');
 var welcomeScreenDiv = document.getElementById('welcomeScreen');
 var fadeDiv = document.getElementById('fadeFromBlackDiv');
 var sideBarCont = document.getElementById('sideBarContainer');
@@ -64,7 +64,7 @@ whatButton.addEventListener("click", function() {
   sideBarCont.style.visibility = 'hidden';
 });
 
-appScreenButton.addEventListener("click", function() {
+backButton.addEventListener("click", function() {
  fretArt.guitarBodyDisplay = true;
  hideInfoScreen();
  dimLine();
