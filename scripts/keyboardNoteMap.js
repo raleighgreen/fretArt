@@ -10,11 +10,11 @@ function checkKey(e) {
     //----------------------------------------------------------
     //---------- Frets and Strings Listeners -------------------
 
-    else if (e.keyCode == '189') {
+    else if (e.keyCode == '173' || '189') {
       toggleFretButton(fretButton);
     }
 
-    else if (e.keyCode == '187') {
+    else if (e.keyCode == '61' || '187') {
       toggleStringButton(stringButton);
     }
 
