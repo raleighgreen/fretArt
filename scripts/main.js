@@ -272,13 +272,13 @@ function toggleFretButton(button) {
     if (button.textContent == "Frets on") {
         button.textContent = "Frets off";
         turnOffButtonStyle(button);
-        document.getElementById("fretsBox").style.visibility = 'hidden';
+        fretNumbers.style.visibility = 'hidden';
         fretArt.fretsIsShowing = false;
     }
     else if (button.textContent == "Frets off") {
         button.textContent = "Frets on";
         turnOnButtonStyle(button);
-        document.getElementById("fretsBox").style.visibility = 'visible';
+        fretNumbers.style.visibility = 'visible';
         fretArt.fretsIsShowing = true;
     }
 }
@@ -678,7 +678,6 @@ function showInfoScreen() {
     fretArt.infoButtonStatus = false;
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
-    fretNumbers.style.visibility = 'hidden';
     sideBarCont.style.visibility = 'hidden';
     socialBlock.style.marginLeft='0px';
   } else {
@@ -691,7 +690,6 @@ function showInfoScreen() {
     fretArt.infoButtonStatus = true;
     infoButton.style.marginLeft='10px';
     arrowElement.innerHTML = '\&#8592';
-    fretNumbers.style.visibility = 'hidden'
     sideBarCont.style.visibility = 'hidden';
     socialBlock.style.marginLeft='0px';
   }
@@ -699,7 +697,6 @@ function showInfoScreen() {
 function hideInfoScreen() {
   infoButtonScreen.style.display='none';
   sideBarCont.style.visibility = 'visible';
-  fretNumbers.style.visibility = 'visible';
   processMainScreen();
 }
 function infoScreenToggle() {
@@ -707,10 +704,12 @@ function infoScreenToggle() {
     showInfoScreen();
     infoButton.style.width = '60px';
     fretArt.guitarBodyDisplay = false;
+    fretNumbers.style.marginTop = '0px';
   } else if (fretArt.infoButtonStatus){
     hideInfoScreen();
     infoButton.style.width = '145px';
     fretArt.guitarBodyDisplay = true;
+    fretNumbers.style.marginTop = '-185px';
   }
 }
 //----------------------------------------------------------
