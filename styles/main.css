@@ -651,6 +651,7 @@ body {
   /*Adjust margin below for app height*/
   margin: 50px 2px 0px 0px;
   height: 100%;
+  width: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -663,6 +664,7 @@ body {
     /*Adjust margin below for app height*/
     margin: 50px 2px 0px 0px;
     height: 100%;
+    width: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -676,6 +678,7 @@ body {
     /*Adjust margin below for app height*/
     margin: 50px 2px 0px 0px;
     height: 100%;
+    width: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -689,6 +692,7 @@ body {
     /*Adjust margin below for app height*/
     margin: 50px 2px 0px 0px;
     height: 100%;
+    width: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
