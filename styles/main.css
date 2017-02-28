@@ -651,55 +651,11 @@ body {
   /*Adjust margin below for app height*/
   margin: 50px 2px 0px 0px;
   height: 100%;
-  width: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   background: black;
 }
-
-@media screen and (min-width: 980px) /* Desktop */ {
-  body {
-    padding: 0;
-    /*Adjust margin below for app height*/
-    margin: 50px 2px 0px 0px;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    background: black;
-  }
-}
-
-@media screen and (min-width: 979px) /* Tablet */ {
-  body {
-    padding: 0;
-    /*Adjust margin below for app height*/
-    margin: 50px 2px 0px 0px;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    background: black;
-  }
-}
-
-@media screen and (min-width: 500px) /* Mobile */ {
-  body {
-    padding: 0;
-    /*Adjust margin below for app height*/
-    margin: 50px 2px 0px 0px;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    background: black;
-  }
-}
-
 
 #container {
   position: relative;
