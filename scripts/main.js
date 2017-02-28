@@ -704,12 +704,12 @@ function infoScreenToggle() {
     showInfoScreen();
     infoButton.style.width = '60px';
     fretArt.guitarBodyDisplay = false;
-    fretNumbers.style.marginTop = '0px';
+    fretNumbers.style.top = '-150px';
   } else if (fretArt.infoButtonStatus){
     hideInfoScreen();
     infoButton.style.width = '145px';
     fretArt.guitarBodyDisplay = true;
-    fretNumbers.style.marginTop = '-185px';
+    fretNumbers.style.top = '0px';
   }
 }
 //----------------------------------------------------------
