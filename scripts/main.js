@@ -678,6 +678,7 @@ function showInfoScreen() {
     fretArt.infoButtonStatus = false;
     fretArt.startButtonShowsFirst = false;
     infoButtonScreen.style.display='block';
+    fretNumbers.style.visibility = 'hidden';
     sideBarCont.style.visibility = 'hidden';
     socialBlock.style.marginLeft='0px';
   } else {
@@ -690,6 +691,7 @@ function showInfoScreen() {
     fretArt.infoButtonStatus = true;
     infoButton.style.marginLeft='10px';
     arrowElement.innerHTML = '\&#8592';
+    fretNumbers.style.visibility = 'hidden'
     sideBarCont.style.visibility = 'hidden';
     socialBlock.style.marginLeft='0px';
   }
@@ -697,6 +699,7 @@ function showInfoScreen() {
 function hideInfoScreen() {
   infoButtonScreen.style.display='none';
   sideBarCont.style.visibility = 'visible';
+  fretNumbers.style.visibility = 'visible';
   processMainScreen();
 }
 function infoScreenToggle() {
