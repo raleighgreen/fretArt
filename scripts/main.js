@@ -854,10 +854,10 @@ function draw() {
   //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.75");
   //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.75");
   document.getElementById('viewport-meta').setAttribute("content", "width=1000");
-  } else if (screen.width <= 768) {
+} else if (screen.width <= 750) {
   //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.9");
   //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.9");
-  document.getElementById('viewport-meta').setAttribute("content", "width=1000");
+  document.getElementById('viewport-meta').setAttribute("content", "width=750");
   } else if (screen.width <= 1024) {
   //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=1.2");
   //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1.2");
