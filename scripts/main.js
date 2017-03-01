@@ -849,7 +849,7 @@ function draw() {
   } else if (screen.width <= 375) {
   //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.32");
   //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
-    document.getElementById('viewport-meta').setAttribute("content", "width=375");
+    document.getElementById('viewport-meta').setAttribute("content", "width=275");
   } else if (screen.width <= 568) {
   //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.75");
   //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.75");
