@@ -845,27 +845,27 @@ function setup() {
 function draw() {
   background(0);
 
-  if (screen.width <= 320) {
-  //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.32");
-  //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
-    document.getElementById('viewport-meta').setAttribute("content", "width=320");
-  } else if (screen.width <= 568) {
-  //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.75");
-  //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.75");
-  document.getElementById('viewport-meta').setAttribute("content", "width=568");
-  } else if (screen.width <= 768) {
-  //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.9");
-  //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.9");
-  document.getElementById('viewport-meta').setAttribute("content", "width=768");
-  } else if (screen.width <= 1024) {
-  //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=1.2");
-  //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1.2");
-  document.getElementById('viewport-meta').setAttribute("content", "width=1024");
-  } else if (screen.width > 1025) {
-  //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=1.7");
-  //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1.7");
-  document.getElementById('viewport-meta').setAttribute("content", "width=1025");
-  }
+  // if (screen.width <= 320) {
+  // //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.32");
+  // //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
+  //   document.getElementById('viewport-meta').setAttribute("content", "width=320");
+  // } else if (screen.width <= 568) {
+  // //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.75");
+  // //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.75");
+  // document.getElementById('viewport-meta').setAttribute("content", "width=568");
+  // } else if (screen.width <= 768) {
+  // //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.9");
+  // //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.9");
+  // document.getElementById('viewport-meta').setAttribute("content", "width=768");
+  // } else if (screen.width <= 1024) {
+  // //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=1.2");
+  // //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1.2");
+  // document.getElementById('viewport-meta').setAttribute("content", "width=1024");
+  // } else if (screen.width > 1025) {
+  // //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=1.7");
+  // //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1.7");
+  // document.getElementById('viewport-meta').setAttribute("content", "width=1025");
+  // }
 
   // If app screen is in view, display the guitar body background
   if(fretArt.guitarBodyDisplay) {
