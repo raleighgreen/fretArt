@@ -846,10 +846,10 @@ function draw() {
   background(0);
   if (screen.width <= 220) {
     document.getElementById('viewport-meta').setAttribute("content", "width=800");
-  } else if (screen.width <= 320) {
+  } else if (screen.width <= 375) {
   //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.32");
   //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
-    document.getElementById('viewport-meta').setAttribute("content", "width=1000");
+    document.getElementById('viewport-meta').setAttribute("content", "width=375");
   } else if (screen.width <= 568) {
   //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.75");
   //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.75");
