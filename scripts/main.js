@@ -756,10 +756,10 @@ function buildGuitarBody() {
 // When noteProximity is 0, the note can't be triggered
 // because the note zone has 0 width.
 function toggleSound() {
-  if (fretArt.noteProximity == 9) {
+  if (fretArt.noteProximity == 14) {
     fretArt.noteProximity = 0;
   } else if (fretArt.noteProximity == 0){
-    fretArt.noteProximity = 9;
+    fretArt.noteProximity = 14;
   }
 }
 
