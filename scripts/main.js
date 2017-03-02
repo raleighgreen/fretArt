@@ -844,6 +844,26 @@ function setup() {
 // Required P5 function loops
 function draw() {
   background(0);
+
+  if (screen.width >= 1024) {
+    console.log("this is a desktop browser");
+  }
+
+  // window.onresize = function (event) {
+  //   applyOrientation();
+  // }
+  // function applyOrientation() {
+  //   if (window.innerHeight > window.innerWidth) {
+  //     console.log("You are now in portrait");
+  //
+  //
+  //   } else {
+  //     console.log("You are now in landscape");
+  //
+  //
+  //   }
+  // }
+
   // window.onresize = function (event) {
   //   applyOrientation();
   // }
