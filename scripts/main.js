@@ -844,14 +844,16 @@ function setup() {
 function draw() {
   background(0);
 
-  if (screen.width >= 1024) {
+  if (document.documentElement.clientWidth >= 900) {
     console.log("this is a desktop browser");
     document.body.style.margin = "50px 2px 0px 0px";
     var x = ((windowWidth - width) / 2) - 2;
     var y = (85);
     cnv.position(x, 85);
   }
-
+  if (document.documentElement.clientWidth < 900) {
+    console.log('this is not a desktop browser');
+  }
   // window.onresize = function (event) {
   //   applyOrientation();
   // }
