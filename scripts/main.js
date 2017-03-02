@@ -844,51 +844,51 @@ function setup() {
 // Required P5 function loops
 function draw() {
   background(0);
-  // window.onresize = function (event) {
-  //   applyOrientation();
-  // }
-  // function applyOrientation() {
-  //   if (window.innerHeight > window.innerWidth) {
-  //     console.log("You are now in portrait");
-  //       document.getElementById('viewport-meta').setAttribute("content", "initial-scale=4");
-  //       document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=4");
-  //       document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=4");
-  //
-  //   } else {
-  //     console.log("You are now in landscape");
-  //     document.getElementById('viewport-meta').setAttribute("content", "initial-scale=8");
-  //     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=8");
-  //     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=8");
-  //
-  //   }
-  // }
-
-  if (screen.width <= 320) {
-    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.32");
-    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
-    centerCanvas();
-    // document.getElementById('viewport-meta').setAttribute("content", "width=320");
-  } else if (screen.width <= 568) {
-    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.75");
-    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.75");
-    centerCanvas();
-  // document.getElementById('viewport-meta').setAttribute("content", "width=568");
-  } else if (screen.width <= 768) {
-    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.9");
-    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.9");
-    centerCanvas();
-  // document.getElementById('viewport-meta').setAttribute("content", "width=768");
-  } else if (screen.width <= 1024) {
-    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1");
-    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1");
-    centerCanvas();
-  // document.getElementById('viewport-meta').setAttribute("content", "width=1024");
-} else if (screen.width <= 1440) {
-    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1");
-    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1");
-    centerCanvas();
-  // document.getElementById('viewport-meta').setAttribute("content", "width=1025");
+  window.onresize = function (event) {
+    applyOrientation();
   }
+  function applyOrientation() {
+    if (window.innerHeight > window.innerWidth) {
+      console.log("You are now in portrait");
+        document.getElementById('viewport-meta').setAttribute("content", "initial-scale=4");
+        document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=4");
+        document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=4");
+
+    } else {
+      console.log("You are now in landscape");
+      document.getElementById('viewport-meta').setAttribute("content", "initial-scale=8");
+      document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=8");
+      document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=8");
+
+    }
+  }
+
+//   if (screen.width <= 320) {
+//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.32");
+//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
+//     centerCanvas();
+//     // document.getElementById('viewport-meta').setAttribute("content", "width=320");
+//   } else if (screen.width <= 568) {
+//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.75");
+//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.75");
+//     centerCanvas();
+//   // document.getElementById('viewport-meta').setAttribute("content", "width=568");
+//   } else if (screen.width <= 768) {
+//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.9");
+//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.9");
+//     centerCanvas();
+//   // document.getElementById('viewport-meta').setAttribute("content", "width=768");
+//   } else if (screen.width <= 1024) {
+//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1");
+//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1");
+//     centerCanvas();
+//   // document.getElementById('viewport-meta').setAttribute("content", "width=1024");
+// } else if (screen.width <= 1440) {
+//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1");
+//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1");
+//     centerCanvas();
+//   // document.getElementById('viewport-meta').setAttribute("content", "width=1025");
+//   }
 
   // If app screen is in view, display the guitar body background
   if(fretArt.guitarBodyDisplay) {
