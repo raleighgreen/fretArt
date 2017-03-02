@@ -656,9 +656,6 @@ body {
   justify-content: center;
   background: black;
 }
-html {
-  touch-action:none;
-}
 
 #container {
   position: relative;

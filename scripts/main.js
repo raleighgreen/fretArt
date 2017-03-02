@@ -844,24 +844,24 @@ function setup() {
 // Required P5 function loops
 function draw() {
   background(0);
-  window.onresize = function (event) {
-    applyOrientation();
-  }
-  function applyOrientation() {
-    if (window.innerHeight > window.innerWidth) {
-      console.log("You are now in portrait");
-        // document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.2");
-        document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.2");
-        document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.2");
-
-    } else {
-      console.log("You are now in landscape");
-      // document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.5");
-      document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.5");
-      document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.5");
-
-    }
-  }
+  // window.onresize = function (event) {
+  //   applyOrientation();
+  // }
+  // function applyOrientation() {
+  //   if (window.innerHeight > window.innerWidth) {
+  //     console.log("You are now in portrait");
+  //       // document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.2");
+  //       document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.2");
+  //       document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.2");
+  //
+  //   } else {
+  //     console.log("You are now in landscape");
+  //     // document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.5");
+  //     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.5");
+  //     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.5");
+  //
+  //   }
+  // }
 
 //   if (screen.width <= 320) {
 //     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.32");
