@@ -68,6 +68,10 @@ arrowRight.style.opacity = .5;
 // fretShapesLogoButton.addEventListener("click", function() {
 //   window.location.reload();
 // });
+document.body.addEventListener("touchmove", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+}, false);
 
 startButton.addEventListener("click", function() {
   fretArt.startButtonShowsFirst = false;
