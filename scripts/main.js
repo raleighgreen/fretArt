@@ -857,9 +857,9 @@ function draw() {
 
     } else {
       console.log("You are now in landscape");
-      document.getElementById('viewport-meta').setAttribute("content", "initial-scale=7");
-      document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=7");
-      document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=7");
+      document.getElementById('viewport-meta').setAttribute("content", "initial-scale=8");
+      document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=8");
+      document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=8");
 
     }
   }
