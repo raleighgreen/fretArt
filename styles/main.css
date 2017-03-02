@@ -1,5 +1,5 @@
 html {
-  touch-action: manipulation;
+  touch-action: none;
 }
 #fretShapesLogo {
   position: absolute;
