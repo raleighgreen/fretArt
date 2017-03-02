@@ -54,9 +54,19 @@ fretShapesLogoButton.addEventListener("click", function() {
   window.location.reload();
 });
 
-document.body.addEventListener("touchmove", function(event) {
-    event.preventDefault();
+var meta = document.createElement("meta");
+meta.setAttribute('name', 'viewport');
+meta.setAttribute('content', 'initial-scale=' + (1 / window.devicePixelRatio - .7) + ',user-scalable=no' + ',');
+document.getElementsByTagName('head')[0].appendChild(meta);
+
+document.addEventListener('touchmove', function (e) {
+   e.preventDefault();
+   window.scroll(0, 0);
+   return false;
 }, false);
+// document.body.addEventListener("touchmove", function(event) {
+//     event.preventDefault();
+// }, false);
 
 startButton.addEventListener("click", function() {
   fretArt.startButtonShowsFirst = false;
