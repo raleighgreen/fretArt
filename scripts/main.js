@@ -844,9 +844,7 @@ function setup() {
 // Required P5 function loops
 function draw() {
   background(0);
-  if (screen.height > screen.width){
-    alert("Please use Landscape!");
- }
+
   // if (screen.width <= 320) {
   // //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.32");
   // //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
