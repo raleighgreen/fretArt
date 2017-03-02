@@ -929,11 +929,11 @@ canvas {
   position: absolute;
   display: none;
   height: 1000px;
-  width: 200px;
+  width: 1000px;
   background: red;
+  z-index: 3000;
 }
 @media only screen and (min-device-width: 10px) {
-  /* Style adjustments for viewports 480px and over go here */
   #mobileMessage {
     display: block;
     margin-left: auto;
