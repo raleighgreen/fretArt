@@ -103,7 +103,6 @@
 	color: black;
 	background-color: rgba(9,81,201,1);
 	cursor: pointer;
-  touch-action: none;
 }
 
 #whatIsButton {
@@ -669,6 +668,7 @@ body {
 canvas {
   border: 2px solid rgb(9,81,201);
   border-radius: 7px;
+  touch-action: none;
 }
 
 #main-container {
