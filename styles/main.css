@@ -932,7 +932,7 @@ canvas {
   width: 200px;
   background: red;
 }
-@media only screen and (max-device-width: 900px) {
+@media only screen and (min-device-width: 10px) {
   /* Style adjustments for viewports 480px and over go here */
   #mobileMessage {
     display: block;
