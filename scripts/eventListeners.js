@@ -42,24 +42,6 @@ arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
-// window.addEventListener("load",function() {
-// 	// Set a timeout...
-// 	setTimeout(function(){
-// 		// Hide the address bar!
-// 		window.scrollTo(0, 1);
-// 	}, 0);
-// });
-
-
-// document.body.addEventListener("touchmove", function(event) {
-//     event.preventDefault();
-// }, false);
-
-// var meta = document.createElement("meta");
-// meta.setAttribute('name', 'viewport');
-// meta.setAttribute('content', 'initial-scale=' + (1 / window.devicePixelRatio - .7) + ',user-scalable=no' + ',');
-// document.getElementsByTagName('head')[0].appendChild(meta);
-//
 document.addEventListener('touchmove', function (e) {
    e.preventDefault();
    window.scroll(0, 0);
