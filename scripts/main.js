@@ -879,13 +879,13 @@ function draw() {
     centerCanvas();
   // document.getElementById('viewport-meta').setAttribute("content", "width=768");
   } else if (screen.width <= 1024) {
-    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1.2");
-    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1.2");
+    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1");
+    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1");
     centerCanvas();
   // document.getElementById('viewport-meta').setAttribute("content", "width=1024");
 } else if (screen.width <= 1440) {
-    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1.7");
-    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1.7");
+    document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1");
+    document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1");
     centerCanvas();
   // document.getElementById('viewport-meta').setAttribute("content", "width=1025");
   }
