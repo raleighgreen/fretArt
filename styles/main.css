@@ -927,22 +927,15 @@ canvas {
 }
 #mobileMessage {
   position: absolute;
-  display: block;
+  display: none;
   height: 100px;
   width: 200px;
-  visibility: hidden;
   background: red;
 }
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 900px) {
   /* Style adjustments for viewports 480px and over go here */
   #mobileMessage {
-    visibility: visible;
+    display: block;
   }
 }
 /*
-@media (max-width: 768px) {
-  /* Style adjustments for viewports 768px and over go here */
-  #mobileMessage {
-    visibility: visible;
-  }
-}*/
