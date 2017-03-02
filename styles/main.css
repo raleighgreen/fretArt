@@ -928,7 +928,7 @@ canvas {
 #mobileMessage {
   position: absolute;
   display: none;
-  height: 100px;
+  height: 1000px;
   width: 200px;
   background: red;
 }
@@ -936,7 +936,8 @@ canvas {
   /* Style adjustments for viewports 480px and over go here */
   #mobileMessage {
     display: block;
-    margin-left: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 /*
