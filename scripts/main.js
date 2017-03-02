@@ -798,6 +798,12 @@ function setup() {
   cnv = createCanvas(882, 370);
   centerCanvas();
 
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    // tasks to do if it is a Mobile Device
+    alert("Mobile Detected");
+
+  }
+
   infoButtonScreen.style.display='none'
 //---------- Setup scale dropdown elements and defaults ----
 
