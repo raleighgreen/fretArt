@@ -925,15 +925,24 @@ canvas {
   margin-top: 0px;
   margin-left: 803px;
 }
-
-@media only screen and (min-width: 480px) {
+#mobileMessage {
+  position: absolute;
+  display: block;
+  height: 100px;
+  width: 200px;
+  visibility: hidden;
+  background: red;
+}
+@media (min-width: 80px) {
   /* Style adjustments for viewports 480px and over go here */
-
-
+  #mobileMessage {
+    visibility: visible;
+  }
 }
-
-@media only screen and (min-width: 768px) {
+/*
+@media (max-width: 768px) {
   /* Style adjustments for viewports 768px and over go here */
-
-
-}
+  #mobileMessage {
+    visibility: visible;
+  }
+}*/
