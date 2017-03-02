@@ -933,7 +933,7 @@ canvas {
   background: blue;
   z-index: 3000;
 }
-@media only screen and (min-device-width: 1000px) {
+@media only screen and (min-device-width: 10px) {
   #mobileMessage {
     display: block;
     text-align: center;
