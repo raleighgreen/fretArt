@@ -852,20 +852,20 @@ function draw() {
     cnv.position(x, 85);
   }
 
-  // window.onresize = function (event) {
-  //   applyOrientation();
-  // }
-  // function applyOrientation() {
-  //   if (window.innerHeight > window.innerWidth) {
-  //     console.log("You are now in portrait");
-  //
-  //
-  //   } else {
-  //     console.log("You are now in landscape");
-  //
-  //
-  //   }
-  // }
+  window.onresize = function (event) {
+    applyOrientation();
+  }
+  function applyOrientation() {
+    if (window.innerHeight > window.innerWidth) {
+      console.log("You are now in portrait");
+      document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.65, maximum-scale=.65");
+
+    } else {
+      console.log("You are now in landscape");
+      document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.65, maximum-scale=.65");
+
+    }
+  }
 
   // window.onresize = function (event) {
   //   applyOrientation();
