@@ -844,7 +844,25 @@ function setup() {
 // Required P5 function loops
 function draw() {
   background(0);
+  window.onresize = function (event) {
+    applyOrientation();
+  }
 
+  function applyOrientation() {
+    if (window.innerHeight > window.innerWidth) {
+      console.log("You are now in portrait");
+        document.getElementById('viewport-meta').setAttribute("content", "initial-scale=4");
+        document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=4");
+        document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=4");
+
+    } else {
+      console.log("You are now in landscape");
+      document.getElementById('viewport-meta').setAttribute("content", "initial-scale=7");
+      document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=7");
+      document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=7");
+
+    }
+  }
   // if (screen.width <= 320) {
   // //   document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.32");
   // //   document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
