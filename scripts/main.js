@@ -777,9 +777,9 @@ function fadeFromBlack() {
 }
 var cnv;
 function centerCanvas() {
-  var x = ((windowWidth - width) / 2);
+  var x = ((windowWidth - width) / 2) - 2;
   // Adjust p5 canvas element height below
-  var y = (15);
+  var y = (85);
   cnv.position(x, y);
 }
 function windowResized() {
@@ -844,16 +844,18 @@ function setup() {
 function draw() {
   background(0);
 
-  if (document.documentElement.clientWidth >= 900) {
-    console.log("this is a desktop browser");
-    document.body.style.margin = "50px 2px 0px 0px";
-    var x = ((windowWidth - width) / 2) - 2;
-    var y = (85);
-    cnv.position(x, 85);
-  }
-  if (document.documentElement.clientWidth < 900) {
-    console.log('this is not a desktop browser');
-  }
+  // if (screen.width >= 1024) {
+  //   console.log("this is a desktop browser");
+  //   document.body.style.margin = "50px 2px 0px 0px";
+  //   var x = ((windowWidth - width) / 2) - 2;
+  //   var y = (85);
+  //   cnv.position(x, 85);
+  // }
+
+  // if (document.documentElement.clientWidth < 900) {
+  //   console.log('this is not a desktop browser');
+  // }
+
   // window.onresize = function (event) {
   //   applyOrientation();
   // }

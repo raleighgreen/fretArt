@@ -42,11 +42,11 @@ arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
-document.addEventListener('touchmove', function (e) {
-   e.preventDefault();
-   window.scroll(0, 0);
-   return false;
-}, false);
+// document.addEventListener('touchmove', function (e) {
+//    e.preventDefault();
+//    window.scroll(0, 0);
+//    return false;
+// }, false);
 
 fretShapesLogoButton.addEventListener("click", function() {
   window.location.reload();
