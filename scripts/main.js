@@ -777,7 +777,7 @@ function fadeFromBlack() {
 }
 var cnv;
 function centerCanvas() {
-  var x = ((windowWidth - width) / 2) - 2;
+  var x = ((windowWidth - width) / 2);
   // Adjust p5 canvas element height below
   var y = (15);
   cnv.position(x, y);
