@@ -933,7 +933,7 @@ canvas {
   visibility: hidden;
   background: red;
 }
-@media only screen and (min-width: 80px) {
+@media only screen and (max-width: 480px) {
   /* Style adjustments for viewports 480px and over go here */
   #mobileMessage {
     visibility: visible;
