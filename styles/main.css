@@ -1,3 +1,6 @@
+html {
+  touch-action: manipulation;
+}
 #fretShapesLogo {
   position: absolute;
   cursor: pointer;
@@ -668,7 +671,6 @@ body {
 canvas {
   border: 2px solid rgb(9,81,201);
   border-radius: 7px;
-  touch-action: none;
 }
 
 #main-container {
