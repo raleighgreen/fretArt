@@ -850,13 +850,13 @@ function draw() {
   function applyOrientation() {
     if (window.innerHeight > window.innerWidth) {
       console.log("You are now in portrait");
-        document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.2");
+        // document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.2");
         document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.2");
         document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.2");
 
     } else {
       console.log("You are now in landscape");
-      document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.5");
+      // document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.5");
       document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.5");
       document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.5");
 
