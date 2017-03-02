@@ -777,9 +777,9 @@ function fadeFromBlack() {
 }
 var cnv;
 function centerCanvas() {
-  var x = ((windowWidth - width) / 2);
+  var x = ((windowWidth - width) / 2) - 1;
   // Adjust p5 canvas element height below
-  var y = (35);
+  var y = (15);
   cnv.position(x, y);
 }
 function windowResized() {
@@ -848,6 +848,7 @@ function draw() {
     console.log("this is a desktop browser");
     document.body.style.margin = "50px 2px 0px 0px";
     var x = ((windowWidth - width) / 2) - 2;
+    var y = (85);
     cnv.position(x, 85);
   }
 

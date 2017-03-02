@@ -649,7 +649,7 @@ button {
 body {
   padding: 0;
   /*Adjust margin below for app height*/
-  margin: 0px 0px 0px 0px;
+  margin: -20px 0px 0px 0px;
   height: 100%;
   overflow: hidden;
   display: flex;
