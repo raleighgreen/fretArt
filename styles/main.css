@@ -1,6 +1,3 @@
-html {
-  touch-action: none;
-}
 #fretShapesLogo {
   position: absolute;
   cursor: pointer;
@@ -647,6 +644,7 @@ button {
   text-align: center;
   display: table-cell;
   vertical-align: middle;
+  touch-action: manipulation;
 }
 
 body {
@@ -658,7 +656,6 @@ body {
   display: flex;
   justify-content: center;
   background: black;
-  touch-action: none;
 }
 
 #container {
