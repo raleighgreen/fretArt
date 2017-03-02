@@ -644,7 +644,7 @@ button {
   text-align: center;
   display: table-cell;
   vertical-align: middle;
-  touch-action: manipulation;
+  touch-action: none;
 }
 
 body {
