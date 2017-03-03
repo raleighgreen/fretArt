@@ -775,12 +775,12 @@ function fadeFromBlack() {
     }, 800);
   }
 }
-var cnv;
+
 function centerCanvas() {
   var x = ((windowWidth - width) / 2) - 2;
   // Adjust p5 canvas element height below
   var y = (85);
-  cnv.position(x, y);
+  fretArt.p5Canvas.position(x, y);
 }
 function windowResized() {
   centerCanvas();
@@ -795,7 +795,7 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(882, 370);
+  fretArt.p5Canvas = createCanvas(882, 370);
   centerCanvas();
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
