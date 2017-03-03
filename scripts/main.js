@@ -799,9 +799,8 @@ function setup() {
   centerCanvas();
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    // tasks to do if it is a Mobile Device
-    alert("Mobile Detected");
-
+    // redirect mobile users to fretShapes mobile page
+    window.location="http://raleighgreen.com/fretShapesMobilePage/";
   }
 
   infoButtonScreen.style.display='none'
