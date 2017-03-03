@@ -800,7 +800,7 @@ function setup() {
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     // redirect mobile users to fretShapes mobile page
-    window.location="http://raleighgreen.com/fretShapesMobilePage/";
+    window.location="http://fretshapes.com/fretShapesMobilePage/";
   }
 
   infoButtonScreen.style.display='none'
@@ -848,79 +848,6 @@ function setup() {
 // Required P5 function loops
 function draw() {
   background(0);
-
-  // if (screen.width >= 1024) {
-  //   console.log("this is a desktop browser");
-  //   document.body.style.margin = "50px 2px 0px 0px";
-  //   var x = ((windowWidth - width) / 2) - 2;
-  //   var y = (85);
-  //   cnv.position(x, 85);
-  // }
-
-  // if (document.documentElement.clientWidth < 900) {
-  //   console.log('this is not a desktop browser');
-  // }
-
-  // window.onresize = function (event) {
-  //   applyOrientation();
-  // }
-  // function applyOrientation() {
-  //   if (window.innerHeight > window.innerWidth) {
-  //     console.log("You are now in portrait");
-  //     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.65, maximum-scale=.65");
-  //
-  //   } else {
-  //     console.log("You are now in landscape");
-  //     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.65, maximum-scale=.65");
-  //
-  //   }
-  // }
-
-  // window.onresize = function (event) {
-  //   applyOrientation();
-  // }
-  // function applyOrientation() {
-  //   if (window.innerHeight > window.innerWidth) {
-  //     console.log("You are now in portrait");
-  //       // document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.2");
-  //       document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.2");
-  //       document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.2");
-  //
-  //   } else {
-  //     console.log("You are now in landscape");
-  //     // document.getElementById('viewport-meta').setAttribute("content", "initial-scale=.5");
-  //     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.5");
-  //     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.5");
-  //
-  //   }
-  // }
-
-//   if (screen.width <= 320) {
-//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.32");
-//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.32");
-//     centerCanvas();
-//     // document.getElementById('viewport-meta').setAttribute("content", "width=320");
-//   } else if (screen.width <= 568) {
-//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.75");
-//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.75");
-//     centerCanvas();
-//   // document.getElementById('viewport-meta').setAttribute("content", "width=568");
-//   } else if (screen.width <= 768) {
-//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=.9");
-//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=.9");
-//     centerCanvas();
-//   // document.getElementById('viewport-meta').setAttribute("content", "width=768");
-//   } else if (screen.width <= 1024) {
-//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1");
-//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1");
-//     centerCanvas();
-//   // document.getElementById('viewport-meta').setAttribute("content", "width=1024");
-// } else if (screen.width <= 1440) {
-//     document.getElementById('viewport-meta').setAttribute("content", "minimum-scale=1");
-//     document.getElementById('viewport-meta').setAttribute("content", "maximum-scale=1");
-//     centerCanvas();
-//   // document.getElementById('viewport-meta').setAttribute("content", "width=1025");
-//   }
 
   // If app screen is in view, display the guitar body background
   if(fretArt.guitarBodyDisplay) {
