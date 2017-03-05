@@ -61,6 +61,7 @@
  position: absolute;
  top: 90px;
  font-size: .9em;
+ font-weight: 500;
  width: 100%;
  text-align: center;
  opacity: .7;
@@ -233,6 +234,7 @@ img {
   top: 35px;
   left: 25px;
   font-size: .96em;
+  font-weight: 400;
 }
 #thickText {
   font-weight: bold;
@@ -473,12 +475,14 @@ img {
   border-radius: 5px;
   line-height: .5;
   overflow:auto;
+  z-index: 1002;
 }
 .dropdownStyle:hover {
     background: black;
     color: rgb(0,100,255);
     padding: 14px 0px 9px 0px;
     z-index: 1003;
+
 }
 .dropdownStyle > ul {
   display: none;
@@ -547,9 +551,10 @@ img {
 
 #scalesText {
   margin-left: 16px;
-  margin-bottom: 0;
-  padding: 0;
+  margin-bottom: 0px;
+  padding-right: 0px;
   text-align: left;
+  font-weight: 400;
 }
 .dropdownStyle #UlSpacer:hover {
   margin-bottom: 2px;
@@ -641,7 +646,10 @@ button {
   color: rgb(0,100,255);
   border: 2px solid rgb(0,100,255);
   border-radius : 3px;
+  padding: 3px 7px 3px 7px;
   text-align: center;
+  font-size: .65em;
+  font-weight: 600;
   display: table-cell;
   vertical-align: middle;
 }
