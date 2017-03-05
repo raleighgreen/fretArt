@@ -224,7 +224,7 @@ function drawShape(shapeArray) {
   beginShape();
   noFill();
   strokeWeight(2);
-  stroke(9,81,201);
+  stroke(0,100,255);
   strokeJoin(ROUND);
   for (i = 0; i < shapeArray.length; i++) {
     vertex(shapeArray[i].x,shapeArray[i].y);
@@ -255,14 +255,14 @@ function octaveRestrictor(foundScaleArrPos) {
 
 function turnOnButtonStyle(onElem) {
   var onElement = onElem;
-  onElement.style.background='rgb(9,81,201)';
+  onElement.style.background='rgb(0,100,255)';
   onElement.style.color = "black";
 }
 
 function turnOffButtonStyle(offElem) {
   var offElement = offElem;
   offElement.style.background='black';
-  offElement.style.color = 'rgb(9,81,201)';
+  offElement.style.color = 'rgb(0,100,255)';
 }
 
 //----------------------------------------------------------
@@ -883,11 +883,11 @@ function draw() {
   // Make a fretboard outline
   noFill();
   strokeWeight(2);
-  stroke(9,81,201);
+  stroke(0,100,255);
   rect(247,125,600,100);
   // Set the fret stroke weight
   strokeWeight(2);
-  stroke(9,81,201,95);
+  stroke(0,100,255,95);
   // If frets button is clicked on, draw the frets
   if (fretArt.fretsIsShowing == true) {
     var add25 = 271;
@@ -917,7 +917,7 @@ function draw() {
   }
   // Frame key/scale name display with lines above and below
   strokeWeight(1.5);
-  stroke(9,81,201, 100);
+  stroke(0,100,255, 100);
   rect(256, 275, 385, 48, 7);
   pop();
   // End shapes
