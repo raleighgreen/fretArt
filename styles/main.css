@@ -134,7 +134,7 @@
 	color: rgba(0,100,255,.9);
 	z-index: 1006;
 	top: 57px;
-	font-weight: 100;
+	font-weight: 200;
 	font-size: 1.27em;
 }
 
@@ -347,7 +347,7 @@ img {
 #introInfoButton {
   position: absolute;
   align: left;
-  font-weight: 100;
+  font-weight: 200;
   margin-left: -347px;
   top: 392px;
   z-index: 0;
@@ -358,7 +358,7 @@ img {
 #appButton {
   position: relative;
   height: 40px;
-  font-weight: 100;
+  font-weight: 200;
 	margin-top: 2px;
   margin-left: -312px;
   top: -352px;
@@ -406,7 +406,7 @@ img {
 #copyright {
   position: absolute;
   justify-content: center;
-  font-weight: 100;
+  font-weight: 200;
   margin-left: 29px;
   top: 361px;
   font-size: .8em;
@@ -560,11 +560,11 @@ img {
   color: rgb(0,100,255);
 }
 .scaDeg {
-  font-weight: 100;
+  font-weight: 200;
   color: rgba(0,100,255, 0.7);
 }
 .scaDeg {
-  font-weight: 100;
+  font-weight: 200;
   color: rgba(0,100,255, 0.7);
 }
 
@@ -629,7 +629,7 @@ h1 {
 }
 p {
     color: rgb(0,100,255);
-    font-weight: 100;
+    font-weight: 200;
     font-family: sans-serif;
     margin-bottom: 3px;
     margin-top: 0px;
@@ -801,7 +801,7 @@ canvas {
 }
 
 .thinText {
-  font-weight: 100;
+  font-weight: 200;
 }
 
 .toggleButton {
@@ -871,7 +871,7 @@ canvas {
 }
 
 .frets {
-  font-weight: 100;
+  font-weight: 200;
   font-size: 70%;
   opacity: .6;
 }
