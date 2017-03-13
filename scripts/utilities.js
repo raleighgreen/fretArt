@@ -3,8 +3,6 @@ function getScale(key, scale) {
   var foundScale = [];
   var modeIndex = 0;
   var noteInKey = key;
-  // var octaveNum = octave;
-  // console.log(noteInKey);
 
   while (noteInKey < fretArt.notes.length) {
     var currentNote = fretArt.notes[noteInKey];
@@ -30,6 +28,7 @@ function getScale(key, scale) {
     noteInKey -= scale[modeIndex];
     modeIndex++;
   }
+
   // Reset scale
   scale.reverse();
   return foundScale;

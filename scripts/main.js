@@ -158,12 +158,11 @@ function processInput() {
     // Grab the key value from the selectedKeyText field and place it in fretArt.currentKey
       var keyName = document.getElementsByClassName('selectedKeyText');
       var keyNameValue = keyName[i].textContent;
-      // console.log(fretArt.selectedKeyNameHolder);
-      // console.log(scaleNameValue);
       fretArt.currentKey = i;
       fretArt.currentKeyName = keyNameValue;
     }
   }
+
   // process the selected scale Text
   for (var i = 0; i < fretArt.selectedModeNameHolder.length; i++) {
     if (fretArt.selectedModeNameHolder[i].getAttributeNode("data-selected").value === "modeSelected") {
@@ -301,6 +300,7 @@ function styleShapeButtonOn() {
   turnOffButtonStyle(document.getElementById("hide-shapes"));
   fretArt.linesVisible = true;
 }
+
 //----------------------------------------------------------
 //---------- Pedal Tone Functions --------------------------
 
@@ -316,7 +316,6 @@ function playPedalTone() {
         fretArt.frets[i].col2 = 255;
         fretArt.frets[i].col3 = 255;
         fretArt.frets[i].alpha = 255;
-        // console.log(fretArt.frets[i]);
         break;
       }
     }
@@ -328,7 +327,6 @@ function pedalToneActivator() {
     for (var i = 0; i < fretArt.frets.length; i++) {
       if (fretArt.keyIndex == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
         fretArt.frets[i].playing = true;
-        // console.log(fretArt.frets[i]);
         break;
       }
     }
@@ -361,6 +359,7 @@ function pedalToneButtonOn() {
   turnOffButtonStyle(document.getElementById("stop-button"));
   pedalTonePlay = true;
 }
+
 //----------------------------------------------------------
 //----------------------------------------------------------
 
@@ -523,7 +522,6 @@ function moveKeyDown() {
 //----------------------------------------------------------
 //----------------------------------------------------------
 
-
 function ifActiveSetScale() {
   for (var f = 0; f < fretArt.frets.length; f++) {
     if (fretArt.frets[f].active) {
@@ -543,57 +541,72 @@ function removeKeyTargetClass() {
 //---------- Arrow Key Functions ---------------------------
 
 //---------- Up Arrows -------------------------------------
+
 function lightUpArrow() {
   arrowUp.style.transition = "opacity .1s";
   arrowUp.style.opacity = 1;
   setTimeout(function(){ arrowUp.style.opacity = .5; }, 150);
 }
+
 function lightUpArrowAndStayLit() {
   arrowUp.style.transition = "opacity .1s";
   arrowUp.style.opacity = 1;
 }
+
 function dimUpArrow() {
   arrowUp.style.transition = "opacity .1s";
   arrowUp.style.opacity = .5;
 }
+
 //---------- Down Arrows -------------------------------------
+
 function lightDownArrow() {
   arrowDown.style.transition = "opacity .1s";
   arrowDown.style.opacity = 1;
   setTimeout(function(){ arrowDown.style.opacity = .5; }, 150);
 }
+
 function lightDownArrowAndStayLit() {
   arrowDown.style.transition = "opacity .1s";
   arrowDown.style.opacity = 1;
 }
+
 function dimDownArrow() {
   arrowDown.style.transition = "opacity .1s";
   arrowDown.style.opacity = .5;
 }
+
 //---------- Left Arrows -------------------------------------
+
 function lightLeftArrow() {
   arrowLeft.style.transition = "opacity .1s";
   arrowLeft.style.opacity = 1;
   setTimeout(function(){ arrowLeft.style.opacity = .5; }, 150);
 }
+
 function lightLeftArrowAndStayLit() {
   arrowLeft.style.transition = "opacity .1s";
   arrowLeft.style.opacity = 1;
 }
+
 function dimLeftArrow() {
   arrowLeft.style.transition = "opacity .1s";
   arrowLeft.style.opacity = .5;
 }
+
 //---------- Right Arrows -------------------------------------
+
 function lightRightArrow() {
   arrowRight.style.transition = "opacity .1s";
   arrowRight.style.opacity = 1;
   setTimeout(function(){ arrowRight.style.opacity = .5; }, 150);
 }
+
 function lightRightArrowAndStayLit() {
   arrowRight.style.transition = "opacity .1s";
   arrowRight.style.opacity = 1;
 }
+
 function dimRightArrow() {
   arrowRight.style.transition = "opacity .1s";
   arrowRight.style.opacity = .5;
@@ -610,6 +623,7 @@ function arrowRightAndLeftProcesses() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 }
+
 function processMainScreen() {
   // style.marginTop below sets the height of the "what is fretShapes?" button
   document.getElementById('fretShapesButton').style.marginTop="27px";
@@ -620,13 +634,14 @@ function processMainScreen() {
   arrowElement.innerHTML = '\&rarr;';
   socialBlock.style.marginLeft='-1px';
 }
+
 function hideWelcomeScreen() {
   fretArt.infoButtonStatus = false;
   welcomeScreen.style.display = 'none';
   sideBarCont.style.visibility = 'visible';
-
   processMainScreen();
 }
+
 function showInfoScreen() {
   if (fretArt.startButtonShowsFirst) {
     document.getElementById('appButton').style.visibility = 'visible';
@@ -650,11 +665,13 @@ function showInfoScreen() {
     socialBlock.style.marginLeft='0px';
   }
 }
+
 function hideInfoScreen() {
   infoButtonScreen.style.display='none';
   sideBarCont.style.visibility = 'visible';
   processMainScreen();
 }
+
 function infoScreenToggle() {
   if (!fretArt.infoButtonStatus) {
     showInfoScreen();
@@ -668,6 +685,7 @@ function infoScreenToggle() {
     fretNumbers.style.top = '0px';
   }
 }
+
 //----------------------------------------------------------
 //---------- info page toggle functions --------------------
 
@@ -695,6 +713,7 @@ function toggleInfoDivs(divButton, textId) {
     text.style.visibility = 'visible';
   }
 }
+
 // build a guitar body background with simple shapes
 function buildGuitarBody() {
   fill(fretArt.guitarBodyColor);
