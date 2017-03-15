@@ -1,16 +1,6 @@
 //----------------------------------------------------------
 //-------------------- Functions ---------------------------
 
-// Populate arrPositionList by passing in initialArray and number of shapes
-create3DArray = function(array, size){
-  var newArray = [array];
-  for(var i = 0; i < size; i++)
-  {
-    newArray.push(getNextArrayRow(newArray[i]));
-  }
-  return newArray;
-}
-
 getNextArrayRow = function(array){
   var nextRow = [];
   for(var i = 0; i < array.length; i++)
@@ -26,6 +16,16 @@ getNextArrayRow = function(array){
     nextRow.push(nextElement);
   }
   return nextRow;
+}
+
+// Populate arrPositionList by passing in initialArray and number of shapes
+create3DArray = function(array, size){
+  var newArray = [array];
+  for(var i = 0; i < size; i++)
+  {
+    newArray.push(getNextArrayRow(newArray[i]));
+  }
+  return newArray;
 }
 
 // Build shapes for current key and mode
