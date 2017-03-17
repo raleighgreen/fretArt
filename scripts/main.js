@@ -194,9 +194,9 @@ function mousePressed() {
   }
 }
 
+// Assign the key and scale data to the display fields
 function keyAndCurrentScaleDisplay(){
   document.getElementById("current-key").textContent = fretArt.currentKeyName + " ";
-  // document.getElementById("current-scale").textContent = fretArt.currentMode.name;
   document.getElementById("current-scale").innerHTML = fretArt.currentMode.name;
 }
 
@@ -757,6 +757,7 @@ function centerCanvas() {
   var y = (85);
   fretArt.p5Canvas.position(x, y);
 }
+
 function windowResized() {
   centerCanvas();
 }
