@@ -501,6 +501,7 @@ function moveKeyUp() {
 function moveKeyDown() {
   // clear out and reset key index
   // renamed to setKeyIndex
+
   setKeyIndex();
   removeKeyTargetClass();
   // if the scale index is less than the length of the name holder, increment to the next mode
