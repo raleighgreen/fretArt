@@ -239,15 +239,17 @@ function toggleFretButton(button) {
 }
 
 function toggleStringButton(button) {
-    if (button.textContent == "Strings on") {
+    if (button.textContent === "Strings on") {
         button.textContent = "Strings off";
         turnOffButtonStyle(button);
         fretArt.stringsIsShowing = false;
+        console.log("strings off");
     }
-    else if (button.textContent == "Strings off") {
+    else if (button.textContent === "Strings off") {
         button.textContent = "Strings on";
         turnOnButtonStyle(button);
         fretArt.stringsIsShowing = true;
+        console.log("strings on");
     }
 }
 
@@ -304,6 +306,44 @@ function styleShapeButtonOn() {
 //----------------------------------------------------------
 //---------- Pedal Tone Functions --------------------------
 
+function pedalToneActivator() {
+  if (fretArt.pedalTonePlay) {
+    for (var i = 0; i < fretArt.frets.length; i++) {
+      if (fretArt.keyIndex == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
+        fretArt.frets[i].playing = true;
+        break;
+      }
+    }
+  }
+}
+
+function pedalToneKeyDisplay(){
+  document.getElementById("pedal-tone-key").textContent = fretArt.currentKeyName;
+}
+
+function togglePedalTone() {
+  if (!fretArt.pedalTonePlay) {
+    fretArt.pedalTonePlay = true;
+    pedalToneButtonOn();
+  } else if (fretArt.pedalTonePlay){
+    fretArt.pedalTonePlay = false;
+    pedalToneButtonOff();
+  }
+}
+
+function pedalToneButtonOff() {
+  turnOffButtonStyle(document.getElementById("play-button"));
+  turnOnButtonStyle(document.getElementById("stop-button"));
+  for (var i = 0; i < fretArt.frets.length; i++) {
+    fretArt.frets[i].playing = false;
+  }
+}
+
+function pedalToneButtonOn() {
+  turnOnButtonStyle(document.getElementById("play-button"));
+  turnOffButtonStyle(document.getElementById("stop-button"));
+}
+
 function playPedalTone() {
   processInput();
   var pedalTone = fretArt.notes[fretArt.keyIndex].audioFile;
@@ -321,45 +361,6 @@ function playPedalTone() {
     }
   }
 }
-
-function pedalToneActivator() {
-  if (pedalTonePlay) {
-    for (var i = 0; i < fretArt.frets.length; i++) {
-      if (fretArt.keyIndex == fretArt.frets[i].noteName && fretArt.frets[i].string.name == "lowE") {
-        fretArt.frets[i].playing = true;
-        break;
-      }
-    }
-  }
-}
-
-function pedalToneKeyDisplay(){
-  document.getElementById("pedal-tone-key").textContent = fretArt.currentKeyName;
-}
-
-function togglePedalTone() {
-  if (!pedalTonePlay) {
-    pedalToneButtonOn();
-  } else {
-    pedalToneButtonOff();
-  }
-}
-
-function pedalToneButtonOff() {
-  turnOffButtonStyle(document.getElementById("play-button"));
-  turnOnButtonStyle(document.getElementById("stop-button"));
-  for (var i = 0; i < fretArt.frets.length; i++) {
-    fretArt.frets[i].playing = false;
-  }
-  pedalTonePlay = false;
-}
-
-function pedalToneButtonOn() {
-  turnOnButtonStyle(document.getElementById("play-button"));
-  turnOffButtonStyle(document.getElementById("stop-button"));
-  pedalTonePlay = true;
-}
-
 //----------------------------------------------------------
 //----------------------------------------------------------
 

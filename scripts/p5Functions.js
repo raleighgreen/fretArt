@@ -35,7 +35,9 @@ function setup() {
 //----------------------------------------------------------
 
   // buildShapes();
+
   processInput();
+
   fretArt.fretsIsShowing = true;
   fretArt.stringsIsShowing = true;
   fretArt.linesVisible = true;
@@ -57,7 +59,6 @@ function setup() {
   isolateScaleIds(fretArt.foundScaleIds);
   buildShapes();
 }
-
 // Required P5 function loops
 function draw() {
   background(0);
@@ -73,12 +74,8 @@ function draw() {
     drawLines();
   }
   // Turn on C Pedal Tone when Play button is clicked
-  if (pedalTonePlay == true) {
-
+  if (fretArt.pedalTonePlay == true) {
     playPedalTone();
-  } else {
-    // Pause C Pedal Tone
-    pedalTonePlay = false;
   }
   // Start shapes
   push();

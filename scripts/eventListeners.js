@@ -8,7 +8,7 @@ var showScales = document.getElementById("show-scale");
 var hideScales = document.getElementById("hide-scale");
 var showShapes = document.getElementById("show-shapes");
 var hideShapes = document.getElementById("hide-shapes");
-var pedalTonePlay = document.getElementById("play-button");
+var pedalTonePlayButton = document.getElementById("play-button");
 var PedalToneStop = document.getElementById("stop-button");
 var fretButton = document.getElementById("fret-button");
 var stringButton = document.getElementById("string-button");
@@ -42,15 +42,13 @@ arrowDown.style.opacity = .5;
 arrowLeft.style.opacity = .5;
 arrowRight.style.opacity = .5;
 
-// document.addEventListener('touchmove', function (e) {
-//    e.preventDefault();
-//    window.scroll(0, 0);
-//    return false;
-// }, false);
-
 fretShapesLogoButton.addEventListener("click", function() {
   window.location.reload();
 });
+
+document.body.addEventListener("touchmove", function(event) {
+    event.preventDefault();
+}, false);
 
 startButton.addEventListener("click", function() {
   fretArt.startButtonShowsFirst = false;
@@ -314,7 +312,7 @@ hideShapes.addEventListener("click", function() {
 //----------------------------------------------------------
 //---------- Pedal Tone Buttons Listerners------------------
 
-pedalTonePlay.addEventListener("click", function() {
+pedalTonePlayButton.addEventListener("click", function() {
   pedalToneButtonOn();
 });
 
