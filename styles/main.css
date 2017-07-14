@@ -577,6 +577,11 @@ img {
   font-size: .5em;
   margin-top: -15px;
 }
+.bbaccidental {
+  position: relative;
+  font-size: 1em;
+  top: 2px;
+}
 .accidental2 {
   position: relative;
   font-size: .5em;
