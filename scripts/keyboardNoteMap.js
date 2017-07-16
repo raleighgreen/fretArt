@@ -4,6 +4,7 @@ function checkKey(e) {
     e = e || window.event;
     // toggle pedal tone on/off with the space bar
     if (e.keyCode == '32') {
+      e.preventDefault();
       togglePedalTone();
     }
 
