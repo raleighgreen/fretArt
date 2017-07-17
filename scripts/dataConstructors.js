@@ -18,8 +18,7 @@ fretArt.strings = [
   new String("G", 15, 39),
   new String("D", 10, 34),
   new String("A", 5, 29),
-  new
-   String("lowE", 0, 24)
+  new String("lowE", 0, 24)
 ];
 
 // Create fret objects and push them into frets array
