@@ -55,8 +55,8 @@ var locrianDim7LowestFrets = [400,323,245,167,89,10];
 // Hungarian Min modes
 var hungarianMinLowestFrets = [402,323,245,168,90,12];
 var mixolydianb5b9LowestFrets = [401,324,246,167,89,11];
-/*
 var ionianAugSharp2LowestFrets = [402,324,246,169,89,12];
+/*
 var locrianbb3bb7LowestFrets = [400,322,245,167,89,10];
 var doubleHarmonicMajLowestFrets = [402,324,245,167,89,12];
 var lydianSharp2Sharp6LowestFrets = [402,324,247,169,90,12];
@@ -115,9 +115,9 @@ fretArt.modes = {
   "Locrian Diminished 7": new Mode("Locrian Diminished 7",[1, 2, 2, 1, 2, 1, 3], locrianDim7LowestFrets),
   //---------------------
   "Hungarian Minor": new Mode("Hungarian Minor",[2, 1, 3, 1, 1, 3, 1], hungarianMinLowestFrets),
-  "Mixolydian b5 b9": new Mode("Mixolydian &#9837;5 &#9837;9",[1, 3, 1, 1, 3, 1, 2], mixolydianb5b9LowestFrets)
-/*
+  "Mixolydian b5 b9": new Mode("Mixolydian &#9837;5 &#9837;9",[1, 3, 1, 1, 3, 1, 2], mixolydianb5b9LowestFrets),
   "Ionian Augmented #2": new Mode("Ionian Augmented &#x266f;2", [3, 1, 1, 3, 1, 2, 1], ionianAugSharp2LowestFrets),
+/*
   "Locrian bb3 bb7": new Mode("Locrian &#x1d12b;3 &#x1d12b;7",[1, 1, 3, 1, 2, 1, 3], locrianbb3bb7LowestFrets),
   "Double Harmonic Major": new Mode("Double Harmonic Major", [1, 3, 1, 2, 1, 3, 1], doubleHarmonicMajLowestFrets),
   "Lydian #2 #6": new Mode("Lydian &#x266f;2 &#x266f;6",[3, 1, 2, 1, 3, 1, 1], lydianSharp2Sharp6LowestFrets),
