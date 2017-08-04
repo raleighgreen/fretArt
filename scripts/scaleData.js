@@ -116,7 +116,7 @@ fretArt.modes = {
   //---------------------
   "Hungarian Minor": new Mode("Hungarian Minor",[2, 1, 3, 1, 1, 3, 1], hungarianMinLowestFrets),
   "Mixolydian b5 b9": new Mode("Mixolydian &#9837;5 &#9837;9",[1, 3, 1, 1, 3, 1, 2], mixolydianb5b9LowestFrets),
-  "Ionian Augmented #2": new Mode("Ionian Augmented &#x266f;2", [3, 1, 1, 3, 1, 2, 1], ionianAugSharp2LowestFrets),
+  "Ionian Augmented #2": new Mode("Ionian Augmented &#x266f;2", [3, 1, 1, 3, 1, 2, 1], ionianAugSharp2LowestFrets)
 /*
   "Locrian bb3 bb7": new Mode("Locrian &#x1d12b;3 &#x1d12b;7",[1, 1, 3, 1, 2, 1, 3], locrianbb3bb7LowestFrets),
   "Double Harmonic Major": new Mode("Double Harmonic Major", [1, 3, 1, 2, 1, 3, 1], doubleHarmonicMajLowestFrets),
