@@ -1,3 +1,9 @@
+.bbRepositiioner {
+  position: relative;
+  top: -5px;
+
+}
+
 ::-webkit-scrollbar
 {
     width: 0px;
