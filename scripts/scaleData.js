@@ -114,7 +114,7 @@ fretArt.modes = {
   "Lydian b3": new Mode("Lydian &#9837;3",[2, 1, 3, 1, 2, 2, 1], lydianb3LowestFrets),
   "Mixolydian b2": new Mode("Mixolydian &#9837;2", [1, 3, 1, 2, 2, 1, 2], mixolydianb2LowestFrets),
   "Lydian Augmented #2": new Mode("Lydian &#x266f;2 &#x266f;5",[3, 1, 2, 2, 1, 2, 1], lydianAugmentedSharp2LowestFrets),
-  "Locrian Diminished 7": new Mode("Locrian iminished 7",[1, 2, 2, 1, 2, 1, 3], locrianDim7LowestFrets),
+  "Locrian Diminished 7": new Mode("Locrian Diminished 7",[1, 2, 2, 1, 2, 1, 3], locrianDim7LowestFrets),
   //---------------------
   "Hungarian Minor": new Mode("Hungarian Minor",[2, 1, 3, 1, 1, 3, 1], hungarianMinLowestFrets),
   "Mixolydian b5 b9": new Mode("Mixolydian &#9837;5 &#9837;9",[1, 3, 1, 1, 3, 1, 2], mixolydianb5b9LowestFrets),
